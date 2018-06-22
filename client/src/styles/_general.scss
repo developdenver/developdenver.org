@@ -1,0 +1,17 @@
+@import "@/styles/_colors.scss";
+@import "@/styles/_sizes.scss";
+@import "@/styles/_typography.scss";
+
+@mixin call-to-action-button {
+	@include call-to-action-font;
+	display: inline-block;
+	background-color: $primary-color;
+	transition: all $transition;
+	color: $white;
+	text-decoration: none;
+	padding: $baseline;
+	text-align: center;
+	&:hover {
+		background-color: $secondary-color;
+	}
+}

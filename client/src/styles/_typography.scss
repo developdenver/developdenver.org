@@ -1,49 +1,61 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100,400,700");
+@import "_sizes";
+
+body {
+	font-family: "Montserrat", sans-serif;
+}
 
 @mixin link-font {
 	font-weight: 100;
-	font-size: 16px;
-	letter-spacing: 0;
+	font-size: $baseline;
+	text-transform: lowercase;
 }
 
 @mixin footer-link-font {
 	font-weight: 400;
-	font-size: 14px;
-	letter-spacing: 0;
+	font-size: $baseline;
 }
 
 @mixin secondary-header-font {
 	font-weight: 700;
-	font-size: 65px;
-	letter-spacing: 10px;
-	line-height: 65px;
+	font-size: $xxl;
+	letter-spacing: $small;
+	line-height: $xxl;
 	text-transform: uppercase;
+	@media (max-width: $large-breakpoint){
+		font-size: $large;
+		line-height: $large;
+	}
 }
 
 @mixin tertiary-header-font {
 	font-weight: 700;
-	font-size: 25px;
-	letter-spacing: 10px;
-	line-height: 25px;
+	font-size: $baseline;
+	letter-spacing: $small;
+	line-height: $large;
 	text-transform: uppercase;
 }
 
 @mixin section-header-font {
 	font-weight: 700;
-	font-size: 20px;
+	font-size: $large;
 	text-transform: uppercase;
+	margin-bottom: $baseline;
 }
 
 @mixin call-to-action-font {
 	font-weight: 700;
-	font-size: 16px;
-	letter-spacing: 0;
+	font-size: $baseline;
 	text-transform: uppercase;
 }
 
 @mixin body-font {
 	font-weight: 400;
-	font-size: 16px;
+	font-size: $baseline;
 	letter-spacing: 3px;
-	line-height: 28px;
+	line-height: $baseline + $small;
+	max-width: $max-line-length;
+	@media (max-width: $large-breakpoint){
+		letter-spacing: 0;
+	}
 }

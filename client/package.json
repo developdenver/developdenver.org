@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"register-service-worker": "^1.0.0",
+		"showdown": "^1.8.6",
 		"vue": "^2.5.16",
 		"vue-router": "^3.0.1",
 		"vuex": "^3.0.1"
@@ -30,5 +31,5 @@
 		"> 1%",
 		"last 2 versions",
 		"not ie <= 8"
-  ]
+	]
 }
