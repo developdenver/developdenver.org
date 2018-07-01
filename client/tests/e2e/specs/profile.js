@@ -5,16 +5,16 @@ describe("Profile", () => {
 			// Log user in
 		});
 		it("shows all attributes", () => {
-			cy.get("#first-name").should("have.text", "Test");
-			cy.get("#last-name").should("have.text", "User");
-			cy.get("#email").should("have.text", "User");
-			cy.get("#profile-photo").attr("src").should("have.text", "https://image.com");
-			cy.get("#bio").should("have.text", "Bio");
-			cy.get("#employer").should("have.text", "Employer");
-			cy.get("#position").should("have.text", "Postion");
-			cy.get("#website").should("have.text", "https://website.com");
-			cy.get("#github").should("have.text", "https://github.com/github");
-			cy.get("#twitter").should("have.text", "https://twitter.com/twitter");
+			cy.get("[name='first-name']").should("have.text", "Test");
+			cy.get("[name='last-name']").should("have.text", "User");
+			cy.get("[name='email']").should("have.text", "User");
+			cy.get("[name='profile-photo'] > img").attr("src").should("have.text", "https://image.com");
+			cy.get("[name='bio']").should("have.text", "Bio");
+			cy.get("[name='employer']").should("have.text", "Employer");
+			cy.get("[name='position']").should("have.text", "Postion");
+			cy.get("[name='website']").should("have.text", "https://website.com");
+			cy.get("[name='github']").should("have.text", "https://github.com/github");
+			cy.get("[name='twitter']").should("have.text", "https://twitter.com/twitter");
 		});
 		xit("allows attributes to be edited", () => {
 		});

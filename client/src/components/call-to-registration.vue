@@ -22,7 +22,7 @@
 		display: grid;
 		grid-template:
 			"mind-melter call-to-action" auto / 1fr 1fr;
-		margin-top: 10rem + $xxxl; // Offset mind-melter image
+		margin-top: 7.5rem + $xxxl; // Offset mind-melter image
 		margin-bottom: 2rem + $xxxl; // Offset mind-metler image
 		@media (max-width: $large-breakpoint){
 			display: block;

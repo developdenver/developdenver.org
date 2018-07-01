@@ -48,6 +48,9 @@
 		}
 		main {
 			grid-area: main;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
 		}
 		.app-footer {
 			grid-area: footer;

@@ -43,6 +43,12 @@ body {
 	margin-bottom: $baseline;
 }
 
+@mixin fieldset-header-font {
+	font-weight: 700;
+	font-size: $baseline;
+	margin-bottom: $baseline;
+}
+
 @mixin call-to-action-font {
 	font-weight: 700;
 	font-size: $baseline;

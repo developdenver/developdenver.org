@@ -26,6 +26,7 @@
 
 	.primary-navigation {
 		max-width: 50%;
+		margin-bottom: $xl;
 		ul {
 			display: flex;
 			flex-flow: row wrap;
