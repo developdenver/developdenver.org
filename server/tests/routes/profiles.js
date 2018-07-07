@@ -1,9 +1,3 @@
-process.env.NODE_ENV = "test";
-const assert = require("assert");
-const request = require("supertest");
-
-const testDatabase = require("../../src/database-connection");
-const app = require("../../src/app");
 const profiles = require("../fixtures/profiles");
 
 describe("/profiles", () => {
