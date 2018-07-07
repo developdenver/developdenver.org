@@ -9,7 +9,8 @@
         "test": "mocha --reporter min tests/routes",
         "test:unit": "mocha -wG --reporter min -r tests/test-setup.js tests/routes",
         "test:database:setup": "knex migrate:latest --env test",
-        "start": "node src/index.js"
+        "start": "node src/index.js",
+        "deploy": "git subtree push --prefix=server/ server master"
     },
     "author": "Kyle Coberly",
     "license": "ISC",
