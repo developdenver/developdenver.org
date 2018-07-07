@@ -2,6 +2,7 @@ const database = require("../database-connection");
 
 class Model {
     constructor(modelName){
+        this.database = database;
         this.modelName = modelName;
     }
     list(){
@@ -15,6 +16,10 @@ class Model {
     }
     remove(id){
         return database(this.modelName).delete().where("id", id);
+    }
+    update(id, data){
+        return database(this.modelName).returning("*").update(data).where("id", id)
+            .then(items => items[0]);
     }
 }
 

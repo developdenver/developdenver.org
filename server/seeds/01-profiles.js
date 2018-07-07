@@ -1,43 +1,30 @@
-exports.seed = (knex, Promise) => {
-    return knex("profile")
-        .del()
-        .then(() => {
-            return knex("profile").insert([{
-                id: 1,
-                first_name: "First",
-                last_name: "Last",
-                email_address: "email@address.com",
-                linkedin_username: "linkedin",
-                github_username: "github",
-                twitter_username: "twitter",
-                website_url: "https://website.com",
-                is_looking: false,
-                is_student: false,
-                is_self_employed: false,
-                employer: "Employer",
-                position: "Position",
-                bio: "Bio",
-                profile_photo_url: "http://via.placeholder.com/500x500",
-                is_over_21: true
-            },{
-                id: 2,
-                first_name: "First2",
-                last_name: "Last2",
-                email_address: "email2@address.com",
-                linkedin_username: "linkedin2",
-                github_username: "github2",
-                twitter_username: "twitter2",
-                website_url: "https://website2.com",
-                is_looking: true,
-                is_student: true,
-                is_self_employed: true,
-                employer: "Employer2",
-                position: "Position2",
-                bio: "Bio2",
-                profile_photo_url: "http://via.placeholder.com/500x500",
-                is_over_21: false
-            }]);
-        }).then(() => {
-            return knex.raw("ALTER SEQUENCE profile_id_seq RESTART WITH 3");
-        });
+const faker = require("faker");
+
+const profiles = [1, 2, 3, 4, 5].map(profileFactory);
+
+exports.seed = async (knex) => {
+    await knex("profile").del();
+    await knex("profile").insert(profiles);
+    await knex.raw("ALTER SEQUENCE profile_id_seq RESTART WITH 6");
 };
+
+function profileFactory(id){
+    return {
+        id,
+        first_name: faker.name.firstName(),
+        last_name: faker.name.lastName(),
+        email_address: faker.internet.email(),
+        linkedin_username: faker.internet.userName(),
+        github_username: faker.internet.userName(),
+        twitter_username: faker.internet.userName(),
+        website_url: faker.internet.url(),
+        is_looking: faker.random.boolean(),
+        is_student: faker.random.boolean(),
+        is_self_employed: faker.random.boolean(),
+        employer: faker.company.companyName(),
+        position: faker.name.jobTitle(),
+        bio: faker.lorem.paragraph(),
+        profile_photo_url: faker.internet.avatar(),
+        is_over_21: faker.random.boolean()
+    };
+}
