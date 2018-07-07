@@ -7,9 +7,6 @@ module.exports = {
     },
     test: {
         client: "pg",
-        connection: `postgres:///${process.env.TEST_DATABASE_NAME}`,
-        seeds: {
-            directory: "./tests/seeds"
-        }
+        connection: `postgres:///${process.env.TEST_DATABASE_NAME}`
     }
 };

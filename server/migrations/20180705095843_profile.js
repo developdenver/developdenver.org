@@ -1,4 +1,4 @@
-exports.up = (knex, Promise) => {
+exports.up = (knex) => {
     return knex.schema.createTable("profile", profile => {
         profile.increments();
         profile.string("first_name");
@@ -13,12 +13,12 @@ exports.up = (knex, Promise) => {
         profile.boolean("is_self_employed");
         profile.string("employer");
         profile.string("position");
-        profile.string("bio");
+        profile.text("bio");
         profile.string("profile_photo_url");
         profile.boolean("is_over_21");
     });
 };
 
-exports.down = (knex, Promise) => {
+exports.down = (knex) => {
     return knex.schema.dropTableIfExists("profile");
 };
