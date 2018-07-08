@@ -3,6 +3,7 @@ import Router from "vue-router";
 
 import Index from "@/views/index.vue";
 import Profile from "@/views/profile.vue";
+import Community from "@/views/community.vue";
 import CodeOfConduct from "@/views/code-of-conduct.vue";
 import PrivacyPolicy from "@/views/privacy-policy.vue";
 
@@ -17,6 +18,10 @@ export default new Router({
 		path: "/profile",
 		name: "profile",
 		component: Profile
+	},{
+		path: "/community",
+		name: "community",
+		component: Community
 	},{
 		path: "/code-of-conduct",
 		name: "code-of-conduct",
