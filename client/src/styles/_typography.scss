@@ -58,10 +58,31 @@ body {
 @mixin body-font {
 	font-weight: 400;
 	font-size: $baseline;
-	letter-spacing: 3px;
 	line-height: $baseline + $small;
 	max-width: $max-line-length;
+}
+
+@mixin bold-body-font {
+    @include body-font;
+    font-weight: 700;
+}
+
+@mixin italic-body-font {
+    @include body-font;
+    font-style: italic;
+}
+
+@mixin stylized-body-font {
+    @include body-font;
+	letter-spacing: 3px;
 	@media (max-width: $large-breakpoint){
 		letter-spacing: 0;
 	}
+}
+
+@mixin system-font {
+	font-weight: 400;
+	font-size: $baseline;
+	font-family: sans-serif;
+	line-height: $baseline + $small;
 }
