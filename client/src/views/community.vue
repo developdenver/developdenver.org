@@ -1,48 +1,51 @@
 <template>
     <section class="community">
         <h2>Community</h2>
-        <ul class="profiles">
-            <li v-for="profile in profiles">
-                <profile-card
-                    :profile="profile"
-                />
-            </li>
-        </ul>
+        <profile-card-list :profiles="shuffledProfiles" />
     </section>
 </template>
 
 <script>
-    import ProfileCard from "@/components/profile-card.vue";
+import ProfileCardList from "@/components/profile-card-list.vue";
 
-    export default {
-        components: {
-            ProfileCard
-        },
-        created(){
-            return this.$store.dispatch("getProfiles");
-        },
-        computed: {
-            profiles(){
-                return this.$store.state.profiles;
-            }
+export default {
+    components: {
+        ProfileCardList
+    },
+    created(){
+        return this.$store.dispatch("getProfiles");
+    },
+    computed: {
+        shuffledProfiles(){
+            return this.shuffle(this.$store.state.profiles);
         }
-    };
+    },
+    methods: {
+        shuffle(array){
+            let currentIndex = array.length, temporaryValue, randomIndex;
+
+            while (0 !== currentIndex) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    }
+};
 </script>
 
 <style lang="scss">
-    @import "@/styles/_typography.scss";
+@import "@/styles/_typography.scss";
 
-    .community {
-        width: 100%;
-        h2 {
-            @include section-header-font;
-        }
-        .profiles {
-            display: flex;
-            flex-flow: row wrap;
-            li {
-                width: calc(100% * (1/4));
-            }
-        }
+.community {
+    width: 100%;
+    h2 {
+        @include section-header-font;
     }
+}
 </style>
