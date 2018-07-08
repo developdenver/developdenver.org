@@ -3,11 +3,11 @@ exports.up = (knex) => {
         profile.increments();
         profile.string("first_name");
         profile.string("last_name");
-        profile.string("email_address");
+        profile.string("email");
         profile.string("linkedin_username");
         profile.string("github_username");
         profile.string("twitter_username");
-        profile.string("website_url");
+        profile.string("website");
         profile.boolean("is_looking");
         profile.boolean("is_student");
         profile.boolean("is_self_employed");
