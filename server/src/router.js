@@ -1,6 +1,8 @@
 module.exports = function(app){
     [
-        "profiles"
+        "profiles",
+        "images",
+        "auth",
     ].forEach(route => {
         app.use(`/${route}`, require(`./routes/${route}`)(app));
     });
