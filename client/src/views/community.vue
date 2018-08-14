@@ -13,11 +13,13 @@ export default {
         ProfileCardList
     },
     created(){
-        return this.$store.dispatch("getProfiles");
+        return this.$store.dispatch("fetchProfiles");
     },
     computed: {
         shuffledProfiles(){
-            return this.shuffle(this.$store.state.profiles);
+            const profilesWithPhotos = this.$store.state.profiles
+                .filter(profile => profile.profilePhotoUrl);
+            return this.shuffle(profilesWithPhotos);
         }
     },
     methods: {

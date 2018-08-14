@@ -6,29 +6,59 @@ import Profile from "@/views/profile.vue";
 import Community from "@/views/community.vue";
 import CodeOfConduct from "@/views/code-of-conduct.vue";
 import PrivacyPolicy from "@/views/privacy-policy.vue";
+import UserProfile from "@/views/a-profile.vue";
+import Register from "@/views/register";
+import Login from "@/views/login";
+import Tickets from "@/views/tickets";
+import Schedule from "@/views/schedule";
+import About from "@/views/about";
 
 Vue.use(Router);
 
 export default new Router({
-	routes: [{
-		path: "/",
-		name: "index",
-		component: Index
-	},{
-		path: "/profile",
-		name: "profile",
-		component: Profile
-	},{
-		path: "/community",
-		name: "community",
-		component: Community
-	},{
-		path: "/code-of-conduct",
-		name: "code-of-conduct",
-		component: CodeOfConduct
-	},{
-		path: "/privacy-policy",
-		name: "privacy-policy",
-		component: PrivacyPolicy
-	}]
+    routes: [{
+        path: "/",
+        name: "index",
+        component: Index
+    },{
+        path: "/register",
+        name: "register",
+        component: Register
+    },{
+        path: "/schedule",
+        name: "schedule",
+        component: Schedule
+    },{
+        path: "/login",
+        name: "login",
+        component: Login
+    },{
+        path: "/profile",
+        name: "profile",
+        component: Profile
+    },{
+        path: "/tickets",
+        name: "tickets",
+        component: Tickets,
+    },{
+        path: "/a-profile/:id",
+        name: "a-profile",
+        component: UserProfile
+    },{
+        path: "/about",
+        name: "about",
+        component: About
+    },{
+        path: "/community",
+        name: "community",
+        component: Community
+    },{
+        path: "/code-of-conduct",
+        name: "code-of-conduct",
+        component: CodeOfConduct
+    },{
+        path: "/privacy-policy",
+        name: "privacy-policy",
+        component: PrivacyPolicy
+    }]
 });

@@ -4,11 +4,12 @@
 		<nav>
 			<ul>
 				<li><router-link :to="{name: 'register'}">Register</router-link></li>
-				<li><router-link :to="{name: 'logins'}">Login</router-link></li>
+				<li><router-link :to="{name: 'login'}">Login</router-link></li>
 				<li><router-link :to="{name: 'tickets'}">Tickets</router-link></li>
 				<li><router-link :to="{name: 'community'}">Community</router-link></li>
 				<li><router-link :to="{name: 'schedule'}">Schedule</router-link></li>
 				<li><router-link :to="{name: 'code-of-conduct'}">Code Of Conduct</router-link></li>
+				<li><router-link :to="{name: 'privacy-policy'}">Privacy Policy</router-link></li>
 				<li><router-link :to="{name: 'about'}">About</router-link></li>
 			</ul>
 			<ul>

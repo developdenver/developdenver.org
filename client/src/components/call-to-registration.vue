@@ -8,7 +8,7 @@
 			<span class="slogan">Design</span>
 			<span class="slogan">Community</span>
 			<p class="date">October 11th & 12th</p>
-			<router-link class="button" :to="{name: 'registration'}">Register Today</router-link>
+			<router-link class="button" :to="{name: 'register'}">Register Today</router-link>
 		</div>
 	</section>
 </template>

@@ -3,6 +3,8 @@
 		<h2>Edit Profile</h2>
 		<edit-profile
 			:profile="profile"
+			buttonLabel="Update Profile"
+            @updateProfile="updateProfile"
 		/>
 		<p><router-link :to="{name: 'change-password'}">Change password</router-link></p>
 	</section>
@@ -21,8 +23,12 @@
 				return this.$store.state.currentProfile;
 			}
 		},
+        created(){
+            return this.$store.dispatch("getProfiles");
+        },
 		methods: {
-			updateProfile(updatedProfile){
+            updateProfile({id, profile}){
+                return this.$store.dispatch("updateProfile", {id, profile});
 			}
 		}
 	};
