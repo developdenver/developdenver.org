@@ -10,8 +10,10 @@ module.exports = function(app){
         response.locals.message = error.message;
         response.locals.error = request.app.get("env") === "development" ? error : {};
 
-        response.status(error.status || 500);
-        response.render("error");
+        if (error.message === "Incorrect password"){
+            error.status = 401;
+        }
+        response.status(error.status || 500).send();
     });
 
     return app;
