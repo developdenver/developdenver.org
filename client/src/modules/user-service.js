@@ -42,7 +42,6 @@ export default {
                     password: hashedPassword,
                 }),
             }).then(response => response.json());
-            console.log('hey', jwt, user)
             commit("setToken", jwt);
             commit("setProfile", user);
         },

@@ -30,7 +30,7 @@ export default {
                 });
                 this.$router.push({name: "tickets"});
             } catch (error){
-                this.error = error.message;
+                this.error = "Incorrect username or password."
             }
         }
     }
@@ -64,6 +64,9 @@ export default {
         border: none;
         padding: $large;
         @include call-to-action-font;
+    }
+    .error {
+        color: $warning;
     }
 }
 </style>
