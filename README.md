@@ -2,56 +2,45 @@
 
 > Develop Denver
 
-## About
-
-This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
-
 ## Getting Started
 
-Getting up and running is as easy as 1, 2, 3.
+### Client
 
-1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
-2. Install your dependencies
+- CD into client directory
+- `npm install`
+- `npm run serve`
 
-    ```
-    cd path/to/develop-denver; npm install
-    ```
+### Server
+- CD into server directory
+- `npm install`
+- Create development and test PostgreSQL databases
+- Copy `.env.example` to `.env` and enter the names of your databases
+- Run `npm run dev:database:setup` and `npm run test:database:setup`
+- `npm test`
+- `npm start`
 
-3. Start your app
+## Troubleshooting 
+- Check your version of Node
+- Install 10 + if it is below that. 
 
-    ```
-    npm start
-    ```
-
-## Testing
-
-Simply run `npm test` and all your tests in the `test/` directory will be run.
-
-## Scaffolding
-
-Feathers has a powerful command line interface. Here are a few things it can do:
-
+## ENV examples
+### Client ENV
+### ./client/.env.local
 ```
-$ npm install -g @feathersjs/cli          # Install Feathers CLI
-
-$ feathers generate service               # Generate a new Service
-$ feathers generate hook                  # Generate a new Hook
-$ feathers generate model                 # Generate a new Model
-$ feathers help                           # Show all commands
+VUE_APP_API_URL=<your-api-url-here>
+VUE_APP_API_BASE_URL=<your-api-base-url-here>
+VUE_APP_IMAGE_UPLOAD_ENDPOINT=<your-image-upload-endpoint-here>
+VUE_APP_PASSWORD_SALT=<your-pw-salt-here>
+VUE_APP_LOGIN_PATH=<your-login-path-here>
 ```
 
-## Help
-
-For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
-
-## Changelog
-
-__0.1.0__
-
-- Initial release
-
-## License
-
-Copyright (c) 2018
-
-Licensed under the [MIT license](LICENSE).
+### Server ENV
+### ./server/.env
+```
+DEVELOPMENT_DATABASE_NAME=<your-db-name-here>
+TEST_DATABASE_NAME=<your-test-db-name-here>
+S3_BUCKET_REGION=<your-bucket-region-here>
+S3_SECRET_ACCESS_KEY=<your-s3-secret-access-key-here>
+S3_ACCESS_KEY_ID=<your-s3-access-key-id-here>
+S3_BUCKET_NAME=<your-s3-bucket-name-here>
+```
