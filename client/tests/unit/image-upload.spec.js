@@ -1,4 +1,4 @@
-import {mount} from "@vue/test-utils";
+import {mount, } from "@vue/test-utils";
 import ImageUpload from "@/components/image-upload.vue";
 
 describe("image-upload", () => {
