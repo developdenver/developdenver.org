@@ -1,6 +1,6 @@
 <template>
     <div class="profile-card">
-        <router-link :to="{name: 'profile', params: {id: profile.id}}">
+		<router-link :to="{name: 'profile', params: {id: profile.id}}" :class="{disabled: !profile.id}">
             <div class="frame"></div>
             <img :src="profile.profilePhotoUrl" alt="Profile photo" />
             <div class="name-plate">
@@ -41,6 +41,9 @@ export default {
                 opacity: 1;
             }
         }
+		.disabled {
+			pointer-events: none;
+		}
         img {
             width: 100%;
             position: absolute;
