@@ -1,6 +1,6 @@
 <template>
     <div class="profile-card">
-        <router-link :to="{name: profile, params: {id: profile.id}}">
+        <router-link :to="{name: 'profile', params: {id: profile.id}}">
             <div class="frame"></div>
             <img :src="profile.profilePhotoUrl" alt="Profile photo" />
             <div class="name-plate">

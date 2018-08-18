@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 
 import Index from "@/views/index.vue";
-import Profile from "@/views/profile.vue";
+import EditProfile from "@/views/profile.vue";
 import Community from "@/views/community.vue";
 import CodeOfConduct from "@/views/code-of-conduct.vue";
 import PrivacyPolicy from "@/views/privacy-policy.vue";
@@ -34,16 +34,16 @@ export default new Router({
 		name: "login",
 		component: Login,
 	}, {
-		path: "/profile",
-		name: "profile",
-		component: Profile,
+		path: "/profile/me",
+		name: "my-profile",
+		component: EditProfile,
 	}, {
 		path: "/tickets",
 		name: "tickets",
 		component: Tickets,
 	}, {
-		path: "/a-profile/:id",
-		name: "a-profile",
+		path: "/profile/:id",
+		name: "profile",
 		component: UserProfile,
 	}, {
 		path: "/news",

@@ -1,10 +1,10 @@
 <template>
 	<section class="sponsors">
 		<h2>Sponsors</h2>
-		<ul class="platinum-sponsors">
+		<ul v-if="premiumSponsor" class="platinum-sponsors">
 			<li>Sponsor Here</li>
 		</ul>
-		<ul class="gold-sponsors">
+		<ul v-if="siteSponsors.length" class="gold-sponsors">
 			<li>Sponsor Here</li>
 		</ul>
 		<div class="sponsor-call-to-action">
@@ -12,6 +12,17 @@
 		</div>
 	</section>
 </template>
+
+<script>
+export default {
+	data() {
+		return {
+			premiumSponsor: null,
+			siteSponsors: [],
+		};
+	},
+};
+</script>
 
 <style lang="scss">
 	@import "@/styles/_typography.scss";

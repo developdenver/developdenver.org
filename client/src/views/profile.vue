@@ -12,7 +12,6 @@
 
 <script>
 import EditProfile from "@/components/edit-profile.vue";
-import camelCase from "camelcase";
 
 export default {
 	components: {
@@ -20,15 +19,15 @@ export default {
 	},
 	computed: {
 		profile() {
-			return this.$store.state.currentProfile;
+			return this.$store.getters["services/user/currentProfile"];
 		},
 	},
 	created() {
 		return this.$store.dispatch("getProfiles");
 	},
 	methods: {
-		updateProfile({id, profile, }) {
-			return this.$store.dispatch("updateProfile", {id, profile, });
+		updateProfile({profile}) {
+			return this.$store.dispatch("updateProfile", {profile});
 		},
 	},
 };

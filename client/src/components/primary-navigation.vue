@@ -7,6 +7,9 @@
             <li v-if="!isLoggedIn">
                 <router-link :to="{name: 'login'}">Login</router-link>
             </li>
+            <li v-if="isLoggedIn">
+                <router-link :to="{name: 'my-profile'}">My Profile</router-link>
+            </li>
             <li v-if="!isAttendee">
                 <router-link :to="{name: 'tickets'}">Tickets</router-link>
             </li>
