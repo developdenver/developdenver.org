@@ -14,26 +14,26 @@
 
 <script>
 export default {
-    data(){
-        return {
-            email: "",
-            password: "",
-            error: "",
-        };
-    },
-    methods: {
-        async login(){
-            try {
-                await this.$store.dispatch("services/user/login", {
-                    email: this.email,
-                    password: this.password,
-                });
-                this.$router.push({name: "tickets"});
-            } catch (error){
-                this.error = "Incorrect username or password."
-            }
-        }
-    }
+	data() {
+		return {
+			email: "",
+			password: "",
+			error: "",
+		};
+	},
+	methods: {
+		async login() {
+			try {
+				await this.$store.dispatch("services/user/login", {
+					email: this.email,
+					password: this.password,
+				});
+				this.$router.push({name: "tickets", });
+			} catch (error) {
+				this.error = "Incorrect username or password.";
+			}
+		},
+	},
 };
 </script>
 

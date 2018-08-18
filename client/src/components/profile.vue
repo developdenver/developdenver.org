@@ -21,23 +21,23 @@
 import FeatureBenefit from "@/components/feature-benefit.vue";
 
 export default {
-    components: {
-        FeatureBenefit
-    },
-    props: {
-        profile: Object
-    },
-    computed: {
-        image(){
-            return {
-                url: this.profile.profilePhotoUrl,
-                altText: "Profile photo"
-            };
-        },
-        fullName(){
-            return `${this.profile.firstName} ${this.profile.lastName}`;
-        }
-    }
+	components: {
+		FeatureBenefit,
+	},
+	props: {
+		profile: Object,
+	},
+	computed: {
+		image() {
+			return {
+				url: this.profile.profilePhotoUrl,
+				altText: "Profile photo",
+			};
+		},
+		fullName() {
+			return `${this.profile.firstName} ${this.profile.lastName}`;
+		},
+	},
 };
 </script>
 

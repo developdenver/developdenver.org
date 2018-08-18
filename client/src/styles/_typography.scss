@@ -2,64 +2,64 @@
 @import "_sizes";
 
 body {
-	font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 @mixin link-font {
-	font-weight: 100;
-	font-size: $baseline;
-	text-transform: lowercase;
+    font-weight: 100;
+    font-size: $baseline;
+    text-transform: lowercase;
 }
 
 @mixin footer-link-font {
-	font-weight: 400;
-	font-size: $baseline;
+    font-weight: 400;
+    font-size: $baseline;
 }
 
 @mixin secondary-header-font {
-	font-weight: 700;
-	font-size: $xxl;
-	letter-spacing: $small;
-	line-height: $xxl;
-	text-transform: uppercase;
-	@media (max-width: $large-breakpoint){
-		font-size: $large;
-		line-height: $large;
-	}
+    font-weight: 700;
+    font-size: $xxl;
+    letter-spacing: $small;
+    line-height: $xxl;
+    text-transform: uppercase;
+    @media (max-width: $large-breakpoint){
+        font-size: $large;
+        line-height: $large;
+    }
 }
 
 @mixin tertiary-header-font {
-	font-weight: 700;
-	font-size: $baseline;
-	letter-spacing: $small;
-	line-height: $large;
-	text-transform: uppercase;
+    font-weight: 700;
+    font-size: $baseline;
+    letter-spacing: $small;
+    line-height: $large;
+    text-transform: uppercase;
 }
 
 @mixin section-header-font {
-	font-weight: 700;
-	font-size: $large;
-	text-transform: uppercase;
-	margin-bottom: $baseline;
+    font-weight: 700;
+    font-size: $large;
+    text-transform: uppercase;
+    margin-bottom: $baseline;
 }
 
 @mixin fieldset-header-font {
-	font-weight: 700;
-	font-size: $baseline;
-	margin-bottom: $baseline;
+    font-weight: 700;
+    font-size: $baseline;
+    margin-bottom: $baseline;
 }
 
 @mixin call-to-action-font {
-	font-weight: 700;
-	font-size: $baseline;
-	text-transform: uppercase;
+    font-weight: 700;
+    font-size: $baseline;
+    text-transform: uppercase;
 }
 
 @mixin body-font {
-	font-weight: 400;
-	font-size: $baseline;
-	line-height: $baseline + $small;
-	max-width: $max-line-length;
+    font-weight: 400;
+    font-size: $baseline;
+    line-height: $baseline + $small;
+    max-width: $max-line-length;
 }
 
 @mixin bold-body-font {
@@ -74,15 +74,15 @@ body {
 
 @mixin stylized-body-font {
     @include body-font;
-	letter-spacing: 3px;
-	@media (max-width: $large-breakpoint){
-		letter-spacing: 0;
-	}
+    letter-spacing: 3px;
+    @media (max-width: $large-breakpoint){
+        letter-spacing: 0;
+    }
 }
 
 @mixin system-font {
-	font-weight: 400;
-	font-size: $baseline;
-	font-family: sans-serif;
-	line-height: $baseline + $small;
+    font-weight: 400;
+    font-size: $baseline;
+    font-family: sans-serif;
+    line-height: $baseline + $small;
 }

@@ -22,13 +22,13 @@
 </template>
 
 <script>
-	import ColorBar from "@/components/color-bar.vue";
+import ColorBar from "@/components/color-bar.vue";
 
-	export default {
-		components: {
-			ColorBar
-		}
-	};
+export default {
+	components: {
+		ColorBar,
+	},
+};
 </script>
 
 <style lang="scss">

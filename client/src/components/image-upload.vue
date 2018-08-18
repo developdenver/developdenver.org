@@ -29,34 +29,34 @@
 
 <script>
 export default {
-    data(){
-        return {
-            isSaving: false,
-            isError: false,
-        };
-    },
-    props: {
-        uploadUrl: String,
-    },
-    methods: {
-        async uploadFile(event){
-            this.isSaving = true;
-            const image = await fetch(this.uploadUrl, {
-                method: "POST",
-                body: new FormData(event.target),
-            }).then(response => response.json())
-            .then(response => {
-                this.isError = false;
-                return response.imageUrl;
-            }).catch(error => {
-                this.isError = true;
-            })
-            this.$el.reset();
-            this.isSaving = false;
+	data() {
+		return {
+			isSaving: false,
+			isError: false,
+		};
+	},
+	props: {
+		uploadUrl: String,
+	},
+	methods: {
+		async uploadFile(event) {
+			this.isSaving = true;
+			const image = await fetch(this.uploadUrl, {
+				method: "POST",
+				body: new FormData(event.target),
+			}).then(response => response.json())
+				.then(response => {
+					this.isError = false;
+					return response.imageUrl;
+				}).catch(error => {
+					this.isError = true;
+				});
+			this.$el.reset();
+			this.isSaving = false;
 
-            this.$emit("imageUrl", image);
-        }
-    }
+			this.$emit("imageUrl", image);
+		},
+	},
 };
 </script>
 

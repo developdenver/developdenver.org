@@ -12,18 +12,18 @@
 <script>
 import Showdown from "showdown";
 export default {
-    props: {
-        image: Object,
-        heading: String,
-        copy: String
-    },
-    computed: {
-        parsedCopy(){
-            const showdown = new Showdown.Converter();
-            return showdown.makeHtml(this.copy);
-        }
-    }
-}
+	props: {
+		image: Object,
+		heading: String,
+		copy: String,
+	},
+	computed: {
+		parsedCopy() {
+			const showdown = new Showdown.Converter();
+			return showdown.makeHtml(this.copy);
+		},
+	},
+};
 </script>
 
 <style lang="scss">

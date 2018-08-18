@@ -12,53 +12,58 @@ import Login from "@/views/login";
 import Tickets from "@/views/tickets";
 import Schedule from "@/views/schedule";
 import About from "@/views/about";
+import News from "@/views/news";
 
 Vue.use(Router);
 
 export default new Router({
-    routes: [{
-        path: "/",
-        name: "index",
-        component: Index
-    },{
-        path: "/register",
-        name: "register",
-        component: Register
-    },{
-        path: "/schedule",
-        name: "schedule",
-        component: Schedule
-    },{
-        path: "/login",
-        name: "login",
-        component: Login
-    },{
-        path: "/profile",
-        name: "profile",
-        component: Profile
-    },{
-        path: "/tickets",
-        name: "tickets",
-        component: Tickets,
-    },{
-        path: "/a-profile/:id",
-        name: "a-profile",
-        component: UserProfile
-    },{
-        path: "/about",
-        name: "about",
-        component: About
-    },{
-        path: "/community",
-        name: "community",
-        component: Community
-    },{
-        path: "/code-of-conduct",
-        name: "code-of-conduct",
-        component: CodeOfConduct
-    },{
-        path: "/privacy-policy",
-        name: "privacy-policy",
-        component: PrivacyPolicy
-    }]
+	routes: [{
+		path: "/",
+		name: "index",
+		component: Index,
+	}, {
+		path: "/register",
+		name: "register",
+		component: Register,
+	}, {
+		path: "/schedule",
+		name: "schedule",
+		component: Schedule,
+	}, {
+		path: "/login",
+		name: "login",
+		component: Login,
+	}, {
+		path: "/profile",
+		name: "profile",
+		component: Profile,
+	}, {
+		path: "/tickets",
+		name: "tickets",
+		component: Tickets,
+	}, {
+		path: "/a-profile/:id",
+		name: "a-profile",
+		component: UserProfile,
+	}, {
+		path: "/news",
+		name: "news",
+		component: News,
+	}, {
+		path: "/about",
+		name: "about",
+		component: About,
+	}, {
+		path: "/community",
+		name: "community",
+		component: Community,
+	}, {
+		path: "/code-of-conduct",
+		name: "code-of-conduct",
+		component: CodeOfConduct,
+	}, {
+		path: "/privacy-policy",
+		name: "privacy-policy",
+		component: PrivacyPolicy,
+	}, ],
 });

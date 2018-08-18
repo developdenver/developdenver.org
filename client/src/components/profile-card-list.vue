@@ -10,12 +10,12 @@
 import ProfileCard from "@/components/profile-card.vue";
 
 export default {
-    components: {
-        ProfileCard
-    },
-    props: {
-        profiles: Array
-    }
+	components: {
+		ProfileCard,
+	},
+	props: {
+		profiles: Array,
+	},
 };
 </script>
 

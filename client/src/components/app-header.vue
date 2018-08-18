@@ -9,13 +9,13 @@
 </template>
 
 <script>
-	import PrimaryNavigation from "@/components/primary-navigation.vue";
+import PrimaryNavigation from "@/components/primary-navigation.vue";
 
-	export default {
-		components: {
-			PrimaryNavigation
-		}
-	};
+export default {
+	components: {
+		PrimaryNavigation,
+	},
+};
 </script>
 
 <style lang="scss">

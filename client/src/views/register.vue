@@ -9,19 +9,19 @@
 </template>
 
 <script>
-    import EditProfile from "../components/edit-profile";
-    import Profile from "../models/profile";
+import EditProfile from "../components/edit-profile";
+import Profile from "../models/profile";
 
-    export default {
-        components: {
-            EditProfile
-        },
-        methods: {
-            updateProfile(profile){
-                this.$store.dispatch("createProfile", new Profile(profile));
-            },
-        },
-    };
+export default {
+	components: {
+		EditProfile,
+	},
+	methods: {
+		updateProfile(profile) {
+			this.$store.dispatch("createProfile", new Profile(profile));
+		},
+	},
+};
 </script>
 
 <style>

@@ -23,7 +23,7 @@
                 </figure>
             </image-upload>
             <label for="bio">Bio</label>
-            <textarea id="bio" v-model.trim="profile.bio">{{profile.bio}}</textarea>
+            <textarea id="bio" v-model.trim="profile.bio"></textarea>
             <label for="employer">Employer</label>
             <input type="text" id="employer" v-model.trim="profile.employer" />
             <label for="position">Position</label>
@@ -43,40 +43,39 @@
 
 <script>
 import Vue from "vue";
-import camelCase from "camelcase";
 import ImageUpload from "@/components/image-upload.vue";
 import SetPassword from "@/components/set-password.vue";
 
 export default {
-    components: {
-        ImageUpload,
-        SetPassword,
-    },
-    data(){
-        return {
-            imageUploadUrl: `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_IMAGE_UPLOAD_ENDPOINT}`
-        }
-    },
-    props: {
-        profile: {
-            type: Object,
-            default: () => ({}),
-        },
-        buttonLabel: String,
-    },
-    methods: {
-        updateProfile(){
-            console.log('pro', this.profile.email)
-            return this.$emit("updateProfile", this.profile);
-        },
-        setImageUrl(url){
-            Vue.set(this.profile, "profilePhotoUrl", url);
-        },
-        updatePassword(hashedPassword){
-            console.log('hash', hashedPassword)
-            this.profile.hashedPassword = hashedPassword;
-        },
-    },
+	components: {
+		ImageUpload,
+		SetPassword,
+	},
+	data() {
+		return {
+			imageUploadUrl: `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_IMAGE_UPLOAD_ENDPOINT}`,
+		};
+	},
+	props: {
+		profile: {
+			type: Object,
+			default: () => ({}),
+		},
+		buttonLabel: String,
+	},
+	methods: {
+		updateProfile() {
+			console.log("pro", this.profile.email);
+			return this.$emit("updateProfile", this.profile);
+		},
+		setImageUrl(url) {
+			Vue.set(this.profile, "profilePhotoUrl", url);
+		},
+		updatePassword(hashedPassword) {
+			console.log("hash", hashedPassword);
+			this.profile.hashedPassword = hashedPassword;
+		},
+	},
 };
 </script>
 

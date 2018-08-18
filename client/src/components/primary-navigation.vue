@@ -8,13 +8,13 @@
                 <router-link :to="{name: 'login'}">Login</router-link>
             </li>
             <li v-else>
-                <a href="#" @click.prevent="logout">Logout</a>
+                <a href="#" @click.prevent="logout">Logout {{userFirstName}}</a>
             </li>
-            <li v-if="isLoggedIn">
+            <li v-if="isLoggedIn && !isAttendee">
                 <router-link :to="{name: 'tickets'}">Tickets</router-link>
             </li>
-            <li v-if="isLoggedIn">
-                <router-link :to="{name: 'schedule'}">Schedule</router-link>
+            <li v-if="isLoggedIn && isAttendee">
+                <router-link :to="{name: 'news'}">News</router-link>
             </li>
             <li>
                 <router-link :to="{name: 'community'}">Community</router-link>
@@ -25,17 +25,23 @@
 
 <script>
 export default {
-    computed: {
-        isLoggedIn(){
-            return this.$store.getters["services/user/isLoggedIn"];
-        },
-    },
-    methods: {
-        logout(){
-            this.$store.dispatch("services/user/logout");
-            this.$router.push("/")
-        },
-    },
+	computed: {
+		isLoggedIn() {
+			return this.$store.getters["services/user/isLoggedIn"];
+		},
+		isAttendee() {
+			return this.$store.getters["services/user/isAttendee"];
+		},
+		userFirstName() {
+			return this.$store.getters["services/user/currentProfile"].first_name;
+		},
+	},
+	methods: {
+		logout() {
+			this.$store.dispatch("services/user/logout");
+			this.$router.push("/");
+		},
+	},
 };
 </script>
 

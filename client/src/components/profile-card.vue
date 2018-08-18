@@ -12,11 +12,11 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            profile: Object
-        }
-    };
+export default {
+	props: {
+		profile: Object,
+	},
+};
 </script>
 
 <style lang="scss">

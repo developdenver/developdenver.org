@@ -18,15 +18,15 @@ import FeatureBenefit from "@/components/feature-benefit.vue";
 import featureBenefits from "@/data/feature-benefits";
 
 export default {
-    components: {
-        CallToRegistration,
-        FeatureBenefit
-    },
-    data(){
-        return {
-            featureBenefits
-        };
-    }
+	components: {
+		CallToRegistration,
+		FeatureBenefit,
+	},
+	data() {
+		return {
+			featureBenefits,
+		};
+	},
 };
 </script>
 
