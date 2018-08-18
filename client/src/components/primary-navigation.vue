@@ -7,17 +7,17 @@
             <li v-if="!isLoggedIn">
                 <router-link :to="{name: 'login'}">Login</router-link>
             </li>
-            <li v-else>
-                <a href="#" @click.prevent="logout">Logout {{userFirstName}}</a>
-            </li>
-            <li v-if="isLoggedIn && !isAttendee">
+            <li v-if="!isAttendee">
                 <router-link :to="{name: 'tickets'}">Tickets</router-link>
             </li>
-            <li v-if="isLoggedIn && isAttendee">
+            <li v-if="isAttendee">
                 <router-link :to="{name: 'news'}">News</router-link>
             </li>
             <li>
                 <router-link :to="{name: 'community'}">Community</router-link>
+            </li>
+            <li v-if="isLoggedIn">
+                <a href="#" @click.prevent="logout">Logout {{userFirstName}}</a>
             </li>
         </ul>
     </nav>
