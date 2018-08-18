@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <color-bar class="top-bar" />
         <app-header />
         <main>
             <router-view/>
@@ -14,14 +13,12 @@
 import AppHeader from "@/components/app-header.vue";
 import AppFooter from "@/components/app-footer.vue";
 import SponsorList from "@/components/sponsor-list.vue";
-import ColorBar from "@/components/color-bar.vue";
 
 export default {
 	components: {
 		AppHeader,
 		AppFooter,
 		SponsorList,
-		ColorBar,
 	},
 	created() {
 		this.$store.dispatch("services/user/fetchProfile");

@@ -29,7 +29,9 @@ export default {
 			display: none;
 		}
 		.logo {
-			width: 150px;
+			padding: $small;
+			height: 50px;
+			max-width: 100%;
 			margin-top: $xl;
 			margin-bottom: $xl;
 		}

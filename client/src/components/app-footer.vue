@@ -1,6 +1,5 @@
 <template>
 	<footer class="app-footer">
-		<color-bar class="bottom-bar" />
 		<nav>
 			<ul>
 				<li><router-link :to="{name: 'register'}">Register</router-link></li>
@@ -20,16 +19,6 @@
 		</nav>
 	</footer>
 </template>
-
-<script>
-import ColorBar from "@/components/color-bar.vue";
-
-export default {
-	components: {
-		ColorBar,
-	},
-};
-</script>
 
 <style lang="scss">
 	@import "@/styles/_typography.scss";
