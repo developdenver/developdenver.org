@@ -16,6 +16,7 @@ exports.up = (knex) => {
         profile.string("twitter_username");
         profile.string("secret_key");
         profile.string("role");
+        profile.string("ticket_level");
         profile.boolean("is_looking");
         profile.boolean("is_student");
         profile.boolean("is_self_employed");
