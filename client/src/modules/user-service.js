@@ -1,4 +1,4 @@
-import { hashPassword, } from "../utilities/auth";
+import { hashPassword } from "../utilities/auth";
 import Profile from "../models/profile";
 import jwtDecode from "jwt-decode";
 
@@ -37,7 +37,7 @@ export default {
 		},
 	},
 	actions: {
-		async login({commit, }, {email, password, }) {
+		async login({ commit, }, { email, password, }) {
 			const loginUrl = `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_LOGIN_PATH}`;
 			const hashedPassword = await hashPassword(password);
 			const { user, jwt, } = await fetch(loginUrl, {
@@ -53,22 +53,22 @@ export default {
 			commit("setToken", jwt);
 			commit("setProfile", new Profile(user));
 		},
-		logout({commit, }) {
+		logout({ commit, }) {
 			return commit("logout");
 		},
-		setToken({commit, }, token) {
+		setToken({ commit, }, token) {
 			return commit("setToken", token);
 		},
-		setProfile({commit, }, profile) {
+		setProfile({ commit, }, profile) {
 			return commit("setProfile", new Profile(profile));
 		},
-		setAttendee({commit, getters, }, value) {
+		setAttendee({ commit, getters, }, value) {
 			const profile = new Profile(getters.currentProfile);
 			console.log("setAttendee", profile);
 			profile.setTicketLevel(value);
 			return commit("setProfile", profile.serialize(profile.properties));
 		},
-		async fetchProfile({getters, commit, }) {
+		async fetchProfile({ getters, commit, }) {
 			const jwt = getters.token;
 			if (jwt) {
 				const id = jwtDecode(jwt).sub;
