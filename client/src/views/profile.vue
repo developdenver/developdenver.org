@@ -6,7 +6,6 @@
              buttonLabel="Update Profile"
              @updateProfile="updateProfile"
          />
-        <p><router-link :to="{name: 'change-password'}">Change password</router-link></p>
     </section>
 </template>
 
@@ -21,9 +20,6 @@ export default {
 		profile() {
 			return this.$store.getters["services/user/currentProfile"];
 		},
-	},
-	created() {
-		return this.$store.dispatch("getProfiles");
 	},
 	methods: {
 		updateProfile({ profile, }) {

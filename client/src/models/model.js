@@ -15,11 +15,11 @@ class Model {
 	normalize(unNormalizedData) {
 		return this.deserialize(unNormalizedData);
 	}
-	static async fetchAll(modelName) {
+	static fetchAll(modelName) {
 		const url = buildUrl(modelName);
-		return await fetch(url)
+		return fetch(url)
 			.then(response => response.json())
-			.then(({data, }) => data.map(deserialize))
+			.then(({ data, }) => data.map(deserialize))
 			.catch(error => console.error(error.message));
 	}
 	async fetch() {
@@ -42,7 +42,6 @@ class Model {
 			body: this.serialize(this.properties),
 		}).then(response => response.json())
 			.catch(error => console.error(error.message));
-		console.log(data, jwt);
 		this.properties = this.normalize(data);
 		return jwt;
 	}

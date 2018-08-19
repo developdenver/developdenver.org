@@ -5,11 +5,10 @@ import jwtDecode from "jwt-decode";
 export default {
 	namespaced: true,
 	state: {
-		currentProfile: null,
 	},
 	getters: {
 		isLoggedIn(state, getters) {
-			return !!getters.currentProfile;
+			return !!getters.currentProfile.id;
 		},
 		isAttendee(state, getters) {
 			return !!getters.currentProfile.ticketLevel;
@@ -18,13 +17,14 @@ export default {
 			return localStorage.getItem("token");
 		},
 		currentProfile() {
-			return JSON.parse(localStorage.getItem("profile"));
+			const profile = localStorage.getItem("profile") || "{}";
+			return JSON.parse(profile);
 		},
 	},
 	mutations: {
 		logout(state) {
-			state.currentProfile = null;
 			localStorage.removeItem("token");
+			localStorage.removeItem("profile");
 			return true;
 		},
 		setToken(state, token) {

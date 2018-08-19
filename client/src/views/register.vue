@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="register">
         <h2>Register</h2>
         <edit-profile
             buttonLabel="Register"
@@ -19,10 +19,20 @@ export default {
 	methods: {
 		updateProfile(profile) {
 			this.$store.dispatch("createProfile", new Profile(profile));
+			this.$router.push({ name: "tickets", });
 		},
 	},
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "@/styles/_sizes.scss";
+
+.register {
+    display: flex;
+    flex-flow: column nowrap;
+    flex-grow: 1;
+	max-width: $max-line-length;
+	margin-bottom: $large;
+}
 </style>

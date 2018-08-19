@@ -65,14 +65,12 @@ export default {
 	},
 	methods: {
 		updateProfile() {
-			console.log("pro", this.profile.email);
 			return this.$emit("updateProfile", this.profile);
 		},
 		setImageUrl(url) {
 			Vue.set(this.profile, "profilePhotoUrl", url);
 		},
 		updatePassword(hashedPassword) {
-			console.log("hash", hashedPassword);
 			this.profile.hashedPassword = hashedPassword;
 		},
 	},

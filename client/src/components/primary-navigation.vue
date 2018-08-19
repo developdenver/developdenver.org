@@ -30,13 +30,16 @@
 export default {
 	computed: {
 		isLoggedIn() {
-			return this.$store.getters["services/user/isLoggedIn"];
+			return this.$store.getters["services/user/isLoggedIn"] || false;
 		},
 		isAttendee() {
-			return this.$store.getters["services/user/isAttendee"];
+			return this.$store.getters["services/user/isAttendee"] || false;
+		},
+		currentUser() {
+			return this.$store.getters["services/user/currentProfile"] || {};
 		},
 		userFirstName() {
-			return this.$store.getters["services/user/currentProfile"].first_name;
+			return this.currentUser.first_name || "";
 		},
 	},
 	methods: {
