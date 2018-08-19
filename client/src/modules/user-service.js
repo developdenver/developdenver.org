@@ -11,14 +11,14 @@ export default {
 			return !!getters.currentProfile.id;
 		},
 		isAttendee(state, getters) {
-			return !!getters.currentProfile.ticketLevel;
+			return !!getters.currentProfile.properties.ticketLevel;
 		},
 		token() {
 			return localStorage.getItem("token");
 		},
 		currentProfile() {
 			const profile = localStorage.getItem("profile") || "{}";
-			return JSON.parse(profile);
+			return new Profile(profile);
 		},
 	},
 	mutations: {
@@ -32,7 +32,7 @@ export default {
 			return true;
 		},
 		setProfile(state, profile) {
-			localStorage.setItem("profile", profile.serialize(profile.properties));
+			localStorage.setItem("profile", profile.serialize());
 			return true;
 		},
 	},
@@ -63,10 +63,10 @@ export default {
 			return commit("setProfile", new Profile(profile));
 		},
 		setAttendee({ commit, getters }, value) {
-			const profile = new Profile(getters.currentProfile);
+			const profile = getters.currentProfile;
 			console.log("setAttendee", profile);
 			profile.setTicketLevel(value);
-			return commit("setProfile", profile.serialize(profile.properties));
+			return commit("setProfile", profile.serialize());
 		},
 		async fetchProfile({ getters, commit }) {
 			const jwt = getters.token;

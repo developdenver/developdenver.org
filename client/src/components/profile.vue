@@ -3,14 +3,14 @@
         <img :src="profile.profilePhotoUrl" alt="profile photo" />
         <div class="profile-details">
             <h2>{{fullName}}</h2>
-            <p>{{profile.position}} at {{profile.employer}}</p>
+            <p>{{profile.properties.position}} at {{profile.properties.employer}}</p>
             <div class="bio">
-                <p>{{profile.bio}}</p>
-                <p v-if="profile.website" class="website">Website: <a :href="profile.website">{{profile.website}}</a></p>
+                <p>{{profile.properties.bio}}</p>
+                <p v-if="profile.properties.website" class="website">Website: <a :href="profile.properties.website">{{profile.properties.website}}</a></p>
             </div>
             <ul class="social">
-                <li v-if="profile.twitterUsername" class="twitter">
-                    <a :href="profile.twitterUrl"><font-awesome-icon :icon="['fab', 'twitter']" /></a>
+                <li v-if="profile.properties.twitterUsername" class="twitter">
+                    <a :href="profile.properties.twitterUrl"><font-awesome-icon :icon="['fab', 'twitter']" /></a>
                 </li>
             </ul>
         </div>
@@ -25,17 +25,20 @@ export default {
 		FeatureBenefit,
 	},
 	props: {
-		profile: Object,
+		profile: {
+			type: Object,
+			required: true,
+		},
 	},
 	computed: {
 		image() {
 			return {
-				url: this.profile.profilePhotoUrl,
+				url: this.profile.properties.profilePhotoUrl,
 				altText: "Profile photo",
 			};
 		},
 		fullName() {
-			return `${this.profile.firstName} ${this.profile.lastName}`;
+			return `${this.profile.properties.firstName} ${this.profile.properties.lastName}`;
 		},
 	},
 };

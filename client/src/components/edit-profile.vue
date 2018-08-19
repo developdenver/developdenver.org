@@ -3,11 +3,11 @@
         <fieldset class="required">
             <h3>Your Profile</h3>
             <label for="first-name">First Name</label>
-            <input type="text" required id="first-name" v-model.trim="profile.firstName" />
+            <input type="text" required id="first-name" v-model.trim="profile.properties.firstName" />
             <label for="last-name">Last Name</label>
-            <input type="text" required id="last-name" v-model.trim="profile.lastName" />
+            <input type="text" required id="last-name" v-model.trim="profile.properties.lastName" />
             <label for="email">Email</label>
-            <input type="email" required id="email" name="email" v-model.trim="profile.email" />
+            <input type="email" required id="email" name="email" v-model.trim="profile.properties.email" />
             <SetPassword
                 @updatePassword="updatePassword"
             />
@@ -18,24 +18,24 @@
                 :uploadUrl="imageUploadUrl"
                 @imageUrl="setImageUrl"
             >
-                <figure v-if="profile.profilePhotoUrl" class="profile-photo">
-                    <img :src="profile.profilePhotoUrl" alt="Profile Photo" />
+                <figure v-if="profile.properties.profilePhotoUrl" class="profile-photo">
+                    <img :src="profile.properties.profilePhotoUrl" alt="Profile Photo" />
                 </figure>
             </image-upload>
             <label for="bio">Bio</label>
-            <textarea id="bio" v-model.trim="profile.bio"></textarea>
+            <textarea id="bio" v-model.trim="profile.properties.bio"></textarea>
             <label for="employer">Employer</label>
-            <input type="text" id="employer" v-model.trim="profile.employer" />
+            <input type="text" id="employer" v-model.trim="profile.properties.employer" />
             <label for="position">Position</label>
-            <input type="text" id="position" v-model.trim="profile.position" />
+            <input type="text" id="position" v-model.trim="profile.properties.position" />
             <label for="website">Website</label>
-            <input type="url" id="website" v-model.trim="profile.website" />
+            <input type="url" id="website" v-model.trim="profile.properties.website" />
             <label for="github-username">Github Username</label>
-            <input type="text" id="github-username" v-model.trim="profile.githubUsername" />
+            <input type="text" id="github-username" v-model.trim="profile.properties.githubUsername" />
             <label for="twitter-username">Twitter Username</label>
-            <input type="text" id="twitter-username" v-model.trim="profile.twitterUsername" />
+            <input type="text" id="twitter-username" v-model.trim="profile.properties.twitterUsername" />
             <label for="linkedin-username">LinkedIn Username</label>
-            <input type="text" id="linkedin-username" v-model.trim="profile.linkedinUsername" />
+            <input type="text" id="linkedin-username" v-model.trim="profile.properties.linkedinUsername" />
         </fieldset>
         <button>{{buttonLabel}}</button>
     </form>
@@ -59,7 +59,7 @@ export default {
 	props: {
 		profile: {
 			type: Object,
-			default: () => ({}),
+			required: true,
 		},
 		buttonLabel: String,
 	},
@@ -68,10 +68,10 @@ export default {
 			return this.$emit("updateProfile", this.profile);
 		},
 		setImageUrl(url) {
-			Vue.set(this.profile, "profilePhotoUrl", url);
+			Vue.set(this.profile.properties, "profilePhotoUrl", url);
 		},
 		updatePassword(hashedPassword) {
-			this.profile.hashedPassword = hashedPassword;
+			this.profile.properties.hashedPassword = hashedPassword;
 		},
 	},
 };

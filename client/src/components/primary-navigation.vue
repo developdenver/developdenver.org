@@ -39,7 +39,7 @@ export default {
 			return this.$store.getters["services/user/currentProfile"] || {};
 		},
 		userFirstName() {
-			return this.currentUser.first_name || "";
+			return this.currentUser.properties.first_name || "";
 		},
 	},
 	methods: {

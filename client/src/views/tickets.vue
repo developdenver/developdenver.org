@@ -65,7 +65,7 @@ export default {
 				this.error = result.error;
 				this.message = "";
 			} else {
-				const {id, firstName, lastName} = this.currentProfile;
+				const {id, firstName, lastName} = this.currentProfile.properties;
 				const charge = {
 					description: `${id} - ${lastName}, ${firstName}`,
 					token: result.token.id,

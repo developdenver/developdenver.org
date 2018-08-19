@@ -3,6 +3,7 @@
         <h2>Register</h2>
         <edit-profile
             buttonLabel="Register"
+			:profile="profile"
             @updateProfile="updateProfile"
         />
     </section>
@@ -13,12 +14,17 @@ import EditProfile from "../components/edit-profile";
 import Profile from "../models/profile";
 
 export default {
+	data() {
+		return {
+			profile: new Profile(),
+		};
+	},
 	components: {
 		EditProfile,
 	},
 	methods: {
 		updateProfile(profile) {
-			this.$store.dispatch("createProfile", new Profile(profile));
+			this.$store.dispatch("createProfile", profile);
 			this.$router.push({ name: "tickets" });
 		},
 	},

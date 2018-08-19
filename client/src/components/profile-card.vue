@@ -2,10 +2,10 @@
     <div class="profile-card">
 		<router-link :to="{name: 'profile', params: {id: profile.id}}" :class="{disabled: !profile.id}">
             <div class="frame"></div>
-            <img :src="profile.profilePhotoUrl" alt="Profile photo" />
+            <img :src="profile.properties.profilePhotoUrl" alt="Profile photo" />
             <div class="name-plate">
-                <p class="name">{{profile.firstName}} {{profile.lastName}}</p>
-                <p class="job">{{profile.position}} at {{profile.employer}}</p>
+                <p class="name">{{profile.properties.firstName}} {{profile.properties.lastName}}</p>
+                <p class="job">{{profile.properties.position}} at {{profile.properties.employer}}</p>
             </div>
         </router-link>
     </div>
@@ -14,7 +14,10 @@
 <script>
 export default {
 	props: {
-		profile: Object,
+		profile: {
+			type: Object,
+			required: true,
+		},
 	},
 };
 </script>

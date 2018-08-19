@@ -4,7 +4,7 @@ import {buildUrl, buildRequest} from "./adapter";
 
 class Model {
 	constructor(modelName, item) {
-		this.serialize = serialize;
+		this.serialize = serialize.bind(this);
 		this.deserialize = deserialize;
 		this.buildUrl = buildUrl;
 		this.buildRequest = buildRequest;
@@ -39,7 +39,7 @@ class Model {
 				"Accept": "application/json",
 				"Content-Type": "application/json",
 			},
-			body: this.serialize(this.properties),
+			body: this.serialize,
 		}).then(response => response.json())
 			.catch(error => console.error(error.message));
 		this.properties = this.normalize(data);
@@ -53,7 +53,7 @@ class Model {
 				"Accept": "application/json",
 				"Content-Type": "application/json",
 			},
-			body: this.serialize(this.properties),
+			body: this.serialize(),
 		}).then(response => response.json())
 			.then(response => response.data)
 			.catch(error => console.error(error.message));

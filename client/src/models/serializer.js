@@ -1,10 +1,10 @@
 import {snakeCase} from "change-case";
 
-export function serialize(object) {
-	const keys = Object.keys(object);
+export function serialize() {
+	const keys = Object.keys(this.properties);
 	return JSON.stringify(keys.reduce((serializedObject, key) => {
-		const value = object[key];
-		delete object[key];
+		const value = this.properties[key];
+		delete this.properties[key];
 		serializedObject[snakeCase(key)] = value;
 		return serializedObject;
 	}, {}));
