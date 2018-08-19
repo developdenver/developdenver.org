@@ -28,7 +28,7 @@ export default {
 					email: this.email,
 					password: this.password,
 				});
-				this.$router.push({name: "tickets", });
+				this.$router.push({name: "tickets"});
 			} catch (error) {
 				this.error = "Incorrect username or password.";
 			}

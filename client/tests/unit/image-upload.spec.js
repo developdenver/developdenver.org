@@ -1,5 +1,6 @@
-import {mount, } from "@vue/test-utils";
-import ImageUpload from "@/components/image-upload.vue";
+/* global describe, it, assert */
+// import { mount } from "@vue/test-utils";
+// import ImageUpload from "@/components/image-upload.vue";
 
 describe("image-upload", () => {
 	it("uploads images", () => {

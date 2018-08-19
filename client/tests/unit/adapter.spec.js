@@ -1,4 +1,5 @@
-const {buildUrl, buildRequest, } = require("../../src/models/adapter");
+/* global xdescribe, describe, it, assert */
+const {buildUrl, buildRequest} = require("../../src/models/adapter");
 
 xdescribe("adapter", function() {
 	describe("#buildUrl", () => {

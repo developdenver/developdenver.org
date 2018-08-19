@@ -19,7 +19,7 @@ export default {
 	methods: {
 		updateProfile(profile) {
 			this.$store.dispatch("createProfile", new Profile(profile));
-			this.$router.push({ name: "tickets", });
+			this.$router.push({ name: "tickets" });
 		},
 	},
 };

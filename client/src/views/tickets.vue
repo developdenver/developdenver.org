@@ -26,6 +26,7 @@
 </template>
 
 <script>
+/* global Stripe */
 import CreditCardPayment from "../components/credit-card-payment";
 
 export default {
@@ -64,7 +65,7 @@ export default {
 				this.error = result.error;
 				this.message = "";
 			} else {
-				const {id, firstName, lastName, } = this.currentProfile.properties;
+				const {id, firstName, lastName} = this.currentProfile;
 				const charge = {
 					description: `${id} - ${lastName}, ${firstName}`,
 					token: result.token.id,
@@ -73,9 +74,10 @@ export default {
 				return this.$store.dispatch("services/payments/charge", charge).then(response => {
 					this.error = "";
 					this.message = "You're going to Develop Denver!";
-					return this.$router.push({name: "news", });
+					return this.$router.push({name: "news"});
 				}).catch(error => {
-					return this.error = error.message;
+					this.error = error.message;
+					return true;
 				});
 			}
 		},

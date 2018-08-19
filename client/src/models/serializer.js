@@ -1,4 +1,4 @@
-import {snakeCase, } from "change-case";
+import {snakeCase} from "change-case";
 
 export function serialize(object) {
 	const keys = Object.keys(object);

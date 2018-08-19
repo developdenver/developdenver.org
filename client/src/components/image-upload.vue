@@ -49,6 +49,7 @@ export default {
 					this.isError = false;
 					return response.imageUrl;
 				}).catch(error => {
+					console.error(error.message);
 					this.isError = true;
 				});
 			this.$el.reset();

@@ -46,7 +46,7 @@ export default {
     .sponsors {
         grid-area: sponsors;
     }
-    main {
+	> main {
         grid-area: main;
         display: flex;
         flex-flow: row wrap;

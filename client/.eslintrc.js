@@ -10,12 +10,12 @@ module.exports = {
 	rules: {
 		"no-console": process.env.NODE_ENV === "production" ? "error" : "off",
 		"no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
-		indent: ["error", "tab", ],
-		quotes: ["error", "double", ],
-		"space-before-function-paren": ["error", "never", ],
-		"comma-dangle": ["error", "always", ],
-		"space-before-blocks": ["error", "always", ],
-		"semi": ["error", "always", ],
+		indent: ["error", "tab"],
+		quotes: ["error", "double"],
+		"space-before-function-paren": ["error", "never"],
+		"comma-dangle": ["error", "only-multiline"],
+		"space-before-blocks": ["error", "always"],
+		"semi": ["error", "always"],
 		"no-tabs": 0,
 	},
 	parserOptions: {

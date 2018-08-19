@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { hashPassword, } from "../utilities/auth";
+import { hashPassword } from "../utilities/auth";
 
 export default {
 	data() {

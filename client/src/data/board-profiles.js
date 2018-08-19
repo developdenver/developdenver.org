@@ -52,4 +52,4 @@ export default [{
 	position: "Founder",
 	employer: "Develop Denver",
 	profilePhotoUrl: "https://pbs.twimg.com/profile_images/517479446514003968/IS8Cedcj_400x400.jpeg",
-}, ];
+} ];

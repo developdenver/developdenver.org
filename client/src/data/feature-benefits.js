@@ -46,4 +46,4 @@ At the core, Develop Denver is all about the community. It’s about bringing pe
 
 Let's make something October 18th and 19th.
             `,
-}, ];
+} ];

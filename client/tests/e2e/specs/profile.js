@@ -1,3 +1,5 @@
+/* global cy, xit, beforeEach, xdescribe, describe, it */
+
 describe("Profile", () => {
 	describe("Happy paths", () => {
 		beforeEach(() => {

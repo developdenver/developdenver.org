@@ -1,6 +1,9 @@
 <template>
     <ul class="profile-card-list">
-        <li v-for="profile in profiles">
+        <li
+			v-for="(profile, index) in profiles"
+			:key="index"
+		>
             <profile-card :profile="profile" />
         </li>
     </ul>

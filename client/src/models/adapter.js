@@ -11,10 +11,10 @@ export function buildRequest(url, method, body) {
 		method,
 		accepts: "application/json",
 	};
-	options = ["POST", "PUT", ].includes(method)
+	options = ["POST", "PUT"].includes(method)
 		? options.body = body
 		: options;
-	options = ["POST", "PUT", ].includes(method)
+	options = ["POST", "PUT"].includes(method)
 		? options["Content-Type"] = "application/json"
 		: options;
 	return fetch(url, options)

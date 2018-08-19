@@ -22,8 +22,8 @@ export default {
 		},
 	},
 	methods: {
-		updateProfile({ profile, }) {
-			return this.$store.dispatch("updateProfile", { profile, });
+		updateProfile({ profile }) {
+			return this.$store.dispatch("updateProfile", { profile });
 		},
 	},
 };

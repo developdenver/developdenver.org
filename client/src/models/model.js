@@ -1,6 +1,6 @@
-import {serialize, } from "./serializer";
-import {deserialize, } from "./deserializer";
-import {buildUrl, buildRequest, } from "./adapter";
+import {serialize} from "./serializer";
+import {deserialize} from "./deserializer";
+import {buildUrl, buildRequest} from "./adapter";
 
 class Model {
 	constructor(modelName, item) {
@@ -19,7 +19,7 @@ class Model {
 		const url = buildUrl(modelName);
 		return fetch(url)
 			.then(response => response.json())
-			.then(({ data, }) => data.map(deserialize))
+			.then(({ data }) => data.map(deserialize))
 			.catch(error => console.error(error.message));
 	}
 	async fetch() {
@@ -33,7 +33,7 @@ class Model {
 	}
 	async create() {
 		const url = this.buildUrl(this.modelName, this.id);
-		const { data, jwt, } = await fetch(url, {
+		const { data, jwt } = await fetch(url, {
 			method: "POST",
 			headers: {
 				"Accept": "application/json",

@@ -1,3 +1,5 @@
+/* global cy, beforeEach, xdescribe, describe, it */
+
 xdescribe("Registration", () => {
 	beforeEach(() => {
 		// Reseed database

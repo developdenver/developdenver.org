@@ -3,7 +3,7 @@ const paymentKey = process.env.VUE_APP_STRIPE_KEY;
 export default {
 	namespaced: true,
 	state: {
-		paymentKey: process.env.VUE_APP_STRIPE_KEY,
+		paymentKey,
 		isError: false,
 		message: "",
 	},
@@ -13,7 +13,7 @@ export default {
 		},
 	},
 	actions: {
-		charge({ dispatch, }, data) {
+		charge({ dispatch }, data) {
 			return fetch(process.env.VUE_APP_PAYMENTS_URL, {
 				method: "POST",
 				headers: {
@@ -22,7 +22,7 @@ export default {
 				body: JSON.stringify(data),
 			}).then(response => response.json())
 				.then(response => {
-					return dispatch("services/user/setAttendee", true, {root: true, });
+					return dispatch("services/user/setAttendee", true, {root: true});
 				}).catch(error => {
 					console.log(error.message);
 				});

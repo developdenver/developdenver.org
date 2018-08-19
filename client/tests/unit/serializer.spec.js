@@ -1,4 +1,5 @@
-const {serialize, } = require("../../src/models/serializer");
+/* global describe, it, assert */
+const {serialize} = require("../../src/models/serializer");
 
 describe("#serializer", function() {
 	it("returns nothing if given nothing", () => {

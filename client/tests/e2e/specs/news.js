@@ -1,3 +1,5 @@
+/* global xdescribe, it */
+
 xdescribe("News", () => {
 	it("shows active news items", () => {
 	});

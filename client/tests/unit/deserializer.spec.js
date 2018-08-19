@@ -1,4 +1,5 @@
-const {deserialize, } = require("../../src/models/deserializer");
+/* global describe, it, assert */
+const {deserialize} = require("../../src/models/deserializer");
 
 describe("#deserializer", function() {
 	it("returns nothing if given nothing", () => {

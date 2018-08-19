@@ -1,4 +1,5 @@
-import {mount, } from "@vue/test-utils";
+/* global before, describe, it, assert */
+import {mount} from "@vue/test-utils";
 import EditProfile from "@/components/edit-profile.vue";
 
 describe("edit-profile", function() {
@@ -17,7 +18,7 @@ describe("edit-profile", function() {
 				twitterUsername: "twitter",
 			};
 			this.component = mount(EditProfile, {
-				propsData: {profile, },
+				propsData: {profile},
 			});
 		});
 		it("displays the first name", () => {
@@ -61,7 +62,7 @@ describe("edit-profile", function() {
 				employer: "Employer",
 			};
 			this.component = mount(EditProfile, {
-				propsData: {profile, },
+				propsData: {profile},
 			});
 			this.component.find("[name='employer']").setValue("Looking");
 			this.component.find("form").trigger("submit");
@@ -86,7 +87,7 @@ describe("edit-profile", function() {
 				email: "email@address.com",
 			};
 			this.component = mount(EditProfile, {
-				propsData: {profile, },
+				propsData: {profile},
 			});
 			this.element = {
 				name: "name-here",
@@ -116,7 +117,7 @@ describe("edit-profile", function() {
 				email: "email@address.com",
 			};
 			this.component = mount(EditProfile, {
-				propsData: {profile, },
+				propsData: {profile},
 			});
 		});
 		it("returns true if a property exists on the profile", () => {
@@ -141,7 +142,7 @@ describe("edit-profile", function() {
 				email: "email@address.com",
 			};
 			this.component = mount(EditProfile, {
-				propsData: {profile: this.oldProfile, },
+				propsData: {profile: this.oldProfile},
 			});
 		});
 		it("returns nothing if there is no difference", () => {

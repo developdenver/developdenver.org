@@ -27,7 +27,9 @@ export default {
 	},
 	methods: {
 		shuffle(array) {
-			let currentIndex = array.length, temporaryValue, randomIndex;
+			let currentIndex = array.length;
+			let temporaryValue;
+			let randomIndex;
 
 			while (currentIndex !== 0) {
 				randomIndex = Math.floor(Math.random() * currentIndex);

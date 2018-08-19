@@ -1,3 +1,4 @@
+/* global before, describe, it, assert */
 const Profile = require("../../src/models/profile").default;
 
 describe("profile", function() {

@@ -11,6 +11,9 @@
 
 <script>
 import Showdown from "showdown";
+
+const showdown = new Showdown.Converter();
+
 export default {
 	props: {
 		image: Object,
@@ -19,7 +22,6 @@ export default {
 	},
 	computed: {
 		parsedCopy() {
-			const showdown = new Showdown.Converter();
 			return showdown.makeHtml(this.copy);
 		},
 	},
