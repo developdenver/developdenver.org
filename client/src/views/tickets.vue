@@ -18,7 +18,7 @@
                 @setError="setError"
             />
 
-            <input type="submit" value="Buy" />
+            <input type="submit" :disabled="isLoading" value="Buy" />
             <div class="errors">{{error}}</div>
             <div class="message">{{message}}</div>
         </form>
@@ -57,9 +57,13 @@ export default {
 		stripeKey() {
 			return this.paymentsService.paymentKey;
 		},
+		isLoading() {
+			return this.$store.getters["services/loading/isLoading"];
+		},
 	},
 	methods: {
 		async submit() {
+			this.$store.dispatch("services/loading/pushLoading");
 			const result = await this.stripe.createToken(this.card);
 			if (result.error) {
 				this.error = result.error;
@@ -71,16 +75,16 @@ export default {
 					token: result.token.id,
 					level: this.ticketLevel,
 				};
-				return this.$store.dispatch("services/payments/charge", charge).then(response => {
+				this.$store.dispatch("services/payments/charge", charge).then(response => {
 					this.$store.dispatch("services/user/setAttendee", this.ticketLevel);
 					this.error = "";
 					this.message = "You're going to Develop Denver!";
-					return this.$router.push({name: "news"});
+					this.$router.push({name: "news"});
 				}).catch(error => {
 					this.error = error.message;
-					return true;
 				});
 			}
+			this.$store.dispatch("services/loading/popLoading");
 		},
 		setError(error) {
 			this.error = error;
@@ -110,6 +114,9 @@ export default {
             display: block;
             width: 100%;
             margin-bottom: $large;
+			&[disabled] {
+				background-color: $medium-light-grey;
+			}
         }
         .levels {
             margin-bottom: $large;
