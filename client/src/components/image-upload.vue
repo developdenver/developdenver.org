@@ -40,6 +40,7 @@ export default {
 	},
 	methods: {
 		async uploadFile(event) {
+			this.$store.dispatch("services/loading/pushLoading");
 			this.isSaving = true;
 			const image = await fetch(this.uploadUrl, {
 				method: "POST",
@@ -54,6 +55,7 @@ export default {
 				});
 			this.$el.reset();
 			this.isSaving = false;
+			this.$store.dispatch("services/loading/popLoading");
 
 			this.$emit("imageUrl", image);
 		},

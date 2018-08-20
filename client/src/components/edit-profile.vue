@@ -37,7 +37,7 @@
             <label for="linkedin-username">LinkedIn Username</label>
             <input type="text" id="linkedin-username" v-model.trim="profile.properties.linkedinUsername" />
         </fieldset>
-        <button>{{buttonLabel}}</button>
+        <button :disabled="isLoading">{{buttonLabel}}</button>
     </form>
 </template>
 
@@ -62,6 +62,11 @@ export default {
 			required: true,
 		},
 		buttonLabel: String,
+	},
+	computed: {
+		isLoading(){
+			return this.$store.getters["services/loading/isLoading"];
+		},
 	},
 	methods: {
 		updateProfile() {
@@ -121,6 +126,9 @@ export default {
     }
     button {
         @include call-to-action-button;
+		&[disabled] {
+			background-color: $medium-light-grey;
+		}
     }
 }
 </style>

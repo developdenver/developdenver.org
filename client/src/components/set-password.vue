@@ -45,8 +45,10 @@ export default {
 	methods: {
 		async updatePassword() {
 			if (this.isValidPassword) {
+				this.$store.dispatch("services/loading/pushLoading");
 				const hashedPassword = await this.hashPassword(this.password);
 				this.$emit("updatePassword", hashedPassword);
+				this.$store.dispatch("services/loading/popLoading");
 			}
 		},
 		hashPassword,
