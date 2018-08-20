@@ -37,12 +37,22 @@ async function destroy(request, response, next){
 }
 
 async function list(request, response, next){
-    const profiles = await Profile.list()
+    const profiles = await Profile.find()
         .catch(error => next(error));
 
     response.status(200).json({
         data: profiles
     });
+}
+
+async function isEmailUnique(request, response, next){
+    const profile = await Profile.query({email: request.body.email})
+        .catch(error => next(error));
+    const status = !profile
+        ? 200
+        : 400;
+
+    response.status(status).send();
 }
 
 module.exports = {
@@ -51,4 +61,5 @@ module.exports = {
     update,
     destroy,
     list,
+    isEmailUnique,
 };

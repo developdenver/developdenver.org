@@ -7,7 +7,15 @@
             <label for="last-name">Last Name</label>
             <input type="text" required id="last-name" v-model.trim="profile.properties.lastName" />
             <label for="email">Email</label>
-            <input type="email" required id="email" name="email" v-model.trim="profile.properties.email" />
+            <input
+				required
+				type="email"
+				ref="email"
+				id="email"
+				name="email"
+				v-model.trim="profile.properties.email"
+				@change="verifyUniqueEmail"
+			/>
             <SetPassword
                 @updatePassword="updatePassword"
             />
@@ -47,6 +55,7 @@ import ImageUpload from "@/components/image-upload.vue";
 import SetPassword from "@/components/set-password.vue";
 
 const imageUploadUrl = process.env.VUE_APP_IMAGE_UPLOAD_URL;
+const uniqueEmailUrl = `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_UNIQUE_EMAIL_ENDPOINT}`;
 
 export default {
 	components: {
@@ -80,6 +89,24 @@ export default {
 		updatePassword(hashedPassword) {
 			this.profile.properties.hashedPassword = hashedPassword;
 		},
+		async verifyUniqueEmail(event){
+			this.$store.dispatch("services/loading/pushLoading");
+			await fetch(uniqueEmailUrl, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({email: event.target.value}),
+			}).then(response => response.status)
+			.then(status => {
+				+status === 200
+					? this.$refs.email.setCustomValidity("")
+					: this.$refs.email.setCustomValidity("This email is already registered. Login?");
+			}).catch(error => {
+				console.error(error.message);
+			});
+			this.$store.dispatch("services/loading/popLoading");
+		}
 	},
 };
 </script>
