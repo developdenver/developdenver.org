@@ -75,7 +75,7 @@ export default {
 		buttonLabel: String,
 	},
 	computed: {
-		isLoading(){
+		isLoading() {
 			return this.$store.getters["services/loading/isLoading"];
 		},
 	},
@@ -89,7 +89,7 @@ export default {
 		updatePassword(hashedPassword) {
 			this.profile.properties.hashedPassword = hashedPassword;
 		},
-		async verifyUniqueEmail(event){
+		async verifyUniqueEmail(event) {
 			this.$store.dispatch("services/loading/pushLoading");
 			await fetch(uniqueEmailUrl, {
 				method: "POST",
@@ -98,13 +98,13 @@ export default {
 				},
 				body: JSON.stringify({email: event.target.value}),
 			}).then(response => response.status)
-			.then(status => {
-				+status === 200
-					? this.$refs.email.setCustomValidity("")
-					: this.$refs.email.setCustomValidity("This email is already registered. Login?");
-			}).catch(error => {
-				console.error(error.message);
-			});
+				.then(status => {
+					+status === 200
+						? this.$refs.email.setCustomValidity("")
+						: this.$refs.email.setCustomValidity("This email is already registered. Login?");
+				}).catch(error => {
+					console.error(error.message);
+				});
 			this.$store.dispatch("services/loading/popLoading");
 		}
 	},

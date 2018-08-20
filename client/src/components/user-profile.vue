@@ -60,7 +60,7 @@ export default {
 		githubUrl() {
 			return `https://www.github.com/${this.profile.properties.githubUsername}`;
 		},
-		linkedinUrl(){
+		linkedinUrl() {
 			return `https://www.linkedin.com/in/${this.profile.properties.linkedinUsername}`;
 		},
 	},

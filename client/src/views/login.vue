@@ -22,7 +22,7 @@ export default {
 		};
 	},
 	computed: {
-		isAttendee(){
+		isAttendee() {
 			return this.$store.getters["services/user/isAttendee"];
 		},
 	},
@@ -37,7 +37,7 @@ export default {
 					? this.$router.push({name: "news"})
 					: this.$router.push({name: "tickets"});
 			} catch (error) {
-				console.error(error.message)
+				console.error(error.message);
 				this.error = "Incorrect username or password.";
 			}
 		},

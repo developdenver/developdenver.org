@@ -17,7 +17,7 @@ class Profile extends Model {
 			},
 			body: this.serialize(),
 		}).then(response => response.json())
-		.catch(error => console.error(error.message));
+			.catch(error => console.error(error.message));
 		this.properties = this.normalize(data);
 		return jwt;
 	}

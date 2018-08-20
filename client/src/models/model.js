@@ -41,7 +41,7 @@ class Model {
 			},
 			body: this.serialize(),
 		}).then(response => response.json())
-		.catch(error => console.error(error.message));
+			.catch(error => console.error(error.message));
 		this.properties = this.normalize(data);
 	}
 	update() {
@@ -54,10 +54,10 @@ class Model {
 			},
 			body: this.serialize(),
 		}).then(response => response.json())
-		.then(({data}) => {
-			this.properties = this.normalize(data);
-			return data;
-		}).catch(error => console.error(error.message));
+			.then(({data}) => {
+				this.properties = this.normalize(data);
+				return data;
+			}).catch(error => console.error(error.message));
 	}
 	async destroy() {
 		await fetch(this.buildUrl(this.modelName, this.id), {
