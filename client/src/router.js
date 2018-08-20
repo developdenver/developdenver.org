@@ -66,4 +66,7 @@ export default new Router({
 		name: "privacy-policy",
 		component: PrivacyPolicy,
 	} ],
+	scrollBehavior() {
+		return { x: 0, y: 0 };
+	},
 });
