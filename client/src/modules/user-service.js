@@ -22,7 +22,7 @@ export default {
 	mutations: {
 		logout(state) {
 			state.token = "";
-			state.currentProfile = new Profile({});
+			state.currentProfile = {};
 		},
 		setToken(state, token) {
 			state.token = token;
@@ -46,22 +46,22 @@ export default {
 				}),
 			}).then(response => response.json());
 			commit("setToken", jwt);
-			commit("setProfile", user);
+			commit("setProfile", new Profile(user).properties);
 		},
 		logout({ commit }) {
-			return commit("logout");
+			commit("logout");
 		},
 		setToken({ commit }, token) {
-			return commit("setToken", token);
+			commit("setToken", token);
 		},
 		setProfile({ commit }, profile) {
-			return commit("setProfile", profile);
+			commit("setProfile", profile);
 		},
 		async setAttendee({ commit, getters }, level) {
 			let profile = getters.currentProfile;
 			profile.setTicketLevel(level);
 			await profile.update();
-			return commit("setProfile", profile.properties);
+			commit("setProfile", profile.properties);
 		},
 		async fetchProfile({ getters, commit }) {
 			const jwt = getters.token;

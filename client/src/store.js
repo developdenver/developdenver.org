@@ -1,13 +1,18 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
-import {version} from "../package.json";
+import VuexPersistence from "vuex-persist";
 
 import services from "./modules/services";
 import Profile from "./models/profile";
+
 Vue.use(Vuex);
 
-const store = new Vuex.Store({
+const vuexLocal = new VuexPersistence({
+	storage: window.localStorage,
+	reducer: state => ({services: {user: state.services.user}}),
+});
+
+export default new Vuex.Store({
 	modules: {
 		services,
 	},
@@ -24,20 +29,6 @@ const store = new Vuex.Store({
 		updateProfiles(state, profiles) {
 			state.profiles = profiles;
 		},
-		initializeStore(state) {
-			const storeString = localStorage.getItem("store");
-
-			if (storeString) {
-				const store = JSON.parse(storeString);
-				if (store.version == version) {
-					this.replaceState(
-						Object.assign(state, store)
-					);
-				} else {
-					state.version = version;
-				}
-			}
-		},
 	},
 	actions: {
 		async createProfile({commit}, profile) {
@@ -52,10 +43,5 @@ const store = new Vuex.Store({
 			commit("updateProfiles", profiles);
 		},
 	},
+	plugins: [vuexLocal.plugin]
 });
-
-store.subscribe((mutation, state) => {
-	localStorage.setItem("store", JSON.stringify(state));
-});
-
-export default store;
