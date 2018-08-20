@@ -10,8 +10,7 @@
             title="At least 7 characters"
             name="password"
             v-model="password"
-            @blur="checkPasswords"
-            @change="updatePassword"
+            @input="updatePassword"
         />
         <label for="confirmPassword">Confirm Password</label>
         <input ref="confirmPassword"
@@ -19,15 +18,12 @@
             required
             id="confirmPassword"
             v-model="confirmPassword"
-            @blur="checkPasswords"
-            @change="updatePassword"
+            @input="updatePassword"
         />
     </div>
 </template>
 
 <script>
-import { hashPassword } from "../utilities/auth";
-
 export default {
 	data() {
 		return {
@@ -44,14 +40,11 @@ export default {
 	},
 	methods: {
 		async updatePassword() {
+			this.checkPasswords();
 			if (this.isValidPassword) {
-				this.$store.dispatch("services/loading/pushLoading");
-				const hashedPassword = await this.hashPassword(this.password);
-				this.$emit("updatePassword", hashedPassword);
-				this.$store.dispatch("services/loading/popLoading");
+				this.$emit("updatePassword", this.password);
 			}
 		},
-		hashPassword,
 		checkPasswords() {
 			if (!this.isValidPassword) {
 				this.$refs.password.setCustomValidity("Passwords don't match");

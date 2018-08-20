@@ -1,0 +1,89 @@
+<template>
+	<section class="reset-password">
+		<h2>Reset Your Password</h2>
+		<form @submit.prevent="resetPassword">
+			<set-password @updatePassword="updatePassword" />
+			<input :disabled="isLoading" type="submit" value="Reset Password" />
+		</form>
+		<p class="error" v-if="isError">There was an error resetting your password. Please request to <router-link :to="{name: 'request-reset'}">reset your password</router-link> again.</p>
+	</section>
+</template>
+
+<script>
+import SetPassword from "../components/set-password";
+import { hashPassword } from "../utilities/auth";
+
+export default {
+	data() {
+		return {
+			password: "",
+			isError: false,
+		};
+	},
+	components: {
+		SetPassword,
+	},
+	computed: {
+		isLoading() {
+			return this.$store.getters["services/loading/isLoading"];
+		},
+		token() {
+			const savedToken = this.$store.state.services.user.token;
+			const passedToken = this.$route.query.token;
+			return savedToken || (passedToken || this.$router.replace({name: "index"}));
+		},
+	},
+	methods: {
+		updatePassword(password) {
+			this.password = password;
+		},
+		async resetPassword() {
+			const hashedPassword = await hashPassword(this.password);
+			await this.$store.dispatch("services/user/resetPassword", {
+				password: hashedPassword,
+				token: this.token
+			}).then(() => {
+				this.isError = false;
+				this.$router.replace({name: "login"});
+			}).catch(error => {
+				console.error(error.message);
+				this.isError = true;
+			});
+		}
+	}
+};
+</script>
+
+<style lang="scss">
+@import "@/styles/_sizes.scss";
+@import "@/styles/_general.scss";
+@import "@/styles/_typography.scss";
+@import "@/styles/_colors.scss";
+
+.reset-password {
+	h2 {
+		@include section-header-font;
+	}
+	form {
+		display: flex;
+		flex-flow: column nowrap;
+		flex-grow: 1;
+		max-width: $max-line-length;
+		margin-bottom: $large;
+		input, label {
+			display: block;
+			width: 100%;
+		}
+		input {
+			margin-bottom: $baseline;
+		}
+		[type=submit] {
+			@include call-to-action-button;
+		}
+	}
+	.error {
+		max-width: $max-line-length;
+		color: $warning;
+	}
+}
+</style>

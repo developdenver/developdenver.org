@@ -13,7 +13,7 @@ module.exports = function(app){
     if (error.message === "Incorrect password"){
       error.status = 401;
     }
-    response.status(error.status || 500).send();
+    response.status(error.status || 500).send({error: true});
   });
 
   return app;

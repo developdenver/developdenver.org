@@ -55,6 +55,8 @@ import Vue from "vue";
 import ImageUpload from "@/components/image-upload.vue";
 import SetPassword from "@/components/set-password.vue";
 
+import { hashPassword } from "../utilities/auth";
+
 const imageUploadUrl = process.env.VUE_APP_IMAGE_UPLOAD_URL;
 const uniqueEmailUrl = `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_UNIQUE_EMAIL_ENDPOINT}`;
 
@@ -66,6 +68,7 @@ export default {
 	data() {
 		return {
 			imageUploadUrl,
+			password: "",
 		};
 	},
 	props: {
@@ -82,14 +85,15 @@ export default {
 		},
 	},
 	methods: {
-		updateProfile() {
+		async updateProfile() {
+			this.profile.hashedPassword = await hashPassword(this.password);
 			return this.$emit("updateProfile", this.profile);
 		},
 		setImageUrl(url) {
 			Vue.set(this.profile.properties, "profilePhotoUrl", url);
 		},
-		updatePassword(hashedPassword) {
-			this.profile.properties.hashedPassword = hashedPassword;
+		updatePassword(password) {
+			this.password = password;
 		},
 		async verifyUniqueEmail(event) {
 			this.$store.dispatch("services/loading/pushLoading");

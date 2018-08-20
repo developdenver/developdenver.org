@@ -6,6 +6,7 @@ const passportJwt = require("passport-jwt");
 const JWTStrategy = passportJwt.Strategy;
 const bcrypt = require("bcrypt");
 const profile = require("../models/profile");
+const { decodeJwt } = require("../utilities/auth");
 
 passport.use(new LocalStrategy({ session: false }, verifyLogin));
 passport.use(new JWTStrategy({
@@ -14,8 +15,13 @@ passport.use(new JWTStrategy({
 }, verifyAccess));
 
 async function secretProvider(request, rawJwt, next){
-    const user = await profile.find(request.query.user_id);
-    next(user.secret_key);
+    if (!rawJwt) {
+        next(new Error("Missing JWT"));
+    }
+    const { sub } = decodeJwt(rawJwt);
+    const user = await profile.find(sub)
+        .catch(error => next(error));
+    next(null, user.secret_key);
 }
 
 async function verifyLogin(username, password, next){
@@ -29,14 +35,15 @@ async function verifyLogin(username, password, next){
         .catch(error => next(error));
     isMatchingPassword
         ? next(null, user)
-        : next(new Error("Incorrect password"))
+        : next(new Error("Incorrect password"), false);
 }
 
 async function verifyAccess(payload, next){
-    const user = await profile.find(payload.id).catch(error => next(error))
+    const user = await profile.find(payload.sub)
+        .catch(error => next(error));
     return payload.sub
         ? next(null, user, payload)
-        : next();
+        : next(new Error("Unauthorized"));
 }
 
 module.exports = (app) => {

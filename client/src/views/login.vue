@@ -8,6 +8,7 @@
             <input type="password" id="password" name="password" v-model="password" />
             <input type="submit" value="Login" />
         </form>
+		<router-link :to="{name: 'request-reset'}">Forgot your password?</router-link>
         <p v-if="error" class="error">{{error}}</p>
     </section>
 </template>
@@ -28,18 +29,17 @@ export default {
 	},
 	methods: {
 		async login() {
-			try {
-				await this.$store.dispatch("services/user/login", {
-					email: this.email,
-					password: this.password,
-				});
+			await this.$store.dispatch("services/user/login", {
+				email: this.email,
+				password: this.password,
+			}).then(() => {
 				this.isAttendee
 					? this.$router.push({name: "news"})
 					: this.$router.push({name: "tickets"});
-			} catch (error) {
+			}).catch(error => {
 				console.error(error.message);
 				this.error = "Incorrect username or password.";
-			}
+			});
 		},
 	},
 };

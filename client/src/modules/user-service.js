@@ -2,6 +2,11 @@ import { hashPassword } from "../utilities/auth";
 import Profile from "../models/profile";
 import jwtDecode from "jwt-decode";
 
+const loginUrl = `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_LOGIN_PATH}`;
+const profileUrl = `${process.env.VUE_APP_API_URL}/profiles`;
+const passwordResetUrl = `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_RESET_PASSWORD_PATH}`;
+const resetRequestUrl = `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_RESET_REQUEST_PATH}`;
+
 export default {
 	namespaced: true,
 	state: {
@@ -14,6 +19,9 @@ export default {
 		},
 		isAttendee(state) {
 			return !!state.currentProfile.ticketLevel;
+		},
+		hasToken(state) {
+			return !!state.token;
 		},
 		currentProfile(state) {
 			return new Profile(state.currentProfile);
@@ -34,9 +42,8 @@ export default {
 	actions: {
 		async login({ dispatch, commit }, { email, password }) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
-			const loginUrl = `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_LOGIN_PATH}`;
 			const hashedPassword = await hashPassword(password);
-			const { user, jwt } = await fetch(loginUrl, {
+			await fetch(loginUrl, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -45,11 +52,21 @@ export default {
 					username: email,
 					password: hashedPassword,
 				}),
-			}).then(response => response.json())
-				.catch(error => console.error(error.message));
-			commit("setToken", jwt);
-			commit("setProfile", new Profile(user).properties);
-			dispatch("services/loading/popLoading", {}, { root: true });
+			}).then(response => {
+				if (+response.status !== 201) {
+					dispatch("logout");
+					throw new Error("Incorrect username or password");
+				} else {
+					return response.json();
+				}
+			}).then(response => {
+				commit("setToken", response.jwt);
+				commit("setProfile", new Profile(response.user).properties);
+				dispatch("services/loading/popLoading", {}, { root: true });
+			}).catch(error => {
+				dispatch("services/loading/popLoading", {}, { root: true });
+				throw new Error(error.message);
+			});
 		},
 		logout({ commit }) {
 			commit("logout");
@@ -76,8 +93,8 @@ export default {
 			const jwt = getters.token;
 			if (jwt) {
 				const id = jwtDecode(jwt).sub;
-				const profileUrl = `${process.env.VUE_APP_API_URL}/profiles/${id}`;
-				const profile = await fetch(profileUrl, {
+				const userProfileUrl = `${profileUrl}/${id}`;
+				const profile = await fetch(userProfileUrl, {
 					headers: {
 						authorization: `Bearer ${jwt}`,
 					},
@@ -86,6 +103,37 @@ export default {
 				commit("setProfile", profile);
 			}
 			dispatch("services/loading/popLoading", {}, { root: true });
+		},
+		async requestReset({ dispatch }, email) {
+			dispatch("services/loading/pushLoading", {}, { root: true });
+			await fetch(resetRequestUrl, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ email }),
+			}).catch(error => console.error(error.message));
+			dispatch("services/loading/popLoading", {}, { root: true });
+		},
+		async resetPassword({ dispatch }, { password, token }) {
+			dispatch("services/loading/pushLoading", {}, { root: true });
+			await fetch(passwordResetUrl, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${token}`,
+				},
+				body: JSON.stringify({ password }),
+			}).then(response => {
+				if (+response.status !== 201) {
+					throw new Error("Server problem");
+				}
+				dispatch("services/loading/popLoading", {}, { root: true });
+			}).catch(error => {
+				console.error(error.message);
+				dispatch("services/loading/popLoading", {}, { root: true });
+				throw new Error(error.message);
+			});
 		},
 	},
 };

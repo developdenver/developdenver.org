@@ -14,6 +14,8 @@ import Login from "@/views/login";
 import Tickets from "@/views/tickets";
 import About from "@/views/about";
 import News from "@/views/news";
+import ResetPassword from "@/views/reset-password";
+import RequestReset from "@/views/request-reset";
 
 Vue.use(Router);
 
@@ -79,7 +81,15 @@ const router = new Router({
 		path: "/privacy-policy",
 		name: "privacy-policy",
 		component: PrivacyPolicy,
-	} ],
+	}, {
+		path: "/reset-password",
+		name: "reset-password",
+		component: ResetPassword,
+	}, {
+		path: "/request-reset",
+		name: "request-reset",
+		component: RequestReset,
+	}],
 	scrollBehavior() {
 		return { x: 0, y: 0 };
 	},

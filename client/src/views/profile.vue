@@ -7,6 +7,9 @@
 			:profile="profile"
 			@updateProfile="updateProfile"
          />
+		<router-link class="reset-password" :to="{name: 'reset-password'}">
+			Reset password
+		</router-link>
     </section>
 </template>
 
@@ -43,5 +46,8 @@ export default {
     h2 {
         display: none;
     }
+	.reset-password {
+		margin-top: $large;
+	}
 }
 </style>
