@@ -16,7 +16,7 @@ import Profile from "../models/profile";
 export default {
 	data() {
 		return {
-			profile: new Profile(),
+			profile: new Profile({}),
 		};
 	},
 	components: {

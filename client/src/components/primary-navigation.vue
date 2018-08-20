@@ -35,11 +35,14 @@ export default {
 		isAttendee() {
 			return this.$store.getters["services/user/isAttendee"] || false;
 		},
+		userService() {
+			return this.$store.state.services.user;
+		},
 		currentUser() {
-			return this.$store.getters["services/user/currentProfile"] || {};
+			return this.userService.currentProfile;
 		},
 		userFirstName() {
-			return this.currentUser.properties.first_name || "";
+			return this.currentUser.properties.firstName || "";
 		},
 	},
 	methods: {

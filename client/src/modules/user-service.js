@@ -5,35 +5,27 @@ import jwtDecode from "jwt-decode";
 export default {
 	namespaced: true,
 	state: {
+		currentProfile: new Profile({}),
+		token: "",
 	},
 	getters: {
-		isLoggedIn(state, getters) {
-			return !!getters.currentProfile.id;
+		isLoggedIn(state) {
+			return !!state.currentProfile.id;
 		},
-		isAttendee(state, getters) {
-			return !!getters.currentProfile.properties.ticketLevel;
-		},
-		token() {
-			return localStorage.getItem("token");
-		},
-		currentProfile() {
-			const profile = localStorage.getItem("profile") || "{}";
-			return new Profile(profile);
+		isAttendee(state) {
+			return !!state.currentProfile.properties.ticketLevel;
 		},
 	},
 	mutations: {
 		logout(state) {
-			localStorage.removeItem("token");
-			localStorage.removeItem("profile");
-			return true;
+			state.token = "";
+			state.currentProfile = new Profile({});
 		},
 		setToken(state, token) {
-			localStorage.setItem("token", token);
-			return true;
+			state.token = token;
 		},
 		setProfile(state, profile) {
-			localStorage.setItem("profile", profile.serialize());
-			return true;
+			state.currentProfile = profile;
 		},
 	},
 	actions: {

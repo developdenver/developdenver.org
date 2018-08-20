@@ -48,11 +48,14 @@ export default {
 		this.card = elements.create("card");
 	},
 	computed: {
+		userService() {
+			return this.$store.state.services.user;
+		},
 		paymentsService() {
 			return this.$store.state.services.payments;
 		},
 		currentProfile() {
-			return this.$store.getters["services/user/currentProfile"];
+			return this.userService.currentProfile;
 		},
 		stripeKey() {
 			return this.paymentsService.paymentKey;
