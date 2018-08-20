@@ -21,6 +21,11 @@ export default {
 			error: "",
 		};
 	},
+	computed: {
+		isAttendee(){
+			return this.$store.getters["services/user/isAttendee"];
+		},
+	},
 	methods: {
 		async login() {
 			try {
@@ -28,8 +33,11 @@ export default {
 					email: this.email,
 					password: this.password,
 				});
-				this.$router.push({name: "tickets"});
+				this.isAttendee
+					? this.$router.push({name: "news"})
+					: this.$router.push({name: "tickets"});
 			} catch (error) {
+				console.error(error.message)
 				this.error = "Incorrect username or password.";
 			}
 		},

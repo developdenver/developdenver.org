@@ -9,11 +9,11 @@ export default {
 		token: "",
 	},
 	getters: {
-		isLoggedIn(state, getters) {
-			return !!getters.currentProfile.id;
+		isLoggedIn(state) {
+			return !!state.currentProfile.id;
 		},
-		isAttendee(state, getters) {
-			return !!getters.currentProfile.properties.ticketLevel;
+		isAttendee(state) {
+			return !!state.currentProfile.ticketLevel;
 		},
 		currentProfile(state) {
 			return new Profile(state.currentProfile);
@@ -45,7 +45,8 @@ export default {
 					username: email,
 					password: hashedPassword,
 				}),
-			}).then(response => response.json());
+			}).then(response => response.json())
+				.catch(error => console.error(error.message));
 			commit("setToken", jwt);
 			commit("setProfile", new Profile(user).properties);
 			dispatch("services/loading/popLoading", {}, { root: true });
