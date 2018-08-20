@@ -8,7 +8,7 @@ import EditProfile from "@/views/profile.vue";
 import Community from "@/views/community.vue";
 import CodeOfConduct from "@/views/code-of-conduct.vue";
 import PrivacyPolicy from "@/views/privacy-policy.vue";
-import UserProfile from "@/views/a-profile.vue";
+import ProfilePage from "@/views/profile-page.vue";
 import Register from "@/views/register";
 import Login from "@/views/login";
 import Tickets from "@/views/tickets";
@@ -54,7 +54,7 @@ const router = new Router({
 	}, {
 		path: "/profiles/:id",
 		name: "profile",
-		component: UserProfile,
+		component: ProfilePage,
 	}, {
 		path: "/news",
 		name: "news",

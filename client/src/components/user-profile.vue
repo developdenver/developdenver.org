@@ -1,5 +1,5 @@
 <template>
-    <section class="b-profile">
+    <section class="user-profile">
         <img :src="profile.properties.profilePhotoUrl" alt="profile photo" />
         <div class="profile-details">
             <h2>{{fullName}}</h2>
@@ -74,7 +74,7 @@ export default {
 
 $clip-amount: 80px;
 
-.b-profile {
+.user-profile {
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
@@ -109,6 +109,7 @@ $clip-amount: 80px;
         }
         .social {
             padding: $large 0;
+			z-index: 30;
 			li {
 				display: inline-block;
 				+ li {
