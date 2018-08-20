@@ -46,16 +46,16 @@ const store = new Vuex.Store({
 			commit("services/user/setToken", token);
 		},
 		async fetchProfiles({commit}) {
-			const profiles = await Profile.fetchAll("profile");
+			let profiles = await Profile
+				.fetchAll("profile");
+			profiles = profiles.map(profile => new Profile(profile));
 			commit("updateProfiles", profiles);
 		},
 	},
 });
 
 store.subscribe((mutation, state) => {
-	console.log("a change!!", state.services.user.currentProfile.id);
 	localStorage.setItem("store", JSON.stringify(state));
-	console.log("changed!!", state.services.user.currentProfile.id);
 });
 
 export default store;

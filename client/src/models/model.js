@@ -39,15 +39,15 @@ class Model {
 				"Accept": "application/json",
 				"Content-Type": "application/json",
 			},
-			body: this.serialize,
+			body: this.serialize(),
 		}).then(response => response.json())
-			.catch(error => console.error(error.message));
+		.catch(error => console.error(error.message));
 		this.properties = this.normalize(data);
 		return jwt;
 	}
-	async update() {
+	update() {
 		const url = this.buildUrl(this.modelName, this.id);
-		const newData = await fetch(url, {
+		return fetch(url, {
 			method: "PUT",
 			headers: {
 				"Accept": "application/json",
@@ -55,10 +55,10 @@ class Model {
 			},
 			body: this.serialize(),
 		}).then(response => response.json())
-			.then(response => response.data)
-			.catch(error => console.error(error.message));
-		this.properties = this.normalize(newData);
-		return true;
+		.then(({data}) => {
+			this.properties = this.normalize(data);
+			return data;
+		}).catch(error => console.error(error.message));
 	}
 	async destroy() {
 		await fetch(this.buildUrl(this.modelName, this.id), {

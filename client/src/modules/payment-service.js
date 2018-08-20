@@ -21,11 +21,9 @@ export default {
 				},
 				body: JSON.stringify(data),
 			}).then(response => response.json())
-				.then(response => {
-					return dispatch("services/user/setAttendee", true, {root: true});
-				}).catch(error => {
-					console.log(error.message);
-				});
+			.catch(error => {
+				console.log(error.message);
+			});
 		},
 	},
 };

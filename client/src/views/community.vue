@@ -18,7 +18,7 @@ export default {
 	computed: {
 		shuffledProfiles() {
 			const profilesWithPhotos = this.$store.state.profiles
-				.filter(profile => profile.profilePhotoUrl);
+				.filter(profile => profile.properties.profilePhotoUrl);
 			return this.shuffle(profilesWithPhotos);
 		},
 	},

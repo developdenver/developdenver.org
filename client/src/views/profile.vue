@@ -17,11 +17,8 @@ export default {
 		EditProfile,
 	},
 	computed: {
-		profileService() {
-			return this.$store.state.services.user;
-		},
 		profile() {
-			return this.profileService.currentProfile;
+			return this.$store.getters["services/user/currentProfile"];
 		},
 	},
 	methods: {

@@ -5,16 +5,19 @@ import jwtDecode from "jwt-decode";
 export default {
 	namespaced: true,
 	state: {
-		currentProfile: new Profile({}),
+		currentProfile: {},
 		token: "",
 	},
 	getters: {
-		isLoggedIn(state) {
-			return !!state.currentProfile.id;
+		isLoggedIn(state, getters) {
+			return !!getters.currentProfile.id;
 		},
-		isAttendee(state) {
-			return !!state.currentProfile.properties.ticketLevel;
+		isAttendee(state, getters) {
+			return !!getters.currentProfile.properties.ticketLevel;
 		},
+		currentProfile(state) {
+			return new Profile(state.currentProfile);
+		}
 	},
 	mutations: {
 		logout(state) {
@@ -43,7 +46,7 @@ export default {
 				}),
 			}).then(response => response.json());
 			commit("setToken", jwt);
-			commit("setProfile", new Profile(user));
+			commit("setProfile", user);
 		},
 		logout({ commit }) {
 			return commit("logout");
@@ -52,13 +55,13 @@ export default {
 			return commit("setToken", token);
 		},
 		setProfile({ commit }, profile) {
-			return commit("setProfile", new Profile(profile));
+			return commit("setProfile", profile);
 		},
-		setAttendee({ commit, getters }, value) {
-			const profile = getters.currentProfile;
-			console.log("setAttendee", profile);
-			profile.setTicketLevel(value);
-			return commit("setProfile", profile.serialize());
+		async setAttendee({ commit, getters }, level) {
+			let profile = getters.currentProfile;
+			profile.setTicketLevel(level);
+			await profile.update();
+			return commit("setProfile", profile.properties);
 		},
 		async fetchProfile({ getters, commit }) {
 			const jwt = getters.token;
@@ -71,7 +74,7 @@ export default {
 					},
 				}).then(response => response.json())
 					.then(response => response.data);
-				return commit("setProfile", new Profile(profile));
+				return commit("setProfile", profile);
 			}
 		},
 	},

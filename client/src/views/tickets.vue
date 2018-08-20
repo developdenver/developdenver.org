@@ -48,14 +48,11 @@ export default {
 		this.card = elements.create("card");
 	},
 	computed: {
-		userService() {
-			return this.$store.state.services.user;
-		},
 		paymentsService() {
 			return this.$store.state.services.payments;
 		},
 		currentProfile() {
-			return this.userService.currentProfile;
+			return this.$store.getters["services/user/currentProfile"];
 		},
 		stripeKey() {
 			return this.paymentsService.paymentKey;
@@ -75,6 +72,7 @@ export default {
 					level: this.ticketLevel,
 				};
 				return this.$store.dispatch("services/payments/charge", charge).then(response => {
+					this.$store.dispatch("services/user/setAttendee", this.ticketLevel);
 					this.error = "";
 					this.message = "You're going to Develop Denver!";
 					return this.$router.push({name: "news"});

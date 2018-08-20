@@ -1,16 +1,30 @@
 <template>
     <section class="b-profile">
-        <img :src="profile.profilePhotoUrl" alt="profile photo" />
+        <img :src="profile.properties.profilePhotoUrl" alt="profile photo" />
         <div class="profile-details">
             <h2>{{fullName}}</h2>
             <p>{{profile.properties.position}} at {{profile.properties.employer}}</p>
             <div class="bio">
                 <p>{{profile.properties.bio}}</p>
-                <p v-if="profile.properties.website" class="website">Website: <a :href="profile.properties.website">{{profile.properties.website}}</a></p>
+                <p v-if="profile.properties.website" class="website">
+					Website: <a :href="profile.properties.website" target="_BLANK">{{profile.properties.website}}</a>
+				</p>
             </div>
             <ul class="social">
+                <li v-if="profile.properties.githubUsername" class="github">
+                    <a :href="githubUrl" target="_BLANK">
+						<font-awesome-icon :icon="['fab', 'github']" />
+					</a>
+                </li>
+                <li v-if="profile.properties.linkedinUsername" class="linkedin">
+                    <a :href="linkedinUrl" target="_BLANK">
+						<font-awesome-icon :icon="['fab', 'linkedin']" />
+					</a>
+                </li>
                 <li v-if="profile.properties.twitterUsername" class="twitter">
-                    <a :href="profile.properties.twitterUrl"><font-awesome-icon :icon="['fab', 'twitter']" /></a>
+                    <a :href="twitterUrl" target="_BLANK">
+						<font-awesome-icon :icon="['fab', 'twitter']" />
+					</a>
                 </li>
             </ul>
         </div>
@@ -39,6 +53,15 @@ export default {
 		},
 		fullName() {
 			return `${this.profile.properties.firstName} ${this.profile.properties.lastName}`;
+		},
+		twitterUrl() {
+			return `https://www.twitter.com/${this.profile.properties.twitterUsername}`;
+		},
+		githubUrl() {
+			return `https://www.github.com/${this.profile.properties.githubUsername}`;
+		},
+		linkedinUrl(){
+			return `https://www.linkedin.com/in/${this.profile.properties.linkedinUsername}`;
 		},
 	},
 };
@@ -86,12 +109,18 @@ $clip-amount: 80px;
         }
         .social {
             padding: $large 0;
-            a {
-                color: $primary-color;
-                svg {
-                    font-size: $large;
-                }
-            }
+			li {
+				display: inline-block;
+				+ li {
+					margin-left: $baseline;
+				}
+				a {
+					color: $medium-grey;
+					svg {
+						font-size: $large;
+					}
+				}
+			}
         }
     }
     img {

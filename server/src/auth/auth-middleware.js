@@ -20,15 +20,20 @@ async function secretProvider(request, rawJwt, next){
 
 async function verifyLogin(username, password, next){
     const user = await profile.query({ email: username })
+        .catch(error => next(error));
+    if (!user) {
+        next(new Error("No matching user"))
+    }
     const isMatchingPassword = await bcrypt
-        .compare(password, user.hashed_password);
+        .compare(password, user.hashed_password)
+        .catch(error => next(error));
     isMatchingPassword
         ? next(null, user)
         : next(new Error("Incorrect password"))
 }
 
 async function verifyAccess(payload, next){
-    const user = await profile.find(payload.id)
+    const user = await profile.find(payload.id).catch(error => next(error))
     return payload.sub
         ? next(null, user, payload)
         : next();
