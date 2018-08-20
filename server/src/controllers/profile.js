@@ -37,7 +37,7 @@ async function destroy(request, response, next){
 }
 
 async function list(request, response, next){
-    const profiles = await Profile.find()
+    const profiles = await Profile.list()
         .catch(error => next(error));
 
     response.status(200).json({
