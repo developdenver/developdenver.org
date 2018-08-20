@@ -57,8 +57,11 @@ export default {
 		setToken({ commit }, token) {
 			commit("setToken", token);
 		},
-		setProfile({ dispatch, commit }, profile) {
-			commit("setProfile", profile);
+		async setProfile({ dispatch, commit }, profile) {
+			dispatch("services/loading/pushLoading", {}, { root: true });
+			await profile.update();
+			commit("setProfile", profile.properties);
+			dispatch("services/loading/popLoading", {}, { root: true });
 		},
 		async setAttendee({ dispatch, commit, getters }, level) {
 			dispatch("services/loading/pushLoading", {}, { root: true });

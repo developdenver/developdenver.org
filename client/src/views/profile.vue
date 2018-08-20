@@ -2,9 +2,10 @@
     <section class="profile">
         <h2>Edit Profile</h2>
         <edit-profile
-             :profile="profile"
-             buttonLabel="Update Profile"
-             @updateProfile="updateProfile"
+			buttonLabel="Update Profile"
+			:isNewProfile="false"
+			:profile="profile"
+			@updateProfile="updateProfile"
          />
     </section>
 </template>
@@ -22,8 +23,9 @@ export default {
 		},
 	},
 	methods: {
-		updateProfile({ profile }) {
-			return this.$store.dispatch("updateProfile", { profile });
+		async updateProfile(profile) {
+			await this.$store.dispatch("services/user/setProfile", profile);
+			this.$router.push({ name: "news" });
 		},
 	},
 };
@@ -37,6 +39,7 @@ export default {
     flex-flow: column nowrap;
     flex-grow: 1;
     max-width: $max-line-length;
+	margin-bottom: $large;
     h2 {
         display: none;
     }

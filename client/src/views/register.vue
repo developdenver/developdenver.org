@@ -3,6 +3,7 @@
         <h2>Register</h2>
         <edit-profile
             buttonLabel="Register"
+			:isNewProfile="true"
 			:profile="profile"
             @updateProfile="updateProfile"
         />

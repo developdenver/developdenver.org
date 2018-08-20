@@ -17,6 +17,7 @@
 				@change="verifyUniqueEmail"
 			/>
             <SetPassword
+				v-if="isNewProfile"
                 @updatePassword="updatePassword"
             />
         </fieldset>
@@ -73,6 +74,7 @@ export default {
 			required: true,
 		},
 		buttonLabel: String,
+		isNewProfile: Boolean,
 	},
 	computed: {
 		isLoading() {
