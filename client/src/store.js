@@ -33,9 +33,9 @@ export default new Vuex.Store({
 	actions: {
 		async createProfile({commit, dispatch}, profile) {
 			dispatch("services/loading/pushLoading");
-			const token = await profile.create();
-			commit("services/user/setProfile", profile);
-			commit("services/user/setToken", token);
+			const jwt = await profile.create();
+			commit("services/user/setProfile", profile.properties);
+			commit("services/user/setToken", jwt);
 			dispatch("services/loading/popLoading");
 		},
 		async fetchProfiles({commit, dispatch}) {
