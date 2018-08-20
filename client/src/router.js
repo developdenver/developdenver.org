@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 
+import store from "./store";
+
 import Index from "@/views/index.vue";
 import EditProfile from "@/views/profile.vue";
 import Community from "@/views/community.vue";
@@ -10,13 +12,13 @@ import UserProfile from "@/views/a-profile.vue";
 import Register from "@/views/register";
 import Login from "@/views/login";
 import Tickets from "@/views/tickets";
-import Schedule from "@/views/schedule";
 import About from "@/views/about";
 import News from "@/views/news";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
+	mode: "history",
 	routes: [{
 		path: "/",
 		name: "index",
@@ -25,30 +27,42 @@ export default new Router({
 		path: "/register",
 		name: "register",
 		component: Register,
-	}, {
-		path: "/schedule",
-		name: "schedule",
-		component: Schedule,
+		meta: {
+			isGuest: true,
+		},
 	}, {
 		path: "/login",
 		name: "login",
 		component: Login,
+		meta: {
+			isGuest: true,
+		}
 	}, {
-		path: "/profile/me",
+		path: "/profiles/me",
 		name: "my-profile",
 		component: EditProfile,
+		meta: {
+			requiresAuth: true,
+		},
 	}, {
 		path: "/tickets",
 		name: "tickets",
 		component: Tickets,
+		meta: {
+			requiresAuth: true,
+		},
 	}, {
-		path: "/profile/:id",
+		path: "/profiles/:id",
 		name: "profile",
 		component: UserProfile,
 	}, {
 		path: "/news",
 		name: "news",
 		component: News,
+		meta: {
+			requiresAuth: true,
+			isAttendee: true,
+		},
 	}, {
 		path: "/about",
 		name: "about",
@@ -70,3 +84,31 @@ export default new Router({
 		return { x: 0, y: 0 };
 	},
 });
+
+router.beforeEach((to, from, next) => {
+	if (to.matched.some(record => record.meta.requiresAuth)) {
+		console.log("needs auth", !store.getters["services/user/isLoggedIn"]);
+		if (!store.getters["services/user/isLoggedIn"]) {
+			console.log("should be going to login...");
+			next({name: "login"});
+		}
+	}
+	if (to.matched.some(record => record.meta.isGuest)) {
+		if (store.getters["services/user/isLoggedIn"]) {
+			next({name: "news"});
+		}
+	}
+	if (to.matched.some(record => record.meta.isAttendee)) {
+		if (!store.getters["services/user/isAttendee"]) {
+			next({name: "tickets"});
+		}
+	}
+	if (to.matched.some(record => !record.meta.isAttendee)) {
+		if (store.getters["services/user/isAttendee"]) {
+			next({name: "news"});
+		}
+	}
+	next();
+});
+
+export default router;
