@@ -46,6 +46,8 @@ import Vue from "vue";
 import ImageUpload from "@/components/image-upload.vue";
 import SetPassword from "@/components/set-password.vue";
 
+const imageUploadUrl = process.env.VUE_APP_IMAGE_UPLOAD_URL;
+
 export default {
 	components: {
 		ImageUpload,
@@ -53,7 +55,7 @@ export default {
 	},
 	data() {
 		return {
-			imageUploadUrl: `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_IMAGE_UPLOAD_ENDPOINT}`,
+			imageUploadUrl,
 		};
 	},
 	props: {

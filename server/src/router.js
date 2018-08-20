@@ -1,7 +1,6 @@
 module.exports = function(app){
     [
         "profiles",
-        "images",
         "auth",
         "payments",
     ].forEach(route => {
