@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+		<loading-spinner v-if="isLoading" />
         <app-header />
         <main>
             <router-view/>
@@ -10,18 +11,22 @@
 </template>
 
 <script>
-import AppHeader from "@/components/app-header.vue";
-import AppFooter from "@/components/app-footer.vue";
-import SponsorList from "@/components/sponsor-list.vue";
+import AppHeader from "@/components/app-header";
+import AppFooter from "@/components/app-footer";
+import SponsorList from "@/components/sponsor-list";
+import LoadingSpinner from "@/components/loading-spinner";
 
 export default {
 	components: {
 		AppHeader,
 		AppFooter,
 		SponsorList,
+		LoadingSpinner,
 	},
-	created() {
-		this.$store.dispatch("services/user/fetchProfile");
+	computed: {
+		isLoading() {
+			return this.$store.getters["services/loading/isLoading"];
+		},
 	},
 };
 </script>

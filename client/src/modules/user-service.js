@@ -32,7 +32,8 @@ export default {
 		},
 	},
 	actions: {
-		async login({ commit }, { email, password }) {
+		async login({ dispatch, commit }, { email, password }) {
+			dispatch("services/loading/pushLoading", {}, { root: true });
 			const loginUrl = `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_LOGIN_PATH}`;
 			const hashedPassword = await hashPassword(password);
 			const { user, jwt } = await fetch(loginUrl, {
@@ -47,6 +48,7 @@ export default {
 			}).then(response => response.json());
 			commit("setToken", jwt);
 			commit("setProfile", new Profile(user).properties);
+			dispatch("services/loading/popLoading", {}, { root: true });
 		},
 		logout({ commit }) {
 			commit("logout");
@@ -54,16 +56,19 @@ export default {
 		setToken({ commit }, token) {
 			commit("setToken", token);
 		},
-		setProfile({ commit }, profile) {
+		setProfile({ dispatch, commit }, profile) {
 			commit("setProfile", profile);
 		},
-		async setAttendee({ commit, getters }, level) {
+		async setAttendee({ dispatch, commit, getters }, level) {
+			dispatch("services/loading/pushLoading", {}, { root: true });
 			let profile = getters.currentProfile;
 			profile.setTicketLevel(level);
 			await profile.update();
 			commit("setProfile", profile.properties);
+			dispatch("services/loading/popLoading", {}, { root: true });
 		},
-		async fetchProfile({ getters, commit }) {
+		async fetchProfile({ getters, commit, dispatch }) {
+			dispatch("services/loading/pushLoading", {}, { root: true });
 			const jwt = getters.token;
 			if (jwt) {
 				const id = jwtDecode(jwt).sub;
@@ -74,8 +79,9 @@ export default {
 					},
 				}).then(response => response.json())
 					.then(response => response.data);
-				return commit("setProfile", profile);
+				commit("setProfile", profile);
 			}
+			dispatch("services/loading/popLoading", {}, { root: true });
 		},
 	},
 };

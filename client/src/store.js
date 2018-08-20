@@ -31,16 +31,20 @@ export default new Vuex.Store({
 		},
 	},
 	actions: {
-		async createProfile({commit}, profile) {
+		async createProfile({commit, dispatch}, profile) {
+			dispatch("services/loading/pushLoading");
 			const token = await profile.create();
 			commit("services/user/setProfile", profile);
 			commit("services/user/setToken", token);
+			dispatch("services/loading/popLoading");
 		},
-		async fetchProfiles({commit}) {
+		async fetchProfiles({commit, dispatch}) {
+			dispatch("services/loading/pushLoading");
 			let profiles = await Profile
 				.fetchAll("profile");
 			profiles = profiles.map(profile => new Profile(profile));
 			commit("updateProfiles", profiles);
+			dispatch("services/loading/popLoading");
 		},
 	},
 	plugins: [vuexLocal.plugin]
