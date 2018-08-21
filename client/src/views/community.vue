@@ -45,11 +45,13 @@ export default {
 
 <style lang="scss">
 @import "@/styles/_typography.scss";
+@import "@/styles/_sizes.scss";
 
 .community {
 	width: 100%;
 	h2 {
-		@include section-header-font;
+		@include tertiary-header-font;
+		margin-bottom: $baseline;
 	}
 }
 </style>

@@ -44,9 +44,10 @@
     @import "@/styles/_sizes.scss";
 
     .privacy-policy {
-        h2 {
-            @include section-header-font;
-        }
+		h2 {
+			@include tertiary-header-font;
+			margin-bottom: $baseline;
+		}
         h3 {
             @include fieldset-header-font;
         }

@@ -34,6 +34,7 @@ export default {
 
 <style lang="scss">
 @import "@/styles/_sizes.scss";
+@import "@/styles/_typography.scss";
 
 .register {
     display: flex;
@@ -41,5 +42,9 @@ export default {
     flex-grow: 1;
 	max-width: $max-line-length;
 	margin-bottom: $large;
+	h2 {
+		@include tertiary-header-font;
+		margin-bottom: $baseline;
+	}
 }
 </style>

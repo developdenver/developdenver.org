@@ -61,8 +61,10 @@ export default {
 @import "@/styles/_colors.scss";
 
 .reset-password {
+    margin: $xl 0 $xxxl 0;
 	h2 {
-		@include section-header-font;
+		@include tertiary-header-font;
+		margin-bottom: $baseline;
 	}
 	form {
 		display: flex;

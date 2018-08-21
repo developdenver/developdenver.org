@@ -24,11 +24,13 @@
 
 <style lang="scss">
     @import "@/styles/_typography.scss";
+    @import "@/styles/_sizes.scss";
 
     .code-of-conduct {
-        h2 {
-            @include section-header-font;
-        }
+		h2 {
+			@include tertiary-header-font;
+			margin-bottom: $baseline;
+		}
         h3 {
             @include fieldset-header-font;
         }

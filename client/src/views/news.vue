@@ -41,6 +41,7 @@ export default {
     flex-flow: column nowrap;
     flex-grow: 1;
     max-width: $max-line-length;
+    margin: $xl 0 $xxxl 0;
 	h2 {
 		display: none;
 	}

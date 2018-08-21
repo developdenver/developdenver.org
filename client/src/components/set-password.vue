@@ -2,22 +2,23 @@
     <div class="set-password">
         <label for="password">Password</label>
         <input
-            ref="password"
-            type="password"
             required
+            type="password"
             id="password"
-            pattern=".{7,}"
             title="At least 7 characters"
-            name="password"
-            v-model="password"
+            pattern=".{7,}"
+			placeholder="Minimum 7 characters"
+            ref="password"
+            v-model.trim="password"
             @input="updatePassword"
         />
         <label for="confirmPassword">Confirm Password</label>
         <input ref="confirmPassword"
-            type="password"
             required
+            type="password"
             id="confirmPassword"
-            v-model="confirmPassword"
+            title="At least 7 characters"
+            v-model.trim="confirmPassword"
             @input="updatePassword"
         />
     </div>

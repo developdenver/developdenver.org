@@ -5,7 +5,7 @@
 			v-if="!message"
 			@submit.prevent="requestReset"
 		>
-			<label for="email" >Enter your email</label>
+			<label for="email">Email</label>
 			<input v-model="email" id="email" type="email" required placeholder="hello@developdenver.org" />
 			<input type="submit" value="Request Reset" />
 		</form>
@@ -37,8 +37,10 @@ export default {
 @import "@/styles/_typography.scss";
 
 .reset-request {
+    margin: $xl 0 $xxxl 0;
 	h2 {
-		@include section-header-font;
+		@include tertiary-header-font;
+		margin-bottom: $baseline;
 	}
 	form {
 		display: flex;
