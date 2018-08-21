@@ -33,7 +33,7 @@ export default [{
 }, {
 	properties: {
 		firstName: "Alison",
-		lastName: "Daly",
+		lastName: "Daley",
 		position: "Sponsorship & Logistics",
 		employer: "Develop Denver",
 		profilePhotoUrl: "https://recruitinginnovation.com/wp-content/uploads/2014/06/Alison.png",
