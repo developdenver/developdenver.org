@@ -25,13 +25,16 @@
 
 ## ENV examples
 ### Client ENV
-### ./client/.env.local
+### ./client/.env.example
 ```
 VUE_APP_API_URL=<your-api-url-here>
-VUE_APP_API_BASE_URL=<your-api-base-url-here>
 VUE_APP_IMAGE_UPLOAD_ENDPOINT=<your-image-upload-endpoint-here>
-VUE_APP_PASSWORD_SALT=<your-pw-salt-here>
+VUE_APP_UNIQUE_EMAIL_ENDPOINT=profiles/email
 VUE_APP_LOGIN_PATH=<your-login-path-here>
+VUE_APP_STRIPE_KEY=pk_test_xxxxxxxxxxxxxxxxxxxxxxxx
+VUE_APP_PAYMENTS_URL=http://localhost:3000/payments
+VUE_APP_RESET_PASSWORD_PATH=auth/reset-password
+VUE_APP_RESET_REQUEST_PATH=auth/reset-request
 ```
 
 ### Server ENV
@@ -39,8 +42,10 @@ VUE_APP_LOGIN_PATH=<your-login-path-here>
 ```
 DEVELOPMENT_DATABASE_NAME=<your-db-name-here>
 TEST_DATABASE_NAME=<your-test-db-name-here>
-S3_BUCKET_REGION=<your-bucket-region-here>
-S3_SECRET_ACCESS_KEY=<your-s3-secret-access-key-here>
-S3_ACCESS_KEY_ID=<your-s3-access-key-id-here>
-S3_BUCKET_NAME=<your-s3-bucket-name-here>
+STAGING_DATABASE_URL=postgres://xxxxxxx:yyyyyyy@zzzzz.amazonaws.com:5432/aaaaaaa
+PRODUCTION_DATABASE_URL=postgres://xxxxxxx:yyyyyyy@zzzzz.amazonaws.com:5432/aaaaaaa
+STRIPE_KEY=sk_test_xxxxxxxxxxxxxxxxxx
+FROM_EMAIL_ADDRESS=username@domain.org
+EMAIL_PASSWORD=email_password
+PASSWORD_RESET_CALLBACK=http://localhost:8080/reset-password
 ```

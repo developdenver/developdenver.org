@@ -12,7 +12,19 @@
 
 `/profiles`
 
-* GET
-* PUT
-* POST
-* DELETE
+* `GET /` - List profiles
+* `POST /email` - Tests for email uniqueness
+* `GET /:id` - Read a profile
+* `PUT /` - Update a profile
+* `POST /` - Create a profile
+* `DELETE /:id` - Delete a profile
+
+`/payments`
+
+* `POST /` - Charge a payment
+
+`/auth`
+
+* `POST /login` - Get a token and a profile
+* `POST /reset-request` - Send an email with a link to reset password
+* `POST /reset-password` - Reset a password
