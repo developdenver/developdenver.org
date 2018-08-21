@@ -1,6 +1,0 @@
-{
-  "projects": {
-    "production": "develop-denver",
-    "staging": "develop-denver-staging"
-  }
-}

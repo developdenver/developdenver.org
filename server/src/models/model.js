@@ -12,23 +12,37 @@ class Model {
             : this.publicProperties;
     }
     list(isAdmin){
-        return database(this.modelName).select(this.propertyList(isAdmin));
+        return database(this.modelName)
+            .select(this.propertyList(isAdmin));
     }
     find(id, isAdmin){
-        return database(this.modelName).select(this.propertyList(isAdmin)).where("id", id).first();
+        return database(this.modelName)
+            .select(this.propertyList(isAdmin))
+            .where("id", id).first();
     }
     query(query, isAdmin){
-        return database(this.modelName).select(this.propertyList(isAdmin)).where(query).first();
+        return database(this.modelName)
+            .select(this.propertyList(isAdmin))
+            .where(query)
+            .first();
     }
     add(item, isAdmin){
-        const secretKey = crypto.randomBytes(48, (error, buffer) => buffer.toString("hex"));
-        return database(this.modelName).returning(this.propertyList(isAdmin)).insert(item).then(items => items[0]);
+        const secretKey = crypto.randomBytes(48, (error, buffer) => {
+            return buffer.toString("hex");
+        });
+        return database(this.modelName)
+            .returning(this.propertyList(isAdmin))
+            .insert(item).then(items => items[0]);
     }
     remove(id){
-        return database(this.modelName).delete().where("id", id);
+        return database(this.modelName)
+            .delete()
+            .where("id", id);
     }
     update(id, data, isAdmin){
-        return database(this.modelName).returning(this.propertyList(isAdmin)).update(data).where("id", id)
+        return database(this.modelName)
+            .returning(this.propertyList(isAdmin))
+            .update(data).where("id", id)
             .then(items => items[0]);
     }
 }

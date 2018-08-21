@@ -1,6 +1,6 @@
-import {serialize} from "./serializer";
-import {deserialize} from "./deserializer";
-import {buildUrl, buildRequest} from "./adapter";
+import { serialize } from "./serializer";
+import { deserialize } from "./deserializer";
+import { buildUrl, buildRequest } from "./adapter";
 
 class Model {
 	constructor(modelName, item) {

@@ -98,7 +98,6 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
 	if (to.matched.some(record => record.meta.requiresAuth)) {
 		if (!store.getters["services/user/isLoggedIn"]) {
-			console.log("should be going to login...");
 			next({name: "login"});
 		}
 	}

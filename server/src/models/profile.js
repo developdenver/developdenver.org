@@ -32,4 +32,3 @@ class Profile extends Model {
 }
 
 module.exports = new Profile();
-

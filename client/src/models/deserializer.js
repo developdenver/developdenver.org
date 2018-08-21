@@ -1,4 +1,4 @@
-import {camelCase} from "change-case";
+import { camelCase } from "change-case";
 
 export function deserialize(object) {
 	const normalizedObject = typeof object !== "object" ? JSON.parse(object) : object;

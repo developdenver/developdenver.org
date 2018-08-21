@@ -81,7 +81,6 @@ $clip-amount: 80px;
     align-items: center;
     justify-content: flex-end;
     width: 90%;
-    // margin-top: $clip-amount * -1;
     margin-bottom: calc($clip-amount * -1) + $large;
     .profile-details {
         order: 1;
