@@ -19,13 +19,13 @@ async function secretProvider(request, rawJwt, next){
         next(new Error("Missing JWT"));
     }
     const { sub } = decodeJwt(rawJwt);
-    const user = await profile.find(sub)
+    const user = await profile.find(sub, true)
         .catch(error => next(error));
     next(null, user.secret_key);
 }
 
 async function verifyLogin(username, password, next){
-    const user = await profile.query({ email: username })
+    const user = await profile.query({ email: username }, true)
         .catch(error => next(error));
     if (!user) {
         next(new Error("No matching user"))
@@ -39,7 +39,7 @@ async function verifyLogin(username, password, next){
 }
 
 async function verifyAccess(payload, next){
-    const user = await profile.find(payload.sub)
+    const user = await profile.find(payload.sub, true)
         .catch(error => next(error));
     return payload.sub
         ? next(null, user, payload)

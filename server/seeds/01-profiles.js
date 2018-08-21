@@ -18,13 +18,9 @@ function profileFactory(id){
         github_username: faker.internet.userName(),
         twitter_username: faker.internet.userName(),
         website: faker.internet.url(),
-        is_looking: faker.random.boolean(),
-        is_student: faker.random.boolean(),
-        is_self_employed: faker.random.boolean(),
         employer: faker.company.companyName(),
         position: faker.name.jobTitle(),
         bio: faker.lorem.paragraph(),
         profile_photo_url: faker.internet.avatar(),
-        is_over_21: faker.random.boolean()
     };
 }

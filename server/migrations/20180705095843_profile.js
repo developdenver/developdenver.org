@@ -4,7 +4,6 @@ exports.up = (knex) => {
         profile.string("first_name");
         profile.string("last_name");
         profile.string("email");
-        profile.string("salt");
         profile.string("hashed_password");
         profile.string("profile_photo_url");
         profile.text("bio");
@@ -17,10 +16,6 @@ exports.up = (knex) => {
         profile.string("secret_key");
         profile.string("role");
         profile.string("ticket_level");
-        profile.boolean("is_looking");
-        profile.boolean("is_student");
-        profile.boolean("is_self_employed");
-        profile.boolean("is_over_21");
     });
 };
 

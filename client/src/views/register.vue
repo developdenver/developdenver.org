@@ -24,8 +24,8 @@ export default {
 		EditProfile,
 	},
 	methods: {
-		updateProfile(profile) {
-			this.$store.dispatch("createProfile", profile);
+		async updateProfile(profile) {
+			await this.$store.dispatch("createProfile", profile);
 			this.$router.push({ name: "tickets" });
 		},
 	},

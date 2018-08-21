@@ -4,25 +4,31 @@ class Model {
     constructor(modelName){
         this.database = database;
         this.modelName = modelName;
+        this.propertyList.bind(this);
     }
-    list(){
-        return database(this.modelName).select();
+    propertyList(isAdmin){
+        return isAdmin
+            ? "*"
+            : this.publicProperties;
     }
-    find(id){
-        return database(this.modelName).select().where("id", id).first();
+    list(isAdmin){
+        return database(this.modelName).select(this.propertyList(isAdmin));
     }
-    query(query){
-        return database(this.modelName).select().where(query).first();
+    find(id, isAdmin){
+        return database(this.modelName).select(this.propertyList(isAdmin)).where("id", id).first();
     }
-    add(item){
+    query(query, isAdmin){
+        return database(this.modelName).select(this.propertyList(isAdmin)).where(query).first();
+    }
+    add(item, isAdmin){
         const secretKey = crypto.randomBytes(48, (error, buffer) => buffer.toString("hex"));
-        return database(this.modelName).returning("*").insert(item).then(items => items[0]);
+        return database(this.modelName).returning(this.propertyList(isAdmin)).insert(item).then(items => items[0]);
     }
     remove(id){
         return database(this.modelName).delete().where("id", id);
     }
-    update(id, data){
-        return database(this.modelName).returning("*").update(data).where("id", id)
+    update(id, data, isAdmin){
+        return database(this.modelName).returning(this.propertyList(isAdmin)).update(data).where("id", id)
             .then(items => items[0]);
     }
 }

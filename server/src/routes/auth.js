@@ -10,15 +10,16 @@ module.exports = (app) => {
     router.post("/login",
         passport.authenticate("local", { session: false }),
         async (request, response, next) => {
+            const profile = await Profile.find(request.user.id, false);
             response.status(201).send({
-                user: request.user,
+                user: profile,
                 jwt: generateToken(request.user),
             });
         },
     );
 
     router.post("/reset-request", async (request, response, next) => {
-        const profile = await Profile.query({email: request.body.email});
+        const profile = await Profile.query({email: request.body.email}, true);
         const token = await generateToken(profile, 1000 * 60 * 60); // One hour
         const resetUrl = `${process.env.PASSWORD_RESET_CALLBACK}?token=${token}`;
         const content = `

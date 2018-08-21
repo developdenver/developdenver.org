@@ -86,7 +86,7 @@ export default {
 	},
 	methods: {
 		async updateProfile() {
-			this.profile.hashedPassword = await hashPassword(this.password);
+			this.profile.properties.hashedPassword = await hashPassword(this.password);
 			return this.$emit("updateProfile", this.profile);
 		},
 		setImageUrl(url) {

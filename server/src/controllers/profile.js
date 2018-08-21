@@ -2,12 +2,15 @@ const Profile = require("../models/profile");
 const { generateToken } = require("../utilities/auth");
 
 async function create(request, response, next){
-    const profile = await Profile.add(request.body)
+    const fullProfile = await Profile.add(request.body, true)
         .catch(error => next(error));
+    const token = generateToken(fullProfile)
+
+    const profile = await Profile.find(fullProfile.id, false);
 
     response.status(201).json({
         data: profile,
-        jwt: generateToken(profile),
+        jwt: token,
     });
 }
 
