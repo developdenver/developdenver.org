@@ -1,0 +1,10 @@
+{
+    "name": "develop-denver",
+    "version": "0.1.0",
+    "description": "Develop Denver app",
+    "scripts": {
+        "deploy": "git subtree push --prefix=server/ server master"
+    },
+    "author": "Kyle Coberly",
+    "license": "Private"
+}
