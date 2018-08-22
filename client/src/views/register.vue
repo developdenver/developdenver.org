@@ -42,6 +42,7 @@ export default {
     flex-grow: 1;
 	max-width: $max-line-length;
 	margin-bottom: $large;
+	padding: $baseline;
 	h2 {
 		@include tertiary-header-font;
 		margin-bottom: $baseline;

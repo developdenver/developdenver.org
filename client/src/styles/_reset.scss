@@ -64,7 +64,30 @@ a:visited {
 
 @import "@/styles/_typography.scss";
 @import "@/styles/_sizes.scss";
+@import "@/styles/_colors.scss";
 p {
 	@include body-font;
 	margin-bottom: $baseline;
+}
+
+label, input, textarea, button {
+	display: block;
+	width: 100%;
+}
+label {
+	color: $medium-grey;
+	margin-bottom: $xxs;
+}
+input, textarea {
+	margin-bottom: $baseline;
+	padding: $baseline;
+	border: 0.5px solid $medium-light-grey;
+	&:focus {
+		border-bottom: 1px solid $primary-color;
+	}
+}
+textarea {
+	height: $xxl * 2;
+	resize: none;
+	@include system-font;
 }

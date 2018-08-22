@@ -1,6 +1,6 @@
 <template>
 	<section class="community">
-		<h2>Community</h2>
+		<h2>Our Community</h2>
 		<profile-card-list :profiles="shuffledProfiles" />
 	</section>
 </template>
@@ -51,7 +51,9 @@ export default {
 	width: 100%;
 	h2 {
 		@include tertiary-header-font;
+		text-align: center;
 		margin-bottom: $baseline;
+		padding: $baseline;
 	}
 }
 </style>

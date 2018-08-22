@@ -50,9 +50,6 @@ const router = new Router({
 		path: "/tickets",
 		name: "tickets",
 		component: Tickets,
-		meta: {
-			requiresAuth: true,
-		},
 	}, {
 		path: "/profiles/:id",
 		name: "profile",

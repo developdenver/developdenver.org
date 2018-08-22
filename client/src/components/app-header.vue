@@ -25,6 +25,7 @@ export default {
 		display: flex;
 		flex-flow: column nowrap;
 		align-items: center;
+		padding: $baseline;
 		h1 {
 			display: none;
 		}
@@ -32,8 +33,8 @@ export default {
 			padding: $small;
 			height: 50px;
 			max-width: 100%;
-			margin-top: $xl;
-			margin-bottom: $xl;
+			margin-top: $large;
+			margin-bottom: $large;
 		}
 	}
 </style>

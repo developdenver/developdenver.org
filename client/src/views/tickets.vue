@@ -3,22 +3,23 @@
         <h2>Tickets</h2>
         <form @submit.prevent="submit">
             <div class="levels">
-                <input type="radio" required id="early-bird" name="ticket-level" value="early-bird" v-model="ticketLevel" />
+                <input v-if="currentProfile.id" type="radio" required id="early-bird" name="ticket-level" value="early-bird" v-model="ticketLevel" />
                 <label for="early-bird">$135 - Early Bird</label>
                 <p>Gets you tickets to the conference, a goody bag, and more! This is a $100 savings off the regular price of $235. Limited to the first 100 attendees!</p>
             </div>
             <div class="levels">
-                <input type="radio" required id="premium" name="ticket-level" value="premium" v-model="ticketLevel" />
+                <input v-if="currentProfile.id" type="radio" required id="premium" name="ticket-level" value="premium" v-model="ticketLevel" />
                 <label for="premium">$500 - Premium</label>
                 <p>Gets you everything a regular ticket gets you, your name listed on a site, and a custom-designed hoodie indicating your support of this community.</p>
             </div>
 
             <credit-card-payment
+				v-if="currentProfile.id"
                 :card="card"
                 @setError="setError"
             />
 
-            <input type="submit" :disabled="isLoading" value="Buy" />
+            <input v-if="currentProfile.id" type="submit" :disabled="isLoading" value="Buy" />
             <div class="errors">{{error}}</div>
             <div class="message">{{message}}</div>
         </form>
@@ -99,6 +100,7 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .tickets {
+	padding: $baseline;
     max-width: 400px;
     h2 {
         @include tertiary-header-font;
@@ -106,9 +108,6 @@ export default {
     }
     form {
         margin-bottom: $xxl;
-        input, label {
-            display: inline-block;
-        }
         [type="submit"] {
             @include call-to-action-button;
             display: block;
@@ -120,6 +119,10 @@ export default {
         }
         .levels {
             margin-bottom: $large;
+			input, label {
+				display: inline-block;
+				width: auto;
+			}
             input {
                 margin-bottom: $small;
                 margin-right: $large;

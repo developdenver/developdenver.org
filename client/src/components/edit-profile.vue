@@ -184,27 +184,6 @@ export default {
             width: 100%;
         }
     }
-    label, input, textarea, button {
-        display: block;
-        width: 100%;
-    }
-    label {
-        color: $medium-grey;
-        margin-bottom: $xxs;
-    }
-    input, textarea {
-        margin-bottom: $baseline;
-        padding: $baseline;
-        border: 0.5px solid $medium-light-grey;
-        &:focus {
-            border-bottom: 1px solid $primary-color;
-        }
-    }
-    textarea {
-        height: $xxl * 2;
-        resize: none;
-        @include system-font;
-    }
     button {
         @include call-to-action-button;
 		&[disabled] {

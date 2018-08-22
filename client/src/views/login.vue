@@ -63,6 +63,7 @@ export default {
 @import "@/styles/_general.scss";
 
 .login {
+	padding: $baseline;
     margin: $xl 0 $xxxl 0;
     h2 {
         @include tertiary-header-font;
