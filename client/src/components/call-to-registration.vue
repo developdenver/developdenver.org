@@ -1,7 +1,7 @@
 <template>
     <section class="call-to-registration">
-        <div class="mind-melter">
-            <img src="@/assets/mind-melter.svg" alt="Skull with exposed brain" />
+        <div class="countdown">
+            <Countdown />
         </div>
         <div class="call-to-action">
             <span class="slogan">Code</span>
@@ -12,6 +12,15 @@
         </div>
     </section>
 </template>
+<script>
+import Countdown from "@/components/count-down.vue";
+
+export default {
+	components: {
+		Countdown,
+	},
+};
+</script>
 
 <style scoped lang="scss">
 @import "@/styles/_typography.scss";
@@ -21,7 +30,7 @@
 .call-to-registration {
     display: grid;
     grid-template:
-    "mind-melter call-to-action" auto / 1fr 1fr;
+    "countdown call-to-action" auto / 1fr 1fr;
     margin-top: 7.5rem + $xxxl; // Offset mind-melter image
     margin-bottom: 2rem + $xxxl; // Offset mind-metler image
     @media (max-width: $large-breakpoint){
@@ -29,28 +38,6 @@
         position: relative;
         margin: $xxl 0;
         padding: 0 $baseline;
-    }
-    .mind-melter {
-        position: relative;
-        img {
-            position: absolute;
-            max-width: 500px; // SVG
-            bottom: -30px; // Offset
-            right: -100px; // Offset
-            @media (max-width: $large-breakpoint){
-                padding: 0 $baseline;
-                height: 100%;
-                bottom: 0;
-                right: 0;
-            }
-        }
-        @media (max-width: $large-breakpoint){
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
     }
     .call-to-action {
         grid-area: call-to-action;
