@@ -2,18 +2,19 @@
 <div class="countdown-parent">
 	<div>
     {{toTwoDigits(countDownToConference.days)}}
+		<span class="counter-label">days</span>
 	</div>
-	<div>:</div>
 	<div>
 		{{countDownToConference.hours}}
+		<span class="counter-label">hrs</span>
 	</div>
-	<div>:</div>
 	<div>
 		{{countDownToConference.minutes}}
+		<span class="counter-label">mins</span>
 	</div>
-	<div>:</div>
 	<div>
 		{{countDownToConference.seconds}}
+		<span class="counter-label">secs</span>
 	</div>
 </div>
 </template>
@@ -59,9 +60,13 @@ export default {
 .countdown-parent {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: center;
 	div {
 		font-size: $xl;
+		padding: 1%;
+		.counter-label {
+			font-size: $small;
+		}
 	}
 }
 
