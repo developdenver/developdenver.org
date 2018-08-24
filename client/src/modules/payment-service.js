@@ -23,7 +23,7 @@ export default {
 				body: JSON.stringify(data),
 			}).then(response => response.json())
 				.catch(error => {
-					console.log(error.message);
+					console.error(error.message);
 				});
 			dispatch("services/loading/popLoading", {}, { root: true });
 			return charge;
