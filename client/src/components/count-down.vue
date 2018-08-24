@@ -1,20 +1,20 @@
 <template>
 <div class="countdown-parent">
 	<div>
-    {{toTwoDigits(countDownToConference.days)}}
+    <span>{{toTwoDigits(countDownToConference.days)}} // </span>
 		<span class="counter-label">days</span>
 	</div>
 	<div>
-		{{countDownToConference.hours}}
-		<span class="counter-label">hrs</span>
+		<span>{{countDownToConference.hours}} // </span>
+		<span class="counter-label">hours</span>
 	</div>
 	<div>
-		{{countDownToConference.minutes}}
-		<span class="counter-label">mins</span>
+		<span>{{countDownToConference.minutes}} // </span>
+		<span class="counter-label">minutes</span>
 	</div>
 	<div>
-		{{countDownToConference.seconds}}
-		<span class="counter-label">secs</span>
+		<span>{{countDownToConference.seconds}}</span>
+		<span class="counter-label">seconds</span>
 	</div>
 </div>
 </template>
@@ -66,6 +66,10 @@ export default {
 		padding: 1%;
 		.counter-label {
 			font-size: $small;
+			text-transform: uppercase;
+		}
+		span {
+			display: block;
 		}
 	}
 }

@@ -1,23 +1,21 @@
 <template>
     <section class="call-to-registration">
-        <div class="countdown">
-            <Countdown />
-        </div>
+        <HeroBanner />
         <div class="call-to-action">
             <span class="slogan">Code</span>
             <span class="slogan">Design</span>
             <span class="slogan">Community</span>
             <p class="date">October 18th & 19th</p>
-            <router-link class="button" :to="{name: 'register'}">Register Today</router-link>
+            <router-link class="button" :to="{name: 'register'}">Join Us</router-link>
         </div>
     </section>
 </template>
 <script>
-import Countdown from "@/components/count-down.vue";
+import HeroBanner from "@/components/hero-banner.vue";
 
 export default {
 	components: {
-		Countdown,
+		HeroBanner,
 	},
 };
 </script>
@@ -28,11 +26,7 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .call-to-registration {
-    display: grid;
-    grid-template:
-    "countdown call-to-action" auto / 1fr 1fr;
-    margin-top: 7.5rem + $xxxl; // Offset mind-melter image
-    margin-bottom: 2rem + $xxxl; // Offset mind-metler image
+    width: 100%;
     @media (max-width: $large-breakpoint){
         display: block;
         position: relative;
@@ -40,7 +34,6 @@ export default {
         padding: 0 $baseline;
     }
     .call-to-action {
-        grid-area: call-to-action;
         .slogan {
             @include secondary-header-font;
             display: block;
