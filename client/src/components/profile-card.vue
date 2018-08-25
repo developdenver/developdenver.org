@@ -5,7 +5,7 @@
             <img :src="profile.properties.profilePhotoUrl" alt="Profile photo" />
             <div class="name-plate">
                 <p class="name">{{profile.properties.firstName}} {{profile.properties.lastName}}</p>
-                <p class="job">{{profile.properties.position}} at {{profile.properties.employer}}</p>
+                <p v-if="profile.properties.position && profile.properties.employer" class="job">{{profile.properties.position}} at {{profile.properties.employer}}</p>
             </div>
         </router-link>
     </div>

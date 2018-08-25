@@ -65,7 +65,7 @@
 			/>
             <label for="website">Website</label>
             <input
-				type="url"
+				type="text"
 				id="website"
 				placeholder="https://developdenver.org"
 				v-model.trim="profile.properties.website"
@@ -101,8 +101,6 @@ import Vue from "vue";
 import ImageUpload from "@/components/image-upload.vue";
 import SetPassword from "@/components/set-password.vue";
 
-import { hashPassword } from "../utilities/auth";
-
 const imageUploadUrl = process.env.VUE_APP_IMAGE_UPLOAD_URL;
 const uniqueEmailUrl = `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_UNIQUE_EMAIL_ENDPOINT}`;
 
@@ -132,7 +130,6 @@ export default {
 	},
 	methods: {
 		async updateProfile() {
-			this.profile.properties.hashedPassword = await hashPassword(this.password);
 			return this.$emit("updateProfile", this.profile);
 		},
 		setImageUrl(url) {

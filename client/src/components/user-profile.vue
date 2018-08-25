@@ -7,7 +7,7 @@
             <div class="bio">
                 <p>{{profile.properties.bio}}</p>
                 <p v-if="profile.properties.website" class="website">
-					Website: <a :href="profile.properties.website" target="_BLANK">{{profile.properties.website}}</a>
+					Website: <a :href="websiteWithProtocol" target="_BLANK">{{profile.properties.website}}</a>
 				</p>
             </div>
             <ul class="social">
@@ -62,6 +62,11 @@ export default {
 		},
 		linkedinUrl() {
 			return `https://www.linkedin.com/in/${this.profile.properties.linkedinUsername}`;
+		},
+		websiteWithProtocol() {
+			return /^https?:\/\//.test(this.profile.properties.website)
+				? this.profile.properties.website
+				: `https://${this.profile.properties.website}`
 		},
 	},
 };

@@ -1,4 +1,3 @@
-import { hashPassword } from "../utilities/auth";
 import Profile from "../models/profile";
 import jwtDecode from "jwt-decode";
 
@@ -42,7 +41,6 @@ export default {
 	actions: {
 		async login({ dispatch, commit }, { email, password }) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
-			const hashedPassword = await hashPassword(password);
 			await fetch(loginUrl, {
 				method: "POST",
 				headers: {
@@ -50,7 +48,7 @@ export default {
 				},
 				body: JSON.stringify({
 					username: email,
-					password: hashedPassword,
+					password: password,
 				}),
 			}).then(response => {
 				if (+response.status !== 201) {

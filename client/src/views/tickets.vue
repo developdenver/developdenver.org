@@ -1,95 +1,39 @@
 <template>
     <section class="tickets">
         <h2>Tickets</h2>
-        <form @submit.prevent="submit">
-            <div class="levels">
-                <input v-if="currentProfile.id" type="radio" required id="early-bird" name="ticket-level" value="early-bird" v-model="ticketLevel" />
-                <label for="early-bird">$135 - Early Bird</label>
-                <p>Gets you tickets to the conference, a goody bag, and more! This is a $100 savings off the regular price of $235. Limited to the first 100 attendees!</p>
-            </div>
-            <div class="levels">
-                <input v-if="currentProfile.id" type="radio" required id="premium" name="ticket-level" value="premium" v-model="ticketLevel" />
-                <label for="premium">$500 - Premium</label>
-                <p>Gets you everything a regular ticket gets you, your name listed on a site, and a custom-designed hoodie indicating your support of this community.</p>
-            </div>
-
-            <credit-card-payment
-				v-if="currentProfile.id"
-                :card="card"
-                @setError="setError"
-            />
-
-            <input v-if="currentProfile.id" type="submit" :disabled="isLoading" value="Buy" />
-            <div class="errors">{{error}}</div>
-            <div class="message">{{message}}</div>
-        </form>
+		<ticket-purchase :levels="levels" :isDiscountCode="false" />
     </section>
 </template>
 
 <script>
-/* global Stripe */
-import CreditCardPayment from "../components/credit-card-payment";
+import TicketPurchase from "../components/ticket-purchase";
 
 export default {
 	components: {
-		CreditCardPayment,
+		TicketPurchase,
 	},
 	data() {
 		return {
-			ticketLevel: "",
-			error: "",
-			message: "",
-			stripe: null,
-			card: null,
+			levels: [{
+				value: "early-bird",
+				label: "$̶2̶3̶5̶ $135 - Early Bird",
+				description: "Be the first to buy a ticket and get a special discount! 2-Day conference pass including personalized conference badge, access to keynote speakers, talks, workshops and food and beverage at five amazing venues in the Denver RiNo district.",
+			/*
+			},{
+				value: "regular",
+				label: "$235 - Regular",
+				description: "2-Day conference pass including personalized conference badge, access to keynote speakers, talks, workshops and food and beverage at five amazing venues in the Denver RiNo district.",
+			*/
+			},{
+				value: "employer",
+				label: "$375 - Employer",
+				description: "For those of you coming on your employer’s dime. Your ticket helps us make the Denver tech community amazing. Your ticket helps make Develop Denver affordable to all attendees, including sponsoring student tickets and sponsoring meals during the conference.",
+			},{
+				value: "premium",
+				label: "$500 - Individual Sponsor",
+				description: "Play an important role in supporting the Denver tech community without breaking the bank. Your sponsorship ensures we can continue to provide a local community-driven conference. In addition to special sponsorship badge your name will appear as a sponsor on the Develop Denver website.",
+			}],
 		};
-	},
-	created() {
-		this.stripe = Stripe(this.stripeKey);
-		const elements = this.stripe.elements();
-		this.card = elements.create("card");
-	},
-	computed: {
-		paymentsService() {
-			return this.$store.state.services.payments;
-		},
-		currentProfile() {
-			return this.$store.getters["services/user/currentProfile"];
-		},
-		stripeKey() {
-			return this.paymentsService.paymentKey;
-		},
-		isLoading() {
-			return this.$store.getters["services/loading/isLoading"];
-		},
-	},
-	methods: {
-		async submit() {
-			this.$store.dispatch("services/loading/pushLoading");
-			const result = await this.stripe.createToken(this.card);
-			if (result.error) {
-				this.error = result.error;
-				this.message = "";
-			} else {
-				const { id, firstName, lastName } = this.currentProfile.properties;
-				const charge = {
-					description: `${id} - ${lastName}, ${firstName}`,
-					token: result.token.id,
-					level: this.ticketLevel,
-				};
-				this.$store.dispatch("services/payments/charge", charge).then(response => {
-					this.$store.dispatch("services/user/setAttendee", this.ticketLevel);
-					this.error = "";
-					this.message = "You're going to Develop Denver!";
-					this.$router.push({name: "news"});
-				}).catch(error => {
-					this.error = error.message;
-				});
-			}
-			this.$store.dispatch("services/loading/popLoading");
-		},
-		setError(error) {
-			this.error = error;
-		},
 	},
 };
 </script>
@@ -100,43 +44,9 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .tickets {
-	padding: $baseline;
-    max-width: 400px;
     h2 {
         @include tertiary-header-font;
         margin-bottom: $large;
-    }
-    form {
-        margin-bottom: $xxl;
-        [type="submit"] {
-            @include call-to-action-button;
-            display: block;
-            width: 100%;
-            margin-bottom: $large;
-			&[disabled] {
-				background-color: $medium-light-grey;
-			}
-        }
-        .levels {
-            margin-bottom: $large;
-			input, label {
-				display: inline-block;
-				width: auto;
-			}
-            input {
-                margin-bottom: $small;
-                margin-right: $large;
-            }
-            label {
-                @include fieldset-header-font;
-            }
-        }
-    }
-    .errors {
-        color: $warning;
-    }
-    .message {
-        @include bold-body-font;
     }
 }
 </style>
