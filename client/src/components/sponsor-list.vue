@@ -1,6 +1,6 @@
 <template>
 	<section class="sponsors">
-		<h2>Sponsors</h2>
+		<h2><img src="../assets/logos/sponsors.svg" class="svg" alt="sponsors" /></h2>
 		<ul v-if="premiumSponsor" class="platinum-sponsors">
 			<li>Sponsor Here</li>
 		</ul>
@@ -47,6 +47,10 @@ export default {
 		ul {
 			padding: $baseline;
 			border-bottom: 1px solid $light-grey;
+		}
+		img.svg {
+			width: 15rem;
+			padding: $baseline;
 		}
 		.sponsor-call-to-action {
 			display: flex;

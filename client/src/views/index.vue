@@ -12,7 +12,7 @@
         />
         <section class="about">
             <div class="details">
-                <h2>Meet the Board</h2>
+				<h2><img class="board-svg" src="../assets/logos/meet_the_board.svg" alt="Meet the board" /></h2>
                 <p>Behind the scenes is a group of friends who are passionate about building community and bringing people together. Our mission is to create something that empowers the makers and doers of the community.</p>
             </div>
             <profile-card-list :profiles="boardProfiles" />
@@ -20,7 +20,7 @@
         <sponsor-list />
         <section class="ticket-info">
 			<div class="ticket-details">
-				<h2>Tickets</h2>
+				<h2><img src="../assets/logos/tickets.svg" alt="Tickets" class="svg" /></h2>
 				<p>Tickets are now on sale!</p>
 				<p>When: October 18 - 19</p>
 				<p>Where: RiNo Brighton Boulevard</p>
@@ -98,6 +98,14 @@ export default {
 		p {
 			@include stylized-body-font;
 			max-width: $max-line-length;
+			padding: $baseline;
+		}
+		h2 {
+			width: 15rem;
+			padding: $baseline;
+			> img.svg {
+				padding: $baseline;
+			}
 		}
 	}
     .ticket-info {
@@ -111,6 +119,7 @@ export default {
         }
 		h2 {
 			@include section-header-font;
+			width: 10rem;
 		}
 		p {
 			@include stylized-body-font;

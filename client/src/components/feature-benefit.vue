@@ -2,7 +2,8 @@
     <section class="feature">
         <img :src="image.url" :alt="image.altText" />
         <div class="benefit">
-            <h2>{{heading}}</h2>
+			<!-- <h2>{{heading}}</h2> -->
+			<h2><img src="../assets/logos/celebration.svg" alt="A Celebration." class="celebration-svg" /></h2>
             <div v-html="parsedCopy"></div>
             <slot />
         </div>
@@ -54,6 +55,10 @@ $clip-amount: 80px;
         p {
             @include stylized-body-font;
         }
+		.celebration-svg {
+			max-width: 100%;
+			padding: 0;
+		}
     }
     @media (max-width: $large-breakpoint){
         & {
