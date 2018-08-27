@@ -42,6 +42,7 @@ export default {
     flex-grow: 1;
     max-width: $max-line-length;
     margin: $xl 0 $xxxl 0;
+	padding: $baseline;
 	h2 {
 		display: none;
 	}

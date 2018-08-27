@@ -3,6 +3,7 @@ const router = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const studentDiscountCodes = process.env.STUDENT_DISCOUNT_CODES.split(",");
+const { send } = require("../utilities/email");
 
 function getPrice(level, discountCode){
     const levels = {
@@ -38,6 +39,19 @@ module.exports = (app) => {
                 error
                     ? response.status(400).json({error: error.message})
                     : response.json({data: charge});
+            }).then(() => {
+                const content = `
+## Success!
+
+Hi-five! You've purchased your ticket to DVLP DNVR. We will see you on October 18th and 19th. Before then make sure to come back to the site and log in. We'll email you when Call for Proposals start. After all call to proposals are in, all ticket holders will have time to submit their votes. These votes determine our schedule for the year.
+
+We'll keep you up to date. Thank you for contributing to the Denver tech community! It's going to be awesome.
+                `;
+                send(
+                    request.body.email,
+                    "You're Going to DVLP DNVR!",
+                    content,
+                )
             });
         } catch (error){
             next(error);
