@@ -58,6 +58,7 @@ $clip-amount: 80px;
 		.celebration-svg {
 			max-width: 100%;
 			padding: 0;
+      clip-path: none;
 		}
     }
     @media (max-width: $large-breakpoint){
