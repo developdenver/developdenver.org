@@ -1,5 +1,9 @@
 <template>
 	<form class="ticket-purchase" @submit.prevent="submit">
+		<div class="ticket-details">
+			<p>All tickets include conference badge, attendance to keynote speakers, talks, and workshops. Your ticket also included coffee, breakfast, lunch at Zeppelin Station, afternoon open bar, opening and closing party drinks, and closing party taco bar!</p>
+			<p>Looking to purchase a group of tickets? Our apologies, our setup requires each user to register and purchase tickets individually. Please contact us at hello@developdenver.org if you need help purchasing multiple tickets.</p>
+		</div>
 		<div
 			class="levels"
 			v-for="(level, index) in levels"
@@ -151,6 +155,12 @@ export default {
                 @include fieldset-header-font;
             }
         }
+		.ticket-details {
+			display: flex;
+			flex-flow: column nowrap;
+			margin-bottom: $xl;
+			align-items: center;
+		}
     }
     .errors {
         color: $warning;

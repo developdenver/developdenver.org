@@ -16,8 +16,8 @@ export default {
 		return {
 			levels: [{
 				value: "early-bird",
-				label: "$̶2̶3̶5̶ $135 - Early Bird",
-				description: "Be the first to buy a ticket and get a special discount! 2-Day conference pass including personalized conference badge, access to keynote speakers, talks, workshops and food and beverage at five amazing venues in the Denver RiNo district.",
+				label: "$135 - Early Bird (limited to the first 100)",
+				description: "Be the first to buy a ticket and get a special discount off the regular price of $235! 2-Day conference pass including personalized conference badge, access to keynote speakers, talks, workshops and food and beverage at five amazing venues in the Denver RiNo district.",
 			/*
 			},{
 				value: "regular",
@@ -44,6 +44,7 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .tickets {
+	padding: $baseline;
     h2 {
         @include tertiary-header-font;
         margin-bottom: $large;
