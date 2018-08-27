@@ -1,5 +1,6 @@
 <template>
 	<form class="ticket-purchase" @submit.prevent="submit">
+		<h3>October 18th & 19th</h3>
 		<div class="ticket-details">
 			<p>All tickets include conference badge, attendance to keynote speakers, talks, and workshops. Your ticket also included coffee, breakfast, lunch at Zeppelin Station, afternoon open bar, opening and closing party drinks, and closing party taco bar!</p>
 			<p>Looking to purchase a group of tickets? Our apologies, our setup requires each user to register and purchase tickets individually. Please contact us at hello@developdenver.org if you need help purchasing multiple tickets.</p>
@@ -133,6 +134,9 @@ export default {
 .tickets {
     .ticket-purchase {
         margin-bottom: $xxl;
+		h3 {
+			@include fieldset-header-font;
+		}
         [type="submit"], a {
             @include call-to-action-button;
             display: block;
