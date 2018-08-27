@@ -13,9 +13,11 @@
             <li v-if="isAttendee">
                 <router-link :to="{name: 'news'}">News</router-link>
             </li>
+			<!--
             <li>
                 <router-link :to="{name: 'community'}">Community</router-link>
             </li>
+			-->
             <li v-if="isLoggedIn">
                 <router-link :to="{name: 'my-profile'}">My Profile</router-link>
             </li>
