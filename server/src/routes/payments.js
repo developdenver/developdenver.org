@@ -35,11 +35,11 @@ module.exports = (app) => {
                 currency: "usd",
                 source: request.body.token,
             };
-            stripe.charges.create(options, (error, charge) => {
+            stripe.charges.create(options, async (error, charge) => {
                 if (error){
                     response.status(400).json({error: error.message});
                 } else {
-                    sendConfirmationEmail(request.body.email);
+                    await sendConfirmationEmail(request.body.email);
                     response.json({data: charge});
                 }
             });
@@ -59,7 +59,7 @@ Hi-five! You've purchased your ticket to DVLP DNVR. We will see you on October 1
 
 We'll keep you up to date. Thank you for contributing to the Denver tech community! It's going to be awesome.
     `;
-    send(
+    return send(
         email,
         "You're Going to DVLP DNVR!",
         content,
