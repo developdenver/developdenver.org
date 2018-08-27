@@ -54,6 +54,7 @@ export default {
 			justify-content: center;
 			padding: $xl;
 			p {
+				@include stylized-body-font;
 				max-width: 100%;
 				text-align: center;
 			}

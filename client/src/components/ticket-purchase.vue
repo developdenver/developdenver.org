@@ -36,7 +36,7 @@
 		/>
 
 		<input v-if="currentProfile.id" type="submit" :disabled="isLoading" value="Buy" />
-		<router-link v-else :to="{name: 'register'}">Register Now!</router-link>
+		<router-link v-else :to="{name: 'register'}">Register To Buy!</router-link>
 		<div class="errors">{{error}}</div>
 		<div class="message">{{message}}</div>
 	</form>
@@ -138,7 +138,7 @@ export default {
 			}
         }
         .levels {
-            margin-bottom: $large;
+            margin-bottom: $xl;
 			input, label {
 				display: inline-block;
 				width: auto;

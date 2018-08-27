@@ -19,10 +19,12 @@
         </section>
         <sponsor-list />
         <section class="ticket-info">
-            <h2>Tickets</h2>
-            <p>Tickets are now on sale!</p>
-            <p>When: October 18 - 19</p>
-            <p>Where: RiNo Brighton Boulevard</p>
+			<div class="ticket-details">
+				<h2>Tickets</h2>
+				<p>Tickets are now on sale!</p>
+				<p>When: October 18 - 19</p>
+				<p>Where: RiNo Brighton Boulevard</p>
+			</div>
             <div class="venues">
                 <img src="../assets/logos/big_trouble_logo.svg" />
                 <img src="../assets/logos/bigsbys_folly_logo_small.png" />
@@ -33,9 +35,11 @@
                 <img src="../assets/logos/urban_cyclist_logo_small.png" />
                 <img src="../assets/logos/zeppelin_station_logo.svg" />
             </div>
-            <p>All tickets include conference badge, attendance to keynote speakers, talks, and workshops. Your ticket also included coffee, breakfast, lunch at Zeppelin Station, afternoon open bar, opening and closing party drinks, and closing party taco bar!</p>
-            <p>Looking to purchase a group of tickets? Our apologies, our setup requires each user to register and purchase tickets individually. Please contact us at hello@developdenver.org if you need help purchasing multiple tickets.</p>
-            <a class="button" href="/tickets">Buy Tickets</a>
+			<div class="ticket-details">
+				<p>All tickets include conference badge, attendance to keynote speakers, talks, and workshops. Your ticket also included coffee, breakfast, lunch at Zeppelin Station, afternoon open bar, opening and closing party drinks, and closing party taco bar!</p>
+				<p>Looking to purchase a group of tickets? Our apologies, our setup requires each user to register and purchase tickets individually. Please contact us at hello@developdenver.org if you need help purchasing multiple tickets.</p>
+				<router-link class="button" :to="{name: 'tickets'}">Buy Tickets</router-link>
+			</div>
         </section>
     </div>
 </template>
@@ -90,6 +94,12 @@ export default {
             margin-top: 0;
         }
     }
+	.about {
+		p {
+			@include stylized-body-font;
+			max-width: $max-line-length;
+		}
+	}
     .ticket-info {
         display: flex;
         flex-direction: column;
@@ -99,13 +109,18 @@ export default {
             @include call-to-action-button;
             margin: 0 auto;
         }
-        h2 {
-            @include section-header-font;
-        }
-        p {
-            @include stylized-body-font;
-            max-width: 100%;
-        }
+		h2 {
+			@include section-header-font;
+		}
+		p {
+			@include stylized-body-font;
+			max-width: $max-line-length;
+		}
+		.ticket-details {
+			display: flex;
+			flex-flow: column nowrap;
+			align-items: center;
+		}
         .venues {
             margin: 0 auto;
             width: 800px;

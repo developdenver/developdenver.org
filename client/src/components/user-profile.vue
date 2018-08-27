@@ -32,12 +32,8 @@
 </template>
 
 <script>
-import FeatureBenefit from "@/components/feature-benefit.vue";
 
 export default {
-	components: {
-		FeatureBenefit,
-	},
 	props: {
 		profile: {
 			type: Object,
@@ -85,15 +81,15 @@ $clip-amount: 80px;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: flex-end;
-    width: 90%;
-    margin-bottom: calc($clip-amount * -1) + $large;
+    // margin-bottom: calc($clip-amount * -1) + $large;
     .profile-details {
         order: 1;
-        margin-top: $xxxl * -2;
+        margin-top: $xl * -1;
         margin-right: $xl * -1;
         background-color: $pure-white;
         padding: $large;
         z-index: 10;
+		min-width: 40%;
         h2 {
             @include section-header-font;
         }
@@ -131,34 +127,40 @@ $clip-amount: 80px;
     img {
         order: 2;
         clip-path: inset($clip-amount 0);
-        width: 100%;
+        max-width: 60%;
     }
+	@media (max-width: $medium-breakpoint) {
+		flex-flow: column nowrap;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+        img {
+            order: 1;
+            width: 100%;
+			clip-path: none;
+        }
+		.profile-details {
+			width: 100%;
+			margin: 0;
+		}
+	}
     @media (max-width: $large-breakpoint){
         align-self: auto;
         flex-flow: column nowrap;
         align-self: flex-start;
-        max-width: 100%;
-        img {
+		justify-content: center;
+        width: 100%;
+		margin-top: 0;
+		margin-bottom: $large;
+		img {
             order: 1;
-            width: 100%;
-        }
-        .benefit {
-            order: 2;
-            width: 90%;
-            margin-left: 0;
-            margin-top: $xl * -1;
-        }
-    }
-    @media (max-width: $large-breakpoint){
-        & {
-            margin-top: 0;
-            margin-bottom: $large;
-            img {
-                display: block;
-                width: 100%;
-                clip-path: none;
-            }
-        }
+			display: block;
+			width: 100%;
+			clip-path: none;
+		}
+		.profile-details {
+			margin-right: 0;
+		}
     }
 }
 </style>

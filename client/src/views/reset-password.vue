@@ -38,9 +38,8 @@ export default {
 			this.password = password;
 		},
 		async resetPassword() {
-			const hashedPassword = await hashPassword(this.password);
 			await this.$store.dispatch("services/user/resetPassword", {
-				password: hashedPassword,
+				password: this.password,
 				token: this.token
 			}).then(() => {
 				this.isError = false;

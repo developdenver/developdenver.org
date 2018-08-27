@@ -1,8 +1,8 @@
 <template>
     <section class="call-to-registration">
         <div class="call-to-action">
-            <span class="slogan">Bringing together developers, designers, strategists, 
-                and those looking to dive deeper into the interactive world for two 
+            <span class="slogan">Bringing together developers, designers, strategists,
+                and those looking to dive deeper into the interactive world for two
                 days of hands on code &amp; design talks.</span>
             <p class="date">October 18th & 19th</p>
             <router-link class="button" :to="{name: 'register'}">Join Us</router-link>
@@ -24,6 +24,9 @@ export default {
 
 .call-to-registration {
     width: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
     @media (max-width: $large-breakpoint){
         display: block;
         position: relative;
@@ -31,8 +34,11 @@ export default {
         padding: 0 $baseline;
     }
     .call-to-action {
-        padding-left: 50px;
         width: 70%;
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+		margin-top: $xl;
         .slogan {
             @include section-header-font;
             display: block;
@@ -45,6 +51,7 @@ export default {
         }
         .button {
             @include call-to-action-button;
+			width: 50%;
         }
         @media (max-width: $large-breakpoint){
             z-index: 10;

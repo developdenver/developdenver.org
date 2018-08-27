@@ -12,10 +12,11 @@ class Profile extends Model {
         ];
     }
     async add(item, isAdmin){
-        const { secretKey, hashedPassword } = await hashPassword(item.hashed_password)
+        const { secretKey, hashedPassword } = await hashPassword(item.password)
             .catch(error => {
                 throw new Error(error.message);
             });
+        delete item.password;
         item = Object.assign(item, {
             secret_key: secretKey,
             hashed_password: hashedPassword,

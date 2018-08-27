@@ -2,7 +2,9 @@
     <div class="profile-card">
 		<router-link :to="{name: 'profile', params: {id: profile.id}}" :class="{disabled: !profile.id}">
             <div class="frame"></div>
-            <img :src="profile.properties.profilePhotoUrl" alt="Profile photo" />
+			<div class="image-wrapper">
+				<img :src="profile.properties.profilePhotoUrl" alt="Profile photo" />
+			</div>
             <div class="name-plate">
                 <p class="name">{{profile.properties.firstName}} {{profile.properties.lastName}}</p>
                 <p v-if="profile.properties.position && profile.properties.employer" class="job">{{profile.properties.position}} at {{profile.properties.employer}}</p>
@@ -32,27 +34,32 @@ export default {
         width: 100%;
         height: 400px;
         overflow: hidden;
+		background-color: $light-grey;
+		z-index: 1;
         &:hover {
             .frame {
                 border: 10px solid $primary-color;
-            }
-            img {
-                transform: scale(1.2);
             }
             .name-plate {
                 transform: translateY(0);
                 opacity: 1;
             }
+			img {
+				transform: scale(1.2);
+			}
         }
 		.disabled {
 			pointer-events: none;
 		}
-        img {
-            width: 100%;
-            position: absolute;
-            z-index: -10;
-            transition: transform 3s cubic-bezier(0, 1, 1, 1);
-        }
+		.image-wrapper {
+			position: relative;
+			img {
+				width: 100%;
+				position: absolute;
+				z-index: -10;
+				transition: transform 3s cubic-bezier(0, 1, 1, 1);
+			}
+		}
         .name-plate {
             position: absolute;
             bottom: 0;

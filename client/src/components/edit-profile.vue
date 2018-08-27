@@ -130,6 +130,9 @@ export default {
 	},
 	methods: {
 		async updateProfile() {
+			if (this.password){
+				this.profile.properties.password = this.password;
+			}
 			return this.$emit("updateProfile", this.profile);
 		},
 		setImageUrl(url) {

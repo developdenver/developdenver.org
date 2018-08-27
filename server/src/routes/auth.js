@@ -40,6 +40,7 @@ Otherwise, [reset your password here](${resetUrl})!
         passport.authenticate("jwt", { session: false }),
         async (request, response, next) => {
             const { hashedPassword, secretKey } = await hashPassword(request.body.password);
+            delete request.body.password;
             const profile = await Profile.update(request.user.id, {
                 secret_key: secretKey,
                 hashed_password: hashedPassword,
