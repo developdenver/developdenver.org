@@ -1,6 +1,7 @@
 <template>
     <div id="app">
 		<!--loading-spinner v-if="isLoading" /-->
+        <app-header v-if="this.$route.name !== 'index'" />
         <main>
             <router-view/>
         </main>
@@ -9,11 +10,13 @@
 </template>
 
 <script>
+import AppHeader from "@/components/app-header";
 import AppFooter from "@/components/app-footer";
 import LoadingSpinner from "@/components/loading-spinner";
 
 export default {
 	components: {
+        AppHeader,
 		AppFooter,
 		LoadingSpinner,
 	},

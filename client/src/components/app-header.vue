@@ -2,7 +2,8 @@
 	<header class="app-header">
 		<h1>Develop Denver</h1>
 		<router-link to="/">
-			<img class="logo" src="../assets/dvlp_18_wht.svg" alt="Develop Denver Logo" />
+			<img v-if="this.$route.name === 'index'" class="logo" src="../assets/dvlp_18_wht.svg" alt="Develop Denver Logo" />
+			<img v-else class="logo" src="../assets/logo.svg" alt="Develop Denver Logo" />
 		</router-link>
 		<primary-navigation />
 	</header>
