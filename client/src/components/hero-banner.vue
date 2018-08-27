@@ -1,17 +1,21 @@
 <template>
   <div class="hero">
-    <div class="countdown">
-      <Countdown />
-    </div>
+    <app-header />
+    <countdown />
+    <call-to-registration />
   </div>
 </template>
 
 <script>
 import Countdown from "@/components/count-down.vue";
+import AppHeader from "@/components/app-header.vue";
+import CallToRegistration from "@/components/call-to-registration.vue";
 
 export default {
 	components: {
-		Countdown,
+        Countdown,
+        AppHeader,
+        CallToRegistration,
 	},
 };
 </script>
@@ -26,17 +30,12 @@ export default {
     width: 100%;
     background: linear-gradient(rgba(0,0,0,0.7)), url("/img/gathering.jpg");
     background-size: cover;
+    position: relative;
+    color: $white;
     @media (max-width: $large-breakpoint){
         display: block;
         position: relative;
-        margin: $xxl 0;
         padding: 0 $baseline;
-    }
-    .countdown {
-        font-family: "DVLP", "Courier New", "Helvetica", "Arial";
-        color: $white;
-        display: block;
-        margin: 0 auto;
     }
 }
 </style>

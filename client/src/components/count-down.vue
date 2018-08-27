@@ -61,6 +61,7 @@ export default {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+  font-family: "DVLP", "Courier New", "Helvetica", "Arial";
 	div {
 		font-size: $xl;
 		padding: 1%;

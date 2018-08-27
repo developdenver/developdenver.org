@@ -1,21 +1,18 @@
 <template>
     <section class="call-to-registration">
-        <HeroBanner />
         <div class="call-to-action">
-            <span class="slogan">Code</span>
-            <span class="slogan">Design</span>
-            <span class="slogan">Community</span>
+            <span class="slogan">Bringing together developers, designers, strategists, 
+                and those looking to dive deeper into the interactive world for two 
+                days of hands on code &amp; design talks.</span>
             <p class="date">October 18th & 19th</p>
             <router-link class="button" :to="{name: 'register'}">Join Us</router-link>
         </div>
     </section>
 </template>
 <script>
-import HeroBanner from "@/components/hero-banner.vue";
 
 export default {
 	components: {
-		HeroBanner,
 	},
 };
 </script>
@@ -34,9 +31,12 @@ export default {
         padding: 0 $baseline;
     }
     .call-to-action {
+        padding-left: 50px;
+        width: 70%;
         .slogan {
-            @include secondary-header-font;
+            @include section-header-font;
             display: block;
+            line-height: 35px;
         }
         .date {
             @include tertiary-header-font;
@@ -47,9 +47,13 @@ export default {
             @include call-to-action-button;
         }
         @media (max-width: $large-breakpoint){
-            background-color: $white;
             z-index: 10;
             opacity: 0.85;
+        }
+        @media (max-width: $medium-breakpoint){
+            z-index: 10;
+            opacity: 0.85;
+            width: 90%;
         }
     }
 }

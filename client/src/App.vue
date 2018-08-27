@@ -1,26 +1,20 @@
 <template>
     <div id="app">
-		<loading-spinner v-if="isLoading" />
-        <app-header />
+		<!--loading-spinner v-if="isLoading" /-->
         <main>
             <router-view/>
         </main>
-        <sponsor-list />
         <app-footer />
     </div>
 </template>
 
 <script>
-import AppHeader from "@/components/app-header";
 import AppFooter from "@/components/app-footer";
-import SponsorList from "@/components/sponsor-list";
 import LoadingSpinner from "@/components/loading-spinner";
 
 export default {
 	components: {
-		AppHeader,
 		AppFooter,
-		SponsorList,
 		LoadingSpinner,
 	},
 	computed: {
