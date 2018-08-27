@@ -63,7 +63,6 @@ export default {
         flex-flow: row wrap;
         justify-content: center;
         @media (max-width: $large-breakpoint) {
-            flex-flow: column nowrap;
             li {
                 margin-bottom: $baseline;
             }
@@ -76,6 +75,9 @@ export default {
                 text-decoration: none;
             }
         }
+    }
+    @media (max-width: $medium-breakpoint) {
+        max-width: 90%;
     }
 }
 </style>

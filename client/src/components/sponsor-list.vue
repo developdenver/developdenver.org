@@ -8,7 +8,8 @@
 			<li>Sponsor Here</li>
 		</ul>
 		<div class="sponsor-call-to-action">
-		<a class="button" href="mailto:hello@developdenver.com">Interested in Sponsoring?</a>
+			<p>Interested in becoming a sponsor?</p>
+			<a class="button" href="mailto:hello@developdenver.com">Contact Us</a>
 		</div>
 	</section>
 </template>
@@ -49,8 +50,13 @@ export default {
 		}
 		.sponsor-call-to-action {
 			display: flex;
+			flex-direction: column;
 			justify-content: center;
 			padding: $xl;
+			p {
+				max-width: 100%;
+				text-align: center;
+			}
 			.button {
 				@include call-to-action-button;
 				margin: 0 auto;

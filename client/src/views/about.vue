@@ -2,7 +2,7 @@
     <section class="about">
 		<div class="details">
 			<h2>About</h2>
-			<p>Behind the scenes is a group of friends that are passionate about building community and bringing people together. Our mission is to create something that empowers the makers and doers of the community.</p>
+			<p>Behind the scenes is a group of friends who are passionate about building community and bringing people together. Our mission is to create something that empowers the makers and doers of the community.</p>
 		</div>
 		<profile-card-list :profiles="boardProfiles" />
     </section>

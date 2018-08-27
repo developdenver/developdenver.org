@@ -2,7 +2,8 @@
 	<header class="app-header">
 		<h1>Develop Denver</h1>
 		<router-link to="/">
-			<img class="logo" src="../assets/logo.svg" alt="Develop Denver Logo" />
+			<img v-if="this.$route.name === 'index'" class="logo" src="../assets/dvlp_18_wht.svg" alt="Develop Denver Logo" />
+			<img v-else class="logo" src="../assets/logo.svg" alt="Develop Denver Logo" />
 		</router-link>
 		<primary-navigation />
 	</header>
@@ -20,6 +21,7 @@ export default {
 
 <style lang="scss">
 	@import "@/styles/_sizes.scss";
+	@import "@/styles/_colors.scss";
 
 	.app-header {
 		display: flex;
@@ -35,6 +37,7 @@ export default {
 			max-width: 100%;
 			margin-top: $large;
 			margin-bottom: $large;
+			fill: $white;
 		}
 	}
 </style>

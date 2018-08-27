@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "description": "Develop Denver app",
     "main": "index.js",
+    "private": true,
     "scripts": {
         "dev": "nodemon src/index.js",
         "dev:database:setup": "knex migrate:latest && knex seed:run",
