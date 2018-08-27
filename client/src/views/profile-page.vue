@@ -14,6 +14,9 @@ export default {
 		ProfileCardList,
 		UserProfile,
 	},
+	created() {
+		this.$store.dispatch("fetchProfiles");
+	},
 	computed: {
 		currentProfile() {
 			return this.$store.getters.getProfileById(this.$route.params.id);

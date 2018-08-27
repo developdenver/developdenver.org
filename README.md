@@ -2,6 +2,12 @@
 
 > Develop Denver
 
+1) Client is hosted on firebase, and has a staging and production. They have separate Vue builds, and separate deployments- both of them are scripted with npm. The production deployment is automatically linked to developdenver.org.
+
+2) Server is hosted on heroku, and also has a staging and production. The server does the build automatically when you push, and you only push into staging. You promote staging to production from the heroku console.
+
+3) The image upload microservice is separate from everything and only has 1 environment. It's tiny, but has the potential to bottleneck the entire server when 100 people are making accounts at the same time so I split it off.
+
 ## Getting Started
 
 ### Client
