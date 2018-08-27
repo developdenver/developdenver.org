@@ -27,7 +27,7 @@ export default {
 			},{
 				value: "employer",
 				label: "$375 - Employer",
-				description: "For those of you coming on your employer’s dime. Your ticket helps us make the Denver tech community amazing. Your ticket helps make Develop Denver affordable to all attendees, including sponsoring student tickets and sponsoring meals during the conference.",
+				description: "For those of you coming on your employer’s dime. Your ticket helps make Develop Denver affordable to all attendees, including sponsoring student tickets and sponsoring meals during the conference.",
 			},{
 				value: "premium",
 				label: "$500 - Individual Sponsor",
