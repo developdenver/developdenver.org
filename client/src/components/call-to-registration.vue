@@ -52,6 +52,7 @@ export default {
         .button {
             @include call-to-action-button;
 			width: 50%;
+			margin-bottom: $xl;
         }
         @media (max-width: $large-breakpoint){
             z-index: 10;

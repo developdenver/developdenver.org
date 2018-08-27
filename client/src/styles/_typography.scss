@@ -93,3 +93,10 @@ body {
     font-family: sans-serif;
     line-height: $baseline + $small;
 }
+
+@mixin countdown-font {
+    font-weight: 300;
+    font-size: $baseline;
+    font-family: sans-serif;
+    line-height: $baseline + $small;
+}

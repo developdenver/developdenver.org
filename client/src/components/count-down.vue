@@ -1,7 +1,7 @@
 <template>
 <div class="countdown-parent">
 	<div>
-    <span>{{toTwoDigits(countDownToConference.days)}} // </span>
+		<span>{{toTwoDigits(countDownToConference.days)}} // </span>
 		<span class="counter-label">days</span>
 	</div>
 	<div>
@@ -59,9 +59,9 @@ export default {
 
 .countdown-parent {
 	display: flex;
-	flex-direction: row;
+	flex-flow: row nowrap;
 	justify-content: center;
-  font-family: "DVLP", "Courier New", "Helvetica", "Arial";
+	@include countdown-font;
 	div {
 		font-size: $xl;
 		padding: 1%;
@@ -71,6 +71,7 @@ export default {
 		}
 		span {
 			display: block;
+			whitespace: nowrap;
 		}
 	}
 }

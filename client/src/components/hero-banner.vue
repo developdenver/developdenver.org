@@ -26,7 +26,7 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .hero {
-    height: 800px;
+    min-height: 100vh;
     width: 100%;
     background: linear-gradient(rgba(0,0,0,0.7)), url("/img/gathering.jpg");
     background-size: cover;
