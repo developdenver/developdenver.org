@@ -17,6 +17,7 @@ import About from "@/views/about";
 import News from "@/views/news";
 import ResetPassword from "@/views/reset-password";
 import RequestReset from "@/views/request-reset";
+import SubmitTalk from "@/views/submit-talk";
 
 Vue.use(Router);
 
@@ -47,7 +48,14 @@ const router = new Router({
 		meta: {
 			requiresAuth: true,
 		},
-	}, {
+  }, {
+    path: "/submit-talk",
+    name: "submit-talk",
+    component: SubmitTalk,
+    meta: {
+      requiresAuth: true,
+    },
+  }, {
 		path: "/tickets",
 		name: "tickets",
 		component: Tickets,
