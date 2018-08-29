@@ -10,8 +10,7 @@
 </template>
 
 <script>
-import EditProfile from "../components/edit-profile";
-import Profile from "../models/profile";
+import EditTalk from "../components/edit-talk";
 
 export default {
 	data() {
