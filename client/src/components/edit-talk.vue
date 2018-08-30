@@ -68,7 +68,6 @@ export default {
 	},
 	methods: {
 		async updateTalk() {
-      // validate everything is there?
 			return this.$emit("updateTalk", this.talk);
 		},
 		setImageUrl(url) {
