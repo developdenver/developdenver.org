@@ -1,7 +1,7 @@
 <template>
     <form enctype="multipart/form-data" class="edit-talk" @submit.prevent="updateTalk">
         <fieldset class="required">
-            <h3>Your Talk</h3>
+            <h3>Submit a Talk</h3>
             <label for="first-name">Talk Title</label>
             <input
                 required
@@ -11,15 +11,17 @@
                 v-model.trim="talk.properties.title"
               />
             <label for="talk-type"> Type </label>
-            <select 
-                v-model="talk.properties.type"
-                type="select"
-                id="select-type">
+            <div id="custom-select">
+              <select 
+                id="select-box"
+                v-model="talk.properties.type">
                   <option value="talk">Talk</option>
                   <option value="Lightning">Lightning Talk</option>
                   <option value="Panel">Panel</option>
-            </select>
+              </select>
+            </div>
             <image-upload
+                title="Talk Photo"
                 :uploadUrl="imageUploadUrl"
                 @imageUrl="setImageUrl">
                 <figure v-if="talk.properties.photoUrl" class="talk-photo">
@@ -28,11 +30,11 @@
             </image-upload>
             <label for="bio">Description</label>
             <textarea
-				id="description"
-				placeholder="Describe your awesome talk here..."
-				v-model.trim="talk.properties.description"
-			></textarea>
-        </fieldset>
+              id="description"
+              placeholder="Describe your awesome talk here..."
+              v-model.trim="talk.properties.description">
+            </textarea>
+      </fieldset>
         <button :disabled="isLoading">{{buttonLabel}}</button>
     </form>
 </template>
@@ -50,7 +52,6 @@ export default {
 	data() {
 		return {
       imageUploadUrl,
-      talk: {},
 		};
 	},
 	props: {
@@ -83,26 +84,31 @@ export default {
 @import "@/styles/_general.scss";
 @import "@/styles/_typography.scss";
 
-.edit-profile {
-    fieldset {
-        background-color: $light-grey;
-        padding: $large $baseline;
+.edit-talk {
+  margin-bottom: $large;
+  fieldset {
+      background-color: $light-grey;
+      padding: $large $baseline;
+      margin-bottom: $large;
+      box-shadow: 0 0 3px $medium-light-grey;
+      h3 {
+          margin-bottom: $baseline;
+          @include fieldset-header-font;
+          color: $dark-grey;
+      }
+      img {
+          width: 100%;
+      }
+      select {
+        margin-top: $baseline;
         margin-bottom: $large;
-        box-shadow: 0 0 3px $medium-light-grey;
-        h3 {
-            margin-bottom: $baseline;
-            @include fieldset-header-font;
-            color: $dark-grey;
-        }
-        img {
-            width: 100%;
-        }
+      }
+  }
+  button {
+      @include call-to-action-button;
+  &[disabled] {
+    background-color: $medium-light-grey;
     }
-    button {
-        @include call-to-action-button;
-		&[disabled] {
-			background-color: $medium-light-grey;
-		}
-    }
+  }
 }
 </style>

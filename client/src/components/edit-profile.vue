@@ -36,6 +36,7 @@
         <fieldset class="optional">
             <h3>Optional (but encouraged)</h3>
             <image-upload
+                title="Profile Photo"
                 :uploadUrl="imageUploadUrl"
                 @imageUrl="setImageUrl"
             >
@@ -189,6 +190,6 @@ export default {
 		&[disabled] {
 			background-color: $medium-light-grey;
 		}
-    }
+  }
 }
 </style>
