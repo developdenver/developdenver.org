@@ -13,9 +13,9 @@ import CallToRegistration from "@/components/call-to-registration.vue";
 
 export default {
 	components: {
-        Countdown,
-        AppHeader,
-        CallToRegistration,
+		Countdown,
+		AppHeader,
+		CallToRegistration,
 	},
 };
 </script>

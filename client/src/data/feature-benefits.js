@@ -44,7 +44,7 @@ Photo by [Adam Meek](https://www.flickr.com/photos/adammeek/)
 // 		altText: "Group of people registering",
 // 	},
 // 	copy: `
-// 	At the core, Develop Denver is all about the community. It’s about bringing people together from different disciplines to share tricks and create friendships. It’s about having a good time with others in the industry in an informal setting that encourages the sharing of ideas. 
-// 	Let's make something October 18th & 19th.	
+// 	At the core, Develop Denver is all about the community. It’s about bringing people together from different disciplines to share tricks and create friendships. It’s about having a good time with others in the industry in an informal setting that encourages the sharing of ideas.
+// 	Let's make something October 18th & 19th.
 //             `,
 } ];

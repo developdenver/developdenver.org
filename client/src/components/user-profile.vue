@@ -62,7 +62,7 @@ export default {
 		websiteWithProtocol() {
 			return /^https?:\/\//.test(this.profile.properties.website)
 				? this.profile.properties.website
-				: `https://${this.profile.properties.website}`
+				: `https://${this.profile.properties.website}`;
 		},
 	},
 };

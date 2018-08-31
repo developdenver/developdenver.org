@@ -8,7 +8,7 @@ export default {
 	modules: {
 		user,
 		payments,
-    loading,
-    talk,
+		loading,
+		talk,
 	},
 };

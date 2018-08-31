@@ -105,7 +105,7 @@ export default {
 					discount_code: this.discountCode || null,
 				};
 				this.$store.dispatch("services/payments/charge", charge).then(response => {
-					if (response.error){
+					if (response.error) {
 						throw new Error(response.error);
 					}
 					return this.$store.dispatch("services/user/setAttendee", this.ticketLevel);
@@ -175,4 +175,3 @@ export default {
     }
 }
 </style>
-

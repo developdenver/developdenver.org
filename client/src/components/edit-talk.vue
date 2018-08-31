@@ -12,7 +12,7 @@
               />
             <label for="talk-type"> Type </label>
             <div id="custom-select">
-              <select 
+              <select
                 id="select-box"
                 v-model="talk.properties.type">
                   <option value="talk">Talk</option>
@@ -24,8 +24,8 @@
                 title="Talk Photo"
                 :uploadUrl="imageUploadUrl"
                 @imageUrl="setImageUrl">
-                <figure v-if="talk.properties.photoUrl" class="talk-photo">
-                    <img :src="talk.properties.photoUrl" alt="Talk Photo" />
+                <figure v-if="talk.properties.talk_photo_url" class="talk-photo">
+                    <img :src="talk.properties.talk_photo_url" alt="Talk Photo" />
                 </figure>
             </image-upload>
             <label for="bio">Description</label>
@@ -40,7 +40,6 @@
 </template>
 
 <script>
-import Vue from "vue";
 import ImageUpload from "@/components/image-upload.vue";
 
 const imageUploadUrl = process.env.VUE_APP_IMAGE_UPLOAD_URL;
@@ -51,7 +50,7 @@ export default {
 	},
 	data() {
 		return {
-      imageUploadUrl,
+			imageUploadUrl,
 		};
 	},
 	props: {
@@ -71,7 +70,8 @@ export default {
 			return this.$emit("updateTalk", this.talk);
 		},
 		setImageUrl(url) {
-			Vue.set(this.talk.properties, "photoUrl", url);
+			// TODO: get working with image uploads
+			// this.talk.properties.talk_photo_url = url;
 		},
 	},
 };

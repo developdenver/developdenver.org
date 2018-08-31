@@ -48,14 +48,14 @@ const router = new Router({
 		meta: {
 			requiresAuth: true,
 		},
-  }, {
-    path: "/submit-talk",
-    name: "submit-talk",
-    component: SubmitTalk,
-    meta: {
-      requiresAuth: true,
-    },
-  }, {
+	}, {
+		path: "/submit-talk",
+		name: "submit-talk",
+		component: SubmitTalk,
+		meta: {
+			requiresAuth: true,
+		},
+	}, {
 		path: "/tickets",
 		name: "tickets",
 		component: Tickets,

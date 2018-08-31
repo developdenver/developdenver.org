@@ -55,17 +55,17 @@ import featureBenefits from "@/data/feature-benefits";
 
 export default {
 	components: {
-        HeroBanner,
-        ProfileCardList,
-        FeatureBenefit,
+		HeroBanner,
+		ProfileCardList,
+		FeatureBenefit,
 		SponsorList,
 	},
 	computed: {
 		boardProfiles() {
 			return boardProfiles;
 		},
-    },
-    data() {
+	},
+	data() {
 		return {
 			featureBenefits,
 		};

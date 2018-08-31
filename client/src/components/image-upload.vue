@@ -36,8 +36,8 @@ export default {
 		};
 	},
 	props: {
-    uploadUrl: String,
-    title: String,
+		uploadUrl: String,
+		title: String,
 	},
 	methods: {
 		async uploadFile(event) {

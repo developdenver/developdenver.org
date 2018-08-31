@@ -18,7 +18,7 @@ export default new Vuex.Store({
 	},
 	state: {
 		profiles: [],
-    version: "",
+		version: "",
 	},
 	getters: {
 		getProfileById: (state) => (id) => {
