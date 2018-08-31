@@ -5,7 +5,7 @@ function create(request, response, next) {
     .then(fullTalk => {
       Talk.find(fullTalk.id, false).then(talk => {
         response.status(201).json({
-          data: profile,
+          data: talk,
         });
       });
     }).catch(error => next(error));
@@ -21,7 +21,7 @@ function read(request, response, next) {
 }
 
 function update(request, response, next) {
-  Talks.update(request.params.id, request.body)
+  Talk.update(request.params.id, request.body)
     .then(talk => {
       response.status(200).json({
         data: talk
