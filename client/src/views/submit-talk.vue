@@ -29,8 +29,8 @@ export default {
 	methods: {
 		async createTalk(talk) {
 			await this.$store.dispatch("services/talk/createTalk", talk);
-			// this.$router.push({ name: "tickets" });
-			// go to all talks when that exists.
+			console.log(talk.properties)
+			this.$router.push({ name: "talk", params: {id: talk.properties.id}});
 		},
 	},
 };

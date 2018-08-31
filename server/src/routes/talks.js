@@ -7,7 +7,7 @@ const {
 
 module.exports = (app) => {
   router.get("/", list);
-  router.get("/:id", read);
+  router.get("/:title", read);
   router.post("/", create);
   router.put("/:id", update);
   router.delete("/:id", destroy);

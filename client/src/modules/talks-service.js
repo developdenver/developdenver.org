@@ -9,6 +9,9 @@ export default {
 			// mapState
 			return state.currentTalks;
 		},
+		getTalkById: (state) => (id) => {
+			return state.talks.find(talk => talk.id === id);
+		},
 	},
 	mutations: {
 		addTalk(state, talk) {
@@ -38,7 +41,7 @@ export default {
 			// hmmmm
 			dispatch("services/loading/popLoading", {}, { root: true });
 		},
-		async fetchUserTalks({ commit, dispatch }) {
+		async fetchTalk({ commit, dispatch }) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
 			// hmmmmm
 			dispatch("services/loading/popLoading", {}, { root: true });

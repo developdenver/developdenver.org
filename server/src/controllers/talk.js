@@ -12,7 +12,7 @@ function create(request, response, next) {
 }
 
 function read(request, response, next) {
-  Talk.find(request.params.id)
+  Talk.find(request.params.title)
     .then(talks => {
       response.status(200).json({
         data: talks
