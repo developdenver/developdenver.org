@@ -19,6 +19,7 @@ import ResetPassword from "@/views/reset-password";
 import RequestReset from "@/views/request-reset";
 import SubmitTalk from "@/views/submit-talk";
 import TalkPage from "@/views/talk-page";
+import Talks from "@/views/talks";
 
 Vue.use(Router);
 
@@ -62,6 +63,11 @@ const router = new Router({
 		name: "talk",
 		component: TalkPage,
 	}, {
+		path: "/talks",
+		name: "talks",
+		component: Talks,
+	},
+	{
 		path: "/tickets",
 		name: "tickets",
 		component: Tickets,

@@ -54,10 +54,5 @@ export default {
 			commit("updateTalks", talks);
 			dispatch("services/loading/popLoading", {}, { root: true });
 		},
-		async fetchTalk({ commit, dispatch }) {
-			dispatch("services/loading/pushLoading", {}, { root: true });
-			// hmmmmm
-			dispatch("services/loading/popLoading", {}, { root: true });
-		},
 	},
 };
