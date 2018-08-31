@@ -1,16 +1,24 @@
+import Talk from "../models/talk";
+
 export default {
 	namespaced: true,
 	state: {
-		currentTalks: [],
 		talks: [],
+		currentTalks: [],
 	},
 	getters: {
 		getAllTalksByUser(state) {
-			// mapState
 			return state.currentTalks;
 		},
 		getTalkById: (state) => (id) => {
-			return state.talks.find(talk => talk.id === id);
+			return state.talks.find(talk => talk.id === id) || {
+				properties: {
+					title: "Loading...",
+					type: "",
+					talkPhotoUrl: "",
+					description: "Loading..."
+				},
+			};
 		},
 	},
 	mutations: {
@@ -20,7 +28,10 @@ export default {
 		},
 		setCurrentTalk(state, talk) {
 			// make this vuexy
-			state.currentTalks.push(talk);
+			// state.currentTalks.push(talk);
+		},
+		updateTalks(state, talks) {
+			state.talks = talks;
 		},
 	},
 	actions: {
@@ -36,9 +47,11 @@ export default {
 			commit("setCurrentTalk", talk.properties);
 			dispatch("services/loading/popLoading", {}, { root: true });
 		},
-		async fetchAllTalks({ commit, dispatch }) {
+		async fetchTalks({ commit, dispatch }) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
-			// hmmmm
+			let talks = await Talk.fetchAll("talk");
+			talks = talks.map(talk => new Talk(talk));
+			commit("updateTalks", talks);
 			dispatch("services/loading/popLoading", {}, { root: true });
 		},
 		async fetchTalk({ commit, dispatch }) {

@@ -1,11 +1,12 @@
 <template>
     <section class="talk">
-        dajfkls;ajkljdsk YES
-        <img :src="talk.properties.talk_photo_url" alt="Talk photo" />
+        <img :src="talk.properties.talkPhotoUrl" alt="Talk photo" />
         <div class="talk-details">
-            <h2>{{title}}</h2>
+            <h2>{{talk.properties.title}}</h2>
             <div class="description">
-                <p>{{talk.properties.description}}</p>
+                <p>
+                    {{talk.properties.description}}
+                </p>
                 <p class="talk-type">
 					Type: {{talk.properties.type}}
 				</p>
