@@ -1,19 +1,14 @@
-import Profile from "../models/profile";
-import jwtDecode from "jwt-decode";
-
-const loginUrl = `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_LOGIN_PATH}`;
-const profileUrl = `${process.env.VUE_APP_API_URL}/profiles`;
-const passwordResetUrl = `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_RESET_PASSWORD_PATH}`;
-const resetRequestUrl = `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_RESET_REQUEST_PATH}`;
+import Talk from "../models/talk";
 
 export default {
   namespaced: true,
   state: {
+    currentTalks: [],
     talks: [],
   },
   getters: {
     getAllTalksByUser(state) {
-      // probably? // but how without argument?
+      return state.currentTalks;
     },
   },
   mutations: {
@@ -21,25 +16,26 @@ export default {
       // make this vuexy
       state.talks.push(talk);
     },
-    setTalk(state, talk) {
-      // find talk matching that id, update it
+    setCurrentTalk(state, talk) {
+      // make this vuexy
+      state.currentTalks.push(talk);
     },
   },
   actions: {
-    async setTalk({ dispatch, commit }, profile) {
+    async setTalk({ dispatch, commit }, talk) {
       dispatch("services/loading/pushLoading", {}, { root: true });
       await talk.update();
-      commit("setTalk", talk.properties);
+      commit("setCurrentTalk", talk.properties);
       dispatch("services/loading/popLoading", {}, { root: true });
     },
-    async fetchAllTalks({ getters, commit, dispatch }) {
-      dispatch("services/loading/pushLoading", {}, { root: true});
-      // get all talks for user via getter or to use mapState in componento? loading question.
-      dispatch("services/loading/popLoading", {}, { root: true });
-    },
-    async fetchUserTalks({ getters, commit, dispatch }) {
+    async fetchAllTalks({ commit, dispatch }) {
       dispatch("services/loading/pushLoading", {}, { root: true });
-      // get them talks via getter or to use mapSTate in component? loading question
+      // hmmmm
+      dispatch("services/loading/popLoading", {}, { root: true });
+    },
+    async fetchUserTalks({ commit, dispatch }) {
+      dispatch("services/loading/pushLoading", {}, { root: true });
+// hmmmmm
       dispatch("services/loading/popLoading", {}, { root: true });
     },
   },
