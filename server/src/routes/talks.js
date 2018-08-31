@@ -6,11 +6,11 @@ const {
 } = require("../controllers/talk");
 
 module.exports = (app) => {
-  router.get("/talks", list);
-  router.get("/talks/:id", read);
-  router.post("/talks", create);
-  router.put("/talks/:id", update);
-  router.delete("/talks/:id", destroy);
+  router.get("/", list);
+  router.get("/:id", read);
+  router.post("/", create);
+  router.put("/:id", update);
+  router.delete("/:id", destroy);
 
   return router;
 };
