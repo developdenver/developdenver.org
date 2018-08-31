@@ -1,5 +1,6 @@
 <template>
     <section class="profile">
+		<pre>{{talks}}</pre>
         <h2>Edit Profile</h2>
         <edit-profile
 			buttonLabel="Update Profile"
@@ -24,12 +25,19 @@ export default {
 		profile() {
 			return this.$store.getters["services/user/currentProfile"];
 		},
+		talks() {
+			console.log(this.profile)
+			return this.$store.getters["services/talk/getTalksByUserId"](this.profile.id);
+		}
 	},
 	methods: {
 		async updateProfile(profile) {
 			await this.$store.dispatch("services/user/setProfile", profile);
 			this.$router.push({ name: "news" });
 		},
+	},
+	mounted() {
+		this.$store.dispatch("services/talk/fetchTalks");
 	},
 };
 </script>

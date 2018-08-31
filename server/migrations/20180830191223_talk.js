@@ -1,12 +1,11 @@
 exports.up = (knex) => {
   return knex.schema.createTable("talk", talk => {
     talk.increments();
-    talk.string("title");
-    talk.string("type");
-    talk.string("talk_photo_url");
-    talk.text("description");
-    talk.integer("vote_count");
-    talk.integer("user_id").references('id').inTable('profile').onDelete('CASCADE');
+    talk.string("title").notNullable();
+    talk.string("type").notNullable();
+    talk.string("talk_photo_url").notNullable();
+    talk.text("description").notNullable();
+    talk.integer("user_id").unsigned().references('id').inTable('profile').onDelete('CASCADE');
   });
 };
 

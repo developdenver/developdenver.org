@@ -2,6 +2,7 @@
     <form enctype="multipart/form-data" class="edit-talk" @submit.prevent="updateTalk">
         <fieldset class="required">
             <h3>Submit a Talk</h3>
+            <p>Until voting is closed, talks will not be editable. Double check before submitting!</p>
             <label for="first-name">Talk Title</label>
             <input
                 required

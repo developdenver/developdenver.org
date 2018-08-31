@@ -10,6 +10,9 @@ export default {
 		getAllTalksByUser(state) {
 			return state.currentTalks;
 		},
+		getTalksByUserId: (state) => (userId) => {
+			return state.talks.find(talk => talk.properties.userId === userId);
+		},
 		getTalkById: (state) => (id) => {
 			return state.talks.find(talk => talk.id === id) || {
 				properties: {
