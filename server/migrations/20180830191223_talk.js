@@ -6,6 +6,7 @@ exports.up = (knex) => {
     talk.string("talk_photo_url");
     talk.text("description");
     talk.integer("vote_count");
+    talk.integer("user_id").references('id').inTable('profile').onDelete('CASCADE');
   });
 };
 
