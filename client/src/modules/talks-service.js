@@ -1,5 +1,6 @@
 import Talk from "../models/talk";
 
+console.log(Talk)
 export default {
   namespaced: true,
   state: {
@@ -24,7 +25,7 @@ export default {
   actions: {
     async setTalk({ dispatch, commit }, talk) {
       dispatch("services/loading/pushLoading", {}, { root: true });
-      await talk.update();
+      await Talk.update();
       commit("setCurrentTalk", talk.properties);
       dispatch("services/loading/popLoading", {}, { root: true });
     },

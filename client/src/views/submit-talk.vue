@@ -29,7 +29,7 @@ export default {
 	},
 	methods: {
 		async updateTalk(talk) {
-			await this.$store.dispatch("updateTalk", talk);
+			await this.$store.dispatch("services/talk/setTalk", talk);
       // this.$router.push({ name: "tickets" });
       // go to all talks when that exists.
 		},
