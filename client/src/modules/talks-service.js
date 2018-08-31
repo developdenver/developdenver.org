@@ -1,6 +1,5 @@
 import Talk from "../models/talk";
 
-console.log(Talk)
 export default {
   namespaced: true,
   state: {
@@ -9,6 +8,7 @@ export default {
   },
   getters: {
     getAllTalksByUser(state) {
+      // mapState
       return state.currentTalks;
     },
   },
@@ -23,9 +23,15 @@ export default {
     },
   },
   actions: {
+    async createTalk({ dispatch, commit }, talk) {
+      dispatch("services/loading/pushLoading", {}, { root: true });
+      await talk.create();
+      commit("setCurrentTalk", talk.properties);
+      dispatch("services/loading/popLoading", {}, { root: true });
+    },
     async setTalk({ dispatch, commit }, talk) {
       dispatch("services/loading/pushLoading", {}, { root: true });
-      await Talk.update();
+      await talk.update();
       commit("setCurrentTalk", talk.properties);
       dispatch("services/loading/popLoading", {}, { root: true });
     },
