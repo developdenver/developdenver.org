@@ -1,12 +1,11 @@
 const Talk = require("../models/talk");
 
 function create(request, response, next) {
-  const fullTalk = Talk.add(request.body, true)
-    .then(fullTalk => {
-      Talk.find(fullTalk.id, false).then(talk => {
-        response.status(201).json({
-          data: talk,
-        });
+  request.body.user_id = request.user.id;
+  Talk.add(request.body, true)
+    .then(talk => {
+      response.status(201).json({
+        data: talk,
       });
     }).catch(error => next(error));
 }

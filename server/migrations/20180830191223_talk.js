@@ -5,7 +5,7 @@ exports.up = (knex) => {
     talk.string("type").notNullable();
     talk.string("talk_photo_url").notNullable();
     talk.text("description").notNullable();
-    talk.integer("user_id").unsigned().references('id').inTable('profile').onDelete('CASCADE');
+    talk.integer("user_id").unsigned().notNullable().references('id').inTable('profile').onDelete('CASCADE');
   });
 };
 
