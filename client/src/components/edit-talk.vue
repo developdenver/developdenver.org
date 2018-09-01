@@ -3,7 +3,7 @@
         <fieldset class="required">
             <h3>Submit a Talk</h3>
             <p>Until voting is closed, talks will not be editable. Double check before submitting!</p>
-            <label for="first-name">Talk Title</label>
+            <label for="talk-title">Talk Title</label>
             <input
                 required
                 type="text"
@@ -11,6 +11,7 @@
                 placeholder="Super Awesome Title Here"
                 v-model.trim="talk.properties.title"
               />
+            <p class="error" v-if="errors.title">Title is required.</p>
             <label for="talk-type"> Type </label>
             <div id="custom-select">
               <select
@@ -21,20 +22,23 @@
                   <option value="Panel">Panel</option>
               </select>
             </div>
+            <p class="error" v-if="errors.type">Type is required.</p>
             <image-upload
                 title="Talk Photo"
                 :uploadUrl="imageUploadUrl"
                 @imageUrl="setImageUrl">
-                <figure v-if="talk.properties.talk_photo_url" class="talk-photo">
-                    <img :src="talk.properties.talk_photo_url" alt="Talk Photo" />
+                <figure v-if="talk.properties.talkPhotoUrl" class="talk-photo">
+                    <img :src="talk.properties.talkPhotoUrl" alt="Talk Photo" />
                 </figure>
             </image-upload>
+            <p class="error" v-if="errors.talkPhotoUrl">A photo is required.</p>
             <label for="bio">Description</label>
             <textarea
               id="description"
               placeholder="Describe your awesome talk here..."
               v-model.trim="talk.properties.description">
             </textarea>
+            <p class="error" v-if="errors.description">Description is required.</p>
       </fieldset>
         <button :disabled="isLoading">{{buttonLabel}}</button>
     </form>
@@ -51,7 +55,8 @@ export default {
 	},
 	data() {
 		return {
-			imageUploadUrl,
+            imageUploadUrl,
+            errors: {},
 		};
 	},
 	props: {
@@ -67,12 +72,27 @@ export default {
 		},
 	},
 	methods: {
-		async updateTalk() {
-			return this.$emit("updateTalk", this.talk);
-		},
+		updateTalk() {
+            if (this.validTalk()) {
+                this.$emit("updateTalk", this.talk);
+            }		
+        },
+        validTalk() {
+            let valid = true;
+            const fields = ['title', 'type', 'talkPhotoUrl', 'description'];
+            fields.forEach(field => {
+                const fieldValid = this.talk.properties[field].trim() ? true : false;
+                console.log(field, fieldValid)
+                this.$set(this.errors, field, fieldValid);
+                if (valid) {
+                    valid = fieldValid;
+                }
+            });
+            return valid;
+        },
 		setImageUrl(url) {
 			// TODO: get working with image uploads
-			// this.talk.properties.talk_photo_url = url;
+		    // this.talk.properties.talkPhotoUrl = url;
 		},
 	},
 };
@@ -110,5 +130,8 @@ export default {
     background-color: $medium-light-grey;
     }
   }
+    .error {
+        color: $warning;
+    }
 }
 </style>

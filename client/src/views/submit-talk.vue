@@ -18,7 +18,7 @@ export default {
 			talk: new Talk({
 				title: "",
 				type: "",
-				talk_photo_url: "https://www.fillmurray.com/460/300",
+				talkPhotoUrl: "https://www.fillmurray.com/460/300",
 				description: ""
 			})
 		};

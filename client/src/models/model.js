@@ -2,6 +2,17 @@ import { serialize } from "./serializer";
 import { deserialize } from "./deserializer";
 import { buildUrl, buildRequest } from "./adapter";
 
+const responseJSONError = response => response
+	.json()
+	.then(json => {
+		if (response.ok) {
+			return json;
+		}
+		throw new Error(json.error);
+	});
+
+const fetchJSON = url => fetch(url).then(responseJSONError);
+
 class Model {
 	constructor(modelName, item) {
 		this.serialize = serialize.bind(this);
@@ -17,15 +28,13 @@ class Model {
 	}
 	static fetchAll(modelName) {
 		const url = buildUrl(modelName);
-		return fetch(url)
-			.then(response => response.json())
+		return fetchJSON(url)
 			.then(({ data }) => data.map(deserialize))
 			.catch(error => console.error(error.message));
 	}
 	async fetch() {
 		const url = this.buildUrl(this.modelName, this.id);
-		const newData = await fetch(url)
-			.then(response => response.json())
+		const newData = await fetchJSON(url)
 			.then(response => response.data)
 			.catch(error => console.error(error.message));
 		this.properties = this.normalize(newData);
@@ -40,7 +49,7 @@ class Model {
 				"Content-Type": "application/json",
 			},
 			body: this.serialize(),
-		}).then(response => response.json())
+		}).then(responseJSONError)
 			.catch(error => console.error(error.message));
 		this.properties = this.normalize(data);
 	}
@@ -53,7 +62,7 @@ class Model {
 				"Content-Type": "application/json",
 			},
 			body: this.serialize(),
-		}).then(response => response.json())
+		}).then(responseJSONError)
 			.then(({data}) => {
 				this.properties = this.normalize(data);
 				return data;
@@ -62,7 +71,7 @@ class Model {
 	async destroy() {
 		await fetch(this.buildUrl(this.modelName, this.id), {
 			method: "DELETE",
-		}).then(response => response.json())
+		}).then(responseJSONError)
 			.then(response => response.data)
 			.catch(error => console.error(error.message));
 		this.properties = null;
