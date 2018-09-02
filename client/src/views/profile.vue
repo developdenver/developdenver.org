@@ -3,7 +3,7 @@
 		<h2>Submitted Talks</h2>
 		<div v-for="talk in talks" :key="talk.id">
 			<p>
-				<router-link class="button" :to="{name: 'talk', params: {id: talk.id}}">
+				<router-link class="button" :to="{name: 'edit-talk', params: {id: talk.id}}">
 					{{talk.properties.title}}, {{talk.properties.type}}
 				</router-link>
 			</p>

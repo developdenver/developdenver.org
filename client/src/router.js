@@ -20,6 +20,7 @@ import RequestReset from "@/views/request-reset";
 import SubmitTalk from "@/views/submit-talk";
 import TalkPage from "@/views/talk-page";
 import Talks from "@/views/talks";
+import UserTalk from "@/views/user-talk";
 
 Vue.use(Router);
 
@@ -65,8 +66,14 @@ const router = new Router({
 		path: "/talks",
 		name: "talks",
 		component: Talks,
-	},
-	{
+	}, {
+		path: "/edit-talk/:id",
+		name: "user-talk",
+		component: UserTalk,
+		meta: {
+			requiresAuth: true,
+		},
+	}, {
 		path: "/tickets",
 		name: "tickets",
 		component: Tickets,
