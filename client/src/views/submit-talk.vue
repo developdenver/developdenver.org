@@ -17,7 +17,7 @@ export default {
 	data() {
 		return {
 			error: "",
-			talk: new Talk({
+			talk: new Talk(localStorage.submitTalk ? JSON.parse(localStorage.submitTalk) : {
 				title: "",
 				type: "",
 				talkPhotoUrl: "https://www.fillmurray.com/460/300",
@@ -32,12 +32,25 @@ export default {
 		async createTalk(talk) {
 			const success = await this.$store.dispatch("services/talk/createTalk", talk);
 			if (success) {
+				localStorage.removeItem('submitTalk');
 				this.$router.push({ name: "talk", params: {id: talk.properties.id} });
 			} else {
 				this.error = "There was an error submitting the talk. Please try again.";
 			}
 		},
 	},
+	watch: {
+        ["talk.properties"]: {
+			deep: true,
+			handler() {
+				const talk = {
+					...this.talk.properties
+				};
+				delete talk.id;
+				localStorage.submitTalk = JSON.stringify(this.talk.properties);
+			},
+		},
+    },
 };
 </script>
 <style lang="scss">

@@ -100,7 +100,7 @@ export default {
 			// TODO: get working with image uploads
 			// this.talk.properties.talkPhotoUrl = url;
 		},
-	},
+    },
 };
 </script>
 

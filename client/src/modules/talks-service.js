@@ -34,7 +34,6 @@ export default {
 			} catch (error) {
 				success = false;
 			} finally {
-				commit("setCurrentTalk", talk.properties);
 				dispatch("services/loading/popLoading", {}, { root: true });
 			}
 			return success;
@@ -47,7 +46,6 @@ export default {
 			} catch (error) {
 				success = false;
 			} finally {
-				commit("setCurrentTalk", talk.properties);
 				dispatch("services/loading/popLoading", {}, { root: true });
 			}
 			return success;
