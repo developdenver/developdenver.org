@@ -1,6 +1,13 @@
 <template>
     <section class="profile">
-		<pre>{{talks}}</pre>
+		<h2>Submitted Talks</h2>
+		<div v-for="talk in talks" :key="talk.id">
+			<p>
+				<router-link class="button" :to="{name: 'talk', params: {id: talk.id}}">
+					{{talk.properties.title}}, {{talk.properties.type}}
+				</router-link>
+			</p>
+		</div>
         <h2>Edit Profile</h2>
         <edit-profile
 			buttonLabel="Update Profile"
@@ -26,6 +33,7 @@ export default {
 			return this.$store.getters["services/user/currentProfile"];
 		},
 		talks() {
+			console.log(this.$store.getters["services/talk/getTalksByUserId"](this.profile.id))
 			return this.$store.getters["services/talk/getTalksByUserId"](this.profile.id);
 		}
 	},

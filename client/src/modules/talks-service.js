@@ -11,7 +11,7 @@ export default {
 			return state.currentTalks;
 		},
 		getTalksByUserId: (state) => (userId) => {
-			return state.talks.find(talk => talk.properties.userId === userId);
+			return state.talks.filter(talk => talk.properties.userId === userId);
 		},
 		getTalkById: (state) => (id) => {
 			return state.talks.find(talk => talk.id === id) || {
