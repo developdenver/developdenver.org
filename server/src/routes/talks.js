@@ -11,8 +11,9 @@ module.exports = (app) => {
   router.get("/:title", read);
   router.use(passport.authenticate("jwt", { session: false }));
   router.post("/", create);
-  router.put("/:id", update);
-  router.delete("/:id", destroy);
+  // Will enable these when talks are approved
+  // router.put("/:id", update);
+  // router.delete("/:id", destroy);
 
   return router;
 };
