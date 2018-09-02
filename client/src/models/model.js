@@ -3,12 +3,14 @@ import { deserialize } from "./deserializer";
 import { buildUrl, buildRequest } from "./adapter";
 
 const responseJSONError = response => response
+	.clone()
 	.json()
-	.then(json => {
+	.catch(() => response.text())
+	.then(result => {
 		if (response.ok) {
-			return json;
+			return result;
 		}
-		throw new Error(json.error);
+		throw new Error(result.error || result);
 	});
 
 const fetchJSON = url => fetch(url).then(responseJSONError);
@@ -34,48 +36,69 @@ class Model {
 	}
 	async fetch() {
 		const url = this.buildUrl(this.modelName, this.id);
-		const newData = await fetchJSON(url)
-			.then(response => response.data)
-			.catch(error => console.error(error.message));
-		this.properties = this.normalize(newData);
-		return true;
+		try {
+			const newData = await fetchJSON(url)
+				.then(response => response.data);
+			this.properties = this.normalize(newData);
+			return true;
+		} catch (error) {
+			console.error(error.message);
+			return false;
+		}
 	}
-	async create() {
+	async create(token) {
 		const url = this.buildUrl(this.modelName, this.id);
-		const { data } = await fetch(url, {
-			method: "POST",
-			headers: {
-				"Accept": "application/json",
-				"Content-Type": "application/json",
-			},
-			body: this.serialize(),
-		}).then(responseJSONError)
-			.catch(error => console.error(error.message));
-		this.properties = this.normalize(data);
+		try {
+			const { data } = await fetch(url, {
+				method: "POST",
+				headers: {
+					"Accept": "application/json",
+					"Content-Type": "application/json",
+					"Authorization": token ? `Bearer ${token}` : undefined
+				},
+				body: this.serialize(),
+			}).then(responseJSONError);
+			this.properties = this.normalize(data);
+			return true;
+		} catch (error) {
+			console.error(error.message);
+			return false;
+		}
 	}
-	update() {
+	async update(token) {
 		const url = this.buildUrl(this.modelName, this.id);
-		return fetch(url, {
-			method: "PUT",
-			headers: {
-				"Accept": "application/json",
-				"Content-Type": "application/json",
-			},
-			body: this.serialize(),
-		}).then(responseJSONError)
-			.then(({data}) => {
-				this.properties = this.normalize(data);
-				return data;
-			}).catch(error => console.error(error.message));
+		try {
+			const { data } = await fetch(url, {
+				method: "PUT",
+				headers: {
+					"Accept": "application/json",
+					"Content-Type": "application/json",
+					"Authorization": token ? `Bearer ${token}` : undefined
+				},
+				body: this.serialize(),
+			}).then(responseJSONError);
+			this.properties = this.normalize(data);
+			return true;
+		} catch (error) {
+			console.error(error.message);
+			return false;
+		}
 	}
-	async destroy() {
-		await fetch(this.buildUrl(this.modelName, this.id), {
-			method: "DELETE",
-		}).then(responseJSONError)
-			.then(response => response.data)
-			.catch(error => console.error(error.message));
-		this.properties = null;
-		return true;
+	async destroy(token) {
+		try {
+			await fetch(this.buildUrl(this.modelName, this.id), {
+				method: "DELETE",
+				headers: {
+					"Authorization": token ? `Bearer ${token}` : undefined
+				}
+			}).then(responseJSONError)
+				.then(response => response.data);
+			this.properties = null;
+			return true;
+		} catch (error) {
+			console.error(error.message);
+			return false;
+		}
 	}
 }
 

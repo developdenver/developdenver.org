@@ -26,7 +26,6 @@ export default {
 			return this.$store.getters["services/user/currentProfile"];
 		},
 		talks() {
-			console.log(this.profile)
 			return this.$store.getters["services/talk/getTalksByUserId"](this.profile.id);
 		}
 	},

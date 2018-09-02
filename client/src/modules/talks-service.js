@@ -38,17 +38,31 @@ export default {
 		},
 	},
 	actions: {
-		async createTalk({ dispatch, commit }, talk) {
+		async createTalk({ dispatch, commit, rootState }, talk) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
-			await talk.create();
-			commit("setCurrentTalk", talk.properties);
-			dispatch("services/loading/popLoading", {}, { root: true });
+			let success = true;
+			try {
+				success = await talk.create(rootState.services.user.token);
+			} catch (error) {
+				success = false;
+			} finally {
+				commit("setCurrentTalk", talk.properties);
+				dispatch("services/loading/popLoading", {}, { root: true });
+			}
+			return success;
 		},
 		async setTalk({ dispatch, commit }, talk) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
-			await talk.update();
-			commit("setCurrentTalk", talk.properties);
-			dispatch("services/loading/popLoading", {}, { root: true });
+			let success = true;
+			try {
+				success = await talk.update();
+			} catch (error) {
+				success = false;
+			} finally {
+				commit("setCurrentTalk", talk.properties);
+				dispatch("services/loading/popLoading", {}, { root: true });
+			}
+			return success;
 		},
 		async fetchTalks({ commit, dispatch }) {
 			dispatch("services/loading/pushLoading", {}, { root: true });

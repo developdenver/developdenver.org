@@ -10,12 +10,14 @@
                 id="talk-title"
                 placeholder="Super Awesome Title Here"
                 v-model.trim="talk.properties.title"
+                @change="setValid('title')"
               />
             <p class="error" v-if="errors.title">Title is required.</p>
             <label for="talk-type"> Type </label>
             <div id="custom-select">
               <select
                 id="select-box"
+                @change="setValid('type')"
                 v-model="talk.properties.type">
                   <option value="talk">Talk</option>
                   <option value="Lightning">Lightning Talk</option>
@@ -26,6 +28,7 @@
             <image-upload
                 title="Talk Photo"
                 :uploadUrl="imageUploadUrl"
+                @change="setValid('talkPhotoUrl')"
                 @imageUrl="setImageUrl">
                 <figure v-if="talk.properties.talkPhotoUrl" class="talk-photo">
                     <img :src="talk.properties.talkPhotoUrl" alt="Talk Photo" />
@@ -35,6 +38,7 @@
             <label for="bio">Description</label>
             <textarea
               id="description"
+              @change="setValid('description')"
               placeholder="Describe your awesome talk here..."
               v-model.trim="talk.properties.description">
             </textarea>
@@ -55,8 +59,8 @@ export default {
 	},
 	data() {
 		return {
-            imageUploadUrl,
-            errors: {},
+			imageUploadUrl,
+			errors: {},
 		};
 	},
 	props: {
@@ -72,27 +76,29 @@ export default {
 		},
 	},
 	methods: {
+		setValid(field) {
+			this.$set(this.errors, field, !this.talk.properties[field].trim());
+		},
 		updateTalk() {
-            if (this.validTalk()) {
-                this.$emit("updateTalk", this.talk);
-            }		
-        },
-        validTalk() {
-            let valid = true;
-            const fields = ['title', 'type', 'talkPhotoUrl', 'description'];
-            fields.forEach(field => {
-                const fieldValid = this.talk.properties[field].trim() ? true : false;
-                console.log(field, fieldValid)
-                this.$set(this.errors, field, fieldValid);
-                if (valid) {
-                    valid = fieldValid;
-                }
-            });
-            return valid;
-        },
+			if (this.validTalk()) {
+				this.$emit("updateTalk", this.talk);
+			}
+		},
+		validTalk() {
+			let valid = true;
+			const fields = ["title", "type", "talkPhotoUrl", "description"];
+			fields.forEach(field => {
+				const fieldValid = !!this.talk.properties[field].trim();
+				this.$set(this.errors, field, !fieldValid);
+				if (valid) {
+					valid = fieldValid;
+				}
+			});
+			return valid;
+		},
 		setImageUrl(url) {
 			// TODO: get working with image uploads
-		    // this.talk.properties.talkPhotoUrl = url;
+			// this.talk.properties.talkPhotoUrl = url;
 		},
 	},
 };
