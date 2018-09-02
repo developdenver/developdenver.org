@@ -5,6 +5,7 @@
 			buttonLabel="Submit"
 			:talk="talk"
 			@updateTalk="createTalk"
+			componentTitle="Submit a Talk"
         />
     </section>
 </template>

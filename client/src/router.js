@@ -68,7 +68,7 @@ const router = new Router({
 		component: Talks,
 	}, {
 		path: "/edit-talk/:id",
-		name: "user-talk",
+		name: "edit-talk",
 		component: UserTalk,
 		meta: {
 			requiresAuth: true,

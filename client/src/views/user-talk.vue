@@ -1,10 +1,10 @@
 <template>
     <section class="talk">
-        <h2>Edit Talk</h2>
         <edit-talk
 			buttonLabel="Update Talk"
 			:talk="talk"
 			@updateTalk="updateTalk"
+            componentTitle="Edit Talk"
          />
     </section>
 </template>
@@ -17,13 +17,13 @@ export default {
 		EditTalk,
 	},
 	computed: {
-		talks() {
-			return this.$store.getters["services/talk/getCurrentTalk"](this.profile.id);
+		talk() {
+			return this.$store.getters["services/talk/getTalkById"](this.$route.params.id);
 		}
 	},
 	methods: {
 		async updateTalk(talk) {
-			await this.$store.dispatch("services/user/setTalk", talk);
+			await this.$store.dispatch("services/talk/setTalk", talk);
 			this.$router.push({ name: "talks", params: {id: talk.id} });
 		},
 	},

@@ -42,11 +42,11 @@ export default {
 			}
 			return success;
 		},
-		async setTalk({ dispatch, commit }, talk) {
+		async setTalk({ dispatch, commit, rootState }, talk) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
 			let success = true;
 			try {
-				success = await talk.update();
+				success = await talk.update(rootState.services.user.token);
 			} catch (error) {
 				success = false;
 			} finally {
