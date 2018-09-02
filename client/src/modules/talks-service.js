@@ -4,12 +4,8 @@ export default {
 	namespaced: true,
 	state: {
 		talks: [],
-		currentTalks: [],
 	},
 	getters: {
-		getAllTalksByUser(state) {
-			return state.currentTalks;
-		},
 		getTalksByUserId: (state) => (userId) => {
 			return state.talks.filter(talk => talk.properties.userId === userId);
 		},
@@ -25,14 +21,6 @@ export default {
 		},
 	},
 	mutations: {
-		addTalk(state, talk) {
-			// make this vuexy
-			state.talks.push(talk);
-		},
-		setCurrentTalk(state, talk) {
-			// make this vuexy
-			// state.currentTalks.push(talk);
-		},
 		updateTalks(state, talks) {
 			state.talks = talks;
 		},
