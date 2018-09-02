@@ -38,18 +38,6 @@ export default {
 			}
 			return success;
 		},
-		async setTalk({ dispatch, commit }, talk) {
-			dispatch("services/loading/pushLoading", {}, { root: true });
-			let success = true;
-			try {
-				success = await talk.update();
-			} catch (error) {
-				success = false;
-			} finally {
-				dispatch("services/loading/popLoading", {}, { root: true });
-			}
-			return success;
-		},
 		async fetchTalks({ commit, dispatch }) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
 			let talks = await Talk.fetchAll("talk");
