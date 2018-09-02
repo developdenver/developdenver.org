@@ -32,7 +32,7 @@ export default {
 		async createTalk(talk) {
 			const success = await this.$store.dispatch("services/talk/createTalk", talk);
 			if (success) {
-				localStorage.removeItem('submitTalk');
+				localStorage.removeItem("submitTalk");
 				this.$router.push({ name: "talk", params: {id: talk.properties.id} });
 			} else {
 				this.error = "There was an error submitting the talk. Please try again.";
@@ -40,7 +40,7 @@ export default {
 		},
 	},
 	watch: {
-        ["talk.properties"]: {
+		"talk.properties": {
 			deep: true,
 			handler() {
 				const talk = {
@@ -50,7 +50,7 @@ export default {
 				localStorage.submitTalk = JSON.stringify(this.talk.properties);
 			},
 		},
-    },
+	},
 };
 </script>
 <style lang="scss">
