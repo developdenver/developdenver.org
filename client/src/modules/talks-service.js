@@ -4,7 +4,6 @@ export default {
 	namespaced: true,
 	state: {
 		talks: [],
-		currentTalk: {},
 	},
 	getters: {
 		getTalksByUserId: (state) => (userId) => {
@@ -25,9 +24,6 @@ export default {
 		updateTalks(state, talks) {
 			state.talks = talks;
 		},
-		setCurrentTalk(state, talk) {
-			state.currentTalk = talk;
-		},
 	},
 	actions: {
 		async createTalk({ dispatch, commit, rootState }, talk) {
@@ -42,7 +38,7 @@ export default {
 			}
 			return success;
 		},
-		async setTalk({ dispatch, commit, rootState }, talk) {
+		async updateTalk({ dispatch, commit, rootState }, talk) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
 			let success = true;
 			try {
@@ -50,7 +46,6 @@ export default {
 			} catch (error) {
 				success = false;
 			} finally {
-				commit("setCurrentTalk", talk.properties);
 				dispatch("services/loading/popLoading", {}, { root: true });
 			}
 			return success;

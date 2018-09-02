@@ -67,8 +67,8 @@ export default {
 			type: Object,
 			required: true,
 		},
-        buttonLabel: String,
-        componentTitle: String,
+		buttonLabel: String,
+		componentTitle: String,
 	},
 	computed: {
 		isLoading() {
