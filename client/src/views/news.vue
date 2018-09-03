@@ -35,6 +35,7 @@ export default {
 
 <style lang="scss">
 @import "@/styles/_typography.scss";
+@import "@/styles/_sizes.scss";
 
 .news {
     display: flex;
@@ -45,6 +46,9 @@ export default {
 	padding: $baseline;
 	h2 {
 		display: none;
+	}
+	li {
+		margin-bottom: $xxl;
 	}
 }
 </style>

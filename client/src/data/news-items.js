@@ -1,5 +1,16 @@
 export default [{
-	title: "Call for proposals is coming soon!",
+	title: "Call for speakers is out!",
+	author: "DVLP Board",
+	date: "9/3/18",
+	content: `
+Hello!
+
+We are excited to announce the call for speakers is out and [ready for submissions](https://developdenver.org/submit-talk)! If you or someone you know has a stellar talk, panel or a lightning talk we are accepting everything so submit your talk today.
+
+We'll only keep this open for a couple of weeks, and the community will start voting on the talks they want to see soon, so get your idea out there!
+	`,
+},{
+	title: "Call for speakers is coming soon!",
 	author: "DVLP Board",
 	date: "8/27/18",
 	content: `
