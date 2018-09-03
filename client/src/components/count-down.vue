@@ -39,7 +39,6 @@ export default {
 			const hours = this.toTwoDigits(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
 			const minutes = this.toTwoDigits(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
 			const seconds = this.toTwoDigits(Math.floor((distance % (1000 * 60)) / 1000));
-			console.log("asdf", hours)
 			return {days, hours, minutes, seconds};
 		},
 	},

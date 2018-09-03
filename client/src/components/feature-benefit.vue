@@ -43,7 +43,6 @@ $clip-amount: 80px;
     margin-top: $clip-amount * -1;
     margin-bottom: calc($clip-amount * -1) + $large;
 	padding: $large $xxl;
-
     img {
         clip-path: inset($clip-amount 0);
     }
