@@ -51,6 +51,11 @@ $clip-amount: 80px;
         background-color: $pure-white;
         padding: $large;
         z-index: 10;
+		> div {
+			display: flex;
+			align-items: center;
+			flex-flow: column nowrap
+		}
         p {
             @include stylized-body-font;
         }

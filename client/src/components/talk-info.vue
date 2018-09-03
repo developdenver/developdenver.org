@@ -1,6 +1,6 @@
 <template>
     <section class="talk">
-        <img :src="talk.properties.talkPhotoUrl" alt="Talk photo" />
+        <img :src="talk.properties.talkPhotoUrl" alt="Talk photo" class="talk-image" />
         <div class="talk-details">
             <h2>{{talk.properties.title}}</h2>
             <div class="description">
@@ -72,6 +72,9 @@ $clip-amount: 80px;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: flex-end;
+	.talk-image {
+		max-height: 100vh;
+	}
     .talk-details {
         order: 1;
         margin-top: $xl * -1;
