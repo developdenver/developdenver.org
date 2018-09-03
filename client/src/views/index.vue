@@ -110,6 +110,9 @@ export default {
 					padding: 0;
 				}
 			}
+			p {
+				padding: $baseline;
+			}
 			.details-wrapper {
 				width: 100%;
 				p {
