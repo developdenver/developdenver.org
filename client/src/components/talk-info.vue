@@ -21,10 +21,10 @@ export default {
 			talkTypes: [{
 				label: "Talk (30 - 45 minutes)",
 				value: "talk",
-			},{
+			}, {
 				label: "Lightning Talk (5 - 10 minutes)",
 				value: "lightning",
-			},{
+			}, {
 				label: "Panel (30 - 45 minutes, multiple people)",
 				value: "panel",
 			}],

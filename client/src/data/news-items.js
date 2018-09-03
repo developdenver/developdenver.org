@@ -9,7 +9,7 @@ We are excited to announce the call for speakers is out and [ready for submissio
 
 We'll only keep this open until midnight on September 15th, and the community will start voting on the talks they want to see soon, so get your idea out there!
 	`,
-},{
+}, {
 	title: "Call for speakers is coming soon!",
 	author: "DVLP Board",
 	date: "8/27/18",
