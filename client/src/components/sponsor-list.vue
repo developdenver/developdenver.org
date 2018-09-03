@@ -32,7 +32,7 @@ export default {
 	@import "@/styles/_general.scss";
 
 	.sponsors {
-		padding: $baseline;
+		padding: $xxl;
 		background-color: $light-grey;
 		h2 {
 			display: block;
@@ -49,8 +49,10 @@ export default {
 			border-bottom: 1px solid $light-grey;
 		}
 		img.svg {
-			width: 15rem;
-			padding: $baseline;
+			height: $large;
+			max-width: 100%;
+			padding: 0;
+			clip-path: none;
 		}
 		.sponsor-call-to-action {
 			display: flex;

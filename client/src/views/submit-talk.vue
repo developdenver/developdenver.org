@@ -3,9 +3,9 @@
 		<p class="error" v-if="error">{{error}}</p>
         <edit-talk
 			buttonLabel="Submit"
+			componentTitle="Submit a Talk"
 			:talk="talk"
 			@updateTalk="createTalk"
-			componentTitle="Submit a Talk"
         />
     </section>
 </template>
@@ -18,11 +18,11 @@ export default {
 	data() {
 		return {
 			error: "",
-			talk: new Talk(localStorage.submitTalk ? JSON.parse(localStorage.submitTalk) : {
+			talk: new Talk({
 				title: "",
-				type: "",
-				talkPhotoUrl: "https://www.fillmurray.com/460/300",
-				description: ""
+				type: "talk",
+				talkPhotoUrl: "",
+				description: "",
 			})
 		};
 	},
@@ -31,9 +31,8 @@ export default {
 	},
 	methods: {
 		async createTalk(talk) {
-			const success = await this.$store.dispatch("services/talk/createTalk", talk);
+			const success = await this.$store.dispatch("talks/createTalk", talk);
 			if (success) {
-				localStorage.removeItem("submitTalk");
 				this.$router.push({ name: "talk", params: {id: talk.properties.id} });
 			} else {
 				this.error = "There was an error submitting the talk. Please try again.";

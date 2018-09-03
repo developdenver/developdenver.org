@@ -37,5 +37,8 @@ export default {
         position: relative;
         padding: 0 $baseline;
     }
+	.app-header {
+		margin-bottom: $xxl;
+	}
 }
 </style>

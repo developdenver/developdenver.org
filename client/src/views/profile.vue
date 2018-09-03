@@ -1,23 +1,27 @@
 <template>
     <section class="profile">
-		<h2>Submitted Talks</h2>
-		<div v-for="talk in talks" :key="talk.id">
-			<p>
-				<router-link class="button" :to="{name: 'edit-talk', params: {id: talk.id}}">
-					{{talk.properties.title}}, {{talk.properties.type}}
-				</router-link>
-			</p>
-		</div>
-        <h2>Edit Profile</h2>
-        <edit-profile
-			buttonLabel="Update Profile"
-			:isNewProfile="false"
-			:profile="profile"
-			@updateProfile="updateProfile"
-         />
-		<router-link class="reset-password" :to="{name: 'reset-password'}">
-			Reset password
-		</router-link>
+		<section v-if="talks.length">
+			<h2>My Submitted Talks</h2>
+			<div v-for="talk in talks" :key="talk.id">
+				<p>
+					<router-link class="button" :to="{name: 'edit-talk', params: {id: talk.id}}">
+						{{talk.properties.title}}, {{talk.properties.type}}
+					</router-link>
+				</p>
+			</div>
+		</section>
+		<section>
+			<h2>Edit Profile</h2>
+			<edit-profile
+				buttonLabel="Update Profile"
+				:isNewProfile="false"
+				:profile="profile"
+				@updateProfile="updateProfile"
+			 />
+			<router-link class="reset-password" :to="{name: 'reset-password'}">
+				Reset password
+			</router-link>
+		</section>
     </section>
 </template>
 
@@ -33,7 +37,7 @@ export default {
 			return this.$store.getters["services/user/currentProfile"];
 		},
 		talks() {
-			return this.$store.getters["services/talk/getTalksByUserId"](this.profile.id);
+			return this.$store.getters["talks/getTalksByUserId"](this.profile.id);
 		}
 	},
 	methods: {
@@ -43,13 +47,14 @@ export default {
 		},
 	},
 	mounted() {
-		this.$store.dispatch("services/talk/fetchTalks");
+		this.$store.dispatch("talks/fetchTalks");
 	},
 };
 </script>
 
 <style lang="scss">
 @import "@/styles/_sizes.scss";
+@import "@/styles/_typography.scss";
 
 .profile {
     display: flex;
@@ -57,9 +62,13 @@ export default {
     flex-grow: 1;
     max-width: $max-line-length;
 	margin-bottom: $large;
-    h2 {
-        display: none;
-    }
+	> section {
+		margin-bottom: $large;
+		h2 {
+			@include tertiary-header-font;
+			margin-bottom: $baseline;
+		}
+	}
 	.reset-password {
 		margin-top: $large;
 	}

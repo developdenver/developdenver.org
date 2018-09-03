@@ -1,6 +1,13 @@
 <template>
     <section class="talk-page">
-        <talk-info :talk="currentTalk" />
+		<div class="talk-info-wrapper">
+			<talk-info :talk="currentTalk" />
+		</div>
+		<router-link
+			class="edit-talk-link"
+			v-if="isCurrentUserTalk"
+			:to="{name: 'edit-talk', params: {id: currentTalk.id}}"
+		>Edit Talk</router-link>
     </section>
 </template>
 
@@ -12,20 +19,40 @@ export default {
 		TalkInfo,
 	},
 	mounted() {
-		this.$store.dispatch("services/talk/fetchTalks");
+		this.$store.dispatch("talks/fetchTalks");
 	},
 	computed: {
+		currentUser() {
+			return this.$store.getters['services/user/currentProfile'];
+		},
+		isCurrentUserTalk() {
+			return this.currentUser
+				? +this.currentTalk.properties.userId === +this.currentUser.id
+				: false;
+		},
 		currentTalk() {
-			return this.$store.getters["services/talk/getTalkById"](Number(this.$route.params.id));
+			return this.$store.getters["talks/getTalkById"](Number(this.$route.params.id));
 		},
 	},
 };
 </script>
 
 <style lang="scss">
+	@import "@/styles/_general.scss";
+	@import "@/styles/_sizes.scss";
+
     .talk-page {
         width: 100%;
         display: flex;
-        justify-content: flex-end;
+		flex-flow: column nowrap;
+		.talk-info-wrapper {
+			display: flex;
+			justify-content: flex-end;
+		}
+		.edit-talk-link {
+			@include call-to-action-button;
+			margin-bottom: $large;
+			align-self: center;
+		}
     }
 </style>

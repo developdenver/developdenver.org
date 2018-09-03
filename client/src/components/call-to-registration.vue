@@ -4,8 +4,7 @@
             <span class="slogan">Bringing together developers, designers, strategists,
                 and those looking to dive deeper into the interactive world for two
                 days of hands on code &amp; design talks.</span>
-            <p class="date">October 18th & 19th</p>
-            <router-link class="button" :to="{name: 'register'}">Join Us</router-link>
+            <router-link class="button" :to="{name: 'register'}">Join Us October 18th & 19th</router-link>
         </div>
     </section>
 </template>
@@ -28,7 +27,6 @@ export default {
 	flex-flow: column nowrap;
 	align-items: center;
     @media (max-width: $large-breakpoint){
-        display: block;
         position: relative;
         margin: $xxl 0;
         padding: 0 $baseline;
@@ -43,6 +41,7 @@ export default {
             @include section-header-font;
             display: block;
             line-height: 35px;
+			margin-top: $xl;
         }
         .date {
             @include tertiary-header-font;
@@ -51,7 +50,8 @@ export default {
         }
         .button {
             @include call-to-action-button;
-			width: 50%;
+			width: 70%;
+			margin-top: $xl;
 			margin-bottom: $xl;
         }
         @media (max-width: $large-breakpoint){

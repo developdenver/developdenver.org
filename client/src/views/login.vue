@@ -20,7 +20,12 @@
             <input type="submit" value="Login" />
         </form>
         <p v-if="error" class="error">{{error}}</p>
-		<router-link :to="{name: 'request-reset'}">Forgot your password?</router-link>
+		<div class="alternatives">
+			<router-link :to="{name: 'request-reset'}">Forgot your password?</router-link>
+		</div>
+		<div class="alternatives">
+			<router-link :to="{name: 'register'}">Register</router-link>
+		</div>
     </section>
 </template>
 
@@ -85,5 +90,8 @@ export default {
     .error {
         color: $warning;
     }
+	.alternatives {
+		margin-bottom: $large;
+	}
 }
 </style>

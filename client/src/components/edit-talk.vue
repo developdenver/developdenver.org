@@ -10,25 +10,29 @@
                 placeholder="Super Awesome Title Here"
                 v-model.trim="talk.properties.title"
                 @change="setValid('title')"
-              />
+			/>
             <p class="error" v-if="errors.title">Title is required.</p>
-            <label for="talk-type"> Type </label>
+            <label for="talk-type">Type</label>
             <div id="custom-select">
-              <select
-                id="select-box"
-                @change="setValid('type')"
-                v-model="talk.properties.type">
-                  <option value="talk">Talk</option>
-                  <option value="Lightning">Lightning Talk</option>
-                  <option value="Panel">Panel</option>
-              </select>
+				<select
+					id="select-box"
+					v-model="talk.properties.type"
+					@change="setValid('type')"
+				>
+					<option
+						v-for="option in talkTypes"
+						:value="option.value"
+						:key="option.value"
+					>{{option.label}}</option>
+				</select>
             </div>
             <p class="error" v-if="errors.type">Type is required.</p>
             <image-upload
                 title="Talk Photo"
                 :uploadUrl="imageUploadUrl"
                 @change="setValid('talkPhotoUrl')"
-                @imageUrl="setImageUrl">
+                @imageUrl="setImageUrl"
+			>
                 <figure v-if="talk.properties.talkPhotoUrl" class="talk-photo">
                     <img :src="talk.properties.talkPhotoUrl" alt="Talk Photo" />
                 </figure>
@@ -36,14 +40,14 @@
             <p class="error" v-if="errors.talkPhotoUrl">A photo is required.</p>
             <label for="bio">Description</label>
             <textarea
-              id="description"
-              @change="setValid('description')"
-              placeholder="Describe your awesome talk here..."
-              v-model.trim="talk.properties.description">
+				id="description"
+				@change="setValid('description')"
+				placeholder="Describe your awesome talk here, markdown valid!"
+				v-model.trim="talk.properties.description">
             </textarea>
             <p class="error" v-if="errors.description">Description is required.</p>
-      </fieldset>
-        <button :disabled="isLoading">{{buttonLabel}}</button>
+		</fieldset>
+		<button :disabled="isLoading">{{buttonLabel}}</button>
     </form>
 </template>
 
@@ -60,6 +64,16 @@ export default {
 		return {
 			imageUploadUrl,
 			errors: {},
+			talkTypes: [{
+				label: "Talk (30 - 45 minutes)",
+				value: "talk",
+			},{
+				label: "Lightning Talk (5 - 10 minutes)",
+				value: "lightning",
+			},{
+				label: "Panel (30 - 45 minutes, multiple people)",
+				value: "panel",
+			}],
 		};
 	},
 	props: {
@@ -97,8 +111,7 @@ export default {
 			return valid;
 		},
 		setImageUrl(url) {
-			// TODO: get working with image uploads
-			// this.talk.properties.talkPhotoUrl = url;
+			this.talk.properties.talkPhotoUrl = url;
 		},
 	},
 };
@@ -111,33 +124,39 @@ export default {
 @import "@/styles/_typography.scss";
 
 .edit-talk {
-  margin-bottom: $large;
-  fieldset {
-      background-color: $light-grey;
-      padding: $large $baseline;
-      margin-bottom: $large;
-      box-shadow: 0 0 3px $medium-light-grey;
-      h3 {
-          margin-bottom: $baseline;
-          @include fieldset-header-font;
-          color: $dark-grey;
-      }
-      img {
-          width: 100%;
-      }
-      select {
-        margin-top: $baseline;
-        margin-bottom: $large;
-      }
-  }
-  button {
-      @include call-to-action-button;
-  &[disabled] {
-    background-color: $medium-light-grey;
-    }
-  }
-    .error {
-        color: $warning;
-    }
+	margin-bottom: $large;
+	fieldset {
+		background-color: $light-grey;
+		padding: $large $baseline;
+		margin-bottom: $large;
+		box-shadow: 0 0 3px $medium-light-grey;
+		h3 {
+			margin-bottom: $baseline;
+			@include fieldset-header-font;
+			color: $dark-grey;
+		}
+		.talk-photo {
+			max-height: $max-line-length;
+			overflow-y: scroll;
+			img {
+				width: 100%;
+			}
+		}
+		select {
+			margin-top: $baseline;
+			margin-bottom: $large;
+			padding: $small 0;
+			width: 100%;
+		}
+	}
+	button {
+		@include call-to-action-button;
+		&[disabled] {
+			background-color: $medium-light-grey;
+		}
+	}
+	.error {
+		color: $warning;
+	}
 }
 </style>

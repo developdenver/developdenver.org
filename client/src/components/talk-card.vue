@@ -55,7 +55,6 @@ export default {
 			position: relative;
 			img {
 				width: 100%;
-				position: absolute;
 				z-index: -10;
 				transition: transform 3s cubic-bezier(0, 1, 1, 1);
 			}

@@ -24,7 +24,7 @@
             <li v-if="isLoggedIn">
                 <router-link :to="{name: 'my-profile'}">My Profile</router-link>
             </li>
-            <li v-if="isLoggedIn">
+            <li>
                 <router-link :to="{name: 'submit-talk'}">Submit a Talk</router-link>
             </li>
             <li v-if="isLoggedIn">

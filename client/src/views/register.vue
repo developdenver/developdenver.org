@@ -25,7 +25,7 @@ export default {
 	},
 	methods: {
 		async updateProfile(profile) {
-			await this.$store.dispatch("createProfile", profile);
+			await this.$store.dispatch("profiles/createProfile", profile);
 			this.$router.push({ name: "tickets" });
 		},
 	},

@@ -1,5 +1,5 @@
 <template>
-    <section class="talk">
+    <section class="user-talk">
         <edit-talk
 			buttonLabel="Update Talk"
 			:talk="talk"
@@ -18,12 +18,12 @@ export default {
 	},
 	computed: {
 		talk() {
-			return this.$store.getters["services/talk/getTalkById"](this.$route.params.id);
+			return this.$store.getters["talks/getTalkById"](this.$route.params.id);
 		}
 	},
 	methods: {
 		async updateTalk(talk) {
-			const success = await this.$store.dispatch("services/talk/updateTalk", talk);
+			const success = await this.$store.dispatch("talks/updateTalk", talk);
 			if (success) {
 				this.$router.push({ name: "talk", params: {id: talk.properties.id} });
 			} else {
@@ -37,7 +37,7 @@ export default {
 <style lang="scss">
 @import "@/styles/_sizes.scss";
 
-.profile {
+.user-talk {
     display: flex;
     flex-flow: column nowrap;
     flex-grow: 1;

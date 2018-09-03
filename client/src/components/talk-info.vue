@@ -4,20 +4,32 @@
         <div class="talk-details">
             <h2>{{talk.properties.title}}</h2>
             <div class="description">
-                <p>
-                    {{talk.properties.description}}
-                </p>
-                <p class="talk-type">
-					Type: {{talk.properties.type}}
-				</p>
+                <div class="description-html" v-html="descriptionHtml"></div>
+                <p class="talk-type">Type: {{talkLabel}}</p>
             </div>
         </div>
     </section>
 </template>
 
 <script>
+import Showdown from "showdown";
+const showdown = new Showdown.Converter();
 
 export default {
+	data() {
+		return {
+			talkTypes: [{
+				label: "Talk (30 - 45 minutes)",
+				value: "talk",
+			},{
+				label: "Lightning Talk (5 - 10 minutes)",
+				value: "lightning",
+			},{
+				label: "Panel (30 - 45 minutes, multiple people)",
+				value: "panel",
+			}],
+		};
+	},
 	props: {
 		talk: {
 			type: Object,
@@ -30,6 +42,18 @@ export default {
 				url: this.talk.properties.talk_photo_url,
 				altText: "Talk photo",
 			};
+		},
+		descriptionHtml() {
+			return this.talk.properties.description
+				? showdown.makeHtml(this.talk.properties.description)
+				: "";
+		},
+		talkLabel() {
+			return this.talk.properties.type
+				? this.talkTypes
+					.find(type => type.value === this.talk.properties.type)
+					.label
+				: "";
 		},
 	},
 };
@@ -48,7 +72,6 @@ $clip-amount: 80px;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: flex-end;
-    // margin-bottom: calc($clip-amount * -1) + $large;
     .talk-details {
         order: 1;
         margin-top: $xl * -1;
@@ -70,9 +93,25 @@ $clip-amount: 80px;
             a {
                 color: $primary-color;
             }
-            .website {
-                margin-top: $xl;
-            }
+			.talk-type {
+				@include italic-body-font;
+			}
+			.description-html {
+				line-height: 1.5;
+				h1, h2, h3, h4, h5, h6 {
+					@include fieldset-header-font;
+				}
+				ul, ol {
+					list-style-type: circle;
+					margin-bottom: $baseline;
+				}
+				strong {
+					font-weight: 700;
+				}
+				em {
+					font-style: italic;
+				}
+			}
         }
     }
     img {

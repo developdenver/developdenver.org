@@ -15,14 +15,14 @@ export default {
 		UserProfile,
 	},
 	created() {
-		this.$store.dispatch("fetchProfiles");
+		this.$store.dispatch("profiles/fetchProfiles");
 	},
 	computed: {
 		currentProfile() {
-			return this.$store.getters.getProfileById(this.$route.params.id);
+			return this.$store.getters["profiles/getProfileById"](this.$route.params.id);
 		},
 		shuffledProfiles() {
-			return this.shuffle(this.$store.state.profiles);
+			return this.shuffle(this.$store.state.profiles.list);
 		},
 	},
 	methods: {

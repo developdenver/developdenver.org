@@ -10,14 +10,6 @@
             :heading="featureBenefit.heading"
             :image="featureBenefit.image"
         />
-        <section class="about">
-            <div class="details">
-				<h2><img class="board-svg" src="../assets/logos/meet_the_board.svg" alt="Meet the board" /></h2>
-                <p>Behind the scenes is a group of friends who are passionate about building community and bringing people together. Our mission is to create something that empowers the makers and doers of the community.</p>
-            </div>
-            <profile-card-list :profiles="boardProfiles" />
-        </section>
-        <sponsor-list />
         <section class="ticket-info">
 			<div class="ticket-details">
 				<h2><img src="../assets/logos/tickets.svg" alt="Tickets" class="svg" /></h2>
@@ -26,20 +18,31 @@
 				<p>Where: RiNo Brighton Boulevard</p>
 			</div>
             <div class="venues">
-                <img src="../assets/logos/big_trouble_logo.svg" />
-                <img src="../assets/logos/bigsbys_folly_logo_small.png" />
-                <img src="../assets/logos/catalyst_logo_rgb_l.png" />
+				<a href="https://zeppelinstation.com/big-trouble"><img src="../assets/logos/big_trouble_logo.svg" /></a>
+				<a href="https://www.bigsbysfolly.com/"><img src="../assets/logos/bigsbys_folly_logo_small.png" /></a>
+				<a href="http://www.catalysthealthtech.com/"><img src="../assets/logos/catalyst_logo_rgb_l.png" /></a>
             </div>
             <div class="venues">
-                <img src="../assets/logos/source_hotel_logo.svg" />
-                <img src="../assets/logos/urban_cyclist_logo_small.png" />
-                <img src="../assets/logos/zeppelin_station_logo.svg" />
+				<a href="https://thesourcehotel.com/"><img src="../assets/logos/source_hotel_logo.svg" /></a>
+				<a href="https://www.theucdenver.com/"><img src="../assets/logos/urban_cyclist_logo_small.png" /></a>
+				<a href="https://zeppelinstation.com/"><img src="../assets/logos/zeppelin_station_logo.svg" /></a>
             </div>
 			<div class="ticket-details">
 				<p>All tickets include conference badge, attendance to keynote speakers, talks, and workshops. Your ticket also included coffee, breakfast, lunch at Zeppelin Station, afternoon open bar, opening and closing party drinks, and closing party taco bar!</p>
 				<p>Looking to purchase a group of tickets? Our apologies, our setup requires each user to register and purchase tickets individually. Please contact us at hello@developdenver.org if you need help purchasing multiple tickets.</p>
 				<router-link class="button" :to="{name: 'tickets'}">Buy Tickets</router-link>
 			</div>
+        </section>
+		<call-for-talks />
+        <sponsor-list />
+        <section class="about">
+            <div class="details">
+				<h2><img class="board-svg" src="../assets/logos/meet_the_board.svg" alt="Meet the board" /></h2>
+				<div class="description-wrapper">
+					<p>Behind the scenes is a group of friends who are passionate about building community and bringing people together. Our mission is to create something that empowers the makers and doers of the community.</p>
+				</div>
+            </div>
+            <profile-card-list :profiles="boardProfiles" />
         </section>
     </div>
 </template>
@@ -49,6 +52,7 @@ import HeroBanner from "@/components/hero-banner.vue";
 import ProfileCardList from "@/components/profile-card-list";
 import FeatureBenefit from "@/components/feature-benefit.vue";
 import SponsorList from "@/components/sponsor-list";
+import CallForTalks from "@/components/call-for-talks";
 
 import boardProfiles from "@/data/board-profiles";
 import featureBenefits from "@/data/feature-benefits";
@@ -59,6 +63,7 @@ export default {
 		ProfileCardList,
 		FeatureBenefit,
 		SponsorList,
+		CallForTalks,
 	},
 	computed: {
 		boardProfiles() {
@@ -87,24 +92,31 @@ export default {
     width: 100%;
     section {
         width: 100%;
-        &:not(:first-child) {
-            margin-top: 50px;
-        }
         .call-to-registration {
             margin-top: 0;
         }
     }
 	.about {
-		p {
-			@include stylized-body-font;
-			max-width: $max-line-length;
-			padding: $baseline;
-		}
-		h2 {
-			width: 15rem;
-			padding: $baseline;
-			> img.svg {
-				padding: $baseline;
+		margin-top: $xxl;
+		.details {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			flex-flow: column nowrap;
+			h2 {
+				padding: 0 $baseline;
+				.board-svg {
+					height: $large;
+					padding: 0;
+				}
+			}
+			.details-wrapper {
+				width: 100%;
+				p {
+					@include stylized-body-font;
+					max-width: $max-line-length;
+					padding: $baseline;
+				}
 			}
 		}
 	}
@@ -187,7 +199,7 @@ export default {
         }
         &:nth-child(even){
             align-self: flex-end;
-            img {
+			> img {
                 order: 2;
                 width: 60%;
             }

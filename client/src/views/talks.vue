@@ -13,11 +13,11 @@ export default {
 		TalkCardList,
 	},
 	created() {
-		this.$store.dispatch("services/talk/fetchTalks");
+		this.$store.dispatch("talks/fetchTalks");
 	},
 	computed: {
 		shuffledTalks() {
-			return this.shuffle(this.$store.state.services.talk.talks);
+			return this.shuffle(this.$store.state.talks.list);
 		},
 	},
 	methods: {

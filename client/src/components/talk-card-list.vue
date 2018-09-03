@@ -29,7 +29,7 @@ export default {
         display: flex;
         flex-flow: row wrap;
         li {
-            width: calc(100% * (1/4));
+            width: calc((100vw - (100vw - 100%)) * (1/4));
 			@media (max-width: $large-breakpoint) {
 				width: calc(100% * (1/2));
 			}

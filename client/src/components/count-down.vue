@@ -1,21 +1,24 @@
 <template>
 <div class="countdown-parent">
-	<div>
-		<span>{{toTwoDigits(countDownToConference.days)}} // </span>
-		<span class="counter-label">days</span>
-	</div>
-	<div>
-		<span>{{countDownToConference.hours}} // </span>
-		<span class="counter-label">hours</span>
-	</div>
-	<div>
-		<span>{{countDownToConference.minutes}} // </span>
-		<span class="counter-label">minutes</span>
-	</div>
-	<div>
-		<span>{{countDownToConference.seconds}}</span>
-		<span class="counter-label">seconds</span>
-	</div>
+	<span>
+		<p class="numbers">{{toTwoDigits(countDownToConference.days)}}</p>
+		<p class="counter-label">days</p>
+	</span>
+	<span class="divider">//</span>
+	<span>
+		<p class="numbers">{{toTwoDigits(countDownToConference.hours)}}</p>
+		<p class="counter-label">hours</p>
+	</span>
+	<span class="divider">//</span>
+	<span>
+		<p class="numbers">{{toTwoDigits(countDownToConference.minutes)}}</p>
+		<p class="counter-label">minutes</p>
+	</span>
+	<span class="divider">//</span>
+	<span>
+		<p class="numbers">{{toTwoDigits(countDownToConference.seconds)}}</p>
+		<p class="counter-label">seconds</p>
+	</span>
 </div>
 </template>
 
@@ -36,6 +39,7 @@ export default {
 			const hours = this.toTwoDigits(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
 			const minutes = this.toTwoDigits(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
 			const seconds = this.toTwoDigits(Math.floor((distance % (1000 * 60)) / 1000));
+			console.log("asdf", hours)
 			return {days, hours, minutes, seconds};
 		},
 	},
@@ -46,7 +50,7 @@ export default {
 			}, 1000);
 		},
 		toTwoDigits(num) {
-			return (num < 10 ? "0" : "") + num;
+			return (+num < 10 ? "0" : "") + +num;
 		},
 	},
 };
@@ -59,20 +63,18 @@ export default {
 
 .countdown-parent {
 	display: flex;
-	flex-flow: row nowrap;
+	flex-flow: row wrap;
 	justify-content: center;
 	@include countdown-font;
-	div {
-		font-size: $xl;
-		padding: 1%;
-		.counter-label {
-			font-size: $small;
-			text-transform: uppercase;
-		}
-		span {
-			display: block;
-			whitespace: nowrap;
-		}
+	.numbers, .divider {
+		font-size: $xxl;
+	}
+	.divider {
+		margin: 0 $large;
+	}
+	.counter-label {
+		font-size: $small;
+		text-transform: uppercase;
 	}
 }
 

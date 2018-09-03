@@ -56,9 +56,9 @@ const router = new Router({
 		name: "submit-talk",
 		component: SubmitTalk,
 		meta: {
+			requiresAuth: true,
 		},
-	},
-	{
+	},{
 		path: "/talks/:id",
 		name: "talk",
 		component: TalkPage,
