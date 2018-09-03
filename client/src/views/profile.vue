@@ -17,7 +17,7 @@
 				:isNewProfile="false"
 				:profile="profile"
 				@updateProfile="updateProfile"
-			 />
+			/>
 			<router-link class="reset-password" :to="{name: 'reset-password'}">
 				Reset password
 			</router-link>

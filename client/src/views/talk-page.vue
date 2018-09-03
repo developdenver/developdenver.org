@@ -23,7 +23,7 @@ export default {
 	},
 	computed: {
 		currentUser() {
-			return this.$store.getters['services/user/currentProfile'];
+			return this.$store.getters["services/user/currentProfile"];
 		},
 		isCurrentUserTalk() {
 			return this.currentUser
