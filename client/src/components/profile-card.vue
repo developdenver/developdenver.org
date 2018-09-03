@@ -1,6 +1,6 @@
 <template>
     <div class="profile-card">
-		<router-link :to="{name: 'profile', params: {id: profile.id}}" :class="{disabled: !profile.id}">
+		<router-link :to="{name: 'profile', params: {id: profile.id || 0}}" :class="{disabled: !profile.id}">
             <div class="frame"></div>
 			<div class="image-wrapper">
 				<img :src="profile.properties.profilePhotoUrl" alt="Profile photo" />
