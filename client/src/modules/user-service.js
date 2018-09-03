@@ -72,7 +72,7 @@ export default {
 		setToken({ commit }, token) {
 			commit("setToken", token);
 		},
-		async setProfile({ dispatch, commit, state, profile }) {
+		async setProfile({ dispatch, commit, state }, profile) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
 			await profile.update(state.token);
 			commit("setProfile", profile.properties);
