@@ -7,7 +7,6 @@
 			</div>
             <div class="title-plate">
                 <p class="title">{{talk.properties.title}}</p>
-                <p class="type">{{talk.properties.type}}</p>
             </div>
         </router-link>
     </div>
