@@ -57,5 +57,17 @@ export default {
 			commit("updateTalks", talks);
 			dispatch("services/loading/popLoading", {}, { root: true });
 		},
+		async updateVote({ dispatch }) {
+			dispatch("services/loading/pushLoading", {}, { root: true });
+			let success = true;
+			try {
+				success = await Talk.vote();
+			} catch (error) {
+				success = false;
+			} finally {
+				dispatch("services/loading/popLoading", {}, { roote: true });
+			}
+			return success;
+		}
 	},
 };

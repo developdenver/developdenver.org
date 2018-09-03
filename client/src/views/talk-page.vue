@@ -8,6 +8,7 @@
 			v-if="isCurrentUserTalk"
 			:to="{name: 'edit-talk', params: {id: currentTalk.id}}"
 		>Edit Talk</router-link>
+		<button v-if="!isCurrentUserTalk" @click="updateVote">Upvote</button>
     </section>
 </template>
 
@@ -34,12 +35,19 @@ export default {
 			return this.$store.getters["talks/getTalkById"](Number(this.$route.params.id));
 		},
 	},
+	methods: {
+		updateVote() {
+			console.log("update vote");
+			// this.$store.dispatch('services/talks/updateVote');
+		}
+	},
 };
 </script>
 
 <style lang="scss">
 	@import "@/styles/_general.scss";
 	@import "@/styles/_sizes.scss";
+	@import "@/styles/_colors.scss";
 
     .talk-page {
         width: 100%;
@@ -53,6 +61,16 @@ export default {
 			@include call-to-action-button;
 			margin-bottom: $large;
 			align-self: center;
+		}
+		button {
+			@include call-to-action-button;
+			background-color: $tertiary-color;
+			margin-bottom: $large;
+			align-self: center;
+			width: auto;
+			 &:hover {
+        		background-color:$primary-color;
+			}
 		}
     }
 </style>

@@ -1,8 +1,8 @@
 import Model from "./model";
 
-class Talk extends Model {
-	constructor(talk) {
-		super("talk", talk);
+class Vote extends Model {
+	constructor(vote) {
+		super("vote", vote);
 	}
 	async vote() {
 		const url = this.buildUrl(this.modelName, this.id);
@@ -27,4 +27,4 @@ class Talk extends Model {
 	}
 }
 
-export default Talk;
+export default Vote;

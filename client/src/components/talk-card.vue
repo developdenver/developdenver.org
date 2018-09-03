@@ -14,15 +14,15 @@
 
 <script>
 export default {
-    data() {
-        return {
-            votedFor: false,
-        };
-    },
+	data() {
+		return {
+			votedFor: false,
+		};
+	},
 	props: {
 		talk: {
 			type: Object,
-            required: true,
+			required: true,
 		},
 	},
 };
