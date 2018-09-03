@@ -17,6 +17,10 @@ import About from "@/views/about";
 import News from "@/views/news";
 import ResetPassword from "@/views/reset-password";
 import RequestReset from "@/views/request-reset";
+import SubmitTalk from "@/views/submit-talk";
+import TalkPage from "@/views/talk-page";
+import Talks from "@/views/talks";
+import UserTalk from "@/views/user-talk";
 
 Vue.use(Router);
 
@@ -44,6 +48,28 @@ const router = new Router({
 		path: "/profiles/me",
 		name: "my-profile",
 		component: EditProfile,
+		meta: {
+			requiresAuth: true,
+		},
+	}, {
+		path: "/submit-talk",
+		name: "submit-talk",
+		component: SubmitTalk,
+		meta: {
+			requiresAuth: true,
+		},
+	},{
+		path: "/talks/:id",
+		name: "talk",
+		component: TalkPage,
+	}, {
+		path: "/talks",
+		name: "talks",
+		component: Talks,
+	}, {
+		path: "/edit-talk/:id",
+		name: "edit-talk",
+		component: UserTalk,
 		meta: {
 			requiresAuth: true,
 		},

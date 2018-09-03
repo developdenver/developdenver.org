@@ -16,7 +16,7 @@ import LoadingSpinner from "@/components/loading-spinner";
 
 export default {
 	components: {
-        AppHeader,
+		AppHeader,
 		AppFooter,
 		LoadingSpinner,
 	},

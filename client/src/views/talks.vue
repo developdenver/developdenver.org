@@ -1,25 +1,23 @@
 <template>
-	<section class="community">
-		<h2>Our Community</h2>
-		<profile-card-list :profiles="shuffledProfiles" />
+	<section class="talks">
+		<h2>Talks</h2>
+		<talk-card-list :talks="shuffledTalks" />
 	</section>
 </template>
 
 <script>
-import ProfileCardList from "@/components/profile-card-list.vue";
+import TalkCardList from "@/components/talk-card-list.vue";
 
 export default {
 	components: {
-		ProfileCardList,
+		TalkCardList,
 	},
 	created() {
-		return this.$store.dispatch("profiles/fetchProfiles");
+		this.$store.dispatch("talks/fetchTalks");
 	},
 	computed: {
-		shuffledProfiles() {
-			const profilesWithPhotos = this.$store.state.profiles.list
-				.filter(profile => profile.properties.profilePhotoUrl);
-			return this.shuffle(profilesWithPhotos);
+		shuffledTalks() {
+			return this.shuffle(this.$store.state.talks.list);
 		},
 	},
 	methods: {
@@ -47,7 +45,7 @@ export default {
 @import "@/styles/_typography.scss";
 @import "@/styles/_sizes.scss";
 
-.community {
+.talks {
 	width: 100%;
 	h2 {
 		@include tertiary-header-font;

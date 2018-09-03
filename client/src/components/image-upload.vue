@@ -5,7 +5,7 @@
         enctype="multipart/form-data"
         @submit.prevent="uploadFile"
     >
-        <label for="profile-photo-upload">Profile Photo</label>
+        <label for="profile-photo-upload">{{title}}</label>
         <slot />
         <input
             ref="imageUpload"
@@ -37,6 +37,7 @@ export default {
 	},
 	props: {
 		uploadUrl: String,
+		title: String,
 	},
 	methods: {
 		async uploadFile(event) {

@@ -1,13 +1,13 @@
 <template>
-    <div class="profile-card">
-		<router-link :to="{name: 'profile', params: {id: profile.id || 0}}" :class="{disabled: !profile.id}">
+    <div class="talk-card">
+		<router-link :to="{name: 'talk', params: {id: talk.id}}" :class="{disabled: !talk.id}">
             <div class="frame"></div>
 			<div class="image-wrapper">
-				<img :src="profile.properties.profilePhotoUrl" alt="Profile photo" />
+				<img :src="talk.properties.talkPhotoUrl" alt="Talk photo" />
 			</div>
-            <div class="name-plate">
-                <p class="name">{{profile.properties.firstName}} {{profile.properties.lastName}}</p>
-                <p v-if="profile.properties.position && profile.properties.employer" class="job">{{profile.properties.position}} at {{profile.properties.employer}}</p>
+            <div class="title-plate">
+                <p class="title">{{talk.properties.title}}</p>
+                <p class="type">{{talk.properties.type}}</p>
             </div>
         </router-link>
     </div>
@@ -16,7 +16,7 @@
 <script>
 export default {
 	props: {
-		profile: {
+		talk: {
 			type: Object,
 			required: true,
 		},
@@ -29,7 +29,7 @@ export default {
     @import "@/styles/_colors.scss";
     @import "@/styles/_typography.scss";
 
-    .profile-card {
+    .talk-card {
         position: relative;
         width: 100%;
         height: 400px;
@@ -40,7 +40,7 @@ export default {
             .frame {
                 border: 10px solid $primary-color;
             }
-            .name-plate {
+            .title-plate {
                 transform: translateY(0);
                 opacity: 1;
             }
@@ -55,12 +55,11 @@ export default {
 			position: relative;
 			img {
 				width: 100%;
-				position: absolute;
 				z-index: -10;
 				transition: transform 3s cubic-bezier(0, 1, 1, 1);
 			}
 		}
-        .name-plate {
+        .title-plate {
             position: absolute;
             bottom: 0;
             height: 40%;
@@ -71,11 +70,11 @@ export default {
             background-color: transparentize($dark-grey, 0.1);
             color: $white;
             padding: $large;
-            .name {
+            .title {
                 @include bold-body-font;
                 margin-bottom: 0;
             }
-            .job {
+            .type {
                 @include body-font;
             }
         }

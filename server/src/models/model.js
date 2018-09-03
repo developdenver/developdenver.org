@@ -27,9 +27,6 @@ class Model {
             .first();
     }
     add(item, isAdmin){
-        const secretKey = crypto.randomBytes(48, (error, buffer) => {
-            return buffer.toString("hex");
-        });
         return database(this.modelName)
             .returning(this.propertyList(isAdmin))
             .insert(item).then(items => items[0]);

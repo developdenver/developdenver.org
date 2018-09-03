@@ -24,11 +24,11 @@ export default {
 				label: "$235 - Regular",
 				description: "2-Day conference pass including personalized conference badge, access to keynote speakers, talks, workshops and food and beverage at five amazing venues in the Denver RiNo district.",
 			*/
-			},{
+			}, {
 				value: "employer",
 				label: "$375 - Employer",
 				description: "For those of you coming on your employer’s dime. Your ticket helps make Develop Denver affordable to all attendees, including sponsoring student tickets and sponsoring meals during the conference.",
-			},{
+			}, {
 				value: "premium",
 				label: "$500 - Individual Sponsor",
 				description: "Play an important role in supporting the Denver tech community without breaking the bank. Your sponsorship ensures we can continue to provide a local community-driven conference. In addition to special sponsorship badge your name will appear as a sponsor on the Develop Denver website.",

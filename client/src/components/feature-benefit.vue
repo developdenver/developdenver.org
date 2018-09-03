@@ -3,7 +3,7 @@
         <img :src="image.url" :alt="image.altText" />
         <div class="benefit">
 			<!-- <h2>{{heading}}</h2> -->
-			<h2><img src="../assets/logos/celebration.svg" alt="A Celebration." class="celebration-svg" /></h2>
+			<img src="../assets/logos/celebration.svg" alt="A Celebration." class="celebration-svg" />
             <div v-html="parsedCopy"></div>
             <slot />
         </div>
@@ -42,6 +42,7 @@ $clip-amount: 80px;
     align-items: center;
     margin-top: $clip-amount * -1;
     margin-bottom: calc($clip-amount * -1) + $large;
+	padding: $large $xxl;
     img {
         clip-path: inset($clip-amount 0);
     }
@@ -49,22 +50,27 @@ $clip-amount: 80px;
         background-color: $pure-white;
         padding: $large;
         z-index: 10;
-        h2 {
-            @include section-header-font;
-        }
+		> div {
+			display: flex;
+			align-items: center;
+			flex-flow: column nowrap
+		}
         p {
             @include stylized-body-font;
         }
 		.celebration-svg {
+			height: $large;
 			max-width: 100%;
 			padding: 0;
-      clip-path: none;
+			clip-path: none;
+			margin-bottom: $baseline;
 		}
     }
     @media (max-width: $large-breakpoint){
         & {
             margin-top: 0;
             margin-bottom: $large;
+			padding: 0;
             img {
                 display: block;
                 width: 100%;

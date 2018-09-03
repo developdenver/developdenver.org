@@ -1,23 +1,23 @@
 <template>
-    <ul class="profile-card-list">
+    <ul class="talk-card-list">
         <li
-			v-for="(profile, index) in profiles"
+			v-for="(talk, index) in talks"
 			:key="index"
 		>
-            <profile-card :profile="profile" />
+            <talk-card :talk="talk" />
         </li>
     </ul>
 </template>
 
 <script>
-import ProfileCard from "@/components/profile-card.vue";
+import TalkCard from "@/components/talk-card.vue";
 
 export default {
 	components: {
-		ProfileCard,
+		TalkCard,
 	},
 	props: {
-		profiles: Array,
+		talks: Array,
 	},
 };
 </script>
@@ -25,7 +25,7 @@ export default {
 <style lang="scss">
     @import "@/styles/_typography.scss";
 
-    .profile-card-list {
+    .talk-card-list {
         display: flex;
         flex-flow: row wrap;
         li {

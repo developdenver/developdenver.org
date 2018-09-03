@@ -11,7 +11,6 @@
 
 <script>
 import SetPassword from "../components/set-password";
-import { hashPassword } from "../utilities/auth";
 
 export default {
 	data() {

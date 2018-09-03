@@ -26,7 +26,7 @@ body {
 @mixin secondary-header-font {
     font-weight: 700;
     font-size: $xxl;
-    letter-spacing: $small;
+    letter-spacing: 1px;
     line-height: $xxl;
     text-transform: uppercase;
     @media (max-width: $large-breakpoint){
@@ -38,7 +38,7 @@ body {
 @mixin tertiary-header-font {
     font-weight: 700;
     font-size: $baseline;
-    letter-spacing: $small;
+    letter-spacing: 1px;
     line-height: $large;
     text-transform: uppercase;
 }
@@ -81,7 +81,7 @@ body {
 
 @mixin stylized-body-font {
     @include body-font;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     @media (max-width: $large-breakpoint){
         letter-spacing: 0;
     }

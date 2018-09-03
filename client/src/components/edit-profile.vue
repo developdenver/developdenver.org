@@ -36,6 +36,7 @@
         <fieldset class="optional">
             <h3>Optional (but encouraged)</h3>
             <image-upload
+                title="Profile Photo"
                 :uploadUrl="imageUploadUrl"
                 @imageUrl="setImageUrl"
             >
@@ -56,8 +57,16 @@
 				placeholder="Developer"
 				v-model.trim="profile.properties.position"
 			/>
-            <label for="employer">Employer</label>
+			<label class="self-employed" for="isSelfEmployed">Are you self-employed?</label>
+			<input
+				class="self-employed"
+				type="checkbox"
+				id="isSelfEmployed"
+				v-model="profile.properties.isSelfEmployed"
+			/>
+            <label v-if="!profile.properties.isSelfEmployed" for="employer">Employer</label>
             <input
+				v-if="!profile.properties.isSelfEmployed"
 				type="text"
 				id="employer"
 				placeholder="Develop Denver"
@@ -130,7 +139,7 @@ export default {
 	},
 	methods: {
 		async updateProfile() {
-			if (this.password){
+			if (this.password) {
 				this.profile.properties.password = this.password;
 			}
 			return this.$emit("updateProfile", this.profile);
@@ -183,12 +192,20 @@ export default {
         img {
             width: 100%;
         }
+		label.self-employed, input.self-employed {
+			display: inline;
+			width: auto;
+			margin-bottom: $large;
+		}
+		input.self-employed {
+			margin-left: $baseline;
+		}
     }
     button {
         @include call-to-action-button;
 		&[disabled] {
 			background-color: $medium-light-grey;
 		}
-    }
+  }
 }
 </style>
