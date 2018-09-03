@@ -1,7 +1,7 @@
 <template>
     <div class="talk-card">
 		<router-link :to="{name: 'talk', params: {id: talk.id}}" :class="{disabled: !talk.id}">
-            <div class="frame"></div>
+            <div class="frame" :class="{ 'voted-for-frame': votedFor }"></div>
 			<div class="image-wrapper">
 				<img :src="talk.properties.talkPhotoUrl" alt="Talk photo" />
 			</div>
@@ -14,10 +14,15 @@
 
 <script>
 export default {
+    data() {
+        return {
+            votedFor: false,
+        };
+    },
 	props: {
 		talk: {
 			type: Object,
-			required: true,
+            required: true,
 		},
 	},
 };
@@ -84,6 +89,9 @@ export default {
             transition: border 0.3s cubic-bezier(0.666, 0, 0.333, 1);
             z-index: 10;
             border: 0 solid $primary-color;
+        }
+        .voted-for-frame {
+            border: solid $tertiary-color;
         }
     }
 </style>
