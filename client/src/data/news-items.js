@@ -7,7 +7,7 @@ Hello!
 
 We are excited to announce the call for speakers is out and [ready for submissions](https://developdenver.org/submit-talk)! If you or someone you know has a stellar talk, panel or a lightning talk we are accepting everything so submit your talk today.
 
-We'll only keep this open until midnight on September 15th, and the community will start voting on the talks they want to see soon, so get your idea out there!
+We'll only keep this open until midnight on September 22nd, and the community will start voting on the talks they want to see soon, so get your idea out there!
 	`,
 }, {
 	title: "Call for speakers is coming soon!",
