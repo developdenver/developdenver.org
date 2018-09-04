@@ -18,23 +18,24 @@ class Talk extends Model {
 	constructor(talk) {
 		super("talk", talk);
 	}
-	async vote() {
+	async vote(token) {
 		const url = this.buildUrl(this.modelName, this.id);
 		const data = await fetch(`${url}/vote`, {
 			method: "POST",
 			headers: {
-				"Accept": "application/json",
-				"Content-Type": "application/json",
+				"Authorization": token ? `Bearer ${token}` : undefined
 			},
-			body: this.serialize(),
 		}).then(response => response.json())
 			.catch(error => console.error(error.message));
 		return data;
 	}
-	async unvote() {
+	async unvote(token) {
 		const url = this.buildUrl(this.modelName, this.id);
 		const data = await fetch(`${url}/unvote`, {
-			method: "DELETE",
+			method: "POST",
+			headers: {
+				"Authorization": token ? `Bearer ${token}` : undefined
+			},
 		}).then(response => response.json())
 			.catch(error => console.error(error.message));
 		return data;

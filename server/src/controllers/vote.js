@@ -1,7 +1,7 @@
 const Vote = require("../models/vote");
 
 function vote(request, response, next) {
-    Vote.add(Number(request.body.id), Number(request.body.user_id))
+    Vote.add(request.params.id, request.user.id)
         .then(vote => {
             response.status(201).json({
                 data: vote,

@@ -9,7 +9,7 @@ class Vote extends Model {
         // all things a user has voted on.
     }
     // add methods using knex that actuall add things the way we want according to our routes.
-    add(userId, talkId) {
+    add(talkId, userId) {
         const item = {
             talk_id: talkId,
             user_id: userId,
@@ -23,7 +23,7 @@ class Vote extends Model {
             });
     }
 
-    remove(userId, talkId) {
+    remove(talkId, userId) {
         // do the thing.
     }
 }

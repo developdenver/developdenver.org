@@ -10,9 +10,9 @@ const {
 module.exports = (app) => {
   router.get("/", list);
   router.get("/:title", read);
-  router.post("/:id/vote", VoteController.vote)
-  router.post("/:id/unvote", VoteController.unvote)
   router.use(passport.authenticate("jwt", { session: false }));
+  router.post("/:id/vote", VoteController.vote);
+  router.post("/:id/unvote", VoteController.unvote);
   router.post("/", create);
   router.put("/:id", update);
   router.delete("/:id", destroy);

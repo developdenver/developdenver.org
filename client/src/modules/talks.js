@@ -68,11 +68,11 @@ export default {
 			const match = talks.some(talk => talk.id === currentTalk.id);
 			dispatch("services/loading/popLoading", {}, { root: true });
 		},
-		async vote({ dispatch }, currentTalk) {
+		async vote({ dispatch, rootState }, currentTalk) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
 			let success = true;
 			try {
-				success = await currentTalk.vote();
+				success = await currentTalk.vote(rootState.services.user.token);
 			} catch (error) {
 				success = false;
 			} finally {
@@ -80,11 +80,11 @@ export default {
 			}
 			return success;
 		},
-		async unvote({ dispatch }, currentTalk) {
+		async unvote({ dispatch, rootState }, currentTalk) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
 			let success = true;
 			try {
-				success = await currentTalk.unvote();
+				success = await currentTalk.unvote(rootState.services.user.token);
 			} catch (error) {
 				success = false;
 			} finally {
