@@ -5,6 +5,7 @@ import VuexPersistence from "vuex-persist";
 import services from "./modules/services";
 import talks from "./modules/talks";
 import profiles from "./modules/profiles";
+import votes from "./modules/votes";
 
 Vue.use(Vuex);
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
 		services,
 		talks,
 		profiles,
+		votes,
 	},
 	state: {
 		version: "",

@@ -4,6 +4,7 @@ export default {
 	namespaced: true,
 	state: {
 		list: [],
+		votedOnTalks: [],
 	},
 	getters: {
 		getTalksByUserId: (state) => (userId) => {
@@ -24,6 +25,9 @@ export default {
 		updateTalks(state, talks) {
 			state.list = talks;
 		},
+		setVotedOnTalks(state, talks) {
+			state.votedOnTalks = talks;
+		}
 	},
 	actions: {
 		async createTalk({ dispatch, commit, rootState }, talk) {
@@ -57,15 +61,33 @@ export default {
 			commit("updateTalks", talks);
 			dispatch("services/loading/popLoading", {}, { root: true });
 		},
-		async updateVote({ dispatch }) {
+		async fetchVotedOnTalks({ commit, dispatch }) {
+			dispatch("services/loading/pushLoading", {}, { root: true });
+			let talks = await Talk.fetchAllVoted();
+			commit("setVotedOnTalks", talks);
+			dispatch("services/loading/popLoading", {}, { root: true });
+		},
+		async vote({ dispatch }, currentTalk) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
 			let success = true;
 			try {
-				success = await Talk.vote();
+				success = await currentTalk.vote();
 			} catch (error) {
 				success = false;
 			} finally {
-				dispatch("services/loading/popLoading", {}, { roote: true });
+				dispatch("services/loading/popLoading", {}, { root: true });
+			}
+			return success;
+		},
+		async unvote({ dispatch }, currentTalk) {
+			dispatch("services/loading/pushLoading", {}, { root: true });
+			let success = true;
+			try {
+				success = await currentTalk.unvote();
+			} catch (error) {
+				success = false;
+			} finally {
+				dispatch("services/loading/popLoading", {}, { root: true });
 			}
 			return success;
 		}

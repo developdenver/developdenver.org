@@ -37,8 +37,7 @@ export default {
 	},
 	methods: {
 		updateVote() {
-			console.log("update vote");
-			// this.$store.dispatch('services/talks/updateVote');
+			this.$store.dispatch('talks/vote', this.currentTalk);
 		}
 	},
 };
