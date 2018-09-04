@@ -1,7 +1,7 @@
 const Vote = require("../models/vote");
 
 function vote(request, response, next) {
-    Vote.add(request.body, true)
+    Vote.add(Number(request.body.id), Number(request.body.user_id))
         .then(vote => {
             response.status(201).json({
                 data: vote,
@@ -10,13 +10,14 @@ function vote(request, response, next) {
 }
 
 function unvote(request, response, next) {
-    Talk.remove(request.params.id)
+    console.log(request)
+    Talk.remove(request)
         .then(() => {
             response.status(204).send();
         }).catch(error => next(error));
 }
 
 module.exports = {
-    add,
-    destroy,
+    vote,
+    unvote,
 };

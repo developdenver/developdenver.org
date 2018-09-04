@@ -10,7 +10,17 @@ class Vote extends Model {
     }
     // add methods using knex that actuall add things the way we want according to our routes.
     add(userId, talkId) {
-        // do the thing
+        const item = {
+            talk_id: talkId,
+            user_id: userId,
+        };
+        return this.database(this.modelName)
+            // .returning('*')
+            .insert(item)
+            .then(items => items[0])
+            .catch(error => {
+                throw new Error(error.message);
+            });
     }
 
     remove(userId, talkId) {
