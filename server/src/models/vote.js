@@ -4,15 +4,23 @@ class Vote extends Model {
     constructor() {
         super("vote");
     }
+     
+    exists(talk_id, user_id) {
+        return this.database(this.modelName)
+            .where({ talk_id, user_id })
+            .first()
+            .then(vote => vote ? true : false);
+    }
+
     list(userId) {
         // return database(this.modelName).dildo (where dildo == somethingFromTheKnexDocs)
         // all things a user has voted on.
     }
     // add methods using knex that actuall add things the way we want according to our routes.
-    add(talkId, userId) {
+    add(talk_id, user_id) {
         const item = {
-            talk_id: talkId,
-            user_id: userId,
+            talk_id,
+            user_id,
         };
         return this.database(this.modelName)
             // .returning('*')
