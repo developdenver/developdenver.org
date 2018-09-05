@@ -36,7 +36,8 @@ class Vote extends Model {
             user_id,
         };
         return this.database(this.modelName)
-            .del(item)
+            .where(item)
+            .del()
             .catch(error => {
                 throw new Error(error.message);
             });

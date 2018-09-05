@@ -1,7 +1,7 @@
 <template>
     <div class="talk-card">
 		<router-link :to="{name: 'talk', params: {id: talk.id}}" :class="{disabled: !talk.id}">
-            <div class="frame" :class="{ 'voted-for-frame': votedFor }"></div>
+            <div class="frame" :class="{ 'voted-for-frame': voted }"></div>
 			<div class="image-wrapper">
 				<img :src="talk.properties.talkPhotoUrl" alt="Talk photo" />
 			</div>
@@ -14,17 +14,17 @@
 
 <script>
 export default {
-	data() {
-		return {
-			votedFor: false,
-		};
-	},
 	props: {
 		talk: {
 			type: Object,
 			required: true,
 		},
 	},
+	computed: {
+		voted() {
+			return this.$store.getters["talks/votedTalksById"][this.talk.id];
+		}
+	}
 };
 </script>
 

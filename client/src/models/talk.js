@@ -1,19 +1,5 @@
 import Model from "./model";
-import { deserialize } from "./deserializer";
 const apiUrl = process.env.VUE_APP_API_URL;
-
-const fetchJSON = url => fetch(url).then(responseJSONError);
-
-const responseJSONError = response => response
-	.clone()
-	.json()
-	.catch(() => response.text())
-	.then(result => {
-		if (response.ok) {
-			return result;
-		}
-		throw new Error(result.error || result);
-	});
 
 class Talk extends Model {
 	constructor(talk) {

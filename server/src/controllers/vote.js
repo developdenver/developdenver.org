@@ -30,9 +30,11 @@ async function vote(request, response, next) {
 function unvote(request, response, next) {
     const talk_id = request.params.id;
     const user_id = request.user.id;
-    Talk.remove(talk_id, user_id)
+    Vote.remove(talk_id, user_id)
         .then(() => {
-            response.status(202).send();
+            response.status(202).json({
+                message: 'Success',
+            })
         }).catch(error => next(error));
 }
 

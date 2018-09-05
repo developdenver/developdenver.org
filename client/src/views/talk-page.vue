@@ -7,8 +7,15 @@
 			class="edit-talk-link"
 			v-if="isCurrentUserTalk"
 			:to="{name: 'edit-talk', params: {id: currentTalk.id}}"
-		>Edit Talk</router-link>
-		<button v-if="!isCurrentUserTalk && isAttendee" @click="updateVote">{{voteType}}</button>
+		>Edit Talk
+		</router-link>
+		<button
+			:class="{voted: voteType === 'Unvote'}"
+			:disabled="isLoading"
+			v-if="!isCurrentUserTalk && isAttendee"
+			@click="updateVote"
+			>{{voteType}}
+		</button>
     </section>
 </template>
 
@@ -19,22 +26,19 @@ export default {
 	components: {
 		TalkInfo,
 	},
-	data() {
-		return {
-			voteType: "Vote",
-		}
-	},
 	mounted() {
 		this.$store.dispatch("talks/fetchTalks");
 	},
 	computed: {
+		isLoading() {
+			return this.$store.getters["services/loading/isLoading"];
+		},
 		voteType() {
-			if (this.$store.getters["talks/hasVotedOnThisTalk"](Number(this.$route.params.id))) {
-				// change button color? 
-				this.voteType = "Unvote";
+			if (this.$store.getters["talks/votedTalksById"][this.$route.params.id]) {
+				return "Unvote";
 			} else {
-				this.voteType = "Vote";
-			}	
+				return "Vote";
+			}
 		},
 		currentUser() {
 			return this.$store.getters["services/user/currentProfile"];
@@ -52,12 +56,13 @@ export default {
 		},
 	},
 	methods: {
-		updateVote() {
+		async updateVote() {
 			if (this.voteType === "Vote") {
-				this.$store.dispatch('talks/vote', this.currentTalk);
+				await this.$store.dispatch("talks/vote", this.currentTalk);
 			} else {
-				this.$store.dispatch('talks/unvote', this.currentTalk);
+				await this.$store.dispatch("talks/unvote", this.currentTalk);
 			}
+			await this.$store.dispatch("talks/fetchAllVotes");
 		}
 	},
 };
@@ -87,9 +92,13 @@ export default {
 			margin-bottom: $large;
 			align-self: center;
 			width: auto;
-			 &:hover {
-        		background-color:$primary-color;
+			&:hover {
+				background-color:$primary-color;
 			}
 		}
+		.voted {
+			background-color: $secondary-color;
+		}
+
     }
 </style>
