@@ -29,21 +29,12 @@
             </div>
 			<div class="ticket-details">
 				<p>All tickets include conference badge, attendance to keynote speakers, talks, and workshops. Your ticket also included coffee, breakfast, lunch at Zeppelin Station, afternoon open bar, opening and closing party drinks, and closing party taco bar!</p>
-				<p>Looking to purchase a group of tickets? Our apologies, our setup requires each user to register and purchase tickets individually. Please contact us at hello@developdenver.org if you need help purchasing multiple tickets.</p>
+				<p>Looking to purchase a group of tickets? Our apologies, our setup requires each user to register and purchase tickets individually. Please contact us at <a href="mailto:hello@developdenver.org">hello@developdenver.org</a> if you need help purchasing multiple tickets.</p>
 				<router-link class="button" :to="{name: 'tickets'}">Buy Tickets</router-link>
 			</div>
         </section>
 		<call-for-talks />
         <sponsor-list />
-        <section class="about">
-            <div class="details">
-				<h2><img class="board-svg" src="../assets/logos/meet_the_board.svg" alt="Meet the board" /></h2>
-				<div class="description-wrapper">
-					<p>Behind the scenes is a group of friends who are passionate about building community and bringing people together. Our mission is to create something that empowers the makers and doers of the community.</p>
-				</div>
-            </div>
-            <profile-card-list :profiles="boardProfiles" />
-        </section>
     </div>
 </template>
 

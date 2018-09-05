@@ -92,6 +92,6 @@ export default [{
 		lastName: "Dahlman",
 		position: "",
 		employer: "",
-		profilePhotoUrl: "https://pbs.twimg.com/profile_images/517479446514003968/IS8Cedcj_400x400.jpeg",
+		profilePhotoUrl: "https://pbs.twimg.com/profile_images/865662594459324416/pdAbSAoi_400x400.jpg",
 	},
 }];
