@@ -45,7 +45,7 @@ class Talk extends Model {
 		const url = `${apiUrl}/votes`;
 		const data = await fetch(url, {
 			method: "GET",
-			header: {
+			headers: {
 				"Authorization": token ? `Bearer ${token}` : undefined
 			},
 		}).then(response => response.json())

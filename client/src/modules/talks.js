@@ -20,6 +20,12 @@ export default {
 				},
 			};
 		},
+		hasVotedOnThisTalk: (state) => (talkId) => {
+			const match = state.votedOnTalks.filter(talk => {
+				return talk.talk_id === talkId;
+			});
+			return (match.length > 0);
+		},
 	},
 	mutations: {
 		updateTalks(state, talks) {
@@ -64,8 +70,7 @@ export default {
 		async fetchAllVotes({ commit, dispatch, rootState }) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
 			let talks = await Talk.fetchVotes(rootState.services.user.token);
-			commit("setVotedOnTalks", talks);
-			// const match = talks.some(talk => talk.id === Talk.id);
+			commit("setVotedOnTalks", talks.data);
 			dispatch("services/loading/popLoading", {}, { root: true });
 		},
 		async vote({ dispatch, rootState }, currentTalk) {

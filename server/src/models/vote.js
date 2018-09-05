@@ -13,10 +13,8 @@ class Vote extends Model {
     }
 
     list(user_id) {
-        // return database(this.modelName).dildo (where dildo == somethingFromTheKnexDocs)
-        // all things a user has voted on.
-        console.log(this.database(this.modelName))
-            
+        return this.database(this.modelName)
+            .where({ user_id });            
     }
 
     add(talk_id, user_id) {

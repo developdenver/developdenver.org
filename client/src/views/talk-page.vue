@@ -8,7 +8,7 @@
 			v-if="isCurrentUserTalk"
 			:to="{name: 'edit-talk', params: {id: currentTalk.id}}"
 		>Edit Talk</router-link>
-		<button v-if="!isCurrentUserTalk" @click="updateVote">Upvote</button>
+		<button v-if="!isCurrentUserTalk && isAttendee" @click="updateVote">{{voteType}}</button>
     </section>
 </template>
 
@@ -23,8 +23,19 @@ export default {
 		this.$store.dispatch("talks/fetchTalks");
 	},
 	computed: {
+		voteType() {
+			if (this.$store.getters["talks/hasVotedOnThisTalk"](Number(this.$route.params.id))) {
+				// change button color? 
+				return "Unvote";
+			} else {
+				return "Vote";
+			}	
+		},
 		currentUser() {
 			return this.$store.getters["services/user/currentProfile"];
+		},
+		isAttendee() {
+			return this.$store.getters["services/user/isAttendee"];
 		},
 		isCurrentUserTalk() {
 			return this.currentUser
