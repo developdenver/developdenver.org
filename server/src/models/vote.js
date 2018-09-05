@@ -12,18 +12,19 @@ class Vote extends Model {
             .then(vote => vote ? true : false);
     }
 
-    list(userId) {
+    list(user_id) {
         // return database(this.modelName).dildo (where dildo == somethingFromTheKnexDocs)
         // all things a user has voted on.
+        console.log(this.database(this.modelName))
+            
     }
-    // add methods using knex that actuall add things the way we want according to our routes.
+
     add(talk_id, user_id) {
         const item = {
             talk_id,
             user_id,
         };
         return this.database(this.modelName)
-            // .returning('*')
             .insert(item)
             .then(items => items[0])
             .catch(error => {
@@ -31,8 +32,16 @@ class Vote extends Model {
             });
     }
 
-    remove(talkId, userId) {
-        // do the thing.
+    remove(talk_id, user_id) {
+        const item = {
+            talk_id,
+            user_id,
+        };
+        return this.database(this.modelName)
+            .del(item)
+            .catch(error => {
+                throw new Error(error.message);
+            });
     }
 }
 

@@ -61,11 +61,11 @@ export default {
 			commit("updateTalks", talks);
 			dispatch("services/loading/popLoading", {}, { root: true });
 		},
-		async fetchVotedOnTalks({ commit, dispatch }, currentTalk) {
+		async fetchAllVotes({ commit, dispatch, rootState }) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
-			let talks = await Talk.fetchAllVoted();
+			let talks = await Talk.fetchVotes(rootState.services.user.token);
 			commit("setVotedOnTalks", talks);
-			const match = talks.some(talk => talk.id === currentTalk.id);
+			// const match = talks.some(talk => talk.id === Talk.id);
 			dispatch("services/loading/popLoading", {}, { root: true });
 		},
 		async vote({ dispatch, rootState }, currentTalk) {
