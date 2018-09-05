@@ -19,6 +19,11 @@ export default {
 	components: {
 		TalkInfo,
 	},
+	data() {
+		return {
+			voteType: "Vote",
+		}
+	},
 	mounted() {
 		this.$store.dispatch("talks/fetchTalks");
 	},
@@ -26,9 +31,9 @@ export default {
 		voteType() {
 			if (this.$store.getters["talks/hasVotedOnThisTalk"](Number(this.$route.params.id))) {
 				// change button color? 
-				return "Unvote";
+				this.voteType = "Unvote";
 			} else {
-				return "Vote";
+				this.voteType = "Vote";
 			}	
 		},
 		currentUser() {
@@ -48,7 +53,11 @@ export default {
 	},
 	methods: {
 		updateVote() {
-			this.$store.dispatch('talks/vote', this.currentTalk);
+			if (this.voteType === "Vote") {
+				this.$store.dispatch('talks/vote', this.currentTalk);
+			} else {
+				this.$store.dispatch('talks/unvote', this.currentTalk);
+			}
 		}
 	},
 };
