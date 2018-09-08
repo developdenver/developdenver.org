@@ -53,7 +53,7 @@ export default {
 			z-index: -10;
 			width: 100%;
 			height: 100%;
-			background-size: 100%;
+			background-size: cover;
 			transition: transform 3s cubic-bezier(0, 1, 1, 1);
 		}
         .title-plate {
