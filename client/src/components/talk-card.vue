@@ -2,9 +2,7 @@
     <div class="talk-card">
 		<router-link :to="{name: 'talk', params: {id: talk.id}}" :class="{disabled: !talk.id}">
             <div class="frame"></div>
-			<div class="image-wrapper">
-				<img :src="talk.properties.talkPhotoUrl" alt="Talk photo" />
-			</div>
+			<div class="image-wrapper" :style="{backgroundImage: `url(${talk.properties.talkPhotoUrl})`}"></div>
             <div class="title-plate">
                 <p class="title">{{talk.properties.title}}</p>
             </div>
@@ -43,7 +41,7 @@ export default {
                 transform: translateY(0);
                 opacity: 1;
             }
-			img {
+			.image-wrapper {
 				transform: scale(1.2);
 			}
         }
@@ -52,11 +50,11 @@ export default {
 		}
 		.image-wrapper {
 			position: relative;
-			img {
-				width: 100%;
-				z-index: -10;
-				transition: transform 3s cubic-bezier(0, 1, 1, 1);
-			}
+			z-index: -10;
+			width: 100%;
+			height: 100%;
+			background-size: 100%;
+			transition: transform 3s cubic-bezier(0, 1, 1, 1);
 		}
         .title-plate {
             position: absolute;
