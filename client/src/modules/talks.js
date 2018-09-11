@@ -25,7 +25,7 @@ export default {
 				byId[vote.talk_id] = true;
 				return byId;
 			}, {});
-		}
+		},
 	},
 	mutations: {
 		updateTalks(state, talks) {
@@ -60,12 +60,14 @@ export default {
 			}
 			return success;
 		},
-		async fetchTalks({ commit, dispatch }) {
-			dispatch("services/loading/pushLoading", {}, { root: true });
-			let talks = await Talk.fetchAll("talk");
-			talks = talks.map(talk => new Talk(talk));
-			commit("updateTalks", talks);
-			dispatch("services/loading/popLoading", {}, { root: true });
+		async fetchTalks({ state, commit, dispatch }) {
+			if (!state.list.length) {
+				dispatch("services/loading/pushLoading", {}, { root: true });
+				let talks = await Talk.fetchAll("talk");
+				talks = talks.map(talk => new Talk(talk));
+				commit("updateTalks", shuffle(talks));
+				dispatch("services/loading/popLoading", {}, { root: true });
+			}
 		},
 		async fetchAllVotes({ commit, dispatch, rootState }) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
@@ -96,6 +98,23 @@ export default {
 				dispatch("services/loading/popLoading", {}, { root: true });
 			}
 			return success;
-		}
+		},
 	},
 };
+
+function shuffle(array) {
+	let currentIndex = array.length;
+	let temporaryValue;
+	let randomIndex;
+
+	while (currentIndex !== 0) {
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
+
+	return array;
+}
