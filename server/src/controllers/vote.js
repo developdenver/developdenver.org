@@ -1,7 +1,6 @@
 const Vote = require("../models/vote");
 
 function getVotes(request, response, next) {
-    console.log('user', request.user)
     Vote.list(request.user.id)
         .then(votes => {
             response.status(200).json({
