@@ -47,7 +47,7 @@ export default {
 	h2 {
 		display: none;
 	}
-	li {
+	> ul > li {
 		margin-bottom: $xxl;
 	}
 }

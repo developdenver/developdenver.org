@@ -58,5 +58,18 @@ export default {
 			}
 		}
 	}
+	main {
+		h4 {
+			@include fieldset-header-font;
+		}
+		ul {
+			list-style-type: circle;
+			margin-bottom: $baseline;
+			li {
+				@include body-font;
+				margin-left: $large;
+			}
+		}
+	}
 }
 </style>
