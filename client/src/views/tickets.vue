@@ -15,15 +15,9 @@ export default {
 	data() {
 		return {
 			levels: [{
-				value: "early-bird",
-				label: "$135 - Early Bird (limited to the first 100)",
-				description: "Be the first to buy a ticket and get a special discount off the regular price of $235! 2-Day conference pass including personalized conference badge, access to keynote speakers, talks, workshops and food and beverage at five amazing venues in the Denver RiNo district.",
-			/*
-			},{
 				value: "regular",
 				label: "$235 - Regular",
 				description: "2-Day conference pass including personalized conference badge, access to keynote speakers, talks, workshops and food and beverage at five amazing venues in the Denver RiNo district.",
-			*/
 			}, {
 				value: "employer",
 				label: "$375 - Employer",
