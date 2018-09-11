@@ -15,7 +15,7 @@ Our [Call for Speakers](https://developdenver.org/submit-talk) is open until Sep
 
 #### Sponsors
 
-We still have sponsorship positions available at a variety of levels. We’re offering a lot of new things for sponsors this year that we hope will be valuable for everyone, [so get in touch with us](mailto:hello@developdenver.org) if you’re interested in getting involved!
+We still have sponsorship positions available at a variety of levels. We’re offering a lot of new things for sponsors this year that we hope will be valuable for everyone, so [get in touch with us](mailto:hello@developdenver.org) if you’re interested in getting involved!
 
 #### Volunteering
 
