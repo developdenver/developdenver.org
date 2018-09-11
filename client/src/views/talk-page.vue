@@ -7,7 +7,15 @@
 			class="edit-talk-link"
 			v-if="isCurrentUserTalk"
 			:to="{name: 'edit-talk', params: {id: currentTalk.id}}"
-		>Edit Talk</router-link>
+		>Edit Talk
+		</router-link>
+		<button
+			:class="{voted: voteType === 'Unvote'}"
+			:disabled="isLoading"
+			v-if="!isCurrentUserTalk && isAttendee"
+			@click="updateVote"
+			>{{voteType}}
+		</button>
     </section>
 </template>
 
@@ -22,8 +30,21 @@ export default {
 		this.$store.dispatch("talks/fetchTalks");
 	},
 	computed: {
+		isLoading() {
+			return this.$store.getters["services/loading/isLoading"];
+		},
+		voteType() {
+			if (this.$store.getters["talks/votedTalksById"][this.$route.params.id]) {
+				return "Unvote";
+			} else {
+				return "Vote";
+			}
+		},
 		currentUser() {
 			return this.$store.getters["services/user/currentProfile"];
+		},
+		isAttendee() {
+			return this.$store.getters["services/user/isAttendee"];
 		},
 		isCurrentUserTalk() {
 			return this.currentUser
@@ -34,12 +55,23 @@ export default {
 			return this.$store.getters["talks/getTalkById"](Number(this.$route.params.id));
 		},
 	},
+	methods: {
+		async updateVote() {
+			if (this.voteType === "Vote") {
+				await this.$store.dispatch("talks/vote", this.currentTalk);
+			} else {
+				await this.$store.dispatch("talks/unvote", this.currentTalk);
+			}
+			await this.$store.dispatch("talks/fetchAllVotes");
+		}
+	},
 };
 </script>
 
 <style lang="scss">
 	@import "@/styles/_general.scss";
 	@import "@/styles/_sizes.scss";
+	@import "@/styles/_colors.scss";
 
     .talk-page {
         width: 100%;
@@ -54,5 +86,19 @@ export default {
 			margin-bottom: $large;
 			align-self: center;
 		}
+		button {
+			@include call-to-action-button;
+			background-color: $tertiary-color;
+			margin-bottom: $large;
+			align-self: center;
+			width: auto;
+			&:hover {
+				background-color:$primary-color;
+			}
+		}
+		.voted {
+			background-color: $secondary-color;
+		}
+
     }
 </style>
