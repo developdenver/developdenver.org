@@ -3,7 +3,7 @@ export default [{
 	author: "DVLP Board",
 	date: "9/11/18",
 	content: `
-Voting has started, be a part of shaping the content for Develop Denver 2018! Voting on talks and panels will end on September 22nd. Buy your ticket and check out the talks to start casting your votes! Here’s a small sample of the talks you have an opportunity to vote for:
+Voting has started, be a part of shaping the content for Develop Denver 2018! Voting on talks and panels will end on September 22nd. [Buy your ticket](https://developdenver.org/tickets) and [check out the talks](https://developdenver.org/talks) to start casting your votes! Here’s a small sample of the talks you have an opportunity to vote for:
 
 * Rapid Prototyping with JavaScript and AWS
 * Lean Learning: Applied UX Research
