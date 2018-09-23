@@ -1,5 +1,6 @@
 <template>
     <section class="profile">
+		<!--
 		<section v-if="talks.length">
 			<h2>My Submitted Talks</h2>
 			<div v-for="talk in talks" :key="talk.id">
@@ -10,6 +11,7 @@
 				</p>
 			</div>
 		</section>
+		-->
 		<section>
 			<h2>Edit Profile</h2>
 			<edit-profile

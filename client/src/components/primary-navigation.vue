@@ -16,10 +16,12 @@
             <li>
                 <router-link :to="{name: 'talks'}">Talks</router-link>
             </li>
-             <li v-if="isLoggedIn">
+			<!--
+            <li v-if="isLoggedIn">
                 <router-link :to="{name: 'submit-talk'}">Submit a Talk</router-link>
             </li>
 			<!--
+			-->
             <li>
                 <router-link :to="{name: 'community'}">Community</router-link>
             </li>

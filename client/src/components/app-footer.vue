@@ -14,9 +14,11 @@
 				<li v-if="isAttendee">
 					<router-link :to="{name: 'news'}">News</router-link>
 				</li>
+				<!--
 				<li>
 					<router-link :to="{name: 'submit-talk'}">Submit a Talk</router-link>
 				</li>
+				-->
 				<li>
 					<router-link :to="{name: 'talks'}">Talks</router-link>
 				</li>

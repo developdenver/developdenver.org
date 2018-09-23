@@ -51,6 +51,7 @@ const router = new Router({
 		meta: {
 			requiresAuth: true,
 		},
+	/*
 	}, {
 		path: "/submit-talk",
 		name: "submit-talk",
@@ -58,6 +59,7 @@ const router = new Router({
 		meta: {
 			requiresAuth: true,
 		},
+	*/
 	}, {
 		path: "/talks/:id",
 		name: "talk",
