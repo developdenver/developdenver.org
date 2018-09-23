@@ -34,6 +34,7 @@ module.exports = (app) => {
                 amount: getPrice(request.body.level, request.body.discount_code),
                 currency: "usd",
                 source: request.body.token,
+                receipt_email: request.body.email,
             };
             stripe.charges.create(options, async (error, charge) => {
                 if (error){
