@@ -33,7 +33,6 @@
 				<router-link class="button" :to="{name: 'tickets'}">Buy Tickets</router-link>
 			</div>
         </section>
-		<call-for-talks />
         <sponsor-list />
     </div>
 </template>

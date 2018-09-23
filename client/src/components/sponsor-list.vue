@@ -9,7 +9,7 @@
 		</ul>
 		<div class="sponsor-call-to-action">
 			<p>Interested in becoming a sponsor?</p>
-			<a class="button" href="mailto:hello@developdenver.com">Contact Us</a>
+			<a class="button" href="mailto:hello@developdenver.org">Contact Us</a>
 		</div>
 	</section>
 </template>
