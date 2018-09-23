@@ -19,7 +19,8 @@ module.exports = (app) => {
     );
 
     router.post("/reset-request", async (request, response, next) => {
-        const profile = await Profile.query({email: request.body.email}, true);
+        const email = request.body.email.toLowerCase();
+        const profile = await Profile.query({email}, true);
         const token = await generateToken(profile, 1000 * 60 * 60); // One hour
         const resetUrl = `${process.env.PASSWORD_RESET_CALLBACK}?token=${token}`;
         const content = `

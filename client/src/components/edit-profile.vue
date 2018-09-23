@@ -142,6 +142,7 @@ export default {
 			if (this.password) {
 				this.profile.properties.password = this.password;
 			}
+			this.profile.properties.email = this.profile.properties.email.toLowerCase();
 			return this.$emit("updateProfile", this.profile);
 		},
 		setImageUrl(url) {
