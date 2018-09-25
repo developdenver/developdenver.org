@@ -7,8 +7,10 @@ module.exports = {
 		msTileColor: manifestJSON.background_color,
 		workboxPluginMode: "GenerateSW",
 		workboxOptions: {
-			urlPattern: "/*/",
-			handler: "networkFirst",
+			runtimeCaching: [{
+				urlPattern: "/*/",
+				handler: "networkFirst",
+			}],
 		},
 	},
 };
