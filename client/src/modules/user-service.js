@@ -86,9 +86,9 @@ export default {
 			commit("setProfile", profile.properties);
 			dispatch("services/loading/popLoading", {}, { root: true });
 		},
-		async fetchProfile({ getters, commit, dispatch }) {
+		async fetchProfile({ getters, commit, dispatch, rootState }) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
-			const jwt = getters.token;
+			const jwt = rootState.services.user.token;
 			if (jwt) {
 				const id = jwtDecode(jwt).sub;
 				const userProfileUrl = `${profileUrl}/${id}`;
