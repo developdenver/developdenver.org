@@ -27,7 +27,13 @@
 				:events="workshops"
 			/>
 			<header>
-				<h3>Services</h3>
+				<h3>Live Performances</h3>
+			</header>
+			<event-card-list
+				:events="performances"
+			/>
+			<header>
+				<h3>Featuring</h3>
 			</header>
 			<ul class="services">
 				<li v-for="(service, index) in services" :key="index">
@@ -42,6 +48,7 @@
 import EventCardList from "@/components/event-card-list";
 import workshops from "@/data/workshops";
 import services from "@/data/services";
+import performances from "@/data/performances";
 import {shuffle} from "@/utilities/shuffle";
 
 export default {
@@ -69,6 +76,9 @@ export default {
 		},
 		services() {
 			return services;
+		},
+		performances() {
+			return performances;
 		},
 	},
 };
