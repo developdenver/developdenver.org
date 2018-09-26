@@ -4,7 +4,7 @@ module.exports = function(app){
         "auth",
         "payments",
         "talks",
-        "votes",
+        // "votes",
         "events",
     ].forEach(route => {
         app.use(`/${route}`, require(`./routes/${route}`)(app));

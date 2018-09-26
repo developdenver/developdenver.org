@@ -9,6 +9,7 @@
 			:to="{name: 'edit-talk', params: {id: currentTalk.id}}"
 		>Edit Talk
 		</router-link>
+		<!--
 		<button
 			:class="{voted: voteType === 'Unvote'}"
 			:disabled="isLoading"
@@ -16,6 +17,7 @@
 			@click="updateVote"
 			>{{voteType}}
 		</button>
+		-->
     </section>
 </template>
 
