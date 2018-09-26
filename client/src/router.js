@@ -17,10 +17,11 @@ import About from "@/views/about";
 import News from "@/views/news";
 import ResetPassword from "@/views/reset-password";
 import RequestReset from "@/views/request-reset";
-import SubmitTalk from "@/views/submit-talk";
+// import SubmitTalk from "@/views/submit-talk";
 import TalkPage from "@/views/talk-page";
 import Talks from "@/views/talks";
 import UserTalk from "@/views/user-talk";
+import Events from "@/views/events";
 
 Vue.use(Router);
 
@@ -30,6 +31,10 @@ const router = new Router({
 		path: "/",
 		name: "index",
 		component: Index,
+	}, {
+		path: "/events",
+		name: "events",
+		component: Events,
 	}, {
 		path: "/register",
 		name: "register",

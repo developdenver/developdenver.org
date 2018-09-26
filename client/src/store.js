@@ -4,6 +4,7 @@ import VuexPersistence from "vuex-persist";
 
 import services from "./modules/services";
 import talks from "./modules/talks";
+import events from "./modules/events";
 import profiles from "./modules/profiles";
 
 Vue.use(Vuex);
@@ -17,6 +18,7 @@ export default new Vuex.Store({
 	modules: {
 		services,
 		talks,
+		events,
 		profiles,
 	},
 	state: {
