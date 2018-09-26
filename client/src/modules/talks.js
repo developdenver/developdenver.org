@@ -21,20 +21,24 @@ export default {
 				},
 			};
 		},
+		/*
 		votedTalksById: (state) => {
 			return state.votes.reduce((byId, vote) => {
 				byId[vote.talk_id] = true;
 				return byId;
 			}, {});
 		},
+		*/
 	},
 	mutations: {
 		updateTalks(state, talks) {
 			state.list = talks;
 		},
+		/*
 		setVotes(state, votes) {
 			state.votes = votes;
 		}
+		*/
 	},
 	actions: {
 		async createTalk({ dispatch, commit, rootState }, talk) {
@@ -70,6 +74,7 @@ export default {
 				dispatch("services/loading/popLoading", {}, { root: true });
 			}
 		},
+		/*
 		async fetchAllVotes({ commit, dispatch, rootState }) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
 			let votes = await Talk.fetchVotes(rootState.services.user.token);
@@ -100,5 +105,6 @@ export default {
 			}
 			return success;
 		},
+		*/
 	},
 };
