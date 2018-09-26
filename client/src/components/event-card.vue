@@ -43,14 +43,22 @@ export default {
 
     .event-card {
 		display: flex;
-		flex-flow: row wrap;
+		flex-flow: row nowrap;
+		justify-content: center;
         position: relative;
         width: 100%;
         overflow: hidden;
 		background-color: $light-grey;
 		z-index: 1;
+		@media (max-width: $small-breakpoint) {
+			flex-flow: column nowrap;
+		}
 		figure {
 			max-width: 200px;
+			@media (max-width: $small-breakpoint) {
+				max-width: initial;
+				padding: $baseline;
+			}
 			img {
 				width: 100%;
 			}
