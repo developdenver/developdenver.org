@@ -13,14 +13,14 @@
             <li v-if="isAttendee">
                 <router-link :to="{name: 'news'}">News</router-link>
             </li>
-			<!--
             <li>
                 <router-link :to="{name: 'events'}">Events</router-link>
             </li>
-			-->
+			<!--
             <li>
                 <router-link :to="{name: 'talks'}">submissions</router-link>
             </li>
+			-->
 			<!--
             <li v-if="isLoggedIn">
                 <router-link :to="{name: 'submit-talk'}">Submit a Talk</router-link>

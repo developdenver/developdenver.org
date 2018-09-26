@@ -19,14 +19,14 @@
 					<router-link :to="{name: 'submit-talk'}">Submit a Talk</router-link>
 				</li>
 				-->
-				<!--
 				<li>
 					<router-link :to="{name: 'events'}">Events</router-link>
 				</li>
-				-->
+				<!--
 				<li>
 					<router-link :to="{name: 'talks'}">Submissions</router-link>
 				</li>
+				-->
 				<!--
 				<li><router-link :to="{name: 'community'}">Community</router-link></li>
 				-->
