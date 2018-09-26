@@ -30,7 +30,7 @@
 				<h3>Services</h3>
 			</header>
 			<ul class="services">
-				<li v-for="service in services">
+				<li v-for="(service, index) in services" :key="index">
 					{{service.properties.title}}
 				</li>
 			</ul>
@@ -42,6 +42,7 @@
 import EventCardList from "@/components/event-card-list";
 import workshops from "@/data/workshops";
 import services from "@/data/services";
+import {shuffle} from "@/utilities/shuffle";
 
 export default {
 	components: {
@@ -55,13 +56,13 @@ export default {
 			return this.$store.state.events.list;
 		},
 		talks() {
-			return this.events.filter(event => event.properties.type === "talk");
+			return shuffle(this.events.filter(event => event.properties.type === "talk"));
 		},
 		panels() {
-			return this.events.filter(event => event.properties.type === "panel");
+			return shuffle(this.events.filter(event => event.properties.type === "panel"));
 		},
 		lightningTalks() {
-			return this.events.filter(event => event.properties.type === "lightning");
+			return shuffle(this.events.filter(event => event.properties.type === "lightning"));
 		},
 		workshops() {
 			return workshops;

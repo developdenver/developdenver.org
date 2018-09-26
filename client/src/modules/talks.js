@@ -1,4 +1,5 @@
 import Talk from "../models/talk";
+import {shuffle} from "../utilities/shuffle";
 
 export default {
 	namespaced: true,
@@ -101,20 +102,3 @@ export default {
 		},
 	},
 };
-
-function shuffle(array) {
-	let currentIndex = array.length;
-	let temporaryValue;
-	let randomIndex;
-
-	while (currentIndex !== 0) {
-		randomIndex = Math.floor(Math.random() * currentIndex);
-		currentIndex -= 1;
-
-		temporaryValue = array[currentIndex];
-		array[currentIndex] = array[randomIndex];
-		array[randomIndex] = temporaryValue;
-	}
-
-	return array;
-}
