@@ -26,11 +26,4 @@ export default [{
 		firstName: "Develop",
 		lastName: "Denver",
 	}
-}, {
-	properties: {
-		title: "Rapid Prototyping",
-		profilePhotoUrl: "https://pbs.twimg.com/profile_images/1033908994870374400/2nUcOGak_400x400.jpg",
-		firstName: "Develop",
-		lastName: "Denver",
-	}
 }];
