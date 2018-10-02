@@ -1,5 +1,6 @@
 <template>
     <div class="event-card">
+		<div class="category-color"></div>
 		<figure>
 			<router-link :to="{name: 'profile', params: {id: event.properties.authorId}}" :class="{disabled: !event.properties.authorId}">
 				<img :src="photoUrl" :alt="authorName" />
@@ -42,6 +43,13 @@ export default {
     @import "@/styles/_typography.scss";
 
     .event-card {
+		.category-color {
+				background-color: black;
+				width: 100%;
+				height: 10px;
+				margin-top: 0;
+				position: absolute;
+			}
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: center;
@@ -54,6 +62,7 @@ export default {
 			flex-flow: column nowrap;
 		}
 		figure {
+			z-index: 2;
 			max-width: 200px;
 			@media (max-width: $small-breakpoint) {
 				max-width: initial;
