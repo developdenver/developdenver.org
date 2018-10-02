@@ -1,6 +1,9 @@
 <template>
     <div class="event-card">
-		<div class="category-color"></div>
+		<div v-if="event.properties.category == 'DevOps'" class="category-bar devops"></div>
+		<div v-if="event.properties.category == 'Career'" class="category-bar career"></div>
+		<div v-if="event.properties.category == 'Product'" class="category-bar product"></div>
+		<div v-if="event.properties.category == 'Development'" class="category-bar development"></div>
 		<figure>
 			<router-link :to="{name: 'profile', params: {id: event.properties.authorId}}" :class="{disabled: !event.properties.authorId}">
 				<img :src="photoUrl" :alt="authorName" />
@@ -43,12 +46,23 @@ export default {
     @import "@/styles/_typography.scss";
 
     .event-card {
-		.category-color {
-				background-color: black;
+		.category-bar {
 				width: 100%;
 				height: 10px;
 				margin-top: 0;
 				position: absolute;
+				.devops {
+					background-color: $devops-color;
+				}
+				.career {
+					background-color: $career-color;
+				}
+				.product {
+					background-color: $product-color;
+				}
+				.development {
+					background-color: $development-color;
+				}
 			}
 		display: flex;
 		flex-flow: row nowrap;
