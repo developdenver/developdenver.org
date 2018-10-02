@@ -1,9 +1,6 @@
 <template>
     <div class="event-card">
-		<div v-if="event.properties.category == 'DevOps'" class="category-bar devops"></div>
-		<div v-if="event.properties.category == 'Career'" class="category-bar career"></div>
-		<div v-if="event.properties.category == 'Product'" class="category-bar product"></div>
-		<div v-if="event.properties.category == 'Development'" class="category-bar development"></div>
+		<div class="category-bar" :class="{[event.properties.category]: true}"></div>
 		<figure>
 			<router-link :to="{name: 'profile', params: {id: event.properties.authorId}}" :class="{disabled: !event.properties.authorId}">
 				<img :src="photoUrl" :alt="authorName" />
