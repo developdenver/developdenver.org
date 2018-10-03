@@ -9,6 +9,7 @@
 			:to="{name: 'edit-talk', params: {id: currentTalk.id}}"
 		>Edit Talk
 		</router-link>
+		<!--
 		<button
 			:class="{voted: voteType === 'Unvote'}"
 			:disabled="isLoading"
@@ -16,6 +17,7 @@
 			@click="updateVote"
 			>{{voteType}}
 		</button>
+		-->
     </section>
 </template>
 
@@ -33,6 +35,7 @@ export default {
 		isLoading() {
 			return this.$store.getters["services/loading/isLoading"];
 		},
+		/*
 		voteType() {
 			if (this.$store.getters["talks/votedTalksById"][this.$route.params.id]) {
 				return "Unvote";
@@ -40,6 +43,7 @@ export default {
 				return "Vote";
 			}
 		},
+		*/
 		currentUser() {
 			return this.$store.getters["services/user/currentProfile"];
 		},
@@ -56,6 +60,7 @@ export default {
 		},
 	},
 	methods: {
+		/*
 		async updateVote() {
 			if (this.voteType === "Vote") {
 				await this.$store.dispatch("talks/vote", this.currentTalk);
@@ -64,6 +69,7 @@ export default {
 			}
 			await this.$store.dispatch("talks/fetchAllVotes");
 		}
+		*/
 	},
 };
 </script>

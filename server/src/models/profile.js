@@ -18,6 +18,7 @@ class Profile extends Model {
                 throw new Error(error.message);
             });
         delete item.password;
+        item.email = item.email.toLowerCase();
         item = Object.assign(item, {
             secret_key: secretKey,
             hashed_password: hashedPassword,

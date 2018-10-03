@@ -20,6 +20,9 @@ export default {
 		AppFooter,
 		LoadingSpinner,
 	},
+	mounted() {
+		this.$store.dispatch("services/user/fetchProfile");
+	},
 	computed: {
 		isLoading() {
 			return this.$store.getters["services/loading/isLoading"];

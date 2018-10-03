@@ -5,7 +5,9 @@
 			<li>Sponsor Here</li>
 		</ul>
 		<ul v-if="siteSponsors.length" class="gold-sponsors">
-			<li>Sponsor Here</li>
+			<li v-for="(sponsor, index) in siteSponsors" :key="index">
+				<a :href="sponsor.link"><img :src="sponsor.imageUrl" :alt="sponsor.name" /></a>
+			</li>
 		</ul>
 		<div class="sponsor-call-to-action">
 			<p>Interested in becoming a sponsor?</p>
@@ -19,7 +21,23 @@ export default {
 	data() {
 		return {
 			premiumSponsor: null,
-			siteSponsors: [],
+			siteSponsors: [{
+				name: "By The Pixel",
+				imageUrl: "https://s3-media1.fl.yelpcdn.com/bphoto/efFNBfcJaL2uXmtlWcVeVA/ls.jpg",
+				link: "https://bythepixel.com/",
+			}, {
+				name: "Hofstadter",
+				imageUrl: "https://media.licdn.com/dms/image/C4E0BAQElS4RzXU1P8Q/company-logo_200_200/0?e=1545868800&v=beta&t=UycTVMNW77k4WIvnOTEt7GXa5QF1lh_tOs9pSZKhogw",
+				link: "https://hofstadter.io/",
+			}, {
+				name: "Finkel & Garf",
+				imageUrl: "http://finkelandgarf.com/assets/img/finkel-and-garf-logo-crest.svg",
+				link: "http://finkelandgarf.com/",
+			}, {
+				name: "ReactiveOps",
+				imageUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/reactiveops.png",
+				link: "https://www.reactiveops.com/",
+			}],
 		};
 	},
 };
@@ -47,6 +65,17 @@ export default {
 		ul {
 			padding: $baseline;
 			border-bottom: 1px solid $light-grey;
+		}
+		.gold-sponsors {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+			li {
+				margin: $baseline;
+				img {
+					max-width: 300px;
+				}
+			}
 		}
 		img.svg {
 			height: $large;
