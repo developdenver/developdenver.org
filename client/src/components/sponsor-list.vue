@@ -1,6 +1,6 @@
 <template>
 	<section class="sponsors">
-		<h2><img src="../assets/logos/sponsors.svg" class="svg" alt="sponsors" /></h2>
+		<h2>SPONSORS</h2>
 		<ul v-if="premiumSponsor" class="platinum-sponsors">
 			<li>Sponsor Here</li>
 		</ul>
@@ -56,7 +56,7 @@ export default {
 			display: block;
 			text-align: center;
 			letter-spacing: 0;
-			@include tertiary-header-font;
+			@include section-header-font
 		}
 		a {
 			display: inline-block;
