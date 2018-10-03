@@ -27,7 +27,7 @@ export default {
 				link: "https://bythepixel.com/",
 			}, {
 				name: "Hofstadter",
-				imageUrl: "https://media.licdn.com/dms/image/C4E0BAQElS4RzXU1P8Q/company-logo_200_200/0?e=1545868800&v=beta&t=UycTVMNW77k4WIvnOTEt7GXa5QF1lh_tOs9pSZKhogw",
+				imageUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/Hofstadter_+Name%2BTag+-+rectangle.png",
 				link: "https://hofstadter.io/",
 			}, {
 				name: "Finkel & Garf",
