@@ -27,7 +27,7 @@ export default {
 				link: "https://bythepixel.com/",
 			}, {
 				name: "Hofstadter",
-				imageUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/Hofstadter_+Name%2BTag+-+rectangle.png",
+				imageUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/Hofstadter_+Name%2BTag+-+square.png",
 				link: "https://hofstadter.io/",
 			}, {
 				name: "Finkel & Garf",
