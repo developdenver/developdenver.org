@@ -50,7 +50,7 @@ export default {
 	@import "@/styles/_general.scss";
 
 	.sponsors {
-		padding: $xxl;
+		padding: $xxl 0 0 0;
 		background-color: $light-grey;
 		h2 {
 			display: block;
