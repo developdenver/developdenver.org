@@ -8,6 +8,7 @@ export default [{
 		firstName: "Kyle",
 		lastName: "Coberly",
 		isWorkshop: true,
+		type: "workshop",
 		description: `
 Interviewing is hard, but there’s good news: most interviewers use a predictable set of questions, and we know the best way to answer them. Join us to learn the secret!
 
@@ -29,6 +30,7 @@ Come prepared to quickly improve your answers and walk out of the room ready for
 		firstName: "Develop",
 		lastName: "Denver",
 		isWorkshop: true,
+		type: "workshop",
 		description: `
 Networking is important for people in the tech industry to keep up with new trends, establish connections to find your next job, and to make friends. Networking events can be stressful, though, if you don’t have a plan.
 
@@ -45,6 +47,7 @@ During this workshop, we’ll help you craft a plan for your next networking eve
 		firstName: "Michelle",
 		lastName: "Bergquist",
 		isWorkshop: true,
+		type: "workshop",
 		description: `
 Testing web applications doesn't have to be painful. Join us for this workshop to get some hands-on experience with Cypress, an end-to-end framework that tests any app that has a user interface.
 
@@ -59,11 +62,12 @@ Testing web applications doesn't have to be painful. Join us for this workshop t
 	properties: {
 		category: "devops",
 		title: "Getting Started with DevOps",
-		profilePhotoUrl: "https://i1.wp.com/denverbikramyoga.com/wp-content/uploads/2018/05/Kim-Schlesinger-photo.jpg?fit=800%2C1200&ssl=1",
+		profilePhotoUrl: "http://res.cloudinary.com/kimschlesinger/image/upload/c_scale,w_2960/v1524009870/kimschlesinger-headshot.jpg",
 		talkPhotoUrl: "https://pbs.twimg.com/profile_images/1033908994870374400/2nUcOGak_400x400.jpg",
 		firstName: "Kim",
 		lastName: "Schlesinger",
 		isWorkshop: true,
+		type: "workshop",
 		description: `
 Continuous Integration and Continuous Deployment is essential for companies that want their developers to be able to deploy code quickly, efficiently, and with minimal application downtime.
 

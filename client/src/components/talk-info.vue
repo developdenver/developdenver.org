@@ -27,6 +27,9 @@ export default {
 			}, {
 				label: "Panel (30 - 45 minutes, multiple people)",
 				value: "panel",
+			}, {
+				label: "Workshop",
+				value: "workshop",
 			}],
 		};
 	},
