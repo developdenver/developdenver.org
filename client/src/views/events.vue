@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="events-wrapper">
 		<section class="events">
 			<h2>Events</h2>
 			<div class="list-wrapper">
@@ -93,9 +93,14 @@ export default {
 @import "@/styles/_typography.scss";
 @import "@/styles/_sizes.scss";
 
+.events-wrapper {
+	width: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+}
 .events {
 	max-width: 600px;
-	margin-left: 25vw;
 	display: flex;
 	flex-flow: column nowrap;
 	flex: 1;

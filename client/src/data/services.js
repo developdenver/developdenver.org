@@ -7,6 +7,13 @@ export default [{
 	}
 }, {
 	properties: {
+		title: "Dev Jeopardy",
+		profilePhotoUrl: "https://pbs.twimg.com/profile_images/1033908994870374400/2nUcOGak_400x400.jpg",
+		firstName: "Develop",
+		lastName: "Denver",
+	}
+}, {
+	properties: {
 		title: "Birds of a Feather",
 		profilePhotoUrl: "https://pbs.twimg.com/profile_images/1033908994870374400/2nUcOGak_400x400.jpg",
 		firstName: "Develop",

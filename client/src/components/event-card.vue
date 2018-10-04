@@ -2,13 +2,25 @@
     <div class="event-card">
 		<div class="category-bar" :class="{[event.properties.category]: true}"></div>
 		<figure>
-			<router-link :to="{name: 'profile', params: {id: event.properties.authorId}}" :class="{disabled: !event.properties.authorId}">
+			<router-link
+				:to="{
+					name: 'profile',
+					params: {id: event.properties.authorId}
+				}"
+				:class="{disabled: !event.properties.authorId}"
+			>
 				<img :src="photoUrl" :alt="authorName" />
 			</router-link>
 		</figure>
 		<div class="details">
 			<h4>
-				<router-link :to="{name: 'talk', params: {id: event.id}}" :class="{disabled: !event.properties.authorId}">
+				<router-link
+					:to="{
+						name: event.properties.isWorkshop ? 'workshop' : 'talk',
+						params: {id: event.id}
+					}"
+					:class="{disabled: !event.id}"
+				>
 					{{event.properties.title}}
 				</router-link>
 			</h4>
@@ -71,11 +83,11 @@ export default {
 
     .event-card {
 		.category-bar {
-				width: 100%;
-				height: 10px;
-				margin-top: 0;
-				position: absolute;
-			}
+			width: 100%;
+			height: 10px;
+			margin-top: 0;
+			position: absolute;
+		}
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: center;
