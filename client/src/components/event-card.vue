@@ -41,19 +41,20 @@ export default {
     @import "@/styles/_sizes.scss";
     @import "@/styles/_colors.scss";
     @import "@/styles/_typography.scss";
+
 	.devops {
-			background-color: $devops-color;
-		}
-		.career {
-			background-color: $career-color;
-		}
-		.product {
-			background-color: $product-color;
-		}
-		.development {
-			background-color: $development-color;
-		}
-		
+		background-color: $devops-color;
+	}
+	.career {
+		background-color: $career-color;
+	}
+	.product {
+		background-color: $product-color;
+	}
+	.development {
+		background-color: $development-color;
+	}
+
     .event-card {
 		.category-bar {
 				width: 100%;

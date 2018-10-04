@@ -43,7 +43,7 @@
 				</ul>
 			</div>
 		</section>
-		<sponsor-list />		
+		<sponsor-list />
 	</div>
 </template>
 
@@ -92,7 +92,6 @@ export default {
 <style lang="scss">
 @import "@/styles/_typography.scss";
 @import "@/styles/_sizes.scss";
-
 
 .events {
 	max-width: 600px;
