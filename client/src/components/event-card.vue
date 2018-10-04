@@ -13,12 +13,23 @@
 				</router-link>
 			</h4>
 			<p>{{authorName}}</p>
+			<p v-if="category" class="category">Category: {{category}}</p>
 		</div>
     </div>
 </template>
 
 <script>
 export default {
+	data() {
+		return {
+			categories: {
+				devops: "DevOps",
+				careers: "Careers",
+				development: "Development",
+				product: "Product",
+			}
+		};
+	},
 	props: {
 		event: {
 			type: Object,
@@ -32,7 +43,10 @@ export default {
 		photoUrl() {
 			const fallback = "https://pbs.twimg.com/profile_images/1033908994870374400/2nUcOGak_400x400.jpg";
 			return this.event.properties.profilePhotoUrl || fallback;
-		}
+		},
+		category() {
+			return this.categories[this.event.properties.category];
+		},
 	},
 };
 </script>
@@ -89,6 +103,9 @@ export default {
 			flex: 1;
 			h4 > a {
 				@include tertiary-header-font;
+			}
+			.category {
+				@include italic-body-font;
 			}
 		}
 		.disabled {
