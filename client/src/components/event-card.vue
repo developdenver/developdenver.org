@@ -45,7 +45,7 @@ export default {
 	.devops {
 		background-color: $devops-color;
 	}
-	.career {
+	.careers {
 		background-color: $career-color;
 	}
 	.product {
