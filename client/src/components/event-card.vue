@@ -1,5 +1,6 @@
 <template>
     <div class="event-card">
+		<div class="category-bar" :class="{[event.properties.category]: true}"></div>
 		<figure>
 			<router-link :to="{name: 'profile', params: {id: event.properties.authorId}}" :class="{disabled: !event.properties.authorId}">
 				<img :src="photoUrl" :alt="authorName" />
@@ -40,8 +41,26 @@ export default {
     @import "@/styles/_sizes.scss";
     @import "@/styles/_colors.scss";
     @import "@/styles/_typography.scss";
-
+	.devops {
+			background-color: $devops-color;
+		}
+		.career {
+			background-color: $career-color;
+		}
+		.product {
+			background-color: $product-color;
+		}
+		.development {
+			background-color: $development-color;
+		}
+		
     .event-card {
+		.category-bar {
+				width: 100%;
+				height: 10px;
+				margin-top: 0;
+				position: absolute;
+			}
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: center;
@@ -54,6 +73,7 @@ export default {
 			flex-flow: column nowrap;
 		}
 		figure {
+			z-index: 2;
 			max-width: 200px;
 			@media (max-width: $small-breakpoint) {
 				max-width: initial;
