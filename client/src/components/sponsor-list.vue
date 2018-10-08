@@ -17,6 +17,10 @@
 </template>
 
 <script>
+import FinkelAndGarf from "@/assets/logos/finkel-and-garf.svg";
+import Traversal from "@/assets/logos/traversal.png";
+import Galvanize from "@/assets/logos/galvanize.png";
+
 export default {
 	data() {
 		return {
@@ -31,12 +35,20 @@ export default {
 				link: "https://hofstadter.io/",
 			}, {
 				name: "Finkel & Garf",
-				imageUrl: "http://finkelandgarf.com/assets/img/finkel-and-garf-logo-crest.svg",
-				link: "http://finkelandgarf.com/",
+				imageUrl: FinkelAndGarf,
+				link: "https://finkelandgarf.com/",
 			}, {
 				name: "ReactiveOps",
 				imageUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/reactiveops.png",
 				link: "https://www.reactiveops.com/",
+			}, {
+				name: "Galvanize",
+				imageUrl: Galvanize,
+				link: "https://www.galvanize.com/",
+			}, {
+				name: "Traversal",
+				imageUrl: Traversal,
+				link: "https://traversalconf.com/",
 			}],
 		};
 	},
