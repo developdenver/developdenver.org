@@ -1,23 +1,29 @@
 {
-	"hosting": {
-		"public": "client/dist",
-		"ignore": [
-			"firebase.json",
-			"**/.*",
-			"**/node_modules/**"
-		],
-		"rewrites": [
-			{
-				"source": "**",
-				"destination": "/index.html"
-			}
-		],
+    "hosting": {
+        "public": "client/dist",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ],
+        "rewrites": [
+            {
+                "source": "**",
+                "destination": "/index.html"
+            }
+        ],
         "headers": [{
-            "source": "/service-worker.js",
+            "source": "/**",
             "headers": [{
                 "key": "Cache-Control",
-                "value": "max-age=0"
+                "value": "no-cache, no-store, must-revalidate"
+            }]
+        },{
+            "source": "**/*.@(jpg|jpeg|gif|png|svg|webp|eot|otf|ttf|ttc|woff|font.css)",
+            "headers": [{
+                "key": "Cache-Control",
+                "value": "max-age=604800"
             }]
         }]
-	}
+    }
 }
