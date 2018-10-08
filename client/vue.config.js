@@ -8,7 +8,7 @@ module.exports = {
 		workboxPluginMode: "GenerateSW",
 		workboxOptions: {
 			runtimeCaching: [{
-				urlPattern: "/.*/",
+				urlPattern: /.*/,
 				handler: "networkFirst",
 			}],
 		},
