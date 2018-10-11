@@ -1,5 +1,9 @@
--- Workshops
+-- Resets
+DELETE FROM schedule_listing;
+DELETE FROM venue;
 DELETE FROM talk WHERE id IN (100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119);
+
+-- Workshops
 
 INSERT INTO talk (id, title, type, talk_photo_url, user_id, description)
 VALUES (
@@ -24,7 +28,7 @@ During this workshop, we’ll help you craft a plan for your next networking eve
 ),(
     102, 'Testing Web Applications', 'workshop', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 194,
 '
-Testing web applications doesn\'t have to be painful. Join us for this workshop to get some hands-on experience with Cypress, an end-to-end framework that tests any app that has a user interface.
+Testing web applications doesn''t have to be painful. Join us for this workshop to get some hands-on experience with Cypress, an end-to-end framework that tests any app that has a user interface.
 
 * By the end of this workshop, participants will be able to:
 * Install and configure Cypress tests from scratch
@@ -47,67 +51,67 @@ By the end of this workshop, participants will be able to:
 * Configure CircleCI to deploy your app to Heroku if all tests are passing.
 '
 ),(
-    104, 'Workshop Assistance', 'workshop', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 2,
+    104, 'Workshop Assistance', 'workshop', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 815,
 '
-Get assistance with any of the workshop material, or start a workshop that you weren\'t able to attend.
+Get assistance with any of the workshop material, or start a workshop that you weren''t able to attend live.
 '
 ),(
-    105, 'Birds of a Feather', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 2,
+    105, 'Birds of a Feather', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 815,
 '
 Impromptu talks, requested and given by Develop Denver attendees!
 '
 ),(
-    106, 'Opening Ceremonies', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 2,
+    106, 'Opening Ceremonies', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 815,
 '
-Conference overview and opening keynote
-'
-),(
-    107, 'Opening Night Happy Hour', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 2,
-'
-RINO Yacht Club
+Conference overview and opening keynote from conference founder Drew Dahlman.
 '
 ),(
-    108, 'Closing Ceremonies', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 2,
+    107, 'Opening Night Happy Hour', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 815,
+'
+Celebrate the first day with our friends from the Develop Happy Hour and the UX Happy Hour at the RINO Yacht Club! Open to the public.
+'
+),(
+    108, 'Closing Ceremonies', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 815,
 '
 Ballmer Peak presentations and closing words
 '
 ),(
-    109, 'Closing Party', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 2,
+    109, 'Closing Party', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 815,
 '
-Closing party and taco bar
+Scenic views, open bar, great conversations, and tacos galore!
 '
 ),(
     110, 'Coding Garden with CJ', 'performance', 'https://i.ytimg.com/vi/moLu596PvHU/hqdefault.jpg', 181,
 '
-Live-stream with CJ!
+[Coding Garden with CJ](https://www.youtube.com/channel/UCLNgu_OupwoeESgtab33CCw). Grow your coding skills one day at a time with tutorials, walk throughs and live coding streams about Full Stack Web Development and other related tech.
 '
 ),(
-    111, 'House of Pod: Podcasting 101', 'performance', 'https://media.licdn.com/media-proxy/ext?w=800&h=800&hash=QrGBt5k%2B16Fe3CyBly2ZhhBgp%2Fw%3D&ora=1%2CaFBCTXdkRmpGL2lvQUFBPQ%2CxAVta5g-0R6nlh8Tw1It6a2FowGz60oISIfYC2G8G2f1spyfNT-tdoDSeLehpEtOdSsGlxJkcrG-GGGiSp7oYfuULKE18teBWemkMjNDOz4xlWRc78siLkp9jNH1Ia3_ci8Tg6kKTi6bEZrdX1Y0OCgn2sDbIZHpHHsz6WfJH_v5OPpRX-JlvdFolUteleTpDdI13NVGwUtWwFew7bLIGgsc7ayJI2PzJWESWnXpHNlApISX-AiBv3zZvQSHv966L6T6FvQ_zmaC9q6LXiDO2k1RpzE7jTFKr9p-GCDbnYMc5RG7Nvondhu4mvk', 2,
+    111, 'House of Pod: Podcasting 101', 'performance', 'https://media.licdn.com/media-proxy/ext?w=800&h=800&hash=QrGBt5k%2B16Fe3CyBly2ZhhBgp%2Fw%3D&ora=1%2CaFBCTXdkRmpGL2lvQUFBPQ%2CxAVta5g-0R6nlh8Tw1It6a2FowGz60oISIfYC2G8G2f1spyfNT-tdoDSeLehpEtOdSsGlxJkcrG-GGGiSp7oYfuULKE18teBWemkMjNDOz4xlWRc78siLkp9jNH1Ia3_ci8Tg6kKTi6bEZrdX1Y0OCgn2sDbIZHpHHsz6WfJH_v5OPpRX-JlvdFolUteleTpDdI13NVGwUtWwFew7bLIGgsc7ayJI2PzJWESWnXpHNlApISX-AiBv3zZvQSHv966L6T6FvQ_zmaC9q6LXiDO2k1RpzE7jTFKr9p-GCDbnYMc5RG7Nvondhu4mvk', 815,
 '
-Learn how to make a podcast!
-'
-),(
-    112, 'Sprint UX Podcast', 'performance', 'https://static1.squarespace.com/static/584dd01dbebafb9fcae5e2f2/t/584f27cc6b8f5b32b20ebc1e/1481582549510/?format=500w', 2,
-'
-Kyle, Michael, and Emily talk about the latest UX, design, and tech news.
+Learn how to make a podcast with [House of Pod](https://www.houseofpod.org/)! House of Pod is a podcasting coworking space, production company, and education center in the heart of Denver.
 '
 ),(
-    113, 'The Ballmer Peak Hackathon', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 2,
+    112, 'Sprint UX Podcast', 'performance', 'https://static1.squarespace.com/static/584dd01dbebafb9fcae5e2f2/t/584f27cc6b8f5b32b20ebc1e/1481582549510/?format=500w', 815,
 '
-DRNK // DVLP
+[Sprint UX Podcast](https://sprintuxpodcast.com). Michael Dusing, Kyle Coberly, and Emily McCammon talk about the latest UX, design, and tech news.
 '
 ),(
-    114, 'Lightning Talks #1', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 2,
+    113, 'The Ballmer Peak Hackathon', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 815,
+'
+Returning for the 7th year, the Ballmer Peak Hackathon is a 4-hour challenge to build something cool under the influence, culminating in a presentation at closing ceremonies. You can compete solo or in teams.
+'
+),(
+    114, 'Lightning Talks #1', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 815,
 '
 Featuring:
 
 * [Better Living Through Git Hooks](https://developdenver.org/talks/49)
 * [Introverts and Extroverts: How You Can Help Your Teammates Shine](https://developdenver.org/talks/65)
-* [Let\'s Help Our Colleagues Who Have Depression!](https://developdenver.org/talks/10)
+* [Let''s Help Our Colleagues Who Have Depression!](https://developdenver.org/talks/10)
 * [APIs are Awful & Integration is Awesome](https://developdenver.org/talks/21)
 '
 ),(
-    115, 'Lightning Talks #2', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 2,
+    115, 'Lightning Talks #2', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 815,
 '
 Featuring:
 
@@ -117,7 +121,7 @@ Featuring:
 * [Awk is for lovers (of text)](https://developdenver.org/talks/35)
 '
 ),(
-    116, 'Lightning Talks #3', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 2,
+    116, 'Lightning Talks #3', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 815,
 '
 Featuring:
 
@@ -128,12 +132,12 @@ Featuring:
 * [One step at a time - Journey back to the world of tech!](https://developdenver.org/talks/60)
 '
 ),(
-    117, 'Check-in', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 2,
+    117, 'Check-in', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 815,
 '
-Pick up your badge, enjoy coffee and breakfast on us, and check out our merchandise!
+Pick up your badge and meal card, enjoy coffee and breakfast on us, chat with sponsors, and check out our merchandise!
 '
 ),(
-    118, 'Career Corner & Workshop Support', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 2,
+    118, 'Career Corner & Workshop Support', 'event', 'https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png', 815,
 '
 Career Corner:
 
@@ -143,18 +147,16 @@ Career Corner:
 
 Workshop Support:
 
-If you missed any of the workshop content from Thursday or would like help working through the exercises, we\'ll have instructors on hand to help!
+If you missed any of the workshop content from Thursday or would like help working through the exercises, we''ll have instructors on hand to help!
 '
 );
 
 ALTER SEQUENCE venue_id_seq RESTART WITH 120;
 
 -- Venue
-DELETE FROM venue;
-
 INSERT INTO venue (id, name, location, coordinates)
 VALUES (
-    1, 'Bigsby\'s Folly', '3563 Wazee St, Denver, CO 80216', '39.769010, -104.977180'
+    1, 'Bigsby''s Folly', '3563 Wazee St, Denver, CO 80216', '39.769010, -104.977180'
 ),(
     2, 'Catalyst', '3513 Brighton Blvd, Denver, CO 80216', '39.767480, -104.982560'
 ),(
@@ -170,8 +172,6 @@ VALUES (
 ALTER SEQUENCE venue_id_seq RESTART WITH 7;
 
 -- Schedule
-DELETE FROM schedule_listing;
-
 INSERT INTO schedule_listing (id, day, start_time, duration, venue_id, talk_id)
 VALUES (
     1, 'Thursday', 8, 1, 1, 117
