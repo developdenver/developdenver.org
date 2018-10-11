@@ -27,7 +27,7 @@ export default {
 	mounted() {
 		const isChrome = window.navigator.userAgent.toLowerCase().indexOf("chrome") > -1;
 		if (isChrome) {
-			document.querySelector(".friday").style.marginTop = "10rem";
+			document.querySelector(".friday").style.marginTop = "30rem";
 		}
 	},
 	computed: {
