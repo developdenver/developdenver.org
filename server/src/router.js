@@ -1,5 +1,6 @@
 module.exports = function(app){
     [
+        "schedule-listings",
         "profiles",
         "auth",
         "payments",
