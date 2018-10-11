@@ -24,6 +24,12 @@ export default {
 	created() {
 		this.$store.dispatch("scheduleListings/fetchAll");
 	},
+	mounted() {
+		const isChrome = window.navigator.userAgent.toLowerCase().indexOf("chrome") > -1;
+		if (isChrome) {
+			document.querySelector(".friday").style.marginTop = "10rem";
+		}
+	},
 	computed: {
 		events() {
 			const events = [...this.$store.state.scheduleListings.list];
@@ -80,9 +86,6 @@ export default {
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
-	.friday {
-		margin-top: 30rem;
-	}
 }
 .schedule {
 	max-width: 600px;
