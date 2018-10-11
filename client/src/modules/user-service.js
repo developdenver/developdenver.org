@@ -14,16 +14,22 @@ export default {
 	},
 	getters: {
 		isLoggedIn(state) {
-			return !!state.currentProfile.id;
+			return state.currentProfile
+				? !!state.currentProfile.id
+				: false;
 		},
 		isAttendee(state) {
-			return !!state.currentProfile.ticketLevel;
+			return state.currentProfile
+				? !!state.currentProfile.ticketLevel
+				: false;
 		},
 		hasToken(state) {
 			return !!state.token;
 		},
 		currentProfile(state) {
-			return new Profile(state.currentProfile);
+			return state.currentProfile
+				? new Profile(state.currentProfile)
+				: {}
 		}
 	},
 	mutations: {

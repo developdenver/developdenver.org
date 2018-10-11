@@ -4,6 +4,18 @@
         <div class="talk-details">
             <h2>{{talk.properties.title}}</h2>
             <div class="description">
+				<p class="author">
+					<router-link
+						:to="{
+							name: 'profile',
+							params: {
+								id: talk.properties.authorId,
+							},
+						}"
+					>
+					{{talk.properties.firstName}} {{talk.properties.lastName}}
+					</router-link>
+				</p>
                 <div class="description-html" v-html="descriptionHtml"></div>
                 <p class="talk-type">Type: {{talkLabel}}</p>
             </div>
@@ -30,8 +42,15 @@ export default {
 			}, {
 				label: "Workshop",
 				value: "workshop",
+			}, {
+				label: "Event",
+				value: "event",
+			}, {
+				label: "Performance",
+				value: "performance",
 			}],
 		};
+
 	},
 	props: {
 		talk: {

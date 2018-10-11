@@ -66,13 +66,12 @@ export default {
 			return success;
 		},
 		async fetchTalks({ state, commit, dispatch }) {
-			if (!state.list.length) {
-				dispatch("services/loading/pushLoading", {}, { root: true });
-				let talks = await Talk.fetchAll("talk");
-				talks = talks.map(talk => new Talk(talk));
-				commit("updateTalks", shuffle(talks));
-				dispatch("services/loading/popLoading", {}, { root: true });
-			}
+			dispatch("services/loading/pushLoading", {}, { root: true });
+
+			let talks = await Talk.fetchAll("talk");
+			talks = talks.map(talk => new Talk(talk));
+			commit("updateTalks", shuffle(talks));
+			dispatch("services/loading/popLoading", {}, { root: true });
 		},
 		/*
 		async fetchAllVotes({ commit, dispatch, rootState }) {

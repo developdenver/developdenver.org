@@ -6,6 +6,7 @@ import services from "./modules/services";
 import talks from "./modules/talks";
 import events from "./modules/events";
 import profiles from "./modules/profiles";
+import scheduleListings from "./modules/schedule-listings";
 
 Vue.use(Vuex);
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
 		talks,
 		events,
 		profiles,
+		scheduleListings,
 	},
 	state: {
 		version: "",

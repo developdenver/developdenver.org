@@ -14,7 +14,7 @@
                 <router-link :to="{name: 'news'}">News</router-link>
             </li>
             <li>
-                <router-link :to="{name: 'events'}">Events</router-link>
+                <router-link :to="{name: 'schedule'}">Schedule</router-link>
             </li>
 			<!--
             <li>

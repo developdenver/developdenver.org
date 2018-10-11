@@ -1,4 +1,15 @@
 export default [{
+	title: "Schedule is Live!",
+	author: "DVLP Board",
+	date: "10/11/18",
+	content: `
+The [schedule](https://developdenver.org/schedule) for Develop Denver 2018 is live! We have over 50 events across 2 days and 5 venues. Check-in starts at 8am, October 18th at Bigsby's Folly, and opening ceremonies are at 9am at Catalyst. See you next week!
+
+#### Sponsors
+
+We still have sponsorship positions available at a variety of levels. We’re offering a lot of new things for sponsors this year that we hope will be valuable for everyone, so [get in touch with us](mailto:hello@developdenver.org) if you’re interested in getting involved!
+	`,
+},{
 	title: "Voting on talks is open!",
 	author: "DVLP Board",
 	date: "9/11/18",

@@ -23,6 +23,7 @@ import WorkshopPage from "@/views/workshop-page";
 import Talks from "@/views/talks";
 import UserTalk from "@/views/user-talk";
 import Events from "@/views/events";
+import Schedule from "@/views/schedule";
 
 Vue.use(Router);
 
@@ -36,6 +37,10 @@ const router = new Router({
 		path: "/events",
 		name: "events",
 		component: Events,
+	}, {
+		path: "/schedule",
+		name: "schedule",
+		component: Schedule,
 	}, {
 		path: "/register",
 		name: "register",
