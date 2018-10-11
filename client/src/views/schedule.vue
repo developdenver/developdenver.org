@@ -4,7 +4,7 @@
 			<h2>Thursday</h2>
 			<schedule-card-list :events="thursdayEventsByTime" />
 		</section>
-		<section class="schedule">
+		<section class="schedule friday">
 			<h2>Friday</h2>
 			<schedule-card-list :events="fridayEventsByTime" />
 		</section>
@@ -80,6 +80,9 @@ export default {
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
+	.friday {
+		margin-top: 30rem;
+	}
 }
 .schedule {
 	max-width: 600px;
