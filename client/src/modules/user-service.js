@@ -29,7 +29,7 @@ export default {
 		currentProfile(state) {
 			return state.currentProfile
 				? new Profile(state.currentProfile)
-				: {}
+				: {};
 		}
 	},
 	mutations: {

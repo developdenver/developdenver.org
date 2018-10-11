@@ -26,7 +26,8 @@ export default {
 	},
 	computed: {
 		events() {
-			return this.$store.state.scheduleListings.list.sort(this.sortEvents);
+			const events = [...this.$store.state.scheduleListings.list];
+			return events.sort(this.sortEvents);
 		},
 		thursdayEventsByTime() {
 			return this.events.filter(event => event.properties.day === "Thursday");
@@ -43,7 +44,7 @@ export default {
 	},
 	methods: {
 		sortEvents(firstEvent, secondEvent) {
-			return this.compareNumbers(firstEvent.properties.startTime, secondEvent.properties.startTime)
+			return this.compareNumbers(firstEvent.properties.startTime, secondEvent.properties.startTime);
 		},
 		compareNumbers(firstNumber, secondNumber) {
 			return Number(firstNumber) - Number(secondNumber);

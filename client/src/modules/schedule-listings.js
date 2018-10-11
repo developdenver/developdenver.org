@@ -30,7 +30,7 @@ export default {
 				scheduleListings = scheduleListings.map(scheduleListing => new ScheduleListing(scheduleListing));
 				commit("updateScheduleListings", scheduleListings);
 				dispatch("services/loading/popLoading", {}, { root: true });
-		}
+			}
 		},
 	},
 };

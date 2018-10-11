@@ -9,7 +9,7 @@ The [schedule](https://developdenver.org/schedule) for Develop Denver 2018 is li
 
 We still have sponsorship positions available at a variety of levels. We’re offering a lot of new things for sponsors this year that we hope will be valuable for everyone, so [get in touch with us](mailto:hello@developdenver.org) if you’re interested in getting involved!
 	`,
-},{
+}, {
 	title: "Voting on talks is open!",
 	author: "DVLP Board",
 	date: "9/11/18",

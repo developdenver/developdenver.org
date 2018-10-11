@@ -50,7 +50,6 @@ export default {
 				value: "performance",
 			}],
 		};
-
 	},
 	props: {
 		talk: {

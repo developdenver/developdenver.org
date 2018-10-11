@@ -101,10 +101,10 @@ export default {
 		background-color: $development-color;
 	}
 	.workshop {
-		background-color: $development-color;
+		background-color: #ddd;
 	}
 	.event {
-		background-color: $development-color;
+		background-color: #999;
 	}
 
     .schedule-card {
@@ -113,6 +113,9 @@ export default {
 			height: 10px;
 			margin-top: 0;
 			position: absolute;
+			@media (max-width: $small-breakpoint) {
+				position: static;
+			}
 		}
 		display: flex;
 		flex-flow: row nowrap;
@@ -129,6 +132,7 @@ export default {
 			z-index: 2;
 			max-width: 200px;
 			@media (max-width: $small-breakpoint) {
+				display: none;
 				max-width: initial;
 				padding: $baseline;
 			}
