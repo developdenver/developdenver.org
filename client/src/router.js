@@ -12,6 +12,7 @@ import ProfilePage from "@/views/profile-page.vue";
 import Register from "@/views/register";
 import Login from "@/views/login";
 import StudentTickets from "@/views/student-tickets";
+import DiscountTickets from "@/views/discount-tickets";
 import Tickets from "@/views/tickets";
 import About from "@/views/about";
 import News from "@/views/news";
@@ -98,6 +99,10 @@ const router = new Router({
 		path: "/student-tickets",
 		name: "student-tickets",
 		component: StudentTickets,
+	}, {
+		path: "/discount-tickets",
+		name: "discount-tickets",
+		component: DiscountTickets,
 	}, {
 		path: "/profiles/:id",
 		name: "profile",

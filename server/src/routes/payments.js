@@ -11,12 +11,15 @@ function getPrice(level, discountCode){
         "regular": 235 * 100,
         "employer": 375 * 100,
         "premium": 500 * 100,
-        "student": 90 * 100
+        "student": 90 * 100,
+        "discount": 199 * 100,
     };
 
     let price;
     if (level === "student" && studentDiscountCodes.includes(discountCode)){
         price = levels["student"];
+    } else if (level === "discount" && studentDiscountCodes.includes(discountCode)){
+        price = levels["discount"];
     } else if (level === "student"){
         throw new Error("Invalid discount code");
     } else {
