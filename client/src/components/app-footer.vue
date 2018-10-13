@@ -27,9 +27,7 @@
 					<router-link :to="{name: 'talks'}">Submissions</router-link>
 				</li>
 				-->
-				<!--
 				<li><router-link :to="{name: 'community'}">Community</router-link></li>
-				-->
 				<li><a href=" https://goo.gl/forms/o7MTeIjYjoFYiE1B2" target="_BLANK">Volunteering</a></li>
 				<li><router-link :to="{name: 'code-of-conduct'}">Code Of Conduct</router-link></li>
 				<li><router-link :to="{name: 'privacy-policy'}">Privacy Policy</router-link></li>
