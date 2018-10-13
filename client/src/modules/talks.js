@@ -12,6 +12,7 @@ export default {
 			return state.list.filter(talk => talk.properties.userId === userId);
 		},
 		getTalkById: (state) => (id) => {
+			console.log(JSON.parse(JSON.stringify(state.list)))
 			return state.list.find(talk => talk.id === id) || {
 				properties: {
 					title: "Loading...",

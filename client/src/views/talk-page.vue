@@ -29,7 +29,7 @@ export default {
 		TalkInfo,
 	},
 	mounted() {
-		this.$store.dispatch("scheduleListings/fetchAll");
+		this.$store.dispatch("talks/fetchTalks");
 	},
 	computed: {
 		isLoading() {
@@ -56,7 +56,7 @@ export default {
 				: false;
 		},
 		currentTalk() {
-			return this.$store.getters["scheduleListings/getTalkById"](Number(this.$route.params.id));
+			return this.$store.getters["talks/getTalkById"](Number(this.$route.params.id));
 		},
 	},
 	methods: {
