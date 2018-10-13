@@ -20,6 +20,7 @@ import ResetPassword from "@/views/reset-password";
 import RequestReset from "@/views/request-reset";
 // import SubmitTalk from "@/views/submit-talk";
 import TalkPage from "@/views/talk-page";
+import ScheduleListingPage from "@/views/schedule-listing-page";
 import WorkshopPage from "@/views/workshop-page";
 import Talks from "@/views/talks";
 import UserTalk from "@/views/user-talk";
@@ -76,6 +77,10 @@ const router = new Router({
 		path: "/talks/:id",
 		name: "talk",
 		component: TalkPage,
+	}, {
+		path: "/schedule/:id",
+		name: "schedule-listing",
+		component: ScheduleListingPage,
 	}, {
 		path: "/workshops/:id",
 		name: "workshop",

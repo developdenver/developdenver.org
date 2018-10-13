@@ -7,7 +7,7 @@ export default {
 	},
 	getters: {
 		getTalkById: (state) => (id) => {
-			return state.list.find(scheduleListing => scheduleListing.properties.talkId === +id) || {
+			return state.list.find(scheduleListing => scheduleListing.id === +id) || {
 				properties: {
 					title: "Loading...",
 					type: "",

@@ -16,7 +16,7 @@
 			<h4>
 				<router-link
 					:to="{
-						name: 'talk',
+						name: 'schedule-listing',
 						params: {id: event.properties.id}
 					}"
 					:class="{disabled: !event.id}"
