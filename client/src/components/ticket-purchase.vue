@@ -143,56 +143,54 @@ export default {
 @import "@/styles/_general.scss";
 @import "@/styles/_sizes.scss";
 
-.tickets {
-    .ticket-purchase {
-        margin-bottom: $xxl;
-		h3 {
+.ticket-purchase {
+	margin-bottom: $xxl;
+	h3 {
+		@include fieldset-header-font;
+	}
+	[type="submit"], a {
+		@include call-to-action-button;
+		display: block;
+		width: 100%;
+		margin-bottom: $large;
+		&[disabled] {
+			background-color: $medium-light-grey;
+		}
+	}
+	.levels {
+		margin-bottom: $xl;
+		input, label {
+			display: inline-block;
+			width: auto;
+		}
+		input {
+			margin-bottom: $small;
+			margin-right: $large;
+		}
+		label {
 			@include fieldset-header-font;
 		}
-        [type="submit"], a {
-            @include call-to-action-button;
-            display: block;
-            width: 100%;
-            margin-bottom: $large;
-			&[disabled] {
-				background-color: $medium-light-grey;
-			}
-        }
-        .levels {
-            margin-bottom: $xl;
-			input, label {
-				display: inline-block;
-				width: auto;
-			}
-            input {
-                margin-bottom: $small;
-                margin-right: $large;
-            }
-            label {
-                @include fieldset-header-font;
-            }
-        }
-		.ticket-details {
-			display: flex;
-			flex-flow: column nowrap;
-			margin-bottom: $xl;
-			align-items: center;
-			p {
-				width: 100%;
-			}
-			ul {
-				list-style-type: circle;
-				li {
-					margin-bottom: $small;
-				}
+	}
+	.ticket-details {
+		display: flex;
+		flex-flow: column nowrap;
+		margin-bottom: $xl;
+		align-items: center;
+		p {
+			width: 100%;
+		}
+		ul {
+			list-style-type: circle;
+			li {
+				margin-bottom: $small;
 			}
 		}
-    }
-    .errors {
-        color: $warning;
-    }
-    .message {
-        @include bold-body-font;
-    }
+	}
+}
+.errors {
+	color: $warning;
+}
+.message {
+	@include bold-body-font;
 }
 </style>

@@ -3,13 +3,13 @@
 		<div class="talk-info-wrapper">
 			<talk-info :talk="currentTalk" />
 		</div>
-		<!--
 		<router-link
 			class="edit-talk-link"
 			v-if="isCurrentUserTalk"
 			:to="{name: 'edit-talk', params: {id: currentTalk.id}}"
 		>Edit Talk
 		</router-link>
+		<!--
 		<button
 			:class="{voted: voteType === 'Unvote'}"
 			:disabled="isLoading"
@@ -43,18 +43,18 @@ export default {
 				return "Vote";
 			}
 		},
-		currentUser() {
-			return this.$store.getters["services/user/currentProfile"];
-		},
 		isAttendee() {
 			return this.$store.getters["services/user/isAttendee"];
+		},
+		*/
+		currentUser() {
+			return this.$store.getters["services/user/currentProfile"];
 		},
 		isCurrentUserTalk() {
 			return this.currentUser
 				? +this.currentTalk.properties.userId === +this.currentUser.id
 				: false;
 		},
-		*/
 		currentTalk() {
 			return this.$store.getters["scheduleListings/getTalkById"](Number(this.$route.params.id));
 		},
