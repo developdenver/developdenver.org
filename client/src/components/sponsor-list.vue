@@ -32,7 +32,7 @@ export default {
 			}, {
 				name: "Hofstadter",
 				imageUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/Hofstadter_+Name%2BTag+-+square.png",
-				link: "https://hofstadter.io/",
+				link: "https://docs.hofstadter.io/",
 			}, {
 				name: "Finkel & Garf",
 				imageUrl: FinkelAndGarf,
