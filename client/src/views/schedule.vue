@@ -62,20 +62,24 @@ export default {
 				id: "devops",
 				label: "DevOps",
 				includedCategories: ["devops", "workshop", "event"],
+			}, {
+				id: "workshops",
+				label: "workshops",
+				includedCategories: ["workshop", "event"],
 			}],
 			selectedVenue: "all",
 			venues: [{
 				id: "all",
 				label: "All",
-				includedVenues: ["Bigsby's Folly", "Urban Cyclist", "Catalyst HTI", "Big Trouble", "The Source Hotel"],
+				includedVenues: ["Bigsby's Folly", "The Urban Cyclist", "Catalyst HTI", "Big Trouble", "The Source Hotel", "RINO Yacht Club"],
 			}, {
 				id: "Bigsby's Folly",
 				label: "Bigsby's Folly",
 				includedVenues: ["Bigsby's Folly"],
 			}, {
-				id: "Urban Cyclist",
-				label: "Urban Cyclist",
-				includedVenues: ["Urban Cyclist"],
+				id: "The Urban Cyclist",
+				label: "The Urban Cyclist",
+				includedVenues: ["The Urban Cyclist"],
 			}, {
 				id: "Catalyst HTI",
 				label: "Catalyst HTI",
@@ -101,7 +105,9 @@ export default {
 	mounted() {
 		const isChrome = window.navigator.userAgent.toLowerCase().indexOf("chrome") > -1;
 		if (isChrome) {
-			document.querySelector(".friday").style.marginTop = "30rem";
+			const $friday = document.querySelector(".friday");
+			$friday.style.marginTop = "30rem";
+			$friday.style.marginBottom = "5rem";
 		}
 	},
 	computed: {
