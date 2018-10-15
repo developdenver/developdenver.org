@@ -18,7 +18,8 @@ export default {
 	computed: {
 		shuffledProfiles() {
 			const profilesWithPhotos = this.$store.state.profiles.list
-				.filter(profile => profile.properties.profilePhotoUrl);
+				.filter(profile => this.isValidUrl(profile.properties.profilePhotoUrl))
+				.filter(profile => profile.properties.ticketLevel);
 			return this.shuffle(profilesWithPhotos);
 		},
 	},
@@ -39,6 +40,13 @@ export default {
 
 			return array;
 		},
+		isValidUrl(url) {
+			const baseUrl = "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/";
+			if (url && url.startsWith(baseUrl)) {
+				return url.length > baseUrl.length;
+			}
+			return !!url;
+		}
 	},
 };
 </script>

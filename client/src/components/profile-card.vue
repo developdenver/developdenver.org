@@ -53,8 +53,15 @@ export default {
 		}
 		.image-wrapper {
 			position: relative;
+			width: 100%;
+			height: 100%;
+			background-size: cover;
+			display: flex;
+			justify-content: center;
+			background-color: #ddd;
+			z-index: -20;
 			img {
-				width: 100%;
+				height: 100%;
 				position: absolute;
 				z-index: -10;
 				transition: transform 3s cubic-bezier(0, 1, 1, 1);
