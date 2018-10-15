@@ -12,7 +12,7 @@
         />
         <section class="ticket-info">
 			<div class="ticket-details">
-				<h2><img src="../assets/logos/tickets.svg" alt="Tickets" class="svg" /></h2>
+				<h2>TICKETS</h2>
 				<p>Tickets are now on sale!</p>
 				<p>When: October 18 - 19</p>
 				<p>Where: RiNo Brighton Boulevard</p>

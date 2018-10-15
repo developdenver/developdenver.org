@@ -62,7 +62,10 @@ export default {
 
 	.app-footer {
 		position: relative;
-		background-color: $dark-grey;
+		background-image: url("../assets/bottom-banner.png");
+		background-size: 100% auto;
+		background-color: #2f2a2b;
+		background-repeat: no-repeat;
 		color: $white;
 		padding: $large;
 		.bottom-bar {

@@ -38,7 +38,8 @@ export default {
 		align-items: center;
 		margin-top: $xl;
         .slogan {
-            @include section-header-font;
+            @include tertiary-header-font;
+            font-size: $large;
             display: block;
             line-height: 35px;
 			margin-top: $xl;
