@@ -10,6 +10,7 @@
             :heading="featureBenefit.heading"
             :image="featureBenefit.image"
         />
+		<!--
         <section class="ticket-info">
 			<div class="ticket-details">
 				<h2>TICKETS</h2>
@@ -33,6 +34,7 @@
 				<router-link class="button" :to="{name: 'tickets'}">Buy Tickets</router-link>
 			</div>
         </section>
+		-->
         <sponsor-list />
     </div>
 </template>

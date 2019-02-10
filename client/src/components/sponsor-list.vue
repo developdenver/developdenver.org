@@ -49,6 +49,10 @@ export default {
 				name: "Traversal",
 				imageUrl: Traversal,
 				link: "https://traversalconf.com/",
+			}, {
+				name: "ReadyTalk",
+				imageUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/Tranparent+ReadyTalk+Logo.png",
+				link: "https://www.readytalk.com/",
 			}],
 		};
 	},

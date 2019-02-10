@@ -1,7 +1,7 @@
 <template>
   <div class="hero">
     <app-header />
-    <countdown />
+		<!-- <countdown /> -->
     <call-to-registration />
   </div>
 </template>

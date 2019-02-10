@@ -64,7 +64,7 @@ export default {
 				includedCategories: ["devops", "workshop", "event"],
 			}, {
 				id: "workshops",
-				label: "workshops",
+				label: "Workshops",
 				includedCategories: ["workshop", "event"],
 			}],
 			selectedVenue: "all",
@@ -104,9 +104,10 @@ export default {
 	},
 	mounted() {
 		const isChrome = window.navigator.userAgent.toLowerCase().indexOf("chrome") > -1;
-		if (isChrome) {
+		const isSafari = window.navigator.userAgent.toLowerCase().indexOf("safari") > -1;
+		if (isChrome || isSafari) {
 			const $friday = document.querySelector(".friday");
-			$friday.style.marginTop = "30rem";
+			$friday.style.marginTop = "37rem";
 			$friday.style.marginBottom = "5rem";
 		}
 	},

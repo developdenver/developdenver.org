@@ -163,7 +163,8 @@ router.beforeEach((to, from, next) => {
 	}
 	if (to.matched.some(record => record.meta.isAttendee)) {
 		if (!store.getters["services/user/isAttendee"]) {
-			next({name: "tickets"});
+			// next({name: "tickets"});
+			next({name: "news"});
 		}
 	}
 	if (to.matched.some(record => record.meta.isAttendee === false)) {
