@@ -1,10 +1,8 @@
 <template>
     <section class="call-to-registration">
         <div class="call-to-action">
-            <span class="slogan">Bringing together developers, designers, strategists,
-                and those looking to dive deeper into the interactive world for two
-                days of hands on code &amp; design talks.</span>
-            <router-link class="button" :to="{name: 'register'}">Join Us October 18th & 19th</router-link>
+            <span class="slogan">We're back for 2 days of talks, workshops, and celebrations in RiNo on August 15th and 16th!</span>
+            <router-link class="button" :to="{name: 'register'}">Join Us</router-link>
         </div>
     </section>
 </template>

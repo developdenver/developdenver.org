@@ -2,8 +2,9 @@
     <section class="feature">
         <img :src="image.url" :alt="image.altText" />
         <div class="benefit">
-			<h2>{{heading}}</h2>
-			<!-- <img src="../assets/logos/celebration.svg" alt="A Celebration." class="celebration-svg" /> -->
+			<div>
+				<h2>{{heading}}</h2>
+			</div>
             <div v-html="parsedCopy"></div>
             <slot />
         </div>
@@ -61,24 +62,21 @@ $clip-amount: 80px;
         h2 {
             @include section-header-font;
         }
-		.celebration-svg {
-			height: $large;
-			max-width: 100%;
-			padding: 0;
-			clip-path: none;
-			margin-bottom: $baseline;
-		}
     }
     @media (max-width: $large-breakpoint){
         & {
             margin-top: 0;
             margin-bottom: $large;
-			padding: 0;
+            padding-left: 0;
+            padding-right: 0;
             img {
                 display: block;
                 width: 100%;
                 clip-path: none;
             }
+			.benefit {
+				padding: $baseline 0 0 0;
+			}
         }
     }
 }

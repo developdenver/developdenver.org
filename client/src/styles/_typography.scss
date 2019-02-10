@@ -1,14 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100,400,700");
 @import "_sizes";
 
-
 @font-face {
 	font-family: DVLP;
-	src: url("~@/assets/fonts/DVLPOCRv7.otf") format("opentype");
+	src: url("~@/assets/fonts/dvlp-ocr.otf") format("opentype");
 }
 
 body {
     font-family: "Montserrat", sans-serif;
+}
+
+@mixin primary-header-font {
+	font-family: DVLP;
+    font-size: $xxl;
 }
 
 @mixin link-font {
@@ -46,6 +50,7 @@ body {
     font-family: DVLP;
     font-weight: 700;
     font-size: $xl;
+    max-width: $max-line-length;
     text-transform: uppercase;
     margin-bottom: $baseline;
 }
@@ -97,6 +102,6 @@ body {
 @mixin countdown-font {
     font-weight: 300;
     font-size: $baseline;
-    font-family: sans-serif;
+    font-family: DVLP;
     line-height: $baseline + $small;
 }

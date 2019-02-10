@@ -18,7 +18,7 @@ import About from "@/views/about";
 import News from "@/views/news";
 import ResetPassword from "@/views/reset-password";
 import RequestReset from "@/views/request-reset";
-// import SubmitTalk from "@/views/submit-talk";
+import SubmitTalk from "@/views/submit-talk";
 import TalkPage from "@/views/talk-page";
 import ScheduleListingPage from "@/views/schedule-listing-page";
 import WorkshopPage from "@/views/workshop-page";
@@ -35,14 +35,6 @@ const router = new Router({
 		path: "/",
 		name: "index",
 		component: Index,
-	}, {
-		path: "/events",
-		name: "events",
-		component: Events,
-	}, {
-		path: "/schedule",
-		name: "schedule",
-		component: Schedule,
 	}, {
 		path: "/register",
 		name: "register",
@@ -66,13 +58,20 @@ const router = new Router({
 		},
 	/*
 	}, {
+		path: "/events",
+		name: "events",
+		component: Events,
+	}, {
+		path: "/schedule",
+		name: "schedule",
+		component: Schedule,
+	}, {
 		path: "/submit-talk",
 		name: "submit-talk",
 		component: SubmitTalk,
 		meta: {
 			requiresAuth: true,
 		},
-	*/
 	}, {
 		path: "/talks/:id",
 		name: "talk",
@@ -128,6 +127,7 @@ const router = new Router({
 		path: "/community",
 		name: "community",
 		component: Community,
+	*/
 	}, {
 		path: "/code-of-conduct",
 		name: "code-of-conduct",

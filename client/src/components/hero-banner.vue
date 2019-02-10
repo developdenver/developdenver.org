@@ -1,7 +1,7 @@
 <template>
   <div class="hero">
     <app-header />
-		<!-- <countdown /> -->
+	<countdown />
     <call-to-registration />
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
 .hero {
     min-height: 100vh;
     width: 100%;
-    background: linear-gradient(rgba(0,0,0,0.7)), url("/img/gathering.jpg");
+    background: linear-gradient(rgba(0,0,0,0.7)), url("/img/ballmer-peak.jpeg");
     background-size: cover;
     position: relative;
     color: $white;

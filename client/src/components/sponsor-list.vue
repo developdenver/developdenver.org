@@ -1,5 +1,6 @@
 <template>
 	<section class="sponsors">
+		<!--
 		<h2>SPONSORS</h2>
 		<ul v-if="premiumSponsor" class="platinum-sponsors">
 			<li>Sponsor Here</li>
@@ -9,6 +10,7 @@
 				<a :href="sponsor.link"><img :src="sponsor.imageUrl" :alt="sponsor.name" /></a>
 			</li>
 		</ul>
+		-->
 		<div class="sponsor-call-to-action">
 			<p>Interested in becoming a sponsor?</p>
 			<a class="button" href="mailto:hello@developdenver.org">Contact Us</a>
@@ -17,42 +19,16 @@
 </template>
 
 <script>
-import FinkelAndGarf from "@/assets/logos/finkel-and-garf.svg";
-import Traversal from "@/assets/logos/traversal.png";
-import Galvanize from "@/assets/logos/galvanize.png";
-
 export default {
 	data() {
 		return {
 			premiumSponsor: null,
 			siteSponsors: [{
+			/*
 				name: "By The Pixel",
 				imageUrl: "https://s3-media1.fl.yelpcdn.com/bphoto/efFNBfcJaL2uXmtlWcVeVA/ls.jpg",
 				link: "https://bythepixel.com/",
-			}, {
-				name: "Hofstadter",
-				imageUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/Hofstadter_+Name%2BTag+-+square.png",
-				link: "https://docs.hofstadter.io/",
-			}, {
-				name: "Finkel & Garf",
-				imageUrl: FinkelAndGarf,
-				link: "https://finkelandgarf.com/",
-			}, {
-				name: "ReactiveOps",
-				imageUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/reactiveops.png",
-				link: "https://www.reactiveops.com/",
-			}, {
-				name: "Galvanize",
-				imageUrl: Galvanize,
-				link: "https://www.galvanize.com/",
-			}, {
-				name: "Traversal",
-				imageUrl: Traversal,
-				link: "https://traversalconf.com/",
-			}, {
-				name: "ReadyTalk",
-				imageUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/Tranparent+ReadyTalk+Logo.png",
-				link: "https://www.readytalk.com/",
+			*/
 			}],
 		};
 	},
@@ -66,7 +42,7 @@ export default {
 	@import "@/styles/_general.scss";
 
 	.sponsors {
-		padding: $xxl 0 0 0;
+		padding: 0 0 0 0;
 		background-color: $light-grey;
 		h2 {
 			display: block;

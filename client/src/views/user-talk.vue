@@ -25,7 +25,7 @@ export default {
 		async updateTalk(talk) {
 			const success = await this.$store.dispatch("talks/updateTalk", talk);
 			if (success) {
-				this.$router.push({ name: "talk", params: {id: talk.properties.id} });
+				this.$router.push({ name: "talk", params: { id: talk.properties.id } });
 			} else {
 				this.error = "There was an error updating your talk. Please try again.";
 			}

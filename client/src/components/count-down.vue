@@ -4,17 +4,17 @@
 		<p class="numbers">{{toTwoDigits(countDownToConference.days)}}</p>
 		<p class="counter-label">days</p>
 	</span>
-	<span class="divider">//</span>
+	<span class="divider">/</span>
 	<span>
 		<p class="numbers">{{toTwoDigits(countDownToConference.hours)}}</p>
 		<p class="counter-label">hours</p>
 	</span>
-	<span class="divider">//</span>
+	<span class="divider">/</span>
 	<span>
 		<p class="numbers">{{toTwoDigits(countDownToConference.minutes)}}</p>
 		<p class="counter-label">minutes</p>
 	</span>
-	<span class="divider">//</span>
+	<span class="divider">/</span>
 	<span>
 		<p class="numbers">{{toTwoDigits(countDownToConference.seconds)}}</p>
 		<p class="counter-label">seconds</p>
@@ -27,7 +27,7 @@ export default {
 	name: "Countdown",
 	data() {
 		return {
-			conferenceDate: new Date("oct 18, 2018 08:00:00").getTime(),
+			conferenceDate: new Date("Aug 15, 2019 08:00:00").getTime(),
 			today: Date.now(),
 		};
 	},
@@ -39,7 +39,7 @@ export default {
 			const hours = this.toTwoDigits(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
 			const minutes = this.toTwoDigits(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
 			const seconds = this.toTwoDigits(Math.floor((distance % (1000 * 60)) / 1000));
-			return {days, hours, minutes, seconds};
+			return { days, hours, minutes, seconds };
 		},
 	},
 	methods: {
@@ -66,7 +66,7 @@ export default {
 	justify-content: center;
 	@include countdown-font;
 	.numbers, .divider {
-		font-size: $xxl;
+		font-size: $xxxl;
 	}
 	.divider {
 		margin: 0 $large;

@@ -1,9 +1,7 @@
 <template>
 	<header class="app-header">
-		<h1>Develop Denver</h1>
 		<router-link to="/">
-			<img v-if="this.$route.name === 'index'" class="logo" src="../assets/dvlp_18_wht.svg" alt="Develop Denver Logo" />
-			<img v-else class="logo" src="../assets/logo.svg" alt="Develop Denver Logo" />
+			<h1>Develop Denver 2019</h1>
 		</router-link>
 		<primary-navigation />
 	</header>
@@ -22,14 +20,18 @@ export default {
 <style lang="scss">
 	@import "@/styles/_sizes.scss";
 	@import "@/styles/_colors.scss";
+	@import "@/styles/_typography.scss";
 
 	.app-header {
 		display: flex;
 		flex-flow: column nowrap;
 		align-items: center;
 		padding: $baseline;
+		a {
+			text-decoration: none;
+		}
 		h1 {
-			display: none;
+			@include primary-header-font;
 		}
 		.logo {
 			padding: $small;
