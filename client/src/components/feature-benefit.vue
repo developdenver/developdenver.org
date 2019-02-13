@@ -35,18 +35,16 @@ export default {
 @import '@/styles/_colors.scss';
 @import '@/styles/_sizes.scss';
 
-$clip-amount: 0px;
-
 .feature {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    margin-top: $clip-amount * -1;
-    margin-bottom: calc($clip-amount * -1) + $large;
+    margin-top: 0;
+    margin-bottom: $large;
     padding: $large $xxl;
     .video {
         display: flex;
-        clip-path: inset($clip-amount 0);
+        clip-path: inset(0 0);
         iframe {
             margin: 0 auto;
         }
