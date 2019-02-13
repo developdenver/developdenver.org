@@ -1,16 +1,14 @@
 <template>
-    <div class="index">
-        <section class="hero">
-            <hero-banner />
-        </section>
-        <feature-benefit
-            v-for="featureBenefit in featureBenefits"
-            :key="featureBenefit.heading"
-            :copy="featureBenefit.copy"
-            :heading="featureBenefit.heading"
-            :image="featureBenefit.image"
-        />
-		<!--
+  <div class="index">
+    <section class="hero">
+      <hero-banner/>
+    </section>
+    <feature-benefit
+      v-for="featureBenefit in featureBenefits"
+      :key="featureBenefit.heading"
+      v-bind="featureBenefit"
+    />
+    <!--
         <section class="ticket-info">
 			<div class="ticket-details">
 				<h2>TICKETS</h2>
@@ -34,48 +32,48 @@
 				<router-link class="button" :to="{name: 'tickets'}">Buy Tickets</router-link>
 			</div>
         </section>
-		-->
-        <sponsor-list />
-    </div>
+    -->
+    <sponsor-list/>
+  </div>
 </template>
 
 <script>
-import HeroBanner from "@/components/hero-banner.vue";
-import ProfileCardList from "@/components/profile-card-list";
-import FeatureBenefit from "@/components/feature-benefit.vue";
-import SponsorList from "@/components/sponsor-list";
-import CallForTalks from "@/components/call-for-talks";
+import HeroBanner from '@/components/hero-banner.vue';
+import ProfileCardList from '@/components/profile-card-list';
+import FeatureBenefit from '@/components/feature-benefit.vue';
+import SponsorList from '@/components/sponsor-list';
+import CallForTalks from '@/components/call-for-talks';
 
-import boardProfiles from "@/data/board-profiles";
-import featureBenefits from "@/data/feature-benefits";
+import boardProfiles from '@/data/board-profiles';
+import featureBenefits from '@/data/feature-benefits';
 
 export default {
-	components: {
-		HeroBanner,
-		ProfileCardList,
-		FeatureBenefit,
-		SponsorList,
-		CallForTalks,
-	},
-	computed: {
-		boardProfiles() {
-			return boardProfiles;
-		},
-	},
-	data() {
-		return {
-			featureBenefits,
-		};
-	},
+    components: {
+        HeroBanner,
+        ProfileCardList,
+        FeatureBenefit,
+        SponsorList,
+        CallForTalks,
+    },
+    computed: {
+        boardProfiles() {
+            return boardProfiles;
+        },
+    },
+    data() {
+        return {
+            featureBenefits,
+        };
+    },
 };
 </script>
 
 <style lang="scss">
-@import "@/styles/_sizes.scss";
-@import "@/styles/_typography.scss";
-@import "@/styles/_colors.scss";
-@import "@/styles/_sizes.scss";
-@import "@/styles/_general.scss";
+@import '@/styles/_sizes.scss';
+@import '@/styles/_typography.scss';
+@import '@/styles/_colors.scss';
+@import '@/styles/_sizes.scss';
+@import '@/styles/_general.scss';
 
 .index {
     display: flex;
@@ -88,33 +86,33 @@ export default {
             margin-top: 0;
         }
     }
-	.about {
-		margin-top: $xxl;
-		.details {
-			width: 100%;
-			display: flex;
-			align-items: center;
-			flex-flow: column nowrap;
-			h2 {
-				padding: 0 $baseline;
-				.board-svg {
-					height: $large;
-					padding: 0;
-				}
-			}
-			p {
-				padding: $baseline;
-			}
-			.details-wrapper {
-				width: 100%;
-				p {
-					@include stylized-body-font;
-					max-width: $max-line-length;
-					padding: $baseline;
-				}
-			}
-		}
-	}
+    .about {
+        margin-top: $xxl;
+        .details {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-flow: column nowrap;
+            h2 {
+                padding: 0 $baseline;
+                .board-svg {
+                    height: $large;
+                    padding: 0;
+                }
+            }
+            p {
+                padding: $baseline;
+            }
+            .details-wrapper {
+                width: 100%;
+                p {
+                    @include stylized-body-font;
+                    max-width: $max-line-length;
+                    padding: $baseline;
+                }
+            }
+        }
+    }
     .ticket-info {
         display: flex;
         flex-direction: column;
@@ -124,19 +122,19 @@ export default {
             @include call-to-action-button;
             margin: 0 auto;
         }
-		h2 {
-			@include section-header-font;
-			width: 10rem;
-		}
-		p {
-			@include stylized-body-font;
-			max-width: $max-line-length;
-		}
-		.ticket-details {
-			display: flex;
-			flex-flow: column nowrap;
-			align-items: center;
-		}
+        h2 {
+            @include section-header-font;
+            width: 10rem;
+        }
+        p {
+            @include stylized-body-font;
+            max-width: $max-line-length;
+        }
+        .ticket-details {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+        }
         .venues {
             margin: 0 auto;
             width: 800px;
@@ -158,7 +156,7 @@ export default {
     }
     .feature {
         /*max-width: 90%;*/
-        @media (max-width: $large-breakpoint){
+        @media (max-width: $large-breakpoint) {
             flex-flow: column nowrap;
             align-self: flex-start;
             max-width: 100%;
@@ -171,7 +169,7 @@ export default {
                 width: 90%;
             }
         }
-        &:nth-child(odd){
+        &:nth-child(odd) {
             align-self: flex-start;
             img {
                 order: 1;
@@ -180,7 +178,7 @@ export default {
                 order: 2;
                 margin-left: $xl * -1;
             }
-            @media (max-width: $large-breakpoint){
+            @media (max-width: $large-breakpoint) {
                 align-self: auto;
                 img {
                     order: 1;
@@ -192,9 +190,9 @@ export default {
                 }
             }
         }
-        &:nth-child(even){
+        &:nth-child(even) {
             align-self: flex-end;
-			> img {
+            > img {
                 order: 2;
                 width: 60%;
             }
@@ -202,7 +200,7 @@ export default {
                 order: 1;
                 margin-right: $xl * -1;
             }
-            @media (max-width: $large-breakpoint){
+            @media (max-width: $large-breakpoint) {
                 align-self: auto;
                 img {
                     order: 1;
