@@ -171,7 +171,7 @@ export default {
         }
         &:nth-child(odd) {
             align-self: flex-start;
-            img {
+            .video {
                 order: 1;
             }
             .benefit {
@@ -180,7 +180,7 @@ export default {
             }
             @media (max-width: $large-breakpoint) {
                 align-self: auto;
-                img {
+                .video {
                     order: 1;
                 }
                 .benefit {
@@ -202,13 +202,13 @@ export default {
             }
             @media (max-width: $large-breakpoint) {
                 align-self: auto;
-                img {
+                .video {
                     order: 1;
                 }
                 .benefit {
                     order: 2;
                     margin-right: 0;
-                    margin-top: $xl * -1;
+                    margin-top: 0;
                 }
             }
         }
