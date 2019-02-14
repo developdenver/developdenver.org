@@ -1,7 +1,8 @@
-const Profile = require("../models/profile");
-const { generateToken } = require("../utilities/auth");
+const Profile = require('../models/profile');
+const { generateToken } = require('../utilities/auth');
+const addToMailgun = require('../utilities/mailgun-list');
 
-function create(request, response, next){
+function create(request, response, next) {
     const fullProfile = Profile.add(request.body, true)
         .then(fullProfile => {
             const token = generateToken(fullProfile);
@@ -10,52 +11,64 @@ function create(request, response, next){
                     data: profile,
                     jwt: token,
                 });
+                addToMailgun({
+                    profile: fullProfile,
+                    tags: [new Date().getFullYear().toString()],
+                });
             });
-        }).catch(error => next(error));
+        })
+        .catch(error => next(error));
 }
 
-function read(request, response, next){
+function read(request, response, next) {
     Profile.find(request.params.id)
         .then(profiles => {
             response.status(200).json({
-                data: profiles
+                data: profiles,
             });
-        }).catch(error => next(error));
+        })
+        .catch(error => next(error));
 }
 
-function update(request, response, next){
+function update(request, response, next) {
     Profile.update(request.params.id, request.body)
         .then(profile => {
             response.status(200).json({
-                data: profile
+                data: profile,
             });
-        }).catch(error => next(error));
+            addToMailgun({
+                profile: fullProfile,
+                tags: [new Date().getFullYear().toString()],
+            });
+        })
+        .catch(error => next(error));
 }
 
-function destroy(request, response, next){
+function destroy(request, response, next) {
     Profile.remove(request.params.id)
         .then(() => {
             response.status(204).send();
-        }).catch(error => next(error));
+        })
+        .catch(error => next(error));
 }
 
-function list(request, response, next){
+function list(request, response, next) {
     Profile.list()
         .then(profiles => {
             response.status(200).json({
-                data: profiles
+                data: profiles,
             });
-        }).catch(error => next(error));
+        })
+        .catch(error => next(error));
 }
 
-function isEmailUnique(request, response, next){
-    Profile.query({email: request.body.email})
+function isEmailUnique(request, response, next) {
+    Profile.query({ email: request.body.email })
         .then(profile => {
-            const status = !profile
-                ? 200
-                : 400;
+            const status = !profile ? 200 : 400;
             response.status(status).send();
-        }).catch(error => next(error));
+        })
+        .catch(error => next(error));
 }
 
 module.exports = {
