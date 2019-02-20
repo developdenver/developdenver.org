@@ -1,62 +1,69 @@
-import Vue from "vue";
-import Router from "vue-router";
+import Vue from 'vue';
+import Router from 'vue-router';
 
-import store from "./store";
+import store from './store';
 
-import Index from "@/views/index.vue";
-import EditProfile from "@/views/profile.vue";
-import Community from "@/views/community.vue";
-import CodeOfConduct from "@/views/code-of-conduct.vue";
-import PrivacyPolicy from "@/views/privacy-policy.vue";
-import ProfilePage from "@/views/profile-page.vue";
-import Register from "@/views/register";
-import Login from "@/views/login";
-import StudentTickets from "@/views/student-tickets";
-import DiscountTickets from "@/views/discount-tickets";
-import Tickets from "@/views/tickets";
-import About from "@/views/about";
-import News from "@/views/news";
-import ResetPassword from "@/views/reset-password";
-import RequestReset from "@/views/request-reset";
-import SubmitTalk from "@/views/submit-talk";
-import TalkPage from "@/views/talk-page";
-import ScheduleListingPage from "@/views/schedule-listing-page";
-import WorkshopPage from "@/views/workshop-page";
-import Talks from "@/views/talks";
-import UserTalk from "@/views/user-talk";
-import Events from "@/views/events";
-import Schedule from "@/views/schedule";
+import Index from '@/views/index.vue';
+import EditProfile from '@/views/profile.vue';
+import Community from '@/views/community.vue';
+import CodeOfConduct from '@/views/code-of-conduct.vue';
+import PrivacyPolicy from '@/views/privacy-policy.vue';
+import ProfilePage from '@/views/profile-page.vue';
+import Register from '@/views/register';
+import Login from '@/views/login';
+import StudentTickets from '@/views/student-tickets';
+import DiscountTickets from '@/views/discount-tickets';
+import Tickets from '@/views/tickets';
+import About from '@/views/about';
+import News from '@/views/news';
+import ResetPassword from '@/views/reset-password';
+import RequestReset from '@/views/request-reset';
+import SubmitTalk from '@/views/submit-talk';
+import TalkPage from '@/views/talk-page';
+import ScheduleListingPage from '@/views/schedule-listing-page';
+import WorkshopPage from '@/views/workshop-page';
+import Talks from '@/views/talks';
+import UserTalk from '@/views/user-talk';
+import Events from '@/views/events';
+import Schedule from '@/views/schedule';
 
 Vue.use(Router);
 
+const ticketsOnSale = false;
+
 const router = new Router({
-	mode: "history",
-	routes: [{
-		path: "/",
-		name: "index",
-		component: Index,
-	}, {
-		path: "/register",
-		name: "register",
-		component: Register,
-		meta: {
-			isGuest: true,
+	mode: 'history',
+	routes: [
+		{
+			path: '/',
+			name: 'index',
+			component: Index,
 		},
-	}, {
-		path: "/login",
-		name: "login",
-		component: Login,
-		meta: {
-			isGuest: true,
-		}
-	}, {
-		path: "/profiles/me",
-		name: "my-profile",
-		component: EditProfile,
-		meta: {
-			requiresAuth: true,
+		{
+			path: '/register',
+			name: 'register',
+			component: Register,
+			meta: {
+				isGuest: true,
+			},
 		},
-	/*
+		{
+			path: '/login',
+			name: 'login',
+			component: Login,
+			meta: {
+				isGuest: true,
+			},
+		},
+		{
+			path: '/profiles/me',
+			name: 'my-profile',
+			component: EditProfile,
+			meta: {
+				requiresAuth: true,
+			},
+		},
+		/*
 	}, {
 		path: "/events",
 		name: "events",
@@ -95,11 +102,18 @@ const router = new Router({
 		meta: {
 			requiresAuth: true,
 		},
-	}, {
-		path: "/tickets",
-		name: "tickets",
-		component: Tickets,
-	}, {
+	},
+	*/
+		{
+			path: '/tickets',
+			name: 'tickets',
+			component: Tickets,
+			meta: {
+				notYetAvailable: !ticketsOnSale,
+			},
+		},
+		/*
+	{
 		path: "/student-tickets",
 		name: "student-tickets",
 		component: StudentTickets,
@@ -111,15 +125,12 @@ const router = new Router({
 		path: "/profiles/:id",
 		name: "profile",
 		component: ProfilePage,
-	}, {
-		path: "/news",
-		name: "news",
-		component: News,
-		meta: {
-			requiresAuth: true,
-			isAttendee: true,
-		},
-	}, {
+	}, */
+		{
+			path: '/news',
+			name: 'news',
+			component: News,
+		} /*{
 		path: "/about",
 		name: "about",
 		component: About,
@@ -127,50 +138,60 @@ const router = new Router({
 		path: "/community",
 		name: "community",
 		component: Community,
-	*/
-	}, {
-		path: "/code-of-conduct",
-		name: "code-of-conduct",
-		component: CodeOfConduct,
-	}, {
-		path: "/privacy-policy",
-		name: "privacy-policy",
-		component: PrivacyPolicy,
-	}, {
-		path: "/reset-password",
-		name: "reset-password",
-		component: ResetPassword,
-	}, {
-		path: "/request-reset",
-		name: "request-reset",
-		component: RequestReset,
-	}],
+	*/,
+		{
+			path: '/code-of-conduct',
+			name: 'code-of-conduct',
+			component: CodeOfConduct,
+		},
+		{
+			path: '/privacy-policy',
+			name: 'privacy-policy',
+			component: PrivacyPolicy,
+		},
+		{
+			path: '/reset-password',
+			name: 'reset-password',
+			component: ResetPassword,
+		},
+		{
+			path: '/request-reset',
+			name: 'request-reset',
+			component: RequestReset,
+		},
+	],
 	scrollBehavior() {
 		return { x: 0, y: 0 };
 	},
 });
 
 router.beforeEach((to, from, next) => {
-	if (to.matched.some(record => record.meta.requiresAuth)) {
-		if (!store.getters["services/user/isLoggedIn"]) {
-			next({name: "login"});
-		}
-	}
-	if (to.matched.some(record => record.meta.isGuest)) {
-		if (store.getters["services/user/isLoggedIn"]) {
-			next({name: "news"});
-		}
-	}
-	if (to.matched.some(record => record.meta.isAttendee)) {
-		if (!store.getters["services/user/isAttendee"]) {
-			// next({name: "tickets"});
-			next({name: "news"});
-		}
-	}
-	if (to.matched.some(record => record.meta.isAttendee === false)) {
-		if (store.getters["services/user/isAttendee"]) {
-			next({name: "news"});
-		}
+	const routeRequiresAuth = to.matched.some(
+		record => record.meta.requiresAuth,
+	);
+	const routeRequiresGuest = to.matched.some(record => record.meta.isGuest);
+	const routeRequiresAttendee = to.matched.some(
+		record => record.meta.isAttendee,
+	);
+	const routeRequiresNonAttendee = to.matched.some(
+		record => record.meta.isAttendee,
+	);
+	const routeNotYetAvailable = to.matched.some(
+		record => record.meta.notYetAvailable,
+	);
+
+	const userIsLoggedIn = store.getters['services/user/isLoggedIn'];
+	const userIsAttendee = store.getters['services/user/isAttendee'];
+	if (routeNotYetAvailable) {
+		next({ name: 'news' });
+	} else if (routeRequiresAuth && !userIsLoggedIn) {
+		next({ name: 'login' });
+	} else if (routeRequiresGuest && userIsLoggedIn) {
+		next({ name: 'news' });
+	} else if (routeRequiresAttendee && !userIsAttendee) {
+		next({ name: 'tickets' });
+	} else if (routeRequiresNonAttendee && userIsAttendee) {
+		next({ name: 'news' });
 	}
 	next();
 });
