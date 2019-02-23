@@ -8,7 +8,7 @@ class Profile extends Model {
         this.publicProperties = [
             "id", "first_name", "last_name", "email", "profile_photo_url",
             "bio", "employer", "position", "website", "linkedin_username",
-            "github_username", "twitter_username", "role", "ticket_level",
+            "github_username", "twitter_username", "role",
             "is_self_employed",
         ];
     }

@@ -1,4 +1,4 @@
-import Profile from "../models/profile";
+import Profile from '../models/profile';
 
 export default {
 	namespaced: true,
@@ -6,7 +6,7 @@ export default {
 		list: [],
 	},
 	getters: {
-		getProfileById: (state) => (id) => {
+		getProfileById: state => id => {
 			return state.list.find(profile => +profile.id === +id);
 		},
 	},
@@ -16,20 +16,21 @@ export default {
 		},
 	},
 	actions: {
-		async createProfile({commit, dispatch}, profile) {
-			dispatch("services/loading/pushLoading", {}, { root: true });
+		async createProfile({ commit, dispatch }, profile) {
+			dispatch('services/loading/pushLoading', {}, { root: true });
 			const jwt = await profile.create();
-			commit("services/user/setProfile", profile.properties, { root: true });
-			commit("services/user/setToken", jwt, { root: true });
-			dispatch("services/loading/popLoading", {}, { root: true });
+			commit('services/user/setProfile', profile.properties, {
+				root: true,
+			});
+			commit('services/user/setToken', jwt, { root: true });
+			dispatch('services/loading/popLoading', {}, { root: true });
 		},
-		async fetchProfiles({commit, dispatch}) {
-			dispatch("services/loading/pushLoading", {}, { root: true });
-			let profiles = await Profile
-				.fetchAll("profile");
+		async fetchProfiles({ commit, dispatch }) {
+			dispatch('services/loading/pushLoading', {}, { root: true });
+			let profiles = await Profile.fetchAll('profile');
 			profiles = profiles.map(profile => new Profile(profile));
-			commit("updateProfiles", profiles);
-			dispatch("services/loading/popLoading", {}, { root: true });
+			commit('updateProfiles', profiles);
+			dispatch('services/loading/popLoading', {}, { root: true });
 		},
 	},
 };

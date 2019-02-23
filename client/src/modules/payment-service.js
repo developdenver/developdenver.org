@@ -5,7 +5,7 @@ export default {
 	state: {
 		paymentKey,
 		isError: false,
-		message: "",
+		message: '',
 	},
 	mutations: {
 		setMessage(state, message) {
@@ -13,19 +13,21 @@ export default {
 		},
 	},
 	actions: {
-		async charge({ dispatch }, data) {
-			dispatch("services/loading/pushLoading", {}, { root: true });
+		async charge({ dispatch, rootState }, data) {
+			dispatch('services/loading/pushLoading', {}, { root: true });
 			const charge = await fetch(process.env.VUE_APP_PAYMENTS_URL, {
-				method: "POST",
+				method: 'POST',
 				headers: {
-					"Content-Type": "application/json",
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${rootState.services.user.token}`,
 				},
 				body: JSON.stringify(data),
-			}).then(response => response.json())
+			})
+				.then(response => response.json())
 				.catch(error => {
 					console.error(error.message);
 				});
-			dispatch("services/loading/popLoading", {}, { root: true });
+			dispatch('services/loading/popLoading', {}, { root: true });
 			return charge;
 		},
 	},

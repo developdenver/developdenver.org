@@ -1,61 +1,63 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const stripe = require("stripe")(process.env.STRIPE_KEY);
+const stripe = require('stripe')(process.env.STRIPE_KEY);
+const { promisify } = require('util');
+const studentDiscountCodes = process.env.STUDENT_DISCOUNT_CODES.split(',');
+const { send } = require('../utilities/email');
+const passport = require('passport');
+const Ticket = require('../models/ticket');
 
-const studentDiscountCodes = process.env.STUDENT_DISCOUNT_CODES.split(",");
-const { send } = require("../utilities/email");
+const stripeCreateOrder = promisify(stripe.orders.create.bind(stripe.orders));
+const stripePayOrder = promisify(stripe.orders.pay.bind(stripe.orders));
 
-function getPrice(level, discountCode){
-    const levels = {
-        "early-bird": 135 * 100,
-        "regular": 235 * 100,
-        "employer": 375 * 100,
-        "premium": 500 * 100,
-        "student": 90 * 100,
-        "discount": 199 * 100,
-    };
+const closeOfEarlyPricing = new Date(2019, 5, 1);
 
-    let price;
-    if (level === "student" && studentDiscountCodes.includes(discountCode)){
-        price = levels["student"];
-    } else if (level === "discount" && studentDiscountCodes.includes(discountCode)){
-        price = levels["discount"];
-    } else if (level === "student"){
-        throw new Error("Invalid discount code");
-    } else {
-        price = levels[level];
+async function purchaseTicket({ sku, source, discount_code, receipt_email }) {
+    if (sku === 'skuStudent' && !studentDiscountCodes.includes(discount_code)) {
+        throw new Error('Invalid discount code');
     }
-    return price;
+    if (sku === 'skuEarly' && Date.now() > closeOfEarlyPricing) {
+        throw new Error('Too late for early pricing');
+    }
+    const order = await stripeCreateOrder({
+        currency: 'usd',
+        items: [{ type: 'sku', parent: sku }],
+        email: receipt_email,
+    });
+    const orderAgain = await stripePayOrder(order.id, { source });
+    return orderAgain;
 }
 
-module.exports = (app) => {
-    router.post("/", (request, response, next) => {
-        let options;
+module.exports = app => {
+    router.use(passport.authenticate('jwt', { session: false }));
+
+    router.post('/', async (request, response, next) => {
+        const { sku, discount_code, token, email } = request.body;
         try {
-            options = {
-                description: request.body.description,
-                amount: getPrice(request.body.level, request.body.discount_code),
-                currency: "usd",
-                source: request.body.token,
-                receipt_email: request.body.email,
-            };
-            stripe.charges.create(options, async (error, charge) => {
-                if (error){
-                    response.status(400).json({error: error.message});
-                } else {
-                    await sendConfirmationEmail(request.body.email);
-                    response.json({data: charge});
-                }
+            const order = await purchaseTicket({
+                sku,
+                discount_code,
+                source: token,
+                receipt_email: email,
             });
-        } catch (error){
-            next(error);
+            await Ticket.add({
+                purchaser_id: request.user.id,
+                sku,
+                discount_code,
+                price_paid_cents: order.amount,
+                event_date: Ticket.nextEventDate,
+            });
+            await sendConfirmationEmail(email);
+            response.json({ data: order });
+        } catch (err) {
+            response.status(400).json({ error: err.message });
         }
     });
 
     return router;
 };
 
-function sendConfirmationEmail(email){
+function sendConfirmationEmail(email) {
     const content = `
 ## Success!
 
@@ -63,9 +65,5 @@ Hi-five! You've purchased your ticket to DVLP DNVR. We will see you on October 1
 
 We'll keep you up to date. Thank you for contributing to the Denver tech community! It's going to be awesome.
     `;
-    return send(
-        email,
-        "You're Going to DVLP DNVR!",
-        content,
-    )
+    return send(email, "You're Going to DVLP DNVR!", content);
 }

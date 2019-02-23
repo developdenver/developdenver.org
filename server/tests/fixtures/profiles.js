@@ -19,7 +19,6 @@ module.exports = {
             bio: 'Bio',
             profile_photo_url: 'http://via.placeholder.com/500x500',
             role: null,
-            ticket_level: null,
         },
         {
             id: 2,
@@ -40,7 +39,6 @@ module.exports = {
             bio: 'Bio2',
             profile_photo_url: 'http://via.placeholder.com/500x500',
             role: null,
-            ticket_level: null,
         },
     ],
     new: {
@@ -58,6 +56,5 @@ module.exports = {
         bio: 'Bio3',
         profile_photo_url: 'http://via.placeholder.com/500x500',
         role: 'attendee',
-        ticket_level: null,
     },
 };

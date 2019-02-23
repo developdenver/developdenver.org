@@ -1,7 +1,7 @@
 export default {
 	namespaced: true,
 	state: {
-		loadingCount: 0
+		loadingCount: 0,
 	},
 	getters: {
 		isLoading(state) {
@@ -18,10 +18,10 @@ export default {
 	},
 	actions: {
 		pushLoading({ commit }) {
-			commit("pushLoading");
+			commit('pushLoading');
 		},
 		popLoading({ commit }) {
-			commit("popLoading");
+			commit('popLoading');
 		},
 	},
 };

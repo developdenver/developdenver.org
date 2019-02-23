@@ -29,7 +29,7 @@ import Schedule from '@/views/schedule';
 
 Vue.use(Router);
 
-const ticketsOnSale = false;
+const ticketsOnSale = true;
 
 const router = new Router({
 	mode: 'history',
@@ -112,25 +112,33 @@ const router = new Router({
 				notYetAvailable: !ticketsOnSale,
 			},
 		},
-		/*
-	{
-		path: "/student-tickets",
-		name: "student-tickets",
-		component: StudentTickets,
-	}, {
-		path: "/discount-tickets",
-		name: "discount-tickets",
-		component: DiscountTickets,
-	}, {
-		path: "/profiles/:id",
-		name: "profile",
-		component: ProfilePage,
-	}, */
+		{
+			path: '/student-tickets',
+			name: 'student-tickets',
+			component: StudentTickets,
+			meta: {
+				notYetAvailable: !ticketsOnSale,
+			},
+		},
+		{
+			path: '/discount-tickets',
+			name: 'discount-tickets',
+			component: DiscountTickets,
+			meta: {
+				notYetAvailable: !ticketsOnSale,
+			},
+		},
+		/*{
+			path: "/profiles/:id",
+			name: "profile",
+			component: ProfilePage,
+		}, */
 		{
 			path: '/news',
 			name: 'news',
 			component: News,
-		} /*{
+		},
+		/*{
 		path: "/about",
 		name: "about",
 		component: About,
@@ -138,7 +146,7 @@ const router = new Router({
 		path: "/community",
 		name: "community",
 		component: Community,
-	*/,
+	*/
 		{
 			path: '/code-of-conduct',
 			name: 'code-of-conduct',

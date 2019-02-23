@@ -37,7 +37,7 @@ function update(request, response, next) {
                 data: profile,
             });
             addToMailgun({
-                profile: fullProfile,
+                profile,
                 tags: [new Date().getFullYear().toString()],
             });
         })
