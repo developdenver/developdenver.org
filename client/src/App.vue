@@ -1,47 +1,47 @@
 <template>
-    <div id="app">
-		<!--loading-spinner v-if="isLoading" /-->
-        <app-header v-if="this.$route.name !== 'index'" />
-        <main>
-            <router-view/>
-        </main>
-        <app-footer />
-    </div>
+  <div id="app">
+    <!--loading-spinner v-if="isLoading" /-->
+    <app-header v-if="this.$route.name !== 'index'"/>
+    <main>
+      <router-view/>
+    </main>
+    <app-footer/>
+  </div>
 </template>
 
 <script>
-import AppHeader from "@/components/app-header";
-import AppFooter from "@/components/app-footer";
-import LoadingSpinner from "@/components/loading-spinner";
+import AppHeader from '@/components/app-header';
+import AppFooter from '@/components/app-footer';
+import LoadingSpinner from '@/components/loading-spinner';
 
 export default {
-	components: {
-		AppHeader,
-		AppFooter,
-		LoadingSpinner,
-	},
-	mounted() {
-		this.$store.dispatch("services/user/fetchProfile");
-	},
-	computed: {
-		isLoading() {
-			return this.$store.getters["services/loading/isLoading"];
-		},
-	},
+    components: {
+        AppHeader,
+        AppFooter,
+        LoadingSpinner,
+    },
+    mounted() {
+        this.$store.dispatch('services/user/fetchProfile');
+    },
+    computed: {
+        isLoading() {
+            return this.$store.getters['services/loading/isLoading'];
+        },
+    },
 };
 </script>
 
 <style lang="scss">
-@import "@/styles/_reset.scss";
+@import '@/styles/_reset.scss';
 
 #app {
     min-height: 100vh;
     display: grid;
     grid-template:
-    "header" auto
-    "main" auto
-    "sponsors" auto
-    "footer" auto / auto;
+        'header' auto
+        'main' auto
+        'sponsors' auto
+        'footer' auto / auto;
     .top-bar {
         position: fixed;
     }
@@ -51,7 +51,7 @@ export default {
     .sponsors {
         grid-area: sponsors;
     }
-	> main {
+    > main {
         grid-area: main;
         display: flex;
         flex-flow: row wrap;

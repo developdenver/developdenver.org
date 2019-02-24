@@ -120,14 +120,14 @@ const router = new Router({
 				notYetAvailable: !ticketsOnSale,
 			},
 		},
-		{
-			path: '/discount-tickets',
-			name: 'discount-tickets',
-			component: DiscountTickets,
-			meta: {
-				notYetAvailable: !ticketsOnSale,
-			},
-		},
+		// {
+		// 	path: '/discount-tickets',
+		// 	name: 'discount-tickets',
+		// 	component: DiscountTickets,
+		// 	meta: {
+		// 		notYetAvailable: !ticketsOnSale,
+		// 	},
+		// },
 		/*{
 			path: "/profiles/:id",
 			name: "profile",
