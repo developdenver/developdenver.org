@@ -181,6 +181,7 @@ export default {
         }
         ul {
             list-style-type: circle;
+            max-width: 79vw;
             li {
                 margin-bottom: $small;
             }
