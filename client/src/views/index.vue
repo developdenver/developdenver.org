@@ -150,14 +150,16 @@ export default {
         }
         .venues {
             display: flex;
-            flex-wrap: 1;
+            flex-wrap: wrap;
+            justify-content: center;
             margin: 0 auto;
             width: 800px;
             margin-bottom: 40px;
             img {
                 width: 200px;
                 height: auto;
-                margin: 15px 30px 0;
+                margin: 0 auto 0;
+                padding: 15px 30px;
             }
             @media (max-width: $medium-breakpoint) {
                 width: 100%;
