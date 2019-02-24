@@ -17,13 +17,15 @@ class Ticket extends Model {
     }
 
     async holdsCurrentTicket(user_id) {
-        return !!(await Ticket.query({
+        return !!(await this.query({
             purchaser_id: user_id,
             event_date: '2018-08',
         }));
     }
+
+    get nextEventDate() {
+        return nextEventDate;
+    }
 }
 
 module.exports = new Ticket();
-
-module.exports.nextEventDate = nextEventDate;

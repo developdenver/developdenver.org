@@ -11,7 +11,8 @@ describe('ticket model', () => {
         await testDatabase.raw('ALTER SEQUENCE profile_id_seq RESTART WITH 3');
     });
     it('is happy when the ticket is current', async () => {
-        const userId = 1,
+        const userId = 1;
+        console.dir(Ticket);
         await Ticket.add({
             purchaser_id: userId,
             date_purchased: '2019-02-22',
@@ -20,13 +21,11 @@ describe('ticket model', () => {
         });
         const result = await Ticket.holdsCurrentTicket(userId);
         assert.ok(result);
-
     });
 
     it('complains when no ticket is found', async () => {
         const result = await Ticket.holdsCurrentTicket(5);
         assert.equal(result, false);
-
     });
     it('complains when only tickets are out of date', async () => {
         const userId = 2;
@@ -40,7 +39,7 @@ describe('ticket model', () => {
         assert.equal(result, false);
     });
 
-    it('is happy when both an outdated ticket and a current one exist', () => {
+    it('is happy when both an outdated ticket and a current one exist', async () => {
         const userId = 3;
         await Ticket.add({
             purchaser_id: userId,
