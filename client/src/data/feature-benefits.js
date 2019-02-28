@@ -2,7 +2,7 @@ export default [
 	{
 		heading: 'Community first',
 		video:
-			'<iframe width="560" height="315" src="https://www.youtube.com/embed/h0buOwtV9LA?controls=0&rel=0&showInfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+			'<iframe width="560" height="315" src="https://www.youtube.com/embed/ZsRunRoI8Rk?controls=0&rel=0&showInfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
 		copy: `
 Develop Denver brings together developers, designers, strategists, and those looking to dive deeper into the technology world.
 

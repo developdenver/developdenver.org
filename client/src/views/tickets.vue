@@ -16,23 +16,23 @@ export default {
         return {
             levels: [
                 {
+                    sku: 'skuEarly',
+                    label: '$149 - Early Bird',
+                    description:
+                        'Available until May 1st, early bird pricing give access to the full 2-conference',
+                },
+                {
                     sku: 'skuRegular',
-                    label: '$250 - Regular',
+                    label: '$249 - Regular',
                     description:
                         '2-Day conference pass including personalized conference badge, access to keynote speakers, talks, workshops and food and beverage at five amazing venues in the Denver RiNo district.',
                 },
                 {
                     sku: 'skuEmployer',
-                    label: '$400 - Employer',
+                    label: '$399 - Employer',
                     description:
                         'For those of you coming on your employer’s dime. Your ticket helps make Develop Denver affordable to all attendees, including sponsoring student tickets and sponsoring meals during the conference.',
                 },
-                // {
-                //     value: 'premium',
-                //     label: '$500 - Individual Sponsor',
-                //     description:
-                //         'Play an important role in supporting the Denver tech community without breaking the bank. Your sponsorship ensures we can continue to provide a local community-driven conference. In addition to special sponsorship badge your name will appear as a sponsor on the Develop Denver website.',
-                // },
             ],
         };
     },

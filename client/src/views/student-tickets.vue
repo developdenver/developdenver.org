@@ -20,7 +20,7 @@ export default {
             levels: [
                 {
                     sku: 'skuStudent',
-                    label: '$100 - Student',
+                    label: '$99 - Student',
                     description:
                         'I’m currently a student and I need financial help attending the conference. Note: If this is still too expensive please contact us via email at hello@developdenver.com and explain your situation.',
                 },
