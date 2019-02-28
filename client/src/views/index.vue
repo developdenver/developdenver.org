@@ -12,7 +12,7 @@
       <div class="ticket-details">
         <h2>TICKETS</h2>
         <p>Tickets are now on sale!</p>
-        <p>When: October 18 - 19</p>
+        <p>When: August 15 and 16</p>
         <p>Where: RiNo Brighton Boulevard</p>
       </div>
       <div class="venues">
