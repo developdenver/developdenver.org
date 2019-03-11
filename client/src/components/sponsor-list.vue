@@ -1,16 +1,17 @@
 <template>
   <section class="sponsors">
-    <!--
-		<h2>SPONSORS</h2>
-		<ul v-if="premiumSponsor" class="platinum-sponsors">
-			<li>Sponsor Here</li>
-		</ul>
-		<ul v-if="siteSponsors.length" class="gold-sponsors">
-			<li v-for="(sponsor, index) in siteSponsors" :key="index">
-				<a :href="sponsor.link"><img :src="sponsor.imageUrl" :alt="sponsor.name" /></a>
-			</li>
-		</ul>
-    -->
+    <h2>SPONSORS</h2>
+    <ul v-if="premiumSponsor" class="platinum-sponsors">
+      <li>Sponsor Here</li>
+    </ul>
+    <ul v-if="siteSponsors.length" class="gold-sponsors">
+      <li v-for="(sponsor, index) in siteSponsors" :key="index">
+        <a :href="sponsor.link">
+          <img :src="sponsor.imageUrl" :alt="sponsor.name">
+        </a>
+      </li>
+    </ul>
+
     <div class="sponsor-call-to-action">
       <p>Interested in becoming a sponsor?</p>
       <a class="button" href="mailto:sponsorship@developdenver.org">Contact Us</a>
@@ -25,11 +26,10 @@ export default {
             premiumSponsor: null,
             siteSponsors: [
                 {
-                    /*
-				name: "By The Pixel",
-				imageUrl: "https://s3-media1.fl.yelpcdn.com/bphoto/efFNBfcJaL2uXmtlWcVeVA/ls.jpg",
-				link: "https://bythepixel.com/",
-			*/
+                    name: 'By The Pixel',
+                    imageUrl:
+                        'https://s3-media1.fl.yelpcdn.com/bphoto/efFNBfcJaL2uXmtlWcVeVA/ls.jpg',
+                    link: 'https://bythepixel.com/',
                 },
             ],
         };
