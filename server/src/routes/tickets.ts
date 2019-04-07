@@ -1,4 +1,5 @@
 import { sendInvitationEmail } from '../controllers/ticket';
+import { withErrorHandling } from '../error-handling';
 
 const express = require('express');
 const Ticket = require('../models/ticket');
@@ -25,7 +26,7 @@ async function mustOwnTicket(req, res, next) {
 
 async function ticketMustBeUnclaimed(req, res, next) {
     const ticketId = req.params.ticketId;
-    const unclaimedTicket = await UnclaimedTicket.find(ticketId);
+    const unclaimedTicket = await UnclaimedTicket.find(ticketId, true);
     if (!unclaimedTicket) {
         return next(
             new ClientError(
@@ -43,13 +44,15 @@ async function listMyTickets(req, res) {
     res.json({ tickets });
 }
 
-async function remindUnclaimedTicket(req, res) {
-    const { unclaimedTicket, user } = req;
-    if (!unclaimedTicket.emailed_to) {
-        throw new ClientError('Ticket has not been assigned to an email');
-    }
-    await sendInvitationEmail(user, unclaimedTicket);
-    res.json({ status: 'success' });
+function remindUnclaimedTicket(req, res) {
+    return withErrorHandling(res, async () => {
+        const { unclaimedTicket, user } = req;
+        if (!unclaimedTicket.emailed_to) {
+            throw new ClientError('Ticket has not been assigned to an email');
+        }
+        await sendInvitationEmail(user, unclaimedTicket);
+        res.json({ status: 'success' });
+    });
 }
 
 async function revokeUnclaimedTicket(req, res) {
@@ -79,9 +82,9 @@ async function shareUnclaimedTicket(req, res) {
 }
 
 async function claimTicket(req, res) {
-    const userId = req.user.id;
-    const claim_token = req.params.claimTicket;
-    const ticket = await exerciseClaim(userId, claim_token);
+    const user = req.user;
+    const claim_token = req.params.claimToken;
+    const ticket = await exerciseClaim(user, claim_token);
     res.json(ticket);
 }
 
@@ -107,6 +110,6 @@ export default app => {
         ticketMustBeUnclaimed,
         shareUnclaimedTicket,
     );
-    router.get('/:claimToken/claim', claimTicket);
+    router.post('/:claimToken/claim', claimTicket);
     return router;
 };

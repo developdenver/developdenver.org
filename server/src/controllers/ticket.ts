@@ -17,7 +17,7 @@ export function ticketsPurchasedBy(userId) {
       AND event_date = :eventDate
     `,
         { userId, eventDate: Ticket.nextEventDate },
-    );
+    ).then(result => result.rows);
 }
 
 export function revokeTicketClaim({ unclaimedTicketId }) {
@@ -85,6 +85,18 @@ ${purchaserName} bought you a ticket to DVLP DNVR! To claim your ticket, visit $
     );
 }
 
+export function sendConfirmationEmail(email, unclaimedTickets) {
+    const content = `
+## Success!
+
+Hi-five! You've purchased your ticket to DVLP DNVR. We will see you on Aug 15th and 16th. Before then make sure to come back to the site and log in. We'll email you when Call for Proposals start. After all call to proposals are in, all ticket holders will have time to submit their votes. These votes determine our schedule for the year.
+
+We'll keep you up to date. Thank you for contributing to the Denver tech community! It's going to be awesome.
+    `;
+    return send(email, "You're Going to DVLP DNVR!", content);
+}
+
+
 export async function shareUnclaimedTicket(
     purchaser,
     unclaimedTicket,
@@ -98,18 +110,19 @@ export async function shareUnclaimedTicket(
     await sendInvitationEmail(purchaser, unclaimedTicket);
 }
 
-export async function exerciseClaim(claimantId, claim_token) {
-    const unclaimedTickets = await UnclaimedTicket.database.raw(
-        `DELETE FROM unclaimed_ticket
-        WHERE claim_token = :claim_token
-        RETURNING *`,
-        { claim_token },
-    );
+export async function exerciseClaim(claimant, claim_token) {
+    const unclaimedTickets = await UnclaimedTicket
+        .database('unclaimed_ticket')
+        .delete()
+        .where({ claim_token })
+        .returning('*');
     if (!unclaimedTickets.length) {
         return null;
     }
     const { ticket_id } = unclaimedTickets[0];
-    return Ticket.update(ticket_id, {
-        attendee_id: claimantId,
+    const ticket = await Ticket.update(ticket_id, {
+        attendee_id: claimant.id,
     });
+    await sendConfirmationEmail(claimant.email, []);
+    return ticket;
 }

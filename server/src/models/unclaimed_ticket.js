@@ -7,6 +7,7 @@ class UnclaimedTicket extends Model {
     constructor() {
         super('unclaimed_ticket');
         this.publicProperties = ['ticket_id', 'emailed_to'];
+        this.primary_key = 'ticket_id';
     }
 
     mkClaimToken() {

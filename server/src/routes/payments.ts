@@ -8,7 +8,7 @@ const { zip } = require('lodash/zip');
 const studentDiscountCodes = process.env.STUDENT_DISCOUNT_CODES.split(',');
 const { send } = require('../utilities/email');
 const passport = require('passport');
-const { createTickets, sendInvitationEmail } = require('../controllers/ticket');
+const { createTickets, sendInvitationEmail, sendConfirmationEmail } = require('../controllers/ticket');
 
 const stripeCreateOrder = promisify(stripe.orders.create.bind(stripe.orders));
 const stripePayOrder = promisify(stripe.orders.pay.bind(stripe.orders));
@@ -102,13 +102,3 @@ export default app => {
     return router;
 };
 
-function sendConfirmationEmail(email, unclaimedTickets) {
-    const content = `
-## Success!
-
-Hi-five! You've purchased your ticket to DVLP DNVR. We will see you on Aug 15th and 16th. Before then make sure to come back to the site and log in. We'll email you when Call for Proposals start. After all call to proposals are in, all ticket holders will have time to submit their votes. These votes determine our schedule for the year.
-
-We'll keep you up to date. Thank you for contributing to the Denver tech community! It's going to be awesome.
-    `;
-    return send(email, "You're Going to DVLP DNVR!", content);
-}
