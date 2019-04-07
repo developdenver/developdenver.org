@@ -12,6 +12,9 @@
 			</div>
 		</section>
 		-->
+		<section v-if="tickets.length">
+			<h2>My Purchased Tickets</h2>
+		</section>
 		<section>
 			<h2>Edit Profile</h2>
 			<edit-profile

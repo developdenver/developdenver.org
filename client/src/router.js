@@ -26,6 +26,7 @@ import Talks from '@/views/talks';
 import UserTalk from '@/views/user-talk';
 import Events from '@/views/events';
 import Schedule from '@/views/schedule';
+import MyTickets from '@/views/my-tickets';
 
 Vue.use(Router);
 
@@ -59,6 +60,14 @@ const router = new Router({
 			path: '/profiles/me',
 			name: 'my-profile',
 			component: EditProfile,
+			meta: {
+				requiresAuth: true,
+			},
+		},
+		{
+			path: '/profiles/me/tickets',
+			name: 'my-tickets',
+			component: MyTickets,
 			meta: {
 				requiresAuth: true,
 			},

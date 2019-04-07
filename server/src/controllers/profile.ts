@@ -1,6 +1,7 @@
 const Profile = require('../models/profile');
 const { generateToken } = require('../utilities/auth');
 const addToMailgun = require('../utilities/mailgun-list');
+const { withErrorHandling } = require('../error-handling');
 
 function create(request, response, next) {
     const fullProfile = Profile.add(request.body, true)
@@ -30,18 +31,19 @@ function read(request, response, next) {
         .catch(error => next(error));
 }
 
-function update(request, response, next) {
-    Profile.update(request.params.id, request.body)
-        .then(profile => {
-            response.status(200).json({
-                data: profile,
+function update(request, response) {
+    withErrorHandling(response, () => {
+        return Profile.update(request.params.id, request.body)
+            .then(profile => {
+                response.status(200).json({
+                    data: profile,
+                });
+                addToMailgun({
+                    profile,
+                    tags: [new Date().getFullYear().toString()],
+                });
             });
-            addToMailgun({
-                profile,
-                tags: [new Date().getFullYear().toString()],
-            });
-        })
-        .catch(error => next(error));
+    });
 }
 
 function destroy(request, response, next) {

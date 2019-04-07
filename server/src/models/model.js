@@ -26,10 +26,18 @@ class Model {
             .where(query)
             .first();
     }
+    exists(query) {
+        return this
+            .query(query, true)
+            .then(v => !!v);
+    }
     add(item, isAdmin){
+        return this.addAll([item], isAdmin).then(items => items[0]);
+    }
+    addAll(items, isAdmin) {
         return database(this.modelName)
+            .insert(items)
             .returning(this.propertyList(isAdmin))
-            .insert(item).then(items => items[0]);
     }
     remove(id){
         return database(this.modelName)

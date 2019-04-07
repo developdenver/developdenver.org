@@ -1,5 +1,6 @@
 import Profile from '../models/profile';
 import jwtDecode from 'jwt-decode';
+import emptyPromise from 'empty-promise';
 import withLoading from '../utilities/withLoading';
 
 const loginUrl = `${process.env.VUE_APP_API_URL}/${
@@ -13,6 +14,8 @@ const resetRequestUrl = `${process.env.VUE_APP_API_URL}/${
 	process.env.VUE_APP_RESET_REQUEST_PATH
 }`;
 
+const profileLoaded = emptyPromise();
+
 export default {
 	namespaced: true,
 	state: {
@@ -20,6 +23,13 @@ export default {
 		token: '',
 	},
 	getters: {
+		loggedInUserId(state) {
+			const { currentProfile } = state;
+			if (!currentProfile) return null;
+			return {
+				loggedInUserId: currentProfile.id,
+			};
+		},
 		isLoggedIn(state) {
 			return state.currentProfile ? !!state.currentProfile.id : false;
 		},
@@ -36,6 +46,9 @@ export default {
 				? new Profile(state.currentProfile)
 				: {};
 		},
+		profileLoaded() {
+			return profileLoaded;
+		},
 	},
 	mutations: {
 		logout(state) {
@@ -51,34 +64,25 @@ export default {
 	},
 	actions: {
 		async login({ dispatch, commit }, { email, password }) {
-			dispatch('services/loading/pushLoading', {}, { root: true });
-			await fetch(loginUrl, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					username: email,
-					password: password,
-				}),
-			})
-				.then(response => {
-					if (+response.status !== 201) {
-						dispatch('logout');
-						throw new Error('Incorrect username or password');
-					} else {
-						return response.json();
-					}
-				})
-				.then(response => {
-					commit('setToken', response.jwt);
-					commit('setProfile', new Profile(response.user).properties);
-					dispatch('services/loading/popLoading', {}, { root: true });
-				})
-				.catch(error => {
-					dispatch('services/loading/popLoading', {}, { root: true });
-					throw new Error(error.message);
+			return withLoading(dispatch, async () => {
+				const response = await fetch(loginUrl, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						username: email,
+						password: password,
+					}),
 				});
+				if (+response.status !== 201) {
+					dispatch('logout');
+					throw new Error('Incorrect username or password');
+				}
+				const data = await response.json();
+				commit('setToken', data.jwt);
+				commit('setProfile', new Profile(data.user).properties);
+			}).finally(() => profileLoaded.resolve());
 		},
 		logout({ commit }) {
 			commit('logout');
@@ -115,7 +119,8 @@ export default {
 						.then(response => commit('setProfile', response.data))
 						.catch(() => commit('logout'));
 				}
-			});
+			})
+			.finally(() => profileLoaded.resolve());
 		},
 		async requestReset({ dispatch }, email) {
 			dispatch('services/loading/pushLoading', {}, { root: true });

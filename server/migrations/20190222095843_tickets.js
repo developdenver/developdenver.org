@@ -3,6 +3,7 @@ exports.up = function(knex, Promise) {
     CREATE TABLE ticket (
         id SERIAL PRIMARY KEY,
         purchaser_id integer NOT NULL REFERENCES profile(id) ON DELETE CASCADE,
+        attendee_id integer REFERENCES profile(id) ON DELETE SET NULL,
         date_purchased timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
         sku character varying(255) NOT NULL,
         discount_code character varying(255),

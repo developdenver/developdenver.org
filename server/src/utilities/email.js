@@ -12,7 +12,7 @@ const fromEmailAddress = process.env.FROM_EMAIL_ADDRESS;
 const converter = new showdown.Converter();
 
 function send(address, subject, content) {
-    if (address === 'nope@nope.nope') return; // ignore test address
+    if (/@nope\.nope/.test(address)) return; // ignore test addresses
     return transport.sendMail({
         from: fromEmailAddress,
         to: address,

@@ -17,7 +17,7 @@ async function isTicketHolder(request, response, next) {
     }
 }
 
-module.exports = app => {
+export default app => {
     router.get('/', list);
     router.get('/:title', read);
     router.use(passport.authenticate('jwt', { session: false }));

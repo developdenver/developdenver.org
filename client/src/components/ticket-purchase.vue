@@ -30,6 +30,28 @@
       <label :for="level.sku">{{level.label}}</label>
       <p>{{level.description}}</p>
     </div>
+    <div class="ticket-quantity">
+        <label for="ticket-quantity">
+            How many tickets would you like to purchase?
+        </label>
+        <input
+            type="number"
+            name="ticket-quantity"
+            v-model.number="ticketQuantity"
+        >
+    </div>
+
+    <div class="invitees" :class="{ 'not-enough-tickets': notEnoughTickets }">
+        <label for="invitees">
+            Who are the tickets for? (you can also choose later)
+        </label>
+        <VoerroTagsInput
+            v-model="invitees"
+            :typeahead="false"
+            :placeholder="remainingTicketsMessage"
+            :limit="ticketQuantity"
+        />
+    </div>
 
     <div v-if="currentProfile.id && isDiscountCode">
       <label for="discount-code">Discount Code</label>
@@ -38,7 +60,7 @@
 
     <credit-card-payment v-if="currentProfile.id" :card="card" @setError="setError"/>
 
-    <input v-if="currentProfile.id" type="submit" :disabled="isLoading" value="Buy">
+    <input v-if="currentProfile.id" type="submit" :disabled="isLoading || formInvalid" value="Buy">
     <router-link v-else :to="{name: 'register'}">Register To Buy!</router-link>
     <div class="errors">{{error}}</div>
     <div class="message">{{message}}</div>
@@ -47,11 +69,15 @@
 
 <script>
 /* global Stripe */
+import { mapGetters } from 'vuex';
 import CreditCardPayment from '../components/credit-card-payment';
+import VoerroTagsInput from '@voerro/vue-tagsinput';
+import '@voerro/vue-tagsinput/dist/style.css';
 
 export default {
     components: {
         CreditCardPayment,
+        VoerroTagsInput,
     },
     data() {
         return {
@@ -61,29 +87,56 @@ export default {
             stripe: null,
             card: null,
             discountCode: '',
+            ticketQuantity: 1,
+            invitees: [],
         };
     },
     props: {
         levels: Array,
         isDiscountCode: Boolean,
     },
-    created() {
+    async created() {
         this.stripe = Stripe(this.stripeKey);
         const elements = this.stripe.elements();
         this.card = elements.create('card');
+        await this.profileLoaded;
+        if (this.currentProfile && !this.isAttendee) {
+            this.invitees = [ this.currentProfile.properties.email, ...this.invitees ];
+        }
     },
     computed: {
+        ...mapGetters({
+            isAttendee: 'services/user/isAttendee',
+            currentProfile: 'services/user/currentProfile',
+            isLoading: 'services/loading/isLoading',
+            profileLoaded: 'services/user/profileLoaded',
+        }),
         paymentsService() {
             return this.$store.state.services.payments;
-        },
-        currentProfile() {
-            return this.$store.getters['services/user/currentProfile'];
         },
         stripeKey() {
             return this.paymentsService.paymentKey;
         },
-        isLoading() {
-            return this.$store.getters['services/loading/isLoading'];
+        remainingTickets() {
+            return this.ticketQuantity - this.invitees.length;
+        },
+        remainingTicketsMessage() {
+            if (this.remainingTickets < 0) {
+                return 'not enough tickets!';
+            }
+            if (this.remainingTickets === 0) {
+                return '0 remaining';
+            }
+            if (this.remainingTickets === 1) {
+                return '1 more email';
+            }
+            return `${this.remainingTickets} more emails`;
+        },
+        notEnoughTickets() {
+            return this.remainingTickets < 0;
+        },
+        formInvalid() {
+            return this.notEnoughTickets || !this.ticketSKU;
         },
     },
     methods: {
@@ -106,6 +159,8 @@ export default {
                     sku: this.ticketSKU,
                     email,
                     discount_code: this.discountCode || null,
+                    invitees: this.invitees,
+                    quantity: this.ticketQuantity
                 };
                 this.$store
                     .dispatch('services/payments/charge', charge)
@@ -193,5 +248,28 @@ export default {
 }
 .message {
     @include bold-body-font;
+}
+
+.not-enough-tickets .tags-input-wrapper-default {
+    border-color: red;
+    color: red;
+    input::placeholder {
+        color: red;
+    }
+}
+
+.tags-input-wrapper-default {
+    padding: 0 0.25rem;
+
+}
+.tags-input input {
+    padding: 1px;
+    margin-bottom: 0;
+    height: 2.5rem;
+    font-size: 14px;
+}
+.tags-input {
+    margin-bottom: 1rem;
+    border: 0.5px solid #bfbfbf;
 }
 </style>

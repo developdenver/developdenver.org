@@ -30,6 +30,8 @@ describe('/payments', () => {
                 email: 'nope@nope.nope',
                 sku: 'skuRegular',
                 token: 'tok_visa',
+                invitees: [user.email],
+                quantity: 1,
             })
             .expect('Content-Type', /json/)
             .expect(200);
@@ -48,6 +50,8 @@ describe('/payments', () => {
                 email: 'nope@nope.nope',
                 sku: 'skuRegular',
                 token: 'tok_chargeDeclined',
+                invitees: ['nope@nope.nope'],
+                quantity: 1,
             })
             .expect('Content-Type', /json/)
             .expect(400);
@@ -65,9 +69,53 @@ describe('/payments', () => {
                 email: 'nope@nope.nope',
                 sku: 'skuStudent',
                 token: 'tok_visa',
+                invitees: ['nope@nope.nope'],
+                quantity: 1,
             })
             .expect('Content-Type', /json/)
             .expect(400);
         assert.equal(await Ticket.holdsCurrentTicket(user.id), false);
     });
+
+    it('should reject if quantity is too low for number of invitees', async () => {
+        const user = profiles.list[0];
+        this.response = await request(app)
+            .post('/payments')
+            .set({
+                Authorization: `Bearer ${generateToken(user)}`,
+            })
+            .send({
+                description: '4 - Schiller, Brian',
+                email: 'nope@nope.nope',
+                sku: 'skuRegular',
+                token: 'tok_visa',
+                invitees: ['nope@nope.nope', 'double@nope.nope'],
+                quantity: 1,
+            })
+            .expect('Content-Type', /json/)
+            .expect(400);
+        assert.equal(await Ticket.holdsCurrentTicket(user.id), false);
+    });
+
+    it('should permit deferring the choice of invitees to later', async () => {
+        const user = profiles.list[0];
+        assert.equal(await Ticket.holdsCurrentTicket(user.id), false);
+        this.response = await request(app)
+            .post('/payments')
+            .set({
+                Authorization: `Bearer ${generateToken(user)}`,
+            })
+            .send({
+                description: '4 - Schiller, Brian',
+                email: 'nope@nope.nope',
+                sku: 'skuRegular',
+                token: 'tok_visa',
+                invitees: [],
+                quantity: 1,
+            })
+            .expect('Content-Type', /json/)
+            .expect(200);
+        assert.equal(await Ticket.holdsCurrentTicket(user.id), false);
+    });
+
 });

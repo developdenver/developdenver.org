@@ -8,6 +8,7 @@ class Ticket extends Model {
         this.publicProperties = [
             'id',
             'purchaser_id',
+            'attendee_id',
             'date_purchased',
             'sku',
             'discount_code',
@@ -18,7 +19,7 @@ class Ticket extends Model {
 
     async holdsCurrentTicket(user_id) {
         return !!(await this.query({
-            purchaser_id: user_id,
+            attendee_id: user_id,
             event_date: '2018-08',
         }));
     }
