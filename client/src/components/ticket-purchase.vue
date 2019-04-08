@@ -171,7 +171,16 @@ export default {
                     .then(() => {
                         this.error = '';
                         this.message = "You're going to Develop Denver!";
-                        this.$router.push({ name: 'news' });
+                        return sleep(2000);
+                    })
+                    .then(() => {
+                        const next =
+                            !this.invitees.includes(
+                                this.currentProfile.properties.email,
+                            ) || this.quantity > 1
+                                ? { name: 'my-tickets' }
+                                : { name: 'news' };
+                        this.$router.push(next);
                     })
                     .catch(error => {
                         this.error = error.message;
