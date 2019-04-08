@@ -30,10 +30,11 @@ async function purchaseTicket({
     }
     const orderParams = {
         currency: 'usd',
-        items: Array.from({ length: quantity }).map(() => ({
+        items: [{
             type: 'sku',
             parent: sku,
-        })),
+            quantity,
+        }],
         email: receipt_email,
     };
     const order = await stripeCreateOrder(orderParams);

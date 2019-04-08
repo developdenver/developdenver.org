@@ -24,8 +24,8 @@ export default app => {
         const profile = await Profile.query({ email }, true);
         const token = await generateToken(profile, 1000 * 60 * 60); // One hour
         const resetUrl = `${
-            process.env.PASSWORD_RESET_CALLBACK
-        }?token=${token}`;
+            process.env.FRONTEND_URL
+        }/reset-password?token=${token}`;
         const content = `
 We received a request to reset the password for your account on developdenver.org. If you didn't make this request, ignore this message.
 

@@ -42,5 +42,16 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '@/styles/_typography.scss';
+@import '@/styles/_sizes.scss';
+@import '@/styles/_colors.scss';
+@import '@/styles/_general.scss';
+
+.claim-ticket-button {
+    button {
+        @include call-to-action-button;
+        margin: 0 auto;
+    }
+}
 </style>

@@ -191,7 +191,7 @@ const router = new Router({
 	},
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
 	const routeRequiresAuth = to.matched.some(
 		record => record.meta.requiresAuth,
 	);
@@ -205,7 +205,7 @@ router.beforeEach((to, from, next) => {
 	const routeNotYetAvailable = to.matched.some(
 		record => record.meta.notYetAvailable,
 	);
-
+	await store.getters['services/user/profileLoaded'];
 	const userIsLoggedIn = store.getters['services/user/isLoggedIn'];
 	const userIsAttendee = store.getters['services/user/isAttendee'];
 	if (routeNotYetAvailable) {

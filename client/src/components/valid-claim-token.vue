@@ -4,11 +4,12 @@
     <div
       v-if="isAttendee"
     >But, you already have a ticket. Contact {{ purchaserName }} to let them know they can share with someone else</div>
-    <div v-if="!currentProfile">
-      <router-link :to="{name: 'register', query: redirectToPageQuery }">make an account</router-link>or
-      <router-link :to="{name: 'login', query: redirectToPageQuery }">login</router-link>to claim your ticket
+    <div v-if="!isLoggedIn">
+      &nbsp;
+      <router-link :to="{name: 'register', query: redirectToPageQuery }">make an account</router-link>&nbsp;or&nbsp;
+      <router-link :to="{name: 'login', query: redirectToPageQuery }">login</router-link>&nbsp;to claim your ticket
     </div>
-    <div v-if="!isAttendee && currentProfile">
+    <div v-if="!isAttendee && isLoggedIn">
       <ClaimTicketButton/>
     </div>
   </div>
@@ -24,7 +25,7 @@ export default {
         ...mapGetters({
             profileLoaded: 'services/user/profileLoaded',
             isAttendee: 'services/user/isAttendee',
-            currentProfile: 'services/user/currentProfile',
+            isLoggedIn: 'services/user/isLoggedIn',
         }),
 
         purchaserName() {
@@ -41,5 +42,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.valid-claim-token {
+    > div {
+        margin-top: 20px;
+    }
+}
 </style>
