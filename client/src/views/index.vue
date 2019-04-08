@@ -34,6 +34,9 @@
         <a href="https://zeppelinstation.com/">
           <img src="../assets/logos/zeppelin_station_logo.svg">
         </a>
+        <a href="https://devetry.com/">
+          <img src="../assets/logos/devetry.png">
+        </a>
       </div>
       <div class="ticket-details">
         <p>All tickets include conference badge, attendance to keynote speakers, talks, and workshops. Your ticket also included coffee, breakfast, lunch at Zeppelin Station, afternoon open bar, opening and closing party drinks, and closing party taco bar!</p>
