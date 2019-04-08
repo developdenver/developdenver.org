@@ -27,6 +27,7 @@ import UserTalk from '@/views/user-talk';
 import Events from '@/views/events';
 import Schedule from '@/views/schedule';
 import MyTickets from '@/views/my-tickets';
+import ClaimTicket from '@/views/claim-ticket';
 
 Vue.use(Router);
 
@@ -70,6 +71,14 @@ const router = new Router({
 			component: MyTickets,
 			meta: {
 				requiresAuth: true,
+			},
+		},
+		{
+			path: '/claim-ticket/:claimToken',
+			name: 'claim-ticket',
+			component: ClaimTicket,
+			meta: {
+				takeItBackNowYall: true,
 			},
 		},
 		/*

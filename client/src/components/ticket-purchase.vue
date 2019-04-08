@@ -31,26 +31,18 @@
       <p>{{level.description}}</p>
     </div>
     <div class="ticket-quantity">
-        <label for="ticket-quantity">
-            How many tickets would you like to purchase?
-        </label>
-        <input
-            type="number"
-            name="ticket-quantity"
-            v-model.number="ticketQuantity"
-        >
+      <label for="ticket-quantity">How many tickets would you like to purchase?</label>
+      <input type="number" name="ticket-quantity" v-model.number="ticketQuantity">
     </div>
 
     <div class="invitees" :class="{ 'not-enough-tickets': notEnoughTickets }">
-        <label for="invitees">
-            Who are the tickets for? (you can also choose later)
-        </label>
-        <VoerroTagsInput
-            v-model="invitees"
-            :typeahead="false"
-            :placeholder="remainingTicketsMessage"
-            :limit="ticketQuantity"
-        />
+      <label for="invitees">Who are the tickets for? (you can also choose later)</label>
+      <VoerroTagsInput
+        v-model="invitees"
+        :typeahead="false"
+        :placeholder="remainingTicketsMessage"
+        :limit="ticketQuantity"
+      />
     </div>
 
     <div v-if="currentProfile.id && isDiscountCode">
@@ -101,7 +93,10 @@ export default {
         this.card = elements.create('card');
         await this.profileLoaded;
         if (this.currentProfile && !this.isAttendee) {
-            this.invitees = [ this.currentProfile.properties.email, ...this.invitees ];
+            this.invitees = [
+                this.currentProfile.properties.email,
+                ...this.invitees,
+            ];
         }
     },
     computed: {
@@ -160,7 +155,7 @@ export default {
                     email,
                     discount_code: this.discountCode || null,
                     invitees: this.invitees,
-                    quantity: this.ticketQuantity
+                    quantity: this.ticketQuantity,
                 };
                 this.$store
                     .dispatch('services/payments/charge', charge)
@@ -260,7 +255,6 @@ export default {
 
 .tags-input-wrapper-default {
     padding: 0 0.25rem;
-
 }
 .tags-input input {
     padding: 1px;

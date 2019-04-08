@@ -3,6 +3,7 @@ import { withErrorHandling } from '../error-handling';
 
 const express = require('express');
 const Ticket = require('../models/ticket');
+const Profile = require('../models/profile');
 const passport = require('passport');
 const UnclaimedTicket = require('../models/unclaimed_ticket');
 const { ClientError } = require('../error-handling');
@@ -88,8 +89,24 @@ async function claimTicket(req, res) {
     res.json(ticket);
 }
 
+function ticketInfo(req, res) {
+    return withErrorHandling(res, async () => {
+        const claim_token = req.params.claimToken;
+        const uc = await UnclaimedTicket.query({ claim_token });
+        if (!uc) {
+            throw new ClientError('Ticket could not be found, or has already been claimed');
+        }
+        const ticket = await Ticket.find(uc.ticket_id);
+        const purchaser = await Profile.find(ticket.purchaser_id);
+        res.json({ ticket, purchaser });
+    });
+}
+
 export default app => {
     const router = express.Router();
+    // unauthed route
+    router.get('/:claimToken/info', ticketInfo);
+
     router.use(passport.authenticate('jwt', { session: false }));
     router.get('/', listMyTickets);
     router.post(

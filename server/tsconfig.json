@@ -5,8 +5,7 @@
         "allowJs": true,
         "target": "ES6",
         "sourceMap": true,
-        "esModuleInterop": true,
-        "lib": ["es2015"]
+        "esModuleInterop": true
     },
     "include": ["./src/**/*"],
     "exclude": ["node_modules"]
