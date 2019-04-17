@@ -6,7 +6,7 @@ const claimTokenAlphabet =
 class UnclaimedTicket extends Model {
     constructor() {
         super('unclaimed_ticket');
-        this.publicProperties = ['ticket_id', 'emailed_to'];
+        this.publicProperties = ['ticket_id', 'emailed_to', 'claim_token'];
         this.primary_key = 'ticket_id';
     }
 

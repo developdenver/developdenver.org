@@ -102,7 +102,7 @@ export function sendConfirmationEmail(email, unclaimedTickets) {
     const content = `
 ## Success!
 
-Hi-five! You've purchased your ticket to DVLP DNVR. We will see you on Aug 15th and 16th. Before then make sure to come back to the site and log in. We'll email you when Call for Proposals start. After all call to proposals are in, all ticket holders will have time to submit their votes. These votes determine our schedule for the year.
+Hi-five! You've purchased your ticket to DVLP DNVR. We will see you on Aug 15th and 16th. Before then make sure to come back to the site and log in. We'll email you when Call for Proposals start. After all call to proposals are in, all ticket holders will have time to submit their votes. These votes help determine our schedule for the year.
 
 We'll keep you up to date. Thank you for contributing to the Denver tech community! It's going to be awesome.
 
