@@ -19,14 +19,16 @@ export default {
                     sku: 'skuEarly',
                     label: '$149 - Early Bird',
                     description:
-                        'Available until May 1st, early bird pricing give access to the full 2-conference',
+                        'Available until May 1st, early bird pricing give access to the full 2-day conference',
                 },
+				/*
                 {
                     sku: 'skuRegular',
                     label: '$249 - Regular',
                     description:
                         '2-Day conference pass including personalized conference badge, access to keynote speakers, talks, workshops and food and beverage at five amazing venues in the Denver RiNo district.',
                 },
+				*/
                 {
                     sku: 'skuEmployer',
                     label: '$399 - Employer',

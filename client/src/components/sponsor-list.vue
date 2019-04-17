@@ -26,11 +26,10 @@ export default {
             premiumSponsor: null,
             siteSponsors: [
                 {
-                    /*
-				name: "By The Pixel",
-				imageUrl: "https://s3-media1.fl.yelpcdn.com/bphoto/efFNBfcJaL2uXmtlWcVeVA/ls.jpg",
-				link: "https://bythepixel.com/",
-            */
+					name: "By The Pixel",
+					imageUrl: "https://s3-media1.fl.yelpcdn.com/bphoto/efFNBfcJaL2uXmtlWcVeVA/ls.jpg",
+					link: "https://bythepixel.com/",
+			}, {
                     name: 'Devetry',
                     imageUrl:
                         'https://devetry.com/wp-content/uploads/2017/10/logo-opt.png',

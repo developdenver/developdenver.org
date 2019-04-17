@@ -1,21 +1,15 @@
 <template>
   <form class="ticket-purchase" @submit.prevent="submit">
-    <h3>DVLP DNVR is October 18th & 19th</h3>
+    <h3>DVLP DNVR is August 15th & 16th</h3>
     <div class="ticket-details">
       <p>All tickets include access to:</p>
       <ul>
-        <li>39 Talks</li>
-        <li>13 Lightning talks</li>
-        <li>4 Workshops</li>
-        <li>3 Podcasts</li>
-        <li>Ballmer Peak Hackathon sponsored by Finkel & Garf Craft Beer</li>
-        <li>Coffee/Breakfast both days</li>
+        <li>Local talks, workshops, podcasts, and more!</li>
+        <li>Afternoon open bar both days</li>
+        <li>8th Annual Ballmer Peak Hackathon</li>
         <li>Lunch at Zeppelin Station both days</li>
-        <li>Afternoon Open Bar both days</li>
-        <li>Opening Happy Hour</li>
-        <li>Closing Party including Taco Bar</li>
+        <li>Opening and closing parties</li>
       </ul>
-      <p>Looking to purchase a group of tickets? Our apologies, our setup requires each user to register and purchase tickets individually. Please contact us at hello@developdenver.org if you need help purchasing multiple tickets.</p>
     </div>
     <div class="levels" v-for="(level, index) in levels" :key="index">
       <input
@@ -64,6 +58,7 @@
 import { mapGetters } from 'vuex';
 import CreditCardPayment from '../components/credit-card-payment';
 import VoerroTagsInput from '@voerro/vue-tagsinput';
+import sleep from '../utilities/sleep';
 import '@voerro/vue-tagsinput/dist/style.css';
 
 export default {
