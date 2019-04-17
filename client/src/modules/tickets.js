@@ -1,5 +1,6 @@
 import withLoading from '../utilities/withLoading';
 import sleep from '../utilities/sleep';
+import emptyPromise from 'empty-promise';
 import {
 	listTickets,
 	remindUnclaimedTicket,
@@ -11,6 +12,8 @@ function updateInList(lst, where, update) {
 	return lst.map(val => (where(val) ? update(val) : val));
 }
 
+const ticketsLoaded = emptyPromise();
+
 export default {
 	namespaced: true,
 	state: {
@@ -20,7 +23,8 @@ export default {
 	},
 	getters: {
 		fetchTicketsDependencies(state, getters, rootState, rootGetters) {
-			const loggedInUserId = rootGetters['services/user/loggedInUserId'];
+			const loggedInUserId =
+				rootGetters['services/user/loggedInUserId'].loggedInUserId;
 			if (!loggedInUserId) return false;
 			return {
 				loggedInUserId,
@@ -32,6 +36,9 @@ export default {
 			if (!loggedInUserId) return false;
 			if (state.status !== 'success') return false;
 			return !!state.list.find(t => t.attendee_id === loggedInUserId);
+		},
+		ticketsLoaded() {
+			return ticketsLoaded;
 		},
 	},
 	mutations: {
@@ -86,7 +93,8 @@ export default {
 			return withLoading(dispatch, () =>
 				listTickets(token)
 					.then(({ tickets }) => commit('SET_TICKETS', tickets))
-					.catch(err => commit('FETCH_TICKETS_ERROR', err)),
+					.catch(err => commit('FETCH_TICKETS_ERROR', err))
+					.finally(() => ticketsLoaded.resolve()),
 			);
 		},
 		async remind({ state, commit, rootState }, ticketId) {

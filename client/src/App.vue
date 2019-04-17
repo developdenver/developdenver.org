@@ -15,6 +15,7 @@ import AppFooter from '@/components/app-footer';
 import LoadingSpinner from '@/components/loading-spinner';
 
 export default {
+    hagridActions: ['tickets/fetchTickets'],
     components: {
         AppHeader,
         AppFooter,

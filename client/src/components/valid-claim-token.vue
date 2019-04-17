@@ -24,7 +24,7 @@ export default {
     computed: {
         ...mapGetters({
             profileLoaded: 'services/user/profileLoaded',
-            isAttendee: 'services/user/isAttendee',
+            isAttendee: 'tickets/isAttendee',
             isLoggedIn: 'services/user/isLoggedIn',
         }),
 

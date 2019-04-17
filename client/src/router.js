@@ -207,17 +207,20 @@ router.beforeEach(async (to, from, next) => {
 	);
 	await store.getters['services/user/profileLoaded'];
 	const userIsLoggedIn = store.getters['services/user/isLoggedIn'];
-	const userIsAttendee = store.getters['services/user/isAttendee'];
 	if (routeNotYetAvailable) {
 		next({ name: 'news' });
 	} else if (routeRequiresAuth && !userIsLoggedIn) {
 		next({ name: 'login' });
 	} else if (routeRequiresGuest && userIsLoggedIn) {
 		next({ name: 'news' });
-	} else if (routeRequiresAttendee && !userIsAttendee) {
-		next({ name: 'tickets' });
-	} else if (routeRequiresNonAttendee && userIsAttendee) {
-		next({ name: 'news' });
+	} else if (routeRequiresAttendee) {
+		await store.getters['tickets/ticketLoaded'];
+		const userIsAttendee = store.getters['tickets/isAttendee'];
+		if (!userIsAttendee) {
+			next({ name: 'tickets' });
+		} else if (userIsAttendee) {
+			next({ name: 'news' });
+		}
 	}
 	next();
 });

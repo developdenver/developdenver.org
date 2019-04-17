@@ -66,7 +66,7 @@ export default {
             return this.$store.getters['services/user/isLoggedIn'];
         },
         isAttendee() {
-            return this.$store.getters['services/user/isAttendee'];
+            return this.$store.getters['tickets/isAttendee'];
         },
     },
 };

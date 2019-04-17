@@ -35,7 +35,6 @@ import EditProfile from '@/components/edit-profile.vue';
 import { mapState } from 'vuex';
 
 export default {
-    hagridActions: ['tickets/fetchTickets'],
     components: {
         EditProfile,
     },

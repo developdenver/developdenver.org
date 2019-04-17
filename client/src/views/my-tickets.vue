@@ -14,7 +14,6 @@ import { mapState } from 'vuex';
 import ManageTicket from '../components/manage-ticket';
 export default {
     name: 'MyTickets',
-    hagridActions: ['tickets/fetchTickets'],
     components: { ManageTicket },
     computed: {
         ...mapState({

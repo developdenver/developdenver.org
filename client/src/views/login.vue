@@ -35,7 +35,7 @@ export default {
     },
     computed: {
         isAttendee() {
-            return this.$store.getters['services/user/isAttendee'];
+            return this.$store.getters['tickets/isAttendee'];
         },
     },
     methods: {

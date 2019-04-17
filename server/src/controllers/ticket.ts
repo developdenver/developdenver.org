@@ -3,9 +3,10 @@ import { send } from '../utilities/email';
 const Ticket = require('../models/ticket');
 const UnclaimedTicket = require('../models/unclaimed_ticket');
 
-export function ticketsPurchasedBy(userId) {
-    return Ticket.database.raw(
-        `
+export function ticketsForUser(userId) {
+    return Ticket.database
+        .raw(
+            `
     SELECT
         t.*,
         CASE WHEN attendee IS NULL THEN NULL ELSE JSON_BUILD_OBJECT(
@@ -21,11 +22,12 @@ export function ticketsPurchasedBy(userId) {
     FROM ticket t
     LEFT JOIN profile attendee ON (t.attendee_id = attendee.id)
     LEFT JOIN unclaimed_ticket ON (unclaimed_ticket.ticket_id = t.id)
-    WHERE purchaser_id = :userId
+    WHERE (purchaser_id = :userId OR attendee_id = :userId)
       AND event_date = :eventDate
     `,
-        { userId, eventDate: Ticket.nextEventDate },
-    ).then(result => result.rows);
+            { userId, eventDate: Ticket.nextEventDate },
+        )
+        .then(result => result.rows);
 }
 
 export function revokeTicketClaim({ unclaimedTicketId }) {
@@ -55,7 +57,10 @@ export async function createTickets({
     const unclaimedQuantity = quantity - invitees.length;
     const ticketData = Array.from({ length: quantity }).map((_, ix) => ({
         purchaser_id: purchaser.id,
-        attendee_id: purchaserWillNewlyAttend && invitees[ix] === purchaser.email ? purchaser.id : null,
+        attendee_id:
+            purchaserWillNewlyAttend && invitees[ix] === purchaser.email
+                ? purchaser.id
+                : null,
         sku,
         discount_code,
         price_paid_cents: amountCents,
@@ -87,7 +92,9 @@ export function sendInvitationEmail(purchaser, unclaimedTicket) {
     const content = `
 ## Congratulations!
 
-${purchaserName} bought you a ticket to DVLP DNVR! To claim your ticket, visit ${process.env.FRONTEND_URL}/claim-ticket/${
+${purchaserName} bought you a ticket to DVLP DNVR! To claim your ticket, visit ${
+        process.env.FRONTEND_URL
+    }/claim-ticket/${
         unclaimedTicket.claim_token
     } and log in or create an account.
     `;
@@ -106,11 +113,12 @@ Hi-five! You've purchased your ticket to DVLP DNVR. We will see you on Aug 15th 
 
 We'll keep you up to date. Thank you for contributing to the Denver tech community! It's going to be awesome.
 
-If you purchased more than one ticket, you can manage your invitations at ${process.env.FRONTEND_URL}/profiles/me/tickets
+If you purchased more than one ticket, you can manage your invitations at ${
+        process.env.FRONTEND_URL
+    }/profiles/me/tickets
     `;
     return send(email, "You're Going to DVLP DNVR!", content);
 }
-
 
 export async function shareUnclaimedTicket(
     purchaser,
@@ -126,8 +134,7 @@ export async function shareUnclaimedTicket(
 }
 
 export async function exerciseClaim(claimant, claim_token) {
-    const unclaimedTickets = await UnclaimedTicket
-        .database('unclaimed_ticket')
+    const unclaimedTickets = await UnclaimedTicket.database('unclaimed_ticket')
         .delete()
         .where({ claim_token })
         .returning('*');

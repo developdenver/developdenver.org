@@ -33,11 +33,6 @@ export default {
 		isLoggedIn(state) {
 			return state.currentProfile ? !!state.currentProfile.id : false;
 		},
-		isAttendee(state) {
-			return state.currentProfile
-				? !!state.currentProfile.ticketLevel
-				: false;
-		},
 		hasToken(state) {
 			return !!state.token;
 		},
@@ -119,8 +114,7 @@ export default {
 						.then(response => commit('setProfile', response.data))
 						.catch(() => commit('logout'));
 				}
-			})
-			.finally(() => profileLoaded.resolve());
+			}).finally(() => profileLoaded.resolve());
 		},
 		async requestReset({ dispatch }, email) {
 			dispatch('services/loading/pushLoading', {}, { root: true });

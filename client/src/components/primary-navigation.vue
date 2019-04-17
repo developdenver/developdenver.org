@@ -45,7 +45,7 @@ export default {
             return this.$store.getters['services/user/isLoggedIn'] || false;
         },
         isAttendee() {
-            return this.$store.getters['services/user/isAttendee'] || false;
+            return this.$store.getters['tickets/isAttendee'] || false;
         },
         currentUser() {
             return this.$store.getters['services/user/currentProfile'];

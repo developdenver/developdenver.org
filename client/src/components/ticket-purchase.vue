@@ -96,7 +96,7 @@ export default {
     },
     computed: {
         ...mapGetters({
-            isAttendee: 'services/user/isAttendee',
+            isAttendee: 'tickets/isAttendee',
             currentProfile: 'services/user/currentProfile',
             isLoading: 'services/loading/isLoading',
             profileLoaded: 'services/user/profileLoaded',

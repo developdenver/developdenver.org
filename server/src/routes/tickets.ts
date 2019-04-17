@@ -7,7 +7,7 @@ const Profile = require('../models/profile');
 const passport = require('passport');
 const UnclaimedTicket = require('../models/unclaimed_ticket');
 const { ClientError } = require('../error-handling');
-const { ticketsPurchasedBy, exerciseClaim } = require('../controllers/ticket');
+const { ticketsForUser, exerciseClaim } = require('../controllers/ticket');
 
 async function mustOwnTicket(req, res, next) {
     const userId = req.user.id;
@@ -41,7 +41,7 @@ async function ticketMustBeUnclaimed(req, res, next) {
 
 async function listMyTickets(req, res) {
     const userId = req.user.id;
-    const tickets = await ticketsPurchasedBy(userId);
+    const tickets = await ticketsForUser(userId);
     res.json({ tickets });
 }
 
@@ -94,7 +94,9 @@ function ticketInfo(req, res) {
         const claim_token = req.params.claimToken;
         const uc = await UnclaimedTicket.query({ claim_token });
         if (!uc) {
-            throw new ClientError('Ticket could not be found, or has already been claimed');
+            throw new ClientError(
+                'Ticket could not be found, or has already been claimed',
+            );
         }
         const ticket = await Ticket.find(uc.ticket_id);
         const purchaser = await Profile.find(ticket.purchaser_id);
