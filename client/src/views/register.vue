@@ -1,6 +1,7 @@
 <template>
   <section class="register">
     <h2>Register</h2>
+	<p>Create a profile to use for the conference. Already have a profile? <router-link :to="{name: 'login'}">Log in</router-link> to purchase a badge.</p>
     <edit-profile
       buttonLabel="Register"
       :isNewProfile="true"

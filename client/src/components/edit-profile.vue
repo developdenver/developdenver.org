@@ -7,7 +7,7 @@
 				required
 				type="text"
 				id="first-name"
-				placeholder="Drew"
+				placeholder=""
 				v-model.trim="profile.properties.firstName"
 			/>
             <label for="last-name">Last Name</label>
@@ -15,7 +15,7 @@
 				required
 				type="text"
 				id="last-name"
-				placeholder="Dahlman"
+				placeholder=""
 				v-model.trim="profile.properties.lastName"
 			/>
             <label for="email">Email</label>
@@ -23,7 +23,7 @@
 				required
 				type="email"
 				id="email"
-				placeholder="hello@developdenver.org"
+				placeholder=""
 				ref="email"
 				v-model.trim="profile.properties.email"
 				@change="verifyUniqueEmail"
@@ -47,17 +47,17 @@
             <label for="bio">Bio</label>
             <textarea
 				id="bio"
-				placeholder="Specializing in design, development, and strategy."
+				placeholder="Tell others who you are and what you do."
 				v-model.trim="profile.properties.bio"
 			></textarea>
             <label for="position">Position</label>
             <input
 				type="text"
 				id="position"
-				placeholder="Developer"
+				placeholder=""
 				v-model.trim="profile.properties.position"
 			/>
-			<label class="self-employed" for="isSelfEmployed">Are you self-employed?</label>
+			<label class="self-employed" for="isSelfEmployed">Self-employed?</label>
 			<input
 				class="self-employed"
 				type="checkbox"
@@ -83,21 +83,21 @@
             <input
 				type="text"
 				id="github-username"
-				placeholder="meuspartum"
+				placeholder=""
 				v-model.trim="profile.properties.githubUsername"
 			/>
             <label for="twitter-username">Twitter Username</label>
             <input
 				type="text"
 				id="twitter-username"
-				placeholder="meuspartum"
+				placeholder=""
 				v-model.trim="profile.properties.twitterUsername"
 			/>
             <label for="linkedin-username">LinkedIn Username</label>
             <input
 				type="text"
 				id="linkedin-username"
-				placeholder="meuspartum"
+				placeholder=""
 				v-model.trim="profile.properties.linkedinUsername"
 			/>
         </fieldset>

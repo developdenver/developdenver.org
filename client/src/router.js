@@ -66,7 +66,7 @@ const router = new Router({
 			},
 		},
 		{
-			path: '/profiles/me/tickets',
+			path: '/profiles/me/conference-badges',
 			name: 'my-tickets',
 			component: MyTickets,
 			meta: {
@@ -74,7 +74,7 @@ const router = new Router({
 			},
 		},
 		{
-			path: '/claim-ticket/:claimToken',
+			path: '/claim-badges/:claimToken',
 			name: 'claim-ticket',
 			component: ClaimTicket,
 			meta: {
@@ -123,7 +123,7 @@ const router = new Router({
 	},
 	*/
 		{
-			path: '/tickets',
+			path: '/conference-badges',
 			name: 'tickets',
 			component: Tickets,
 			meta: {

@@ -1,15 +1,22 @@
 <template>
   <form class="ticket-purchase" @submit.prevent="submit">
-    <h3>DVLP DNVR is August 15th & 16th</h3>
     <div class="ticket-details">
-      <p>All tickets include access to:</p>
+      <h3>Conference Details</h3>
+	  <p>When: August 15 - 16, 2019</p>
+	  <p>Where: RiNo Brighton Boulevard</p>
+
+  	  <h3>Conference Badges</h3>
+      <p>All badges include access to:</p>
       <ul>
-        <li>Local talks, workshops, podcasts, and more!</li>
-        <li>Afternoon open bar both days</li>
-        <li>8th Annual Ballmer Peak Hackathon</li>
-        <li>Lunch at Zeppelin Station both days</li>
-        <li>Opening and closing parties</li>
+		<li>Custom printed 2-day conference badge</li>
+		<li>Access to keynote, talks, workshops, and live podcasts</li>
+		<li>Coffee, Breakfast, and Lunch at Zeppelin Station vendors both days</li>
+		<li>Opening and closing parties</li>
+		<li>8th annual Ballmer Peak Hackathon</li>
       </ul>
+
+  	  <h3>Venues</h3>
+	  <venue-list />
     </div>
     <div class="levels" v-for="(level, index) in levels" :key="index">
       <input
@@ -24,13 +31,13 @@
       <label :for="level.sku">{{level.label}}</label>
       <p>{{level.description}}</p>
     </div>
-    <div class="ticket-quantity">
-      <label for="ticket-quantity">How many tickets would you like to purchase?</label>
+    <div class="ticket-quantity" v-if="currentProfile.id">
+      <label for="ticket-quantity">Quantity</label>
       <input type="number" name="ticket-quantity" v-model.number="ticketQuantity">
     </div>
 
-    <div class="invitees" :class="{ 'not-enough-tickets': notEnoughTickets }">
-      <label for="invitees">Who are the tickets for? (you can also choose later)</label>
+    <div class="invitees" :class="{ 'not-enough-tickets': notEnoughTickets }" v-if="currentProfile.id">
+      <label for="invitees">Email address(es) for each badge (don’t worry, you can add or edit later)</label>
       <VoerroTagsInput
         v-model="invitees"
         :typeahead="false"
@@ -46,8 +53,8 @@
 
     <credit-card-payment v-if="currentProfile.id" :card="card" @setError="setError"/>
 
-    <input v-if="currentProfile.id" type="submit" :disabled="isLoading || formInvalid" value="Buy">
-    <router-link v-else :to="{name: 'register'}">Register To Buy!</router-link>
+    <input v-if="currentProfile.id" type="submit" :disabled="isLoading || formInvalid" value="Pay">
+    <router-link v-else :to="{name: 'register'}" class="call-to-action">Register To Buy!</router-link>
     <div class="errors">{{error}}</div>
     <div class="message">{{message}}</div>
   </form>
@@ -57,6 +64,7 @@
 /* global Stripe */
 import { mapGetters } from 'vuex';
 import CreditCardPayment from '../components/credit-card-payment';
+import VenueList from '@/components/venue-list';
 import VoerroTagsInput from '@voerro/vue-tagsinput';
 import sleep from '../utilities/sleep';
 import '@voerro/vue-tagsinput/dist/style.css';
@@ -65,6 +73,7 @@ export default {
     components: {
         CreditCardPayment,
         VoerroTagsInput,
+		VenueList,
     },
     data() {
         return {
@@ -197,11 +206,17 @@ export default {
 
 .ticket-purchase {
     margin-bottom: $xxl;
+	max-width: $max-line-length;
     h3 {
+		margin-top: $large;
         @include fieldset-header-font;
+		align-self: start;
     }
+	p, ul {
+		align-self: start;
+	}
     [type='submit'],
-    a {
+    .call-to-action {
         @include call-to-action-button;
         display: block;
         width: 100%;

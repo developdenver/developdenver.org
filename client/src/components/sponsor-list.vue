@@ -13,8 +13,8 @@
     </ul>
 
     <div class="sponsor-call-to-action">
-      <p>Interested in becoming a sponsor?</p>
-      <a class="button" href="mailto:sponsorship@developdenver.org">Contact Us</a>
+      <p>Support the Denver development, product, and design community!</p>
+      <a class="button" href="mailto:sponsorship@developdenver.org">Become a Sponsor</a>
     </div>
   </section>
 </template>
@@ -59,7 +59,9 @@ export default {
         margin-top: 2rem;
     }
     a {
-        display: inline-block;
+        display: inline-flex;
+		height: 100%;
+		align-items: center;
         @include call-to-action-font;
     }
     ul {

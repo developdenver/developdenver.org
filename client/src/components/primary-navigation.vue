@@ -7,13 +7,13 @@
       <li v-if="!isLoggedIn">
         <router-link :to="{name: 'login', query: redirectToPageQuery }">Login</router-link>
       </li>
-      <!--
-            <li v-if="!isAttendee">
-                <router-link :to="{name: 'tickets'}">Tickets</router-link>
+            <li>
+                <router-link :to="{name: 'tickets'}">Purchase Badges</router-link>
             </li>
-            <li v-if="isAttendee">
+            <li>
                 <router-link :to="{name: 'news'}">News</router-link>
             </li>
+      <!--
             <li>
                 <router-link :to="{name: 'schedule'}">Schedule</router-link>
             </li>

@@ -1,6 +1,6 @@
 <template>
   <section class="feature">
-    <div class="video" v-html="video"/>
+    <div class="video responsive-iframe-container" v-html="video"/>
     <div class="benefit">
       <div>
         <h2>{{heading}}</h2>
@@ -36,23 +36,16 @@ export default {
 @import '@/styles/_sizes.scss';
 
 .feature {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    margin-top: 0;
+    margin-top: $large;
     margin-bottom: $large;
-    padding: $large $xxl;
+	width: 100%;
     .video {
-        display: flex;
-        clip-path: inset(0 0);
-        iframe {
-            margin: 0 auto;
-        }
+		max-width: $max-line-length;
     }
     .benefit {
         background-color: $pure-white;
-        padding: $large;
         z-index: 10;
+		max-width: $max-line-length;
         > div {
             display: flex;
             align-items: center;
@@ -63,21 +56,7 @@ export default {
         }
         h2 {
             @include section-header-font;
-        }
-    }
-    @media (max-width: $large-breakpoint) {
-        & {
-            margin-top: 0;
-            margin-bottom: $large;
-            padding-left: 0;
-            padding-right: 0;
-            .video {
-                width: 100%;
-                clip-path: none;
-            }
-            .benefit {
-                padding: $baseline 0 0 0;
-            }
+			align-self: start;
         }
     }
 }

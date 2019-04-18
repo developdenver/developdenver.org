@@ -1,6 +1,6 @@
 <template>
   <section class="tickets">
-    <h2>Tickets</h2>
+    <h2>Conference Badges</h2>
     <ticket-purchase :levels="levels" :isDiscountCode="false"/>
   </section>
 </template>
@@ -19,7 +19,7 @@ export default {
                     sku: 'skuEarly',
                     label: '$149 - Early Bird',
                     description:
-                        'Available until May 1st, early bird pricing give access to the full 2-day conference',
+                        'Full access 2-day conference badge - Available until May 1st',
                 },
 				/*
                 {
@@ -33,7 +33,7 @@ export default {
                     sku: 'skuEmployer',
                     label: '$399 - Employer',
                     description:
-                        'For those of you coming on your employer’s dime. Your ticket helps make Develop Denver affordable to all attendees, including sponsoring student tickets and sponsoring meals during the conference.',
+                        'Coming on your employer’s dime? Help make Develop Denver affordable to all attendees, including sponsoring student tickets and sponsoring meals during the conference.',
                 },
             ],
         };
