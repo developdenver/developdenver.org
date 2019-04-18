@@ -210,10 +210,10 @@ export default {
     h3 {
 		margin-top: $large;
         @include fieldset-header-font;
-		align-self: start;
+		align-self: flex-start;
     }
 	p, ul {
-		align-self: start;
+		align-self: flex-start;
 	}
     [type='submit'],
     .call-to-action {

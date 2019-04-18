@@ -16,14 +16,14 @@ export function listTickets(token) {
 export function remindUnclaimedTicket(token, ticketId) {
 	return request(`${apiUrl}/tickets/${ticketId}/remind`, {
 		headers: { authorization: `Bearer ${token}` },
-		method: 'post',
+		method: "post",
 	});
 }
 
 export function revokeUnclaimedTicket(token, ticketId) {
 	return request(`${apiUrl}/tickets/${ticketId}/revoke`, {
 		headers: { authorization: `Bearer ${token}` },
-		method: 'post',
+		method: "post",
 	});
 }
 
@@ -31,9 +31,9 @@ export function shareUnclaimedTicket(token, ticketId, email) {
 	return request(`${apiUrl}/tickets/${ticketId}/share`, {
 		headers: {
 			Authorization: `Bearer ${token}`,
-			'Content-Type': 'application/json',
+			"Content-Type": "application/json",
 		},
-		method: 'post',
+		method: "post",
 		body: JSON.stringify({ email }),
 	});
 }
@@ -45,6 +45,6 @@ export function ticketInfoFromClaim(claimToken) {
 export function claimTicket(token, claimToken) {
 	return request(`${apiUrl}/tickets/${claimToken}/claim`, {
 		headers: { authorization: `Bearer ${token}` },
-		method: 'post',
+		method: "post",
 	});
 }

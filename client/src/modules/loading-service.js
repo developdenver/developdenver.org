@@ -18,10 +18,10 @@ export default {
 	},
 	actions: {
 		pushLoading({ commit }) {
-			commit('pushLoading');
+			commit("pushLoading");
 		},
 		popLoading({ commit }) {
-			commit('popLoading');
+			commit("popLoading");
 		},
 	},
 };

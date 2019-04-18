@@ -138,7 +138,7 @@ export default {
         h2 {
             @include section-header-font;
             width: 100%;
-			align-self: start;
+			align-self: flex-start;
         }
         p {
             @include stylized-body-font;
@@ -147,13 +147,13 @@ export default {
         .ticket-details {
             display: flex;
             flex-flow: column nowrap;
-            align-items: start;
+            align-items: flex-start;
 			width: 100%;
 			margin-bottom: $large;
 			h3 {
 				@include tertiary-header-font;
 				width: 100%;
-				align-self: start;
+				align-self: flex-start;
 			}
 			ul {
 				list-style-type: circle;

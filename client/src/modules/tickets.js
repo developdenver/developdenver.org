@@ -1,12 +1,12 @@
-import withLoading from '../utilities/withLoading';
-import sleep from '../utilities/sleep';
-import emptyPromise from 'empty-promise';
+import withLoading from "../utilities/withLoading";
+import sleep from "../utilities/sleep";
+import emptyPromise from "empty-promise";
 import {
 	listTickets,
 	remindUnclaimedTicket,
 	revokeUnclaimedTicket,
 	shareUnclaimedTicket,
-} from './api';
+} from "./api";
 
 function updateInList(lst, where, update) {
 	return lst.map(val => (where(val) ? update(val) : val));
@@ -17,14 +17,14 @@ const ticketsLoaded = emptyPromise();
 export default {
 	namespaced: true,
 	state: {
-		status: 'unfetched',
+		status: "unfetched",
 		error: null,
 		list: [],
 	},
 	getters: {
 		fetchTicketsDependencies(state, getters, rootState, rootGetters) {
 			const loggedInUserId =
-				rootGetters['services/user/loggedInUserId'].loggedInUserId;
+				rootGetters["services/user/loggedInUserId"].loggedInUserId;
 			if (!loggedInUserId) return false;
 			return {
 				loggedInUserId,
@@ -32,9 +32,9 @@ export default {
 			};
 		},
 		isAttendee(state, getters, rootState, rootGetters) {
-			const loggedInUserId = rootGetters['services/user/loggedInUserId'];
+			const { loggedInUserId } = rootGetters["services/user/loggedInUserId"];
 			if (!loggedInUserId) return false;
-			if (state.status !== 'success') return false;
+			if (state.status !== "success") return false;
 			return !!state.list.find(t => t.attendee_id === loggedInUserId);
 		},
 		ticketsLoaded() {
@@ -43,15 +43,15 @@ export default {
 	},
 	mutations: {
 		LOADING_TICKETS(state) {
-			state.status = 'loading';
+			state.status = state.status == "success" ? "success" : "loading";
 		},
 		SET_TICKETS(state, tickets) {
-			state.status = 'success';
+			state.status = "success";
 			state.list = tickets;
 			state.error = null;
 		},
 		FETCH_TICKETS_ERROR(state, err) {
-			state.status = 'error';
+			state.status = "error";
 			state.error = err.message || err;
 		},
 		SET_TICKET_STATUS(state, { ticketId, status }) {
@@ -67,7 +67,7 @@ export default {
 				t => t.id === ticketId,
 				t => ({
 					...t,
-					status: 'revoked!',
+					status: "revoked!",
 					unclaimed_ticket: { ticket_id: ticketId, emailed_to: null },
 				}),
 			);
@@ -78,7 +78,7 @@ export default {
 				t => t.id === ticketId,
 				t => ({
 					...t,
-					status: 'invited!',
+					status: "invited!",
 					unclaimed_ticket: {
 						ticket_id: ticketId,
 						emailed_to: email,
@@ -89,30 +89,30 @@ export default {
 	},
 	actions: {
 		fetchTickets({ dispatch, commit }, { token }) {
-			commit('LOADING_TICKETS');
+			commit("LOADING_TICKETS");
 			return withLoading(dispatch, () =>
 				listTickets(token)
-					.then(({ tickets }) => commit('SET_TICKETS', tickets))
-					.catch(err => commit('FETCH_TICKETS_ERROR', err))
+					.then(({ tickets }) => commit("SET_TICKETS", tickets))
+					.catch(err => commit("FETCH_TICKETS_ERROR", err))
 					.finally(() => ticketsLoaded.resolve()),
 			);
 		},
 		async remind({ state, commit, rootState }, ticketId) {
 			const ticket = state.list.find(t => t.id === ticketId);
 			if (!ticket.unclaimed_ticket) {
-				throw new Error('cannot remind a ticket that is not unclaimed');
+				throw new Error("cannot remind a ticket that is not unclaimed");
 			}
-			commit('SET_TICKET_STATUS', { ticketId, status: 'reminding...' });
+			commit("SET_TICKET_STATUS", { ticketId, status: "reminding..." });
 			try {
 				await remindUnclaimedTicket(
 					rootState.services.user.token,
 					ticketId,
 				);
-				commit('SET_TICKET_STATUS', { ticketId, status: 'reminded!' });
+				commit("SET_TICKET_STATUS", { ticketId, status: "reminded!" });
 				await sleep(2000);
-				commit('SET_TICKET_STATUS', { ticketId, status: undefined });
+				commit("SET_TICKET_STATUS", { ticketId, status: undefined });
 			} catch (error) {
-				commit('SET_TICKET_STATUS', {
+				commit("SET_TICKET_STATUS", {
 					ticketId,
 					status: `error: ${error.message || error}`,
 				});
@@ -121,19 +121,19 @@ export default {
 		async revoke({ state, commit, rootState }, ticketId) {
 			const ticket = state.list.find(t => t.id === ticketId);
 			if (!ticket.unclaimed_ticket) {
-				throw new Error('cannot revoke a ticket that is not unclaimed');
+				throw new Error("cannot revoke a ticket that is not unclaimed");
 			}
-			commit('SET_TICKET_STATUS', { ticketId, status: 'revoking' });
+			commit("SET_TICKET_STATUS", { ticketId, status: "revoking" });
 			try {
 				await revokeUnclaimedTicket(
 					rootState.services.user.token,
 					ticketId,
 				);
-				commit('REVOKE_SUCCESS', ticketId);
+				commit("REVOKE_SUCCESS", ticketId);
 				await sleep(2000);
-				commit('SET_TICKET_STATUS', { ticketId, status: undefined });
+				commit("SET_TICKET_STATUS", { ticketId, status: undefined });
 			} catch (error) {
-				commit('SET_TICKET_STATUS', {
+				commit("SET_TICKET_STATUS", {
 					ticketId,
 					status: `error: ${error.message || error}`,
 				});
@@ -142,20 +142,20 @@ export default {
 		async invite({ state, commit, rootState }, { ticketId, email }) {
 			const ticket = state.list.find(t => t.id === ticketId);
 			if (ticket.attendee) {
-				throw new Error('Ticket has already been claimed');
+				throw new Error("Ticket has already been claimed");
 			}
-			commit('SET_TICKET_STATUS', { ticketId, status: 'inviting...' });
+			commit("SET_TICKET_STATUS", { ticketId, status: "inviting..." });
 			try {
 				await shareUnclaimedTicket(
 					rootState.services.user.token,
 					ticketId,
 					email,
 				);
-				commit('INVITE_SUCCESS', { ticketId, email });
+				commit("INVITE_SUCCESS", { ticketId, email });
 				await sleep(2000);
-				commit('SET_TICKET_STATUS', { ticketId, status: undefined });
+				commit("SET_TICKET_STATUS", { ticketId, status: undefined });
 			} catch (error) {
-				commit('SET_TICKET_STATUS', {
+				commit("SET_TICKET_STATUS", {
 					ticketId,
 					status: `error: ${error.message || error}`,
 				});
@@ -163,6 +163,6 @@ export default {
 		},
 	},
 	hagridResources: {
-		fetchTickets: 'fetchTicketsDependencies',
+		fetchTickets: "fetchTicketsDependencies",
 	},
 };

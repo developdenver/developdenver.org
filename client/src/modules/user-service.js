@@ -1,7 +1,7 @@
-import Profile from '../models/profile';
-import jwtDecode from 'jwt-decode';
-import emptyPromise from 'empty-promise';
-import withLoading from '../utilities/withLoading';
+import Profile from "../models/profile";
+import jwtDecode from "jwt-decode";
+import emptyPromise from "empty-promise";
+import withLoading from "../utilities/withLoading";
 
 const loginUrl = `${process.env.VUE_APP_API_URL}/${
 	process.env.VUE_APP_LOGIN_PATH
@@ -20,18 +20,18 @@ export default {
 	namespaced: true,
 	state: {
 		currentProfile: {},
-		token: '',
+		token: "",
 	},
 	getters: {
-		loggedInUserId(state) {
-			const { currentProfile } = state;
+		loggedInUserId(state, getters) {
+			const { currentProfile } = getters;
 			if (!currentProfile) return null;
 			return {
 				loggedInUserId: currentProfile.id,
 			};
 		},
-		isLoggedIn(state) {
-			return state.currentProfile ? !!state.currentProfile.id : false;
+		isLoggedIn(state, getters) {
+			return getters.currentProfile ? !!getters.currentProfile.id : false;
 		},
 		hasToken(state) {
 			return !!state.token;
@@ -47,7 +47,7 @@ export default {
 	},
 	mutations: {
 		logout(state) {
-			state.token = '';
+			state.token = "";
 			state.currentProfile = {};
 		},
 		setToken(state, token) {
@@ -59,11 +59,11 @@ export default {
 	},
 	actions: {
 		async login({ dispatch, commit }, { email, password }) {
-			return withLoading(dispatch, async () => {
+			return withLoading(dispatch, async() => {
 				const response = await fetch(loginUrl, {
-					method: 'POST',
+					method: "POST",
 					headers: {
-						'Content-Type': 'application/json',
+						"Content-Type": "application/json",
 					},
 					body: JSON.stringify({
 						username: email,
@@ -71,36 +71,36 @@ export default {
 					}),
 				});
 				if (+response.status !== 201) {
-					dispatch('logout');
-					throw new Error('Incorrect username or password');
+					dispatch("logout");
+					throw new Error("Incorrect username or password");
 				}
 				const data = await response.json();
-				commit('setToken', data.jwt);
-				commit('setProfile', new Profile(data.user).properties);
+				commit("setToken", data.jwt);
+				commit("setProfile", new Profile(data.user).properties);
 			}).finally(() => profileLoaded.resolve());
 		},
 		logout({ commit }) {
-			commit('logout');
+			commit("logout");
 		},
 		setToken({ commit }, token) {
-			commit('setToken', token);
+			commit("setToken", token);
 		},
 		async setProfile({ dispatch, commit, state }, profile) {
-			dispatch('services/loading/pushLoading', {}, { root: true });
+			dispatch("services/loading/pushLoading", {}, { root: true });
 			await profile.update(state.token);
-			commit('setProfile', profile.properties);
-			dispatch('services/loading/popLoading', {}, { root: true });
+			commit("setProfile", profile.properties);
+			dispatch("services/loading/popLoading", {}, { root: true });
 		},
 		async setAttendee({ dispatch, commit, getters, state }, level) {
-			dispatch('services/loading/pushLoading', {}, { root: true });
+			dispatch("services/loading/pushLoading", {}, { root: true });
 			let profile = getters.currentProfile;
 			profile.setTicketLevel(level);
 			await profile.update(state.token);
-			commit('setProfile', profile.properties);
-			dispatch('services/loading/popLoading', {}, { root: true });
+			commit("setProfile", profile.properties);
+			dispatch("services/loading/popLoading", {}, { root: true });
 		},
 		fetchProfile({ commit, dispatch, rootState }) {
-			return withLoading(dispatch, async () => {
+			return withLoading(dispatch, async() => {
 				const jwt = rootState.services.user.token;
 				if (jwt) {
 					const id = jwtDecode(jwt).sub;
@@ -111,41 +111,41 @@ export default {
 						},
 					})
 						.then(response => response.json())
-						.then(response => commit('setProfile', response.data))
-						.catch(() => commit('logout'));
+						.then(response => commit("setProfile", response.data))
+						.catch(() => commit("logout"));
 				}
 			}).finally(() => profileLoaded.resolve());
 		},
 		async requestReset({ dispatch }, email) {
-			dispatch('services/loading/pushLoading', {}, { root: true });
+			dispatch("services/loading/pushLoading", {}, { root: true });
 			await fetch(resetRequestUrl, {
-				method: 'POST',
+				method: "POST",
 				headers: {
-					'Content-Type': 'application/json',
+					"Content-Type": "application/json",
 				},
 				body: JSON.stringify({ email }),
 			}).catch(error => console.error(error.message));
-			dispatch('services/loading/popLoading', {}, { root: true });
+			dispatch("services/loading/popLoading", {}, { root: true });
 		},
 		async resetPassword({ dispatch }, { password, token }) {
-			dispatch('services/loading/pushLoading', {}, { root: true });
+			dispatch("services/loading/pushLoading", {}, { root: true });
 			await fetch(passwordResetUrl, {
-				method: 'POST',
+				method: "POST",
 				headers: {
-					'Content-Type': 'application/json',
+					"Content-Type": "application/json",
 					Authorization: `Bearer ${token}`,
 				},
 				body: JSON.stringify({ password }),
 			})
 				.then(response => {
 					if (+response.status !== 201) {
-						throw new Error('Server problem');
+						throw new Error("Server problem");
 					}
-					dispatch('services/loading/popLoading', {}, { root: true });
+					dispatch("services/loading/popLoading", {}, { root: true });
 				})
 				.catch(error => {
 					console.error(error.message);
-					dispatch('services/loading/popLoading', {}, { root: true });
+					dispatch("services/loading/popLoading", {}, { root: true });
 					throw new Error(error.message);
 				});
 		},

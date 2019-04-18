@@ -45,7 +45,7 @@
           <a href="https://www.instagram.com/dvlpdnvr/">Instagram</a>
         </li>
         <li>
-          <a href="https://www.youtube.com/channel/UCFSQPaLHhmx44bmgpHoF4RQ">YouTube</a>
+          <a href="https://www.youtube.com/channel/dvlpdnvr">YouTube</a>
         </li>
       </ul>
     </nav>

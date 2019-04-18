@@ -7,7 +7,7 @@
         type="text"
         id="email"
         name="email"
-        placeholder="hello@developdenver.org"
+        placeholder=""
         v-model="email"
       >
       <label for="password">Password</label>

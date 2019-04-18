@@ -56,7 +56,7 @@ export default {
         }
         h2 {
             @include section-header-font;
-			align-self: start;
+			align-self: flex-start;
         }
     }
 }
