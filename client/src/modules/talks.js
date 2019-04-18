@@ -1,5 +1,5 @@
 import Talk from "../models/talk";
-import {shuffle} from "../utilities/shuffle";
+import { shuffle } from "../utilities/shuffle";
 
 export default {
 	namespaced: true,

@@ -13,15 +13,17 @@ export default {
 		},
 	},
 	actions: {
-		async charge({ dispatch }, data) {
+		async charge({ dispatch, rootState }, data) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
 			const charge = await fetch(process.env.VUE_APP_PAYMENTS_URL, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
+					Authorization: `Bearer ${rootState.services.user.token}`,
 				},
 				body: JSON.stringify(data),
-			}).then(response => response.json())
+			})
+				.then(response => response.json())
 				.catch(error => {
 					console.error(error.message);
 				});

@@ -1,7 +1,7 @@
 export default {
 	namespaced: true,
 	state: {
-		loadingCount: 0
+		loadingCount: 0,
 	},
 	getters: {
 		isLoading(state) {

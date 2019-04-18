@@ -118,26 +118,22 @@ describe('/profiles', () => {
     });
     describe('PUT', () => {
         before(async () => {
-            try {
-                this.firstListResponse = await request(app).get('/profiles/1');
-                this.updateResponse = await request(app)
-                    .put('/profiles/1')
-                    .set({
-                        Authorization: `Bearer ${generateToken(
-                            profiles.list[0],
-                        )}`,
-                    })
-                    .send(withoutSecrets(profiles.new))
-                    .expect('Content-Type', /json/)
-                    .expect(200);
-                this.updatedProfile = Object.assign(
-                    { id: 1 },
-                    withoutSecrets(profiles.new),
-                );
-                this.secondListResponse = await request(app).get('/profiles/1');
-            } catch (error) {
-                throw new Error(error);
-            }
+            this.firstListResponse = await request(app).get('/profiles/1');
+            this.updateResponse = await request(app)
+                .put('/profiles/1')
+                .set({
+                    Authorization: `Bearer ${generateToken(
+                        profiles.list[0],
+                    )}`,
+                })
+                .send(withoutSecrets(profiles.new))
+                .expect('Content-Type', /json/)
+                .expect(200);
+            this.updatedProfile = Object.assign(
+                { id: 1 },
+                withoutSecrets(profiles.new),
+            );
+            this.secondListResponse = await request(app).get('/profiles/1');
         });
         it('reads a profile before updating', () => {
             assert.deepEqual(

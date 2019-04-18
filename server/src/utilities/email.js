@@ -1,8 +1,8 @@
-const nodemailer = require("nodemailer");
-const showdown = require("showdown");
+const nodemailer = require('nodemailer');
+const showdown = require('showdown');
 
 const transport = nodemailer.createTransport({
-    service: "gmail",
+    service: 'gmail',
     auth: {
         user: process.env.FROM_EMAIL_ADDRESS,
         pass: process.env.EMAIL_PASSWORD,
@@ -11,7 +11,8 @@ const transport = nodemailer.createTransport({
 const fromEmailAddress = process.env.FROM_EMAIL_ADDRESS;
 const converter = new showdown.Converter();
 
-function send(address, subject, content){
+function send(address, subject, content) {
+    if (/@nope\.nope/.test(address)) return; // ignore test addresses
     return transport.sendMail({
         from: fromEmailAddress,
         to: address,

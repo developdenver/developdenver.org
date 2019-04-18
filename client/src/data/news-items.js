@@ -1,9 +1,15 @@
 export default [
 	{
-		title: 'Tickets on sale soon!',
-		author: 'DVLP Board',
-		date: '2/19/2019',
-		content: `The dates for Develop Denver 2019 have been announced! Mark your calendars for August 15-16. Ticket sales will start soon!`,
+		title: "Conference badges on sale!",
+		author: "DVLP Board",
+		date: "4/18/2019",
+		content: "Badges now available for purchase! Buy before May 1st and score our Early Bird price of $149. Want to buy conference badges for your entire team? Don’t worry we’re all setup to cover group purchases this year.",
+	},
+	{
+		title: "Tickets on sale soon!",
+		author: "DVLP Board",
+		date: "2/19/2019",
+		content: "The dates for Develop Denver 2019 have been announced! Mark your calendars for August 15-16. Ticket sales will start soon!",
 	},
 	// 	{
 	// 		title: 'Schedule is Live!',

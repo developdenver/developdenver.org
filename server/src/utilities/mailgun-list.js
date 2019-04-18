@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 module.exports = function addToMailgun({ profile, tags }) {
+    if (process.env.NODE_ENV === 'test') return;
     return axios({
         method: 'post',
         url: 'https://us4.api.mailchimp.com/3.0/lists/600b94a821/members',

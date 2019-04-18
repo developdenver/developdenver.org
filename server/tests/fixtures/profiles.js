@@ -19,13 +19,12 @@ module.exports = {
             bio: 'Bio',
             profile_photo_url: 'http://via.placeholder.com/500x500',
             role: null,
-            ticket_level: null,
         },
         {
             id: 2,
             first_name: 'First2',
             last_name: 'Last2',
-            email: 'email2@address.com',
+            email: 'email2@nope.nope',
             hashed_password:
                 '$2b$12$FFA87yNC1qZCYYKR5bJwDu/m0O2w6tf8w48sS2tU/V1NKDIRkCU/S', // 'pw2'
             secret_key:
@@ -40,7 +39,6 @@ module.exports = {
             bio: 'Bio2',
             profile_photo_url: 'http://via.placeholder.com/500x500',
             role: null,
-            ticket_level: null,
         },
     ],
     new: {
@@ -58,6 +56,5 @@ module.exports = {
         bio: 'Bio3',
         profile_photo_url: 'http://via.placeholder.com/500x500',
         role: 'attendee',
-        ticket_level: null,
     },
 };

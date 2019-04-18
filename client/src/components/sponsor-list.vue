@@ -13,8 +13,8 @@
     </ul>
 
     <div class="sponsor-call-to-action">
-      <p>Interested in becoming a sponsor?</p>
-      <a class="button" href="mailto:sponsorship@developdenver.org">Contact Us</a>
+      <p>Support the Denver development, product, and design community!</p>
+      <a class="button" href="mailto:sponsorship@developdenver.org">Become a Sponsor</a>
     </div>
   </section>
 </template>
@@ -26,10 +26,14 @@ export default {
             premiumSponsor: null,
             siteSponsors: [
                 {
-                    name: 'By The Pixel',
+					name: "By The Pixel",
+					imageUrl: "https://s3-media1.fl.yelpcdn.com/bphoto/efFNBfcJaL2uXmtlWcVeVA/ls.jpg",
+					link: "https://bythepixel.com/",
+			}, {
+                    name: 'Devetry',
                     imageUrl:
-                        'https://s3-media1.fl.yelpcdn.com/bphoto/efFNBfcJaL2uXmtlWcVeVA/ls.jpg',
-                    link: 'https://bythepixel.com/',
+                        'https://devetry.com/wp-content/uploads/2017/10/logo-opt.png',
+                    link: 'https://devetry.com/',
                 },
             ],
         };
@@ -51,9 +55,13 @@ export default {
         text-align: center;
         letter-spacing: 0;
         @include section-header-font;
+        max-width: unset;
+        margin-top: 2rem;
     }
     a {
-        display: inline-block;
+        display: inline-flex;
+		height: 100%;
+		align-items: center;
         @include call-to-action-font;
     }
     ul {

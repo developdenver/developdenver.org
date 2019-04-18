@@ -1,6 +1,6 @@
 <template>
   <section class="news">
-    <h2>News</h2>
+    <h2>Conference News</h2>
     <ul>
       <li v-for="(newsItem, index) in newsItems" :key="index">
         <news-item
