@@ -13,6 +13,13 @@
         </noscript>
         <div id="app"></div>
         <!-- built files will be auto injected -->
+        <script src="https://browser.sentry-cdn.com/5.1.0/bundle.min.js" crossorigin="anonymous"></script>
         <script src="https://js.stripe.com/v3/"></script>
+        <script type="text/javascript">
+            Sentry.init({
+                dsn: 'https://0f53fa29ac32421ea50002cd244f015d@sentry.io/1443070',
+                environment: "<%= VUE_APP_SENTRY_ENVIRONMENT %>",
+            });
+        </script>
     </body>
 </html>

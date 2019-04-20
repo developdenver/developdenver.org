@@ -1,3 +1,5 @@
+const Sentry = require('@sentry/node');
+
 export class ClientError extends Error {
     get status() {
         return 400;
@@ -11,7 +13,10 @@ export function withErrorHandling<T>(res, action: () => Promise<T | null>) {
             res.status(err.status).json({ error: err.message });
         } else {
             res.status(500).json({ error: err.message });
-            if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+            if (
+                process.env.NODE_ENV === 'development' ||
+                process.env.NODE_ENV === 'test'
+            ) {
                 console.error(err);
             }
         }
@@ -26,6 +31,8 @@ export default function(app) {
         error.status = 404;
         next(error);
     });
+
+    app.use(Sentry.Handlers.errorHandler());
 
     app.use(function(error, request, response, next) {
         console.error(error);
