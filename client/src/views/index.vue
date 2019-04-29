@@ -35,7 +35,7 @@
 
       <div class="ticket-details">
 		<h3>Pricing</h3>
-		<p>Early Bird - $149 <em>($299 after May 1st)</em></p>
+		<p>Early Bird - $149 <em>($249 after May 1st)</em></p>
 		<p>Employer - $399 <em>(Help make Develop Denver affordable to all attendees)</em></p>
 
 		<p>Don’t worry, we’re all setup so you can purchase a group of conference badges. You’ll be asked to provide an email address for each attendee and you’re good to go. Have questions? Please contact us at <a href="mailto:hello@developdenver.org">hello@developdenver.org</a> if you need help.</p>
