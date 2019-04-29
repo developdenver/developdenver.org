@@ -38,38 +38,5 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .news-item {
-	header {
-		margin-bottom: $baseline;
-		h3 {
-			@include section-header-font;
-		}
-		.byline {
-			@include italic-body-font;
-			time {
-				display: inline;
-				margin-right: $xs;
-				&:after {
-					margin-left: $xs;
-					content: "-";
-				}
-			}
-			address {
-				display: inline;
-			}
-		}
-	}
-	main {
-		h4 {
-			@include fieldset-header-font;
-		}
-		ul {
-			list-style-type: circle;
-			margin-bottom: $baseline;
-			li {
-				@include body-font;
-				margin-left: $large;
-			}
-		}
-	}
 }
 </style>

@@ -180,33 +180,5 @@ export default {
 @import "@/styles/_typography.scss";
 
 .edit-profile {
-    fieldset {
-        background-color: $light-grey;
-        padding: $large $baseline;
-        margin-bottom: $large;
-        box-shadow: 0 0 3px $medium-light-grey;
-        h3 {
-            margin-bottom: $baseline;
-            @include fieldset-header-font;
-            color: $dark-grey;
-        }
-        img {
-            width: 100%;
-        }
-		label.self-employed, input.self-employed {
-			display: inline;
-			width: auto;
-			margin-bottom: $large;
-		}
-		input.self-employed {
-			margin-left: $baseline;
-		}
-    }
-    button {
-        @include call-to-action-button;
-		&[disabled] {
-			background-color: $medium-light-grey;
-		}
-  }
 }
 </style>

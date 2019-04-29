@@ -52,47 +52,12 @@ table {
 
 a {
 	color: inherit;
+	text-decoration: none;
 }
 a:visited {
 	color: inherit;
-	text-decoration: none;
 }
 
 * {
 	box-sizing: border-box;
-}
-
-@import "@/styles/_typography.scss";
-@import "@/styles/_sizes.scss";
-@import "@/styles/_colors.scss";
-p {
-	@include body-font;
-	margin-bottom: $baseline;
-}
-
-label, input, textarea, button {
-	display: block;
-	width: 100%;
-}
-label {
-	color: $medium-grey;
-	margin-bottom: $xxs;
-}
-input, textarea {
-	margin-bottom: $baseline;
-	padding: $baseline;
-	border: 0.5px solid $medium-light-grey;
-	&:focus {
-		border-bottom: 1px solid $primary-color;
-	}
-}
-select {
-	padding: $small;
-	border: 0.5px solid $medium-light-grey;
-	background-color: $white;
-}
-textarea {
-	height: $xxl * 2;
-	resize: none;
-	@include system-font;
 }

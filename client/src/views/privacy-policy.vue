@@ -44,26 +44,5 @@
     @import "@/styles/_sizes.scss";
 
     .privacy-policy {
-		h2 {
-			@include tertiary-header-font;
-			margin-bottom: $baseline;
-		}
-        h3 {
-            @include fieldset-header-font;
-        }
-        em {
-            @include italic-body-font;
-        }
-        ul {
-            margin-bottom: $baseline;
-            li {
-                list-style-type: circle;
-                margin-left: $baseline;
-                p {
-                    margin-bottom: 0;
-                }
-            }
-        }
-
     }
 </style>

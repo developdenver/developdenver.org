@@ -69,31 +69,5 @@ export default {
 @import '@/styles/_general.scss';
 
 .login {
-    padding: $baseline;
-    margin: $xl 0 $xxxl 0;
-    h2 {
-        @include tertiary-header-font;
-        margin-bottom: $xl;
-    }
-    input,
-    label {
-        display: block;
-        width: 100%;
-    }
-    label {
-        @include fieldset-header-font;
-    }
-    input {
-        margin-bottom: $baseline;
-    }
-    [type='submit'] {
-        @include call-to-action-button;
-    }
-    .error {
-        color: $warning;
-    }
-    .alternatives {
-        margin-bottom: $large;
-    }
 }
 </style>

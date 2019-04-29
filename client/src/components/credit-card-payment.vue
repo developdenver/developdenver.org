@@ -32,30 +32,5 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .credit-card-payment {
-    label, input {
-        display: block;
-        width: 100%;
-    }
-    label {
-        @include italic-body-font;
-    }
-    input, .StripeElement {
-        background-color: $pure-white;
-        height: 2.5rem;
-        padding: 0.75rem 1rem;
-        border-radius: 4px;
-        box-shadow: 0px 0px 4px $light-grey;
-        border: 1px solid $medium-light-grey;
-        margin-bottom: $baseline;
-        &:focus, &.StripeElement--focus {
-            box-shadow: 0 1px 3px 0 #cfd7df;
-        }
-    }
-    .StripeElement--invalid {
-        border-color: #fa755a;
-    }
-    .StripeElement--webkit-autofill {
-        background-color: #fefde5 !important;
-    }
 }
 </style>

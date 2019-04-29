@@ -1,9 +1,11 @@
 <template>
 	<header class="app-header">
+		<p>Icon</p>
+		<p>Menu</p>
 		<router-link to="/">
-			<h1>Develop Denver 2019</h1>
+			<h1>DVLP / DNVR / 2019</h1>
 		</router-link>
-		<primary-navigation />
+		<!-- <primary-navigation /> -->
 	</header>
 </template>
 
@@ -23,23 +25,16 @@ export default {
 	@import "@/styles/_typography.scss";
 
 	.app-header {
-		display: flex;
-		flex-flow: column nowrap;
-		align-items: center;
+		background-color: $black;
+		position: fixed;
+		height: 100vh;
+		top: 0;
+		left: 0;
+		z-index: 1;
 		padding: $baseline;
-		a {
-			text-decoration: none;
-		}
 		h1 {
+			writing-mode: sideways-lr;
 			@include primary-header-font;
-		}
-		.logo {
-			padding: $small;
-			height: 50px;
-			max-width: 100%;
-			margin-top: $large;
-			margin-bottom: $large;
-			fill: $white;
 		}
 	}
 </style>

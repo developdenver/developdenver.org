@@ -26,8 +26,5 @@ export default {
     @import "@/styles/_typography.scss";
 
     .event-card-list {
-        display: flex;
-        flex-flow: column nowrap;
-		width: 100%;
     }
 </style>

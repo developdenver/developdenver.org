@@ -47,10 +47,5 @@ export default {
 @import '@/styles/_sizes.scss';
 
 .tickets {
-    padding: $baseline;
-    h2 {
-        @include tertiary-header-font;
-        margin-bottom: $large;
-    }
 }
 </style>

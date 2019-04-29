@@ -58,15 +58,6 @@ export default {
 @import "@/styles/_colors.scss";
 
 .submit-talk {
-    display: flex;
-    flex-flow: column nowrap;
-    flex-grow: 1;
-    max-width: $max-line-length;
-	margin-bottom: $large;
-
-	.error {
-        color: $warning;
-    }
 }
 
 </style>

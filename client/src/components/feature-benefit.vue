@@ -1,31 +1,22 @@
 <template>
   <section class="feature">
-    <div class="video responsive-iframe-container" v-html="video"/>
+    <div class="video responsive-iframe-container">
+		<iframe class="responsive-iframe" src="https://www.youtube.com/embed/ZsRunRoI8Rk?controls=0&rel=0&showInfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
+		<h2>Community First</h2>
     <div class="benefit">
-      <div>
-        <h2>{{heading}}</h2>
-      </div>
-      <div v-html="parsedCopy"></div>
-      <slot/>
+      <p class="primary-description">Develop Denver brings together developers, designers, strategists, and those looking to dive deeper into the technology world.</p>
+      <p class="secondary-description">Develop Denver is two days of talks and hands-on workshops on code, product and design. Attendees will learn from professionals within the greater denver community. Join us for our 8th year of building Denver's tech scene.</p>
     </div>
   </section>
 </template>
 
 <script>
-import Showdown from 'showdown';
-
-const showdown = new Showdown.Converter();
-
 export default {
     props: {
         video: String,
         heading: String,
         copy: String,
-    },
-    computed: {
-        parsedCopy() {
-            return showdown.makeHtml(this.copy);
-        },
     },
 };
 </script>
@@ -34,30 +25,21 @@ export default {
 @import '@/styles/_typography.scss';
 @import '@/styles/_colors.scss';
 @import '@/styles/_sizes.scss';
+@import '@/styles/_general.scss';
 
 .feature {
-    margin-top: $large;
-    margin-bottom: $large;
-	width: 100%;
-    .video {
-		max-width: $max-line-length;
-    }
-    .benefit {
-        background-color: $pure-white;
-        z-index: 10;
-		max-width: $max-line-length;
-        > div {
-            display: flex;
-            align-items: center;
-            flex-flow: column nowrap;
-        }
-        p {
-            @include stylized-body-font;
-        }
-        h2 {
-            @include section-header-font;
-			align-self: flex-start;
-        }
-    }
+	.benefit {
+		@include grid;
+		grid-template: auto auto / repeat(4, 1fr);
+
+		.primary-description {
+			grid-row: 2;
+			grid-column: 2 / span 1;
+		}
+		.secondary-description {
+			grid-row: 2;
+			grid-column: 3 / span 2;
+		}
+	}
 }
 </style>

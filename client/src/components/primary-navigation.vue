@@ -74,28 +74,5 @@ export default {
 @import '@/styles/_sizes.scss';
 
 .primary-navigation {
-    max-width: 50%;
-    margin-bottom: $xl;
-    ul {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        @media (max-width: $large-breakpoint) {
-            li {
-                margin-bottom: $baseline;
-            }
-        }
-        li {
-            display: inline-block;
-            padding: 0 1.5rem;
-            a {
-                @include link-font;
-                text-decoration: none;
-            }
-        }
-    }
-    @media (max-width: $medium-breakpoint) {
-        max-width: 90%;
-    }
 }
 </style>

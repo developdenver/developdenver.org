@@ -48,8 +48,5 @@ export default {
 
 <style lang="scss">
     .profile-page {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
     }
 </style>

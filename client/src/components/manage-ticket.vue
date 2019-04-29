@@ -78,34 +78,5 @@ export default {
 
 <style lang="scss">
 .manage-ticket {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-    > div {
-        width: 100%;
-        min-width: 400px;
-    }
-    .svg-inline--fa {
-        margin-top: 3px;
-        margin-right: 3px;
-    }
-    .ticket-status {
-        font-size: 1.5rem;
-        margin-bottom: 5px;
-    }
-    .ticket-actions {
-        display: flex;
-        margin-top: 4px;
-        font-size: 1.3rem;
-        input {
-            margin-bottom: 0;
-            padding: 2px 4px;
-        }
-        button {
-            max-width: 150px;
-            width: fit-content;
-            padding: 2px 8px;
-        }
-    }
 }
 </style>

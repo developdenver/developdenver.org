@@ -39,15 +39,5 @@ export default {
 @import '@/styles/_typography.scss';
 
 .register {
-    display: flex;
-    flex-flow: column nowrap;
-    flex-grow: 1;
-    max-width: $max-line-length;
-    margin-bottom: $large;
-    padding: $baseline;
-    h2 {
-        @include tertiary-header-font;
-        margin-bottom: $baseline;
-    }
 }
 </style>

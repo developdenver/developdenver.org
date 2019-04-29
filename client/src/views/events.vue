@@ -94,50 +94,7 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .events-wrapper {
-	width: 100%;
-	display: flex;
-	flex-flow: column nowrap;
-	align-items: center;
 }
 .events {
-	max-width: 600px;
-	display: flex;
-	flex-flow: column nowrap;
-	flex: 1;
-	h2 {
-		@include tertiary-header-font;
-		align-self: center;
-		margin-bottom: $baseline;
-		padding: $baseline;
-	}
-	header {
-		display: flex;
-		justify-content: flex-start;
-		width: 100%;
-		h3 {
-			@include section-header-font;
-			margin-bottom: $baseline;
-			padding: $baseline;
-		}
-	}
-	.list-wrapper {
-		width: 100%;
-		display: flex;
-		flex-flow: column nowrap;
-		align-items: center;
-		.event-card-list {
-			max-width: 800px;
-		}
-	}
-	.services {
-		align-self: flex-start;
-		margin-bottom: $xl;
-		padding: 0 $baseline;
-		list-style-type: circle;
-		li {
-			margin-left: $baseline;
-			margin-bottom: $small;
-		}
-	}
 }
 </style>

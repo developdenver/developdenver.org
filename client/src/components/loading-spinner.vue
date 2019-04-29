@@ -21,8 +21,5 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .loading-spinner {
-	position: fixed !important;
-	right: $large;
-	top: $large;
 }
 </style>

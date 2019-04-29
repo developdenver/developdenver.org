@@ -1,8 +1,11 @@
 <template>
   <div class="venues">
-    <a v-for="venue in venues" :key="venue.name" :href="venue.linkUrl">
-  	  <img :src="venue.imageUrl" :alt="venue.name">
-    </a>
+	<h2>Venues</h2>
+	<div class="logos">
+		<a v-for="venue in venues" :key="venue.name" :href="venue.linkUrl">
+		  <img :src="venue.imageUrl" :alt="venue.name">
+		</a>
+	</div>
   </div>
 </template>
 
@@ -53,23 +56,12 @@ export default {
 @import '@/styles/_sizes.scss';
 
 .venues {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	margin: 0 auto;
-	margin-bottom: 40px;
-	img {
-		width: 200px;
-		height: auto;
-		margin: 0 auto 0;
-		padding: 15px 30px;
-	}
-	@media (max-width: $medium-breakpoint) {
-		width: 100%;
-	}
-	@media (max-width: $small-breakpoint) {
+	.logos {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
 		img {
-			display: block;
+			max-width: 200px;
 		}
 	}
 }

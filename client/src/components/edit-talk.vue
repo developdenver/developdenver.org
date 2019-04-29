@@ -124,39 +124,5 @@ export default {
 @import "@/styles/_typography.scss";
 
 .edit-talk {
-	margin-bottom: $large;
-	fieldset {
-		background-color: $light-grey;
-		padding: $large $baseline;
-		margin-bottom: $large;
-		box-shadow: 0 0 3px $medium-light-grey;
-		h3 {
-			margin-bottom: $baseline;
-			@include fieldset-header-font;
-			color: $dark-grey;
-		}
-		.talk-photo {
-			max-height: $max-line-length;
-			overflow-y: scroll;
-			img {
-				width: 100%;
-			}
-		}
-		select {
-			margin-top: $baseline;
-			margin-bottom: $large;
-			padding: $small 0;
-			width: 100%;
-		}
-	}
-	button {
-		@include call-to-action-button;
-		&[disabled] {
-			background-color: $medium-light-grey;
-		}
-	}
-	.error {
-		color: $warning;
-	}
 }
 </style>

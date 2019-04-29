@@ -37,30 +37,5 @@ export default {
 @import "@/styles/_typography.scss";
 
 .reset-request {
-    margin: $xl 0 $xxxl 0;
-	h2 {
-		@include tertiary-header-font;
-		margin-bottom: $baseline;
-	}
-	form {
-		display: flex;
-		flex-flow: column nowrap;
-		flex-grow: 1;
-		max-width: $max-line-length;
-		margin-bottom: $large;
-		input, label {
-			display: block;
-			width: 100%;
-		}
-		input {
-			margin-bottom: $baseline;
-		}
-		label {
-			margin-bottom: $xs;
-		}
-		[type=submit] {
-			@include call-to-action-button;
-		}
-	}
 }
 </style>

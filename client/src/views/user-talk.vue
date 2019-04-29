@@ -38,16 +38,5 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .user-talk {
-    display: flex;
-    flex-flow: column nowrap;
-    flex-grow: 1;
-    max-width: $max-line-length;
-	margin-bottom: $large;
-    h2 {
-        display: none;
-    }
-	.reset-password {
-		margin-top: $large;
-	}
 }
 </style>

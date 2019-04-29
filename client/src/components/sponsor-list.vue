@@ -48,57 +48,8 @@ export default {
 @import '@/styles/_general.scss';
 
 .sponsors {
-    padding: 0 0 0 0;
-    background-color: $light-grey;
-    h2 {
-        display: block;
-        text-align: center;
-        letter-spacing: 0;
-        @include section-header-font;
-        max-width: unset;
-        margin-top: 2rem;
-    }
-    a {
-        display: inline-flex;
-		height: 100%;
-		align-items: center;
-        @include call-to-action-font;
-    }
-    ul {
-        padding: $baseline;
-        border-bottom: 1px solid $light-grey;
-    }
-    .gold-sponsors {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        li {
-            margin: $baseline;
-            img {
-                max-width: 300px;
-            }
-        }
-    }
-    img.svg {
-        height: $large;
-        max-width: 100%;
-        padding: 0;
-        clip-path: none;
-    }
-    .sponsor-call-to-action {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: $xl;
-        p {
-            @include stylized-body-font;
-            max-width: 100%;
-            text-align: center;
-        }
-        .button {
-            @include call-to-action-button;
-            margin: 0 auto;
-        }
-    }
+	.button {
+		@include call-to-action;
+	}
 }
 </style>

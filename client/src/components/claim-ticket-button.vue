@@ -49,9 +49,5 @@ export default {
 @import '@/styles/_general.scss';
 
 .claim-ticket-button {
-    button {
-        @include call-to-action-button;
-        margin: 0 auto;
-    }
 }
 </style>

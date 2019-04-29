@@ -25,9 +25,5 @@ export default {
 
 <style lang="scss" scoped>
 .my-tickets {
-    h2 {
-        font-size: 2rem;
-        font-weight: bold;
-    }
 }
 </style>

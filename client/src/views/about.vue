@@ -29,15 +29,5 @@ export default {
 @import "@/styles/_typography.scss";
 
 .about {
-	width: 100%;
-	display: flex;
-	flex-flow: column nowrap;
-	.details {
-		align-self: center;
-		h2 {
-			@include tertiary-header-font;
-			margin-bottom: $baseline;
-		}
-	}
 }
 </style>

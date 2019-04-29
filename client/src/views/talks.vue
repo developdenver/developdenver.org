@@ -29,12 +29,5 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .talks {
-	width: 100%;
-	h2 {
-		@include tertiary-header-font;
-		text-align: center;
-		margin-bottom: $baseline;
-		padding: $baseline;
-	}
 }
 </style>

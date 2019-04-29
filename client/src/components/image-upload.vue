@@ -83,9 +83,6 @@ export default {
             animation-delay: 0.3s;
         }
     }
-    .error {
-        color: $warning;
-    }
     [type=submit] {
         display: none;
     }
