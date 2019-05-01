@@ -7,6 +7,18 @@ body {
 	color: $white;
 }
 
+input, textarea {
+	display: block;
+	border: 2px solid $white;
+	background-color: $black;
+	color: $white;
+	padding: $baseline;
+	margin-bottom: $baseline / 2;
+	&::placeholder {
+		color: #fff;
+	}
+}
+
 @mixin call-to-action {
 	display: block;
 	border: 2px solid $white;

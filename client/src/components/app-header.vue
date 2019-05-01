@@ -1,11 +1,12 @@
 <template>
 	<header class="app-header">
-		<p>Icon</p>
-		<p>Menu</p>
-		<router-link to="/">
-			<h1>DVLP / DNVR / 2019</h1>
-		</router-link>
-		<!-- <primary-navigation /> -->
+		<div class="app-header-content">
+			<span class="menu"><font-awesome-icon icon="bars" /></span>
+			<router-link to="/">
+				<h1>DVLP / DNVR / 2019</h1>
+			</router-link>
+			<!-- <primary-navigation /> -->
+		</div>
 	</header>
 </template>
 
@@ -25,16 +26,28 @@ export default {
 	@import "@/styles/_typography.scss";
 
 	.app-header {
-		background-color: $black;
-		position: fixed;
-		height: 100vh;
-		top: 0;
-		left: 0;
-		z-index: 1;
-		padding: $baseline;
-		h1 {
-			writing-mode: sideways-lr;
-			@include primary-header-font;
+		.app-header-content {
+			background-color: $black;
+			position: fixed;
+			max-width: 100px; // Chrome hack
+			height: 100vh;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			padding: $baseline;
+			h1 {
+				writing-mode: vertical-rl;
+				@include primary-header-font;
+			}
+		}
+		.menu {
+			display: inline-block;
+			width: 100%;
+			margin-bottom: $baseline * 4;
+			svg {
+				width: 100%;
+				height: 36px;
+			}
 		}
 	}
 </style>

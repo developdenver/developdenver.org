@@ -48,8 +48,35 @@ export default {
 @import '@/styles/_general.scss';
 
 .sponsors {
-	.button {
-		@include call-to-action;
+	.gold-sponsors {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+		img {
+			max-width: 200px;
+			filter: grayscale(100%);
+		}
+		li {
+			a {
+				height: 100%;
+				display: flex;
+				align-items: center;
+			}
+		}
+	}
+	.sponsor-call-to-action {
+		@include grid;
+		grid-template: auto auto / repeat(7, 1fr);
+		p {
+			margin-bottom: $baseline;
+			grid-row: 1;
+			grid-column: 1 / span 7;
+		}
+		.button {
+			grid-row: 2;
+			grid-column: 1 / span 3;
+			@include call-to-action;
+		}
 	}
 }
 </style>

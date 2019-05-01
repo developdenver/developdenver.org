@@ -1,12 +1,12 @@
 <template>
-  <div class="venues">
+  <section class="venues">
 	<h2>Venues</h2>
 	<div class="logos">
 		<a v-for="venue in venues" :key="venue.name" :href="venue.linkUrl">
 		  <img :src="venue.imageUrl" :alt="venue.name">
 		</a>
 	</div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -62,6 +62,7 @@ export default {
 		justify-content: space-between;
 		img {
 			max-width: 200px;
+			filter: grayscale(100%);
 		}
 	}
 }

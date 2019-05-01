@@ -1,5 +1,5 @@
 <template>
-	<div class="ticket-details">
+	<section class="ticket-details">
 		<h2>Tickets</h2>
 		<div class="date-and-location">
 			<p>Conference badges are now on sale!</p>
@@ -12,8 +12,8 @@
 		<div class="groups">
 			<p>Don’t worry, we’re all setup so you can purchase a group of conference badges. You’ll be asked to provide an email address for each attendee and you’re good to go. Have questions? Please contact us at <a href="mailto:hello@developdenver.org">hello@developdenver.org</a> if you need help.</p>
 		</div>
-		<router-link class="button" :to="{ name: joinUsLink }">Buy Tickets</router-link>
-	</div>
+		<router-link class="button" :to="{ name: 'tickets' }">Buy Tickets</router-link>
+	</section>
 </template>
 
 <script>
@@ -25,30 +25,31 @@
 
 .ticket-details {
 	@include grid;
-	grid-template: repeat(3, auto) / repeat(4, 1fr);
+	grid-template: repeat(3, auto) / repeat(7, 1fr);
 
 	h2 {
 		grid-row: 1;
-		grid-column: 1 / span 4;
+		grid-column: 1 / span 7;
 	}
 	.date-and-location {
 		grid-row: 2;
-		grid-column: 1 / span 1;
+		grid-column: 1 / span 2;
 		p {
 			margin-bottom: $baseline;
 		}
 	}
 	.benefits {
 		grid-row: 2;
-		grid-column: 2 / span 1;
+		grid-column: 3 / span 2;
 	}
 	.groups {
 		grid-row: 2;
-		grid-column: 3 / span 2;
+		grid-column: 5 / span 3;
 	}
 	.button {
 		grid-row: 3;
-		margin-top: $baseline;
+		grid-column: 1 / span 3;
+		margin-top: $baseline * 2;
 		@include call-to-action;
 	}
 }

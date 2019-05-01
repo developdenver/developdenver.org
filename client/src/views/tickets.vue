@@ -1,6 +1,5 @@
 <template>
   <section class="tickets">
-    <h2>Conference Badges</h2>
     <ticket-purchase :levels="levels" :isDiscountCode="false"/>
   </section>
 </template>
@@ -15,20 +14,20 @@ export default {
     data() {
         return {
             levels: [
+				/*
                 {
                     sku: 'skuEarly',
                     label: '$149 - Early Bird',
                     description:
                         'Full access 2-day conference badge - Available until May 1st',
                 },
-				/*
+				*/
                 {
                     sku: 'skuRegular',
                     label: '$249 - Regular',
                     description:
                         '2-Day conference pass including personalized conference badge, access to keynote speakers, talks, workshops and food and beverage at five amazing venues in the Denver RiNo district.',
                 },
-				*/
                 {
                     sku: 'skuEmployer',
                     label: '$399 - Employer',
@@ -47,5 +46,11 @@ export default {
 @import '@/styles/_sizes.scss';
 
 .tickets {
+	@include grid;
+	grid-template: auto / repeat(8, 1fr);
+	margin: $baseline * 8 0;
+	h2, .ticket-purchase, .venues {
+		grid-column: 2 / span 6;
+	}
 }
 </style>

@@ -1,29 +1,28 @@
 <template>
     <form enctype="multipart/form-data" class="edit-profile" @submit.prevent="updateProfile">
         <fieldset class="required">
-            <h3>Your Profile</h3>
-            <label for="first-name">First Name</label>
             <input
 				required
+				class="first-name"
 				type="text"
 				id="first-name"
-				placeholder=""
+				placeholder="First Name"
 				v-model.trim="profile.properties.firstName"
 			/>
-            <label for="last-name">Last Name</label>
             <input
 				required
+				class="last-name"
 				type="text"
 				id="last-name"
-				placeholder=""
+				placeholder="Last Name"
 				v-model.trim="profile.properties.lastName"
 			/>
-            <label for="email">Email</label>
             <input
 				required
+				class="email"
 				type="email"
 				id="email"
-				placeholder=""
+				placeholder="Email"
 				ref="email"
 				v-model.trim="profile.properties.email"
 				@change="verifyUniqueEmail"
@@ -33,9 +32,10 @@
                 @updatePassword="updatePassword"
             />
         </fieldset>
+		<h2>Optional (but encouraged)</h2>
         <fieldset class="optional">
-            <h3>Optional (but encouraged)</h3>
             <image-upload
+				class="profile-photo"
                 title="Profile Photo"
                 :uploadUrl="imageUploadUrl"
                 @imageUrl="setImageUrl"
@@ -44,64 +44,62 @@
                     <img :src="profile.properties.profilePhotoUrl" alt="Profile Photo" />
                 </figure>
             </image-upload>
-            <label for="bio">Bio</label>
             <textarea
+				class="bio"
 				id="bio"
-				placeholder="Tell others who you are and what you do."
+				placeholder="Bio"
 				v-model.trim="profile.properties.bio"
 			></textarea>
-            <label for="position">Position</label>
             <input
 				type="text"
+				class="position"
 				id="position"
-				placeholder=""
+				placeholder="Position"
 				v-model.trim="profile.properties.position"
 			/>
-			<label class="self-employed" for="isSelfEmployed">Self-employed?</label>
-			<input
-				class="self-employed"
-				type="checkbox"
-				id="isSelfEmployed"
-				v-model="profile.properties.isSelfEmployed"
-			/>
-            <label v-if="!profile.properties.isSelfEmployed" for="employer">Employer</label>
+			<div class="self-employed">
+				<label for="isSelfEmployed">Self-employed?</label>
+				<input
+					class="self-employed"
+					type="checkbox"
+					id="isSelfEmployed"
+					v-model="profile.properties.isSelfEmployed"
+				/>
+			</div>
             <input
+				class="employer"
 				v-if="!profile.properties.isSelfEmployed"
 				type="text"
 				id="employer"
-				placeholder="Develop Denver"
+				placeholder="Employer"
 				v-model.trim="profile.properties.employer"
 			/>
-            <label for="website">Website</label>
             <input
 				type="text"
 				id="website"
-				placeholder="https://developdenver.org"
+				placeholder="Website"
 				v-model.trim="profile.properties.website"
 			/>
-            <label for="github-username">Github Username</label>
             <input
 				type="text"
 				id="github-username"
-				placeholder=""
+				placeholder="Github Username"
 				v-model.trim="profile.properties.githubUsername"
 			/>
-            <label for="twitter-username">Twitter Username</label>
             <input
 				type="text"
 				id="twitter-username"
-				placeholder=""
+				placeholder="Twitter Username"
 				v-model.trim="profile.properties.twitterUsername"
 			/>
-            <label for="linkedin-username">LinkedIn Username</label>
             <input
 				type="text"
 				id="linkedin-username"
-				placeholder=""
+				placeholder="LinkedIn Username"
 				v-model.trim="profile.properties.linkedinUsername"
 			/>
+			<button :disabled="isLoading">{{buttonLabel}}</button>
         </fieldset>
-        <button :disabled="isLoading">{{buttonLabel}}</button>
     </form>
 </template>
 
@@ -174,11 +172,25 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/_sizes.scss";
-@import "@/styles/_colors.scss";
 @import "@/styles/_general.scss";
-@import "@/styles/_typography.scss";
+@import "@/styles/_colors.scss";
 
 .edit-profile {
+	button {
+		@include call-to-action;
+		background-color: hsla(0, 0%, 0%, 0);
+		color: $white;
+	}
+	fieldset {
+		@include grid;
+		grid-template-columns: repeat(7, 1fr);
+		grid-auto-rows: auto;
+		input, textarea, form, button {
+			grid-column: 3 / span 2;
+		}
+	}
+	textarea {
+		height: $baseline * 8;
+	}
 }
 </style>

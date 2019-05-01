@@ -34,12 +34,21 @@ export default {
 <style lang="scss">
 @import '@/styles/_reset.scss';
 @import '@/styles/_sizes.scss';
+@import '@/styles/_typography.scss';
+@import '@/styles/_colors.scss';
 
 #app {
 	min-height: 100vh;
 	display: flex;
 	flex-flow: row nowrap;
-	main {
+	h2 {
+		@include primary-header-font;
+		border-bottom: 1px solid $white;
+		margin-bottom: $baseline;
+	}
+	h3 {
+		font-weight: 700;
+		margin-bottom: $baseline / 2;
 	}
 }
 </style>

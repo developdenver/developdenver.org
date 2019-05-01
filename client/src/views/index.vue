@@ -41,16 +41,17 @@ export default {
 
 .index {
 	display: contents;
-	h2 {
-		@include primary-header-font;
-		border-bottom: 1px solid $white;
-		margin-bottom: $baseline;
-	}
 	.conference-info {
 		@include grid;
 		grid-template: auto / repeat(8, 1fr);
+		padding: 0 $baseline * 2;
+		margin-top: $baseline * 9;
+		max-width: $max-width;
 		.feature, .ticket-details, .venues, .sponsors {
-			grid-column: 2 / span 6;
+			grid-column: 2 / span 7;
+		}
+		> section {
+			margin-bottom: $baseline * 9;
 		}
 	}
 }
