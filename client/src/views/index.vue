@@ -37,7 +37,7 @@
         <h3>Pricing</h3>
         <p>
           Early Bird - $149
-          <em>($299 after May 1st)</em>
+          <em>($249 after May 1st)</em>
         </p>
         <p>
           Employer - $399
