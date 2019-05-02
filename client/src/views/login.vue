@@ -3,13 +3,7 @@
     <h2>Login to Develop Denver</h2>
     <form @submit.prevent="login">
       <label for="email">Email</label>
-      <input
-        type="text"
-        id="email"
-        name="email"
-        placeholder=""
-        v-model="email"
-      >
+      <input type="text" id="email" name="email" placeholder v-model="email">
       <label for="password">Password</label>
       <input type="password" id="password" name="password" v-model="password">
       <input type="submit" value="Login">
@@ -19,7 +13,7 @@
       <router-link :to="{name: 'request-reset'}">Forgot your password?</router-link>
     </div>
     <div class="alternatives">
-      <router-link :to="{name: 'register'}">Register</router-link>
+      <router-link :to="{name: 'register', query: $route.query }">Register</router-link>
     </div>
   </section>
 </template>

@@ -7,12 +7,12 @@
       <li v-if="!isLoggedIn">
         <router-link :to="{name: 'login', query: redirectToPageQuery }">Login</router-link>
       </li>
-            <li>
-                <router-link :to="{name: 'tickets'}">Purchase Badges</router-link>
-            </li>
-            <li>
-                <router-link :to="{name: 'news'}">News</router-link>
-            </li>
+      <li>
+        <router-link :to="{name: 'tickets'}">Purchase Badges</router-link>
+      </li>
+      <li>
+        <router-link :to="{name: 'news'}">News</router-link>
+      </li>
       <!--
             <li>
                 <router-link :to="{name: 'schedule'}">Schedule</router-link>
@@ -56,6 +56,9 @@ export default {
         redirectToPageQuery() {
             if (this.$route.meta.takeItBackNowYall) {
                 return { redirect: this.$route.path };
+            }
+            if (this.$route.query.redirect) {
+                return this.$route.query;
             }
             return null;
         },
