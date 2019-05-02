@@ -74,7 +74,7 @@ const router = new Router({
 			},
 		},
 		{
-			path: '/claim-badges/:claimToken',
+			path: '/claim-ticket/:claimToken',
 			name: 'claim-ticket',
 			component: ClaimTicket,
 			meta: {
