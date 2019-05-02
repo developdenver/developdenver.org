@@ -15,20 +15,20 @@ export default {
     data() {
         return {
             levels: [
+				/*
                 {
                     sku: 'skuEarly',
                     label: '$149 - Early Bird',
                     description:
                         'Full access 2-day conference badge - Available until May 1st',
                 },
-				/*
+				*/
                 {
                     sku: 'skuRegular',
                     label: '$249 - Regular',
                     description:
-                        '2-Day conference pass including personalized conference badge, access to keynote speakers, talks, workshops and food and beverage at five amazing venues in the Denver RiNo district.',
+                        'Full access 2-day conference badge',
                 },
-				*/
                 {
                     sku: 'skuEmployer',
                     label: '$399 - Employer',
