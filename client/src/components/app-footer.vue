@@ -59,6 +59,7 @@ export default {
 			grid-template: auto / repeat(8, 1fr);
 			li {
 				writing-mode: vertical-lr;
+				transform: rotate(180deg);
 				@include primary-header-font;
 				text-align: right;
 				a:hover {
@@ -79,6 +80,7 @@ export default {
 				li {
 					display: inline-block;
 					writing-mode: horizontal-tb;
+					transform: rotate(0);
 					text-align: right;
 					@include primary-header-font;
 				}

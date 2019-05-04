@@ -38,6 +38,7 @@ export default {
 			h1 {
 				writing-mode: vertical-rl;
 				@include primary-header-font;
+				transform: rotate(180deg);
 			}
 		}
 		.menu {

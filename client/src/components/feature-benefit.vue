@@ -49,11 +49,13 @@ export default {
 		@include grid;
 		grid-template: auto auto / repeat(7, 1fr);
 		h2 {
-			writing-mode: sideways-lr;
+			writing-mode: vertical-rl;
+			transform: rotate(180deg);
 			@include primary-header-font;
-			border-bottom: none;
-			border-right: 1px solid $white;
+			border-bottom: 0!important;
+			border-left: 1px solid $white;
 			margin-bottom: 0;
+			text-align: right;
 		}
 		.video {
 			grid-column: 2 / span 7;
