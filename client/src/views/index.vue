@@ -3,6 +3,7 @@
 		<hero-banner/>
 		<section class="conference-info">
 			<feature-benefit />
+			<FeaturedTalks/>
 			<ticket-details />
 			<sponsor-list />
 			<venue-list />
@@ -18,6 +19,7 @@ import TicketDetails from '@/components/ticket-details.vue';
 import SponsorList from '@/components/sponsor-list';
 import CallForTalks from '@/components/call-for-talks';
 import VenueList from '@/components/venue-list';
+import FeaturedTalks from '@/components/featured-talks.vue';
 
 export default {
 	components: {
@@ -28,6 +30,7 @@ export default {
 		SponsorList,
 		CallForTalks,
 		VenueList,
+        FeaturedTalks,
 	},
 };
 </script>

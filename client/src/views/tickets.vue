@@ -26,7 +26,7 @@ export default {
                     sku: 'skuRegular',
                     label: '$249 - Regular',
                     description:
-                        '2-Day conference pass including personalized conference badge, access to keynote speakers, talks, workshops and food and beverage at five amazing venues in the Denver RiNo district.',
+                        'Full access 2-day conference badge',
                 },
                 {
                     sku: 'skuEmployer',

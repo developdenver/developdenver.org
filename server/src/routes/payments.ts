@@ -13,7 +13,7 @@ const { createTickets, sendInvitationEmail, sendConfirmationEmail } = require('.
 const stripeCreateOrder = promisify(stripe.orders.create.bind(stripe.orders));
 const stripePayOrder = promisify(stripe.orders.pay.bind(stripe.orders));
 
-const closeOfEarlyPricing = new Date(2019, 5, 1);
+const closeOfEarlyPricing = new Date(2019, 5, 3);
 
 async function purchaseTicket({
     sku,

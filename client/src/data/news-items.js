@@ -1,5 +1,11 @@
 export default [
 	{
+		title: "Call for proposals now open",
+		author: "DVLP Board",
+		date: "5/1/2019",
+		content: "Are you interested in sharing your knowledge with the community? We want to hear from you! Whether it is your first or your hundredth talk, we are accepting proposals now through the end of May.",
+	},
+	{
 		title: "Conference badges on sale!",
 		author: "DVLP Board",
 		date: "4/18/2019",
