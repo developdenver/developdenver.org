@@ -62,7 +62,6 @@ export default {
 		justify-content: space-between;
 		img {
 			max-width: 200px;
-			filter: grayscale(100%);
 		}
 	}
 }

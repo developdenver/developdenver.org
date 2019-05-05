@@ -2,25 +2,25 @@
   <section class="login">
     <h2>Login to Develop Denver</h2>
     <form @submit.prevent="login">
-      <label for="email">Email</label>
       <input
         type="text"
         id="email"
         name="email"
-        placeholder=""
+        placeholder="Email"
         v-model="email"
       >
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" v-model="password">
+      <input type="password" id="password" name="password" placeholder="Password" v-model="password">
       <input type="submit" value="Login">
     </form>
     <p v-if="error" class="error">{{error}}</p>
-    <div class="alternatives">
-      <router-link :to="{name: 'request-reset'}">Forgot your password?</router-link>
-    </div>
-    <div class="alternatives">
-      <router-link :to="{name: 'register'}">Register</router-link>
-    </div>
+	<div class="alternatives">
+		<div class="alternative">
+		  <router-link :to="{name: 'request-reset'}">Forgot your password?</router-link>
+		</div>
+		<div class="alternative">
+		  <router-link :to="{name: 'register'}">Register</router-link>
+		</div>
+	</div>
   </section>
 </template>
 
@@ -69,5 +69,28 @@ export default {
 @import '@/styles/_general.scss';
 
 .login {
+	@include grid;
+	grid-template-columns: repeat(8, 1fr);
+	grid-auto-rows: auto;
+	margin: $baseline * 8 0;
+	h2 {
+		grid-column: 2 / span 6;
+	}
+	form, .error, .alternatives {
+		grid-column: 4 / span 3;
+	}
+	.alternative {
+		margin-bottom: $baseline;
+	}
+	input, button {
+		width: 100%;
+	}
+	[type=submit] {
+		@include call-to-action;
+		padding: 0;
+	}
+	a:hover {
+		color: $accent-color;
+	}
 }
 </style>

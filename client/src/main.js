@@ -6,7 +6,7 @@ import hagrid from "./hagrid";
 import "./registerServiceWorker";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCoffee, faTicketAlt, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faCoffee, faTicketAlt, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 
@@ -14,6 +14,7 @@ library.add(fab);
 library.add(faCoffee);
 library.add(faTicketAlt);
 library.add(faBars);
+library.add(faTimes);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

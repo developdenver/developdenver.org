@@ -54,7 +54,7 @@ export default {
 		justify-content: flex-start;
 		img {
 			max-width: 200px;
-			filter: grayscale(100%);
+			// filter: grayscale(100%);
 		}
 		li {
 			a {

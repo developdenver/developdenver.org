@@ -33,7 +33,18 @@ export default {
 <style lang="scss">
 @import '@/styles/_typography.scss';
 @import '@/styles/_sizes.scss';
+@import '@/styles/_general.scss';
 
 .news {
+	@include grid;
+	grid-template-columns: repeat(8, 1fr);
+	grid-auto-rows: auto;
+	margin: $baseline * 8 0;
+	h2 {
+		grid-column: 2 / span 6;
+	}
+	ul {
+		grid-column: 4 / span 3;
+	}
 }
 </style>

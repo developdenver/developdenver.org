@@ -38,5 +38,15 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .news-item {
+	margin-bottom: $baseline * 2;
+	.byline {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+		margin-bottom: $baseline;
+		address {
+			font-style: italic;
+		}
+	}
 }
 </style>

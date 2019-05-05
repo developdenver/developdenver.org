@@ -13,13 +13,16 @@
 				</li>
 				<ul class="social-links">
 					<li>
-						<a href="https://twitter.com/dvlpdnvr">Twitter</a>
+						<a href="https://twitter.com/dvlpdnvr" target="BLANK">Twitter</a>
 					</li>
 					<li>
-						<a href="https://www.instagram.com/dvlpdnvr/">Instagram</a>
+						<a href="https://www.instagram.com/dvlpdnvr/" target="BLANK">Instagram</a>
 					</li>
 					<li>
-						<a href="https://www.youtube.com/channel/dvlpdnvr">YouTube</a>
+						<a href="https://www.youtube.com/channel/dvlpdnvr" target="BLANK">YouTube</a>
+					</li>
+					<li>
+						<a href="https://www.facebook.com/dvlpdnvr" target="BLANK">Facebook</a>
 					</li>
 				</ul>
 			</ul>

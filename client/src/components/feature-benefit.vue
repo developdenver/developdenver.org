@@ -56,6 +56,7 @@ export default {
 			border-left: 1px solid $white;
 			margin-bottom: 0;
 			text-align: right;
+			justify-self: end;
 		}
 		.video {
 			grid-column: 2 / span 7;

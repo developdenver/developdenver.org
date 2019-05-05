@@ -1,12 +1,16 @@
 <template>
 	<header class="app-header">
 		<div class="app-header-content">
-			<span class="menu"><font-awesome-icon icon="bars" /></span>
+			<button
+				class="menu"
+				@click="toggleMenu"
+				:isMenuOpen="isMenuOpen"
+			><font-awesome-icon :icon="menuIcon" /></button>
 			<router-link to="/">
 				<h1>DVLP / DNVR / 2019</h1>
 			</router-link>
-			<!-- <primary-navigation /> -->
 		</div>
+		<slot />
 	</header>
 </template>
 
@@ -17,6 +21,19 @@ export default {
 	components: {
 		PrimaryNavigation,
 	},
+	props: {
+		isMenuOpen: Boolean,
+	},
+	computed: {
+		menuIcon(){
+			return this.isMenuOpen ? "times" : "bars"
+		},
+	},
+	methods: {
+		toggleMenu(){
+			this.$emit("toggleMenu");
+		}
+	}
 };
 </script>
 
@@ -42,9 +59,16 @@ export default {
 			}
 		}
 		.menu {
-			display: inline-block;
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			padding: 0;
+			background: none;
+			border: none;
+			color: $white;
 			width: 100%;
 			margin-bottom: $baseline * 4;
+			cursor: pointer;
 			svg {
 				width: 100%;
 				height: 36px;
