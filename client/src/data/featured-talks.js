@@ -1,5 +1,5 @@
 // prettier-ignore
-module.exports = [
+export default [
 	{
 		firstName: 'Crystal',
 		lastName: 'Preston-Watson',
