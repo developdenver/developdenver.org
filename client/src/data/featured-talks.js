@@ -43,7 +43,7 @@ This conversation will cover the human side of technology and suggest ways to de
 	},
 	{
 		firstName: 'Nina',
-		lastName:'Balinga',
+		lastName:'Baliga',
 		authorId: 1039,
 		type: 'talk',
 		title: 'Logging In: Creating Space for Mental Health in the Workplace',
