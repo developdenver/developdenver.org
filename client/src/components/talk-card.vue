@@ -41,16 +41,9 @@ export default {
 		background-color: $light-grey;
 		z-index: 1;
         &:hover {
-            .frame {
+            .title-plate {
                 border: 10px solid $primary-color;
             }
-            .title-plate {
-                transform: translateY(0);
-                opacity: 1;
-            }
-			.image-wrapper {
-				transform: scale(1.2);
-			}
         }
 		.disabled {
 			pointer-events: none;
@@ -69,8 +62,8 @@ export default {
             height: 40%;
             width: 100%;
             transition: all 0.3s cubic-bezier(0.666, 0, 0.333, 1);
-            opacity: 0;
-            transform: translateY(100%);
+            opacity: 1;
+            transform: translateY(0);
             background-color: transparentize($dark-grey, 0.1);
             color: $white;
             padding: $large;
