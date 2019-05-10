@@ -82,12 +82,8 @@ export default {
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
-        @media (max-width: $large-breakpoint) {
-            li {
-                margin-bottom: $baseline;
-            }
-        }
         li {
+            margin-bottom: $baseline;
             display: inline-block;
             padding: 0 1.5rem;
             a {
