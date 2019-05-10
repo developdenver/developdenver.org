@@ -1,11 +1,17 @@
-const Model = require("./model");
+const Model = require('./model');
 
 class Talk extends Model {
     constructor() {
-        super("talk");
+        super('talk');
         this.publicProperties = [
-            "id", "title", "type", "description",
-            "talk_photo_url", "user_id", "category"
+            'id',
+            'title',
+            'type',
+            'description',
+            'talk_photo_url',
+            'user_id',
+            'category',
+            'event_date',
         ];
     }
 }

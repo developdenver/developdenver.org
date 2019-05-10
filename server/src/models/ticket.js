@@ -1,6 +1,6 @@
 const Model = require('./model');
 
-const nextEventDate = '2018-08';
+const nextEventDate = '2019-08';
 
 class Ticket extends Model {
     constructor() {
@@ -20,7 +20,7 @@ class Ticket extends Model {
     async holdsCurrentTicket(user_id) {
         return !!(await this.query({
             attendee_id: user_id,
-            event_date: '2018-08',
+            event_date: nextEventDate,
         }));
     }
 
