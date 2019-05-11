@@ -12,17 +12,10 @@
 					<a href="mailto:hello@developdenver.org">Contact</a>
 				</li>
 				<ul class="social-links">
-					<li>
-						<a href="https://twitter.com/dvlpdnvr" target="BLANK">Twitter</a>
-					</li>
-					<li>
-						<a href="https://www.instagram.com/dvlpdnvr/" target="BLANK">Instagram</a>
-					</li>
-					<li>
-						<a href="https://www.youtube.com/channel/dvlpdnvr" target="BLANK">YouTube</a>
-					</li>
-					<li>
-						<a href="https://www.facebook.com/dvlpdnvr" target="BLANK">Facebook</a>
+					<li v-for="socialLink in socialLinks">
+						<a :href="socialLink.linkUrl" target="BLANK">
+							<img :src="socialLink.iconUrl" alt="socialLink.altText" />
+						</a>
 					</li>
 				</ul>
 			</ul>
@@ -34,7 +27,33 @@
 </template>
 
 <script>
+import twitterIcon from '@/assets/icons/twitter_white.svg';
+import instagramIcon from '@/assets/icons/instagram_white.svg';
+import youtubeIcon from '@/assets/icons/youtube_white.svg';
+import facebookIcon from '@/assets/icons/facebook_white.svg';
+
 export default {
+	data() {
+		return {
+			socialLinks: [{
+				linkUrl: "https://twitter.com/dvlpdnvr",
+				altText: "Twitter",
+				iconUrl: twitterIcon,
+			},{
+				linkUrl: "https://www.instagram.com/dvlpdnvr/",
+				altText: "Instagram",
+				iconUrl: instagramIcon,
+			},{
+				linkUrl: "https://www.youtube.com/channel/dvlpdnvr",
+				altText: "YouTube",
+				iconUrl: youtubeIcon,
+			},{
+				linkUrl: "https://www.facebook.com/dvlpdnvr",
+				altText: "Facebook",
+				iconUrl: facebookIcon,
+			}],
+		}
+	},
 	computed: {
 		isLoggedIn() {
 			return this.$store.getters['services/user/isLoggedIn'];
@@ -61,10 +80,12 @@ export default {
 			@include grid;
 			grid-template: auto / repeat(8, 1fr);
 			li {
+				@include primary-header-font;
 				writing-mode: vertical-lr;
 				transform: rotate(180deg);
-				@include primary-header-font;
-				text-align: right;
+				display: flex;
+				align-items: flex-end;
+				justify-content: flex-end;
 				a:hover {
 					color: $accent-color;
 				}
@@ -86,6 +107,11 @@ export default {
 					transform: rotate(0);
 					text-align: right;
 					@include primary-header-font;
+					img {
+						margin: $baseline / 2 $baseline * 2;
+						height: 40px;
+						width: 40px;
+					}
 				}
 			}
 		}

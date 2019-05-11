@@ -2,23 +2,6 @@
 @import "@/styles/_sizes.scss";
 @import "@/styles/_typography.scss";
 
-body {
-	background-color: $black;
-	color: $white;
-}
-
-input, textarea {
-	display: block;
-	border: 2px solid $white;
-	background-color: $black;
-	color: $white;
-	padding: $baseline;
-	margin-bottom: $baseline / 2;
-	&::placeholder {
-		color: #fff;
-	}
-}
-
 @mixin call-to-action {
 	display: block;
 	border: 2px solid $white;
@@ -35,19 +18,4 @@ input, textarea {
 @mixin grid {
 	display: grid;
 	column-gap: $gutter;
-}
-
-.responsive-iframe-container {
-	position: relative;
-	overflow: hidden;
-	padding-top: 56.25%;
-	margin-bottom: 3rem;
-	.responsive-iframe {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		border: 0;
-	}
 }

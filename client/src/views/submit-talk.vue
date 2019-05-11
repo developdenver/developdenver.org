@@ -1,9 +1,9 @@
 <template>
     <section class="submit-talk">
 		<p class="error" v-if="error">{{error}}</p>
+		<h2>Submit Talk</h2>
         <edit-talk
 			buttonLabel="Submit"
-			componentTitle="Submit a Talk"
 			:talk="talk"
 			@updateTalk="createTalk"
         />
@@ -20,7 +20,7 @@ export default {
 			error: "",
 			talk: new Talk({
 				title: "",
-				type: "talk",
+				type: null,
 				talkPhotoUrl: "",
 				description: "",
 			})
@@ -56,8 +56,20 @@ export default {
 <style lang="scss">
 @import "@/styles/_sizes.scss";
 @import "@/styles/_colors.scss";
+@import "@/styles/_general.scss";
 
 .submit-talk {
+	@include grid;
+	grid-template-columns: repeat(8, 1fr);
+	grid-auto-rows: auto;
+	margin: $baseline * 8 0;
+	max-width: $max-width;
+	h2 {
+		grid-column: 2 / span 6;
+	}
+	.error, form {
+		grid-column: 4 / span 3;
+	}
 }
 
 </style>

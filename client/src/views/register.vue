@@ -3,7 +3,7 @@
     <h2>Register</h2>
     <p>
       Create a profile to use for the conference. Already have a profile?
-      <router-link :to="{name: 'login', query: $route.query }">Log in</router-link>to purchase a badge.
+      <router-link :to="{name: 'login', query: $route.query }">Log in</router-link> to purchase a badge.
     </p>
     <edit-profile
       buttonLabel="Register"
@@ -45,12 +45,16 @@ export default {
 
 .register {
 	@include grid;
-	grid-template: auto / repeat(8, 1fr);
+	grid-template-columns: repeat(8, 1fr);
+	grid-auto-rows: auto;
 	margin: $baseline * 8 0;
-	> div {
+	> h2, .edit-profile, p {
 		grid-column: 2 / span 6;
-		> p {
-			margin-bottom: $baseline;
+	}
+	> p {
+		margin-bottom: $baseline;
+		a {
+			text-decoration: underline;
 		}
 	}
 }

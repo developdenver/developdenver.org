@@ -3,7 +3,7 @@
 		<hero-banner/>
 		<section class="conference-info">
 			<feature-benefit />
-			<FeaturedTalks/>
+			<featured-talks />
 			<ticket-details />
 			<sponsor-list />
 			<venue-list />
@@ -50,7 +50,7 @@ export default {
 		padding: 0 $baseline * 2;
 		margin-top: $baseline * 9;
 		max-width: $max-width;
-		.feature, .ticket-details, .venues, .sponsors {
+		.feature, .ticket-details, .venues, .sponsors, .featured-talks {
 			grid-column: 2 / span 7;
 		}
 		> section {

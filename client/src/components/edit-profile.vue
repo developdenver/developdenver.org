@@ -32,7 +32,7 @@
                 @updatePassword="updatePassword"
             />
         </fieldset>
-		<h2>Optional (but encouraged)</h2>
+		<h2>Optional <span>(but encouraged)</span></h2>
         <fieldset class="optional">
             <image-upload
 				class="profile-photo"
@@ -174,23 +174,45 @@ export default {
 <style lang="scss">
 @import "@/styles/_general.scss";
 @import "@/styles/_colors.scss";
+@import "@/styles/_typography.scss";
 
 .edit-profile {
+	@include grid;
+	grid-template-columns: repeat(7, 1fr);
+	grid-auto-rows: auto;
+	fieldset {
+		grid-column: 3 / span 3;
+	}
+	h2 {
+		grid-column: 1 / span 7;
+		span {
+			display: block;
+			@include body-font;
+		}
+	}
+	input, textarea {
+		width: 100%;
+	}
 	button {
 		@include call-to-action;
 		background-color: hsla(0, 0%, 0%, 0);
 		color: $white;
 	}
-	fieldset {
-		@include grid;
-		grid-template-columns: repeat(7, 1fr);
-		grid-auto-rows: auto;
-		input, textarea, form, button {
-			grid-column: 3 / span 2;
-		}
-	}
 	textarea {
 		height: $baseline * 8;
+	}
+	.profile-photo {
+		filter: grayscale(100%);
+	}
+	.self-employed {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		align-items: center;
+		margin: $baseline / 2 0;
+		input {
+			width: auto;
+		}
 	}
 }
 </style>

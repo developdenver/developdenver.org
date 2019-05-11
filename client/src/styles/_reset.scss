@@ -50,6 +50,11 @@ table {
 	border-spacing: 0;
 }
 
+// Custom
+@import "_sizes";
+@import "_colors.scss";
+@import "_typography.scss";
+
 a {
 	color: inherit;
 	text-decoration: none;
@@ -64,4 +69,40 @@ a:visited {
 
 textarea {
 	resize: none;
+}
+
+body, textarea, select, input {
+	@include body-font;
+}
+
+body {
+	background-color: $black;
+	color: $white;
+}
+
+input, textarea {
+	display: block;
+	border: 2px solid $white;
+	background-color: $black;
+	color: $white;
+	padding: $baseline;
+	margin-bottom: $baseline / 2;
+	&::placeholder {
+		color: #fff;
+	}
+}
+
+.responsive-iframe-container {
+	position: relative;
+	overflow: hidden;
+	padding-top: 56.25%;
+	margin-bottom: 3rem;
+	.responsive-iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
 }

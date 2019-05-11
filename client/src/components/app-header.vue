@@ -1,6 +1,7 @@
 <template>
 	<header class="app-header">
 		<div class="app-header-content">
+			<img :src="happyLogo" alt="logo" />
 			<button
 				class="menu"
 				@click="toggleMenu"
@@ -15,9 +16,15 @@
 </template>
 
 <script>
+import happyLogo from "@/assets/icons/happy_white.svg";
 import PrimaryNavigation from "@/components/primary-navigation.vue";
 
 export default {
+	data() {
+		return {
+			happyLogo,
+		}
+	},
 	components: {
 		PrimaryNavigation,
 	},
@@ -67,6 +74,7 @@ export default {
 			border: none;
 			color: $white;
 			width: 100%;
+			margin-top: $baseline * 4;
 			margin-bottom: $baseline * 4;
 			cursor: pointer;
 			svg {

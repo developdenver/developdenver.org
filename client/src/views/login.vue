@@ -73,6 +73,7 @@ export default {
 	grid-template-columns: repeat(8, 1fr);
 	grid-auto-rows: auto;
 	margin: $baseline * 8 0;
+	max-width: $max-width;
 	h2 {
 		grid-column: 2 / span 6;
 	}

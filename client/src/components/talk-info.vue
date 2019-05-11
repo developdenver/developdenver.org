@@ -1,22 +1,24 @@
 <template>
   <section class="talk">
-    <div class="talk-details">
-      <h2>{{talk.properties.title}}</h2>
-      <div class="description">
-        <p class="author">
-          <router-link
-            :to="{
-							name: 'profile',
-							params: {
-								id: talk.properties.authorId,
-							},
-						}"
-          >{{talk.properties.firstName}} {{talk.properties.lastName}}</router-link>
-        </p>
-        <div class="description-html" v-html="descriptionHtml"></div>
-        <p class="talk-type">Type: {{talkLabel}}</p>
-      </div>
-    </div>
+		<div class="image-icon">
+		  <img :src="talk.properties.icon" alt="Icon" />
+		</div>
+		<div class="talk-details">
+		  <h3>{{talk.properties.title}}</h3>
+		  <div class="description">
+			<p class="author">
+			  <router-link
+				:to="{
+								name: 'profile',
+								params: {
+									id: talk.properties.authorId,
+								},
+							}"
+			  >{{talk.properties.firstName}} {{talk.properties.lastName}}</router-link>
+			</p>
+			<div class="description-html" v-html="descriptionHtml"></div>
+		  </div>
+		</div>
   </section>
 </template>
 
@@ -82,9 +84,32 @@ export default {
 @import '@/styles/_typography.scss';
 @import '@/styles/_sizes.scss';
 @import '@/styles/_colors.scss';
-
-$clip-amount: 80px;
+@import '@/styles/_general.scss';
 
 .talk {
+	@include grid;
+	grid-template: auto / repeat(8, 1fr);
+	margin-bottom: $baseline * 2;
+	.image-icon {
+		grid-row: 1;
+		grid-column: 1 / span 1;
+		img {
+			width: 50%;
+		}
+	}
+	.talk-details {
+		grid-row: 1;
+		grid-column: 3 / span 5;
+		column-width: 300px;
+		a {
+			text-decoration: underline;
+		}
+		.description-html {
+			margin-top: $baseline;
+			display: grid;
+			grid-gap: $baseline;
+			grid-template: auto / repeat(8, 1fr);
+		}
+	}
 }
 </style>

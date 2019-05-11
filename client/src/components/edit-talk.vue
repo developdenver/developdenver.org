@@ -2,19 +2,18 @@
   <form enctype="multipart/form-data" class="edit-talk" @submit.prevent="updateTalk">
     <fieldset class="required">
       <h3>{{componentTitle}}</h3>
-      <label for="talk-title">Talk Title</label>
       <input
         required
         type="text"
         id="talk-title"
-        placeholder="Super Awesome Title Here"
+        placeholder="Talk Title"
         v-model.trim="talk.properties.title"
         @change="setValid('title')"
       >
       <p class="error" v-if="errors.title">Title is required.</p>
-      <label for="talk-type">Type</label>
       <div id="custom-select">
         <select id="select-box" v-model="talk.properties.type" @change="setValid('type')">
+			<option :value="null" disabled>Talk Type</option>
           <option
             v-for="option in talkTypes"
             :value="option.value"
@@ -23,7 +22,6 @@
         </select>
       </div>
       <p class="error" v-if="errors.type">Type is required.</p>
-      <label for="bio">Description</label>
       <textarea
         id="description"
         @change="setValid('description')"
@@ -113,5 +111,24 @@ export default {
 @import '@/styles/_typography.scss';
 
 .edit-talk {
+	input, textarea, select, button {
+		width: 100%;
+		margin-bottom: $baseline;
+	}
+	textarea {
+		height: $baseline * 12;
+	}
+	select {
+		background-color: $black;
+		color: $white;
+		border: 2px solid $white;
+		padding: $baseline;
+	}
+	button {
+		@include call-to-action;
+		background-color: $black;
+		color: $white;
+		cursor: pointer;
+	}
 }
 </style>
