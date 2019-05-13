@@ -134,6 +134,7 @@ export default {
 	}
 	.seconds {
 		grid-area: seconds;
+		width: 20px;
 	}
 	.seconds-divider {
 		grid-area: seconds-divider;
