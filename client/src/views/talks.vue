@@ -14,7 +14,7 @@ import bomb from '@/assets/icons/bomb_white.svg';
 import happy from '@/assets/icons/happy_white.svg';
 import skull from '@/assets/icons/skull_white.svg';
 
-const icons = { bomb, happy, skull }
+const icons = [ bomb, happy, skull ]
 
 export default {
 	components: {
@@ -27,7 +27,11 @@ export default {
 	},
 	computed: {
 		shuffledTalks() {
-			return this.$store.state.talks.list;
+			return this.$store.state.talks.list.map(talk => {
+				const randomIndex = Math.floor(Math.random() * 2)
+				const icon = icons[randomIndex]
+				return Object.assign({}, talk, { icon });
+			})
 		},
 	},
 };
