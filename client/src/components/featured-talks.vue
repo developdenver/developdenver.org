@@ -10,18 +10,13 @@
 <script>
 import talkData from '../data/featured-talks';
 import TalkInfo from '@/components/talk-info';
-import bomb from '@/assets/icons/bomb_white.svg';
-import happy from '@/assets/icons/happy_white.svg';
-import skull from '@/assets/icons/skull_white.svg';
-
-const icons = { bomb, happy, skull }
 
 export default {
     name: 'FeaturedTalks',
     data() {
         return {
 			talks: talkData.map(talk => {
-				return { properties: Object.assign(talk, { icon: icons[talk.icon] }) }
+				return { properties: talk };
 			})
 		}
     },

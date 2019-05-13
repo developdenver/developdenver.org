@@ -1,7 +1,7 @@
 <template>
   <section class="talk">
-	<div class="image-icon">
-	  <img :src="talk.properties.icon" alt="Icon" />
+	<div class="image-icon" v-if="talk.properties.icon">
+	  <img :src="iconSrc" alt="Icon" />
 	</div>
 	<div class="talk-details">
 	  <h3>{{talk.properties.title}}</h3>
@@ -26,8 +26,12 @@
 </template>
 
 <script>
+import bomb from '@/assets/icons/bomb_white.svg';
+import happy from '@/assets/icons/happy_white.svg';
+import skull from '@/assets/icons/skull_white.svg';
 import Showdown from 'showdown';
 const showdown = new Showdown.Converter();
+const icons = { bomb, happy, skull };
 
 export default {
     data() {
@@ -67,6 +71,9 @@ export default {
         },
     },
     computed: {
+		iconSrc() {
+			return icons[this.talk.properties.icon];
+		},
 		truncatedDescriptionHtml() {
 			const summaryLength = 250;
 			let truncatedDescription = this.talk.properties.description || ''

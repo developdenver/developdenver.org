@@ -27,7 +27,7 @@
 					</li>
 					<li class="social-links">
 						<ul>
-							<li v-for="socialLink in socialLinks">
+							<li v-for="socialLink in socialLinks" :key="socialLink.linkUrl">
 								<a :href="socialLink.linkUrl" target="BLANK">
 									<img :src="socialLink.iconUrl" alt="socialLink.altText" />
 								</a>
