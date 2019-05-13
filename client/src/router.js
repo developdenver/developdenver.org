@@ -67,6 +67,7 @@ const router = new Router({
 		},
 		{
 			path: '/profiles/me/conference-badges',
+			alias: '/profiles/me/tickets',
 			name: 'my-tickets',
 			component: MyTickets,
 			meta: {
