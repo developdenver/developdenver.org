@@ -39,7 +39,11 @@
 
 		<credit-card-payment v-if="currentProfile.id" :card="card" @setError="setError"/>
 
+		<input v-if="currentProfile.id" type="submit" :disabled="isLoading || formInvalid" value="Pay">
 		<router-link v-else :to="{name: 'register', query: { redirect: 'conference-badges' } }" class="call-to-action">Register To Buy!</router-link>
+    <div class="errors">{{error}}</div>
+    <div class="message">{{message}}</div>
+
   </form>
 </template>
 
@@ -261,6 +265,11 @@ export default {
 		@include grid-form;
 		@include call-to-action;
 		padding: 0;
+		&:disabled:hover {
+			cursor: not-allowed;
+			color: $white;
+			border-color: $white;
+		}
 	}
 }
 
