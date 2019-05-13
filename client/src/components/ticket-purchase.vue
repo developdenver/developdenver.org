@@ -39,11 +39,8 @@
 
 		<credit-card-payment v-if="currentProfile.id" :card="card" @setError="setError"/>
 
-		<input v-if="currentProfile.id" type="submit" :disabled="isLoading || formInvalid" value="Pay">
-		<router-link v-else :to="{name: 'register'}" class="call-to-action button">Register To Buy!</router-link>
-		<div class="errors">{{error}}</div>
-		<div class="message">{{message}}</div>
-	</form>
+		<router-link v-else :to="{name: 'register', query: { redirect: 'conference-badges' } }" class="call-to-action">Register To Buy!</router-link>
+  </form>
 </template>
 
 <script>

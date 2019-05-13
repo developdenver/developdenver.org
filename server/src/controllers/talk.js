@@ -1,8 +1,9 @@
 const Talk = require("../models/talk");
+const Ticket = require('../models/ticket');
 
 function create(request, response, next) {
   request.body.user_id = request.user.id;
-  Talk.add(request.body, true)
+  Talk.add({ ...request.body, event_date: Ticket.nextEventDate }, true)
     .then(talk => {
       response.status(201).json({
         data: talk,
@@ -36,7 +37,9 @@ function destroy(request, response, next) {
 }
 
 function list(request, response, next) {
-  Talk.list()
+  Talk.database(Talk.modelName)
+    .where({ event_date: Ticket.nextEventDate })
+    .select(Talk.propertyList())
     .then(talks => {
       response.status(200).json({
         data: talks

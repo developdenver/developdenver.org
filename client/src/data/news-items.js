@@ -1,21 +1,24 @@
 export default [
 	{
-		title: "Call for proposals now open",
-		author: "DVLP Board",
-		date: "5/1/2019",
-		content: "Are you interested in sharing your knowledge with the community? We want to hear from you! Whether it is your first or your hundredth talk, we are accepting proposals now through the end of May.",
+		title: 'Call for proposals now open',
+		author: 'DVLP Board',
+		date: '5/1/2019',
+		content:
+			'Are you interested in sharing your knowledge with the community? We want to hear from you! Whether it is your first or your hundredth talk, we are accepting proposals now through the end of May. [Submit a talk](/submit-talk) today!',
 	},
 	{
-		title: "Conference badges on sale!",
-		author: "DVLP Board",
-		date: "4/18/2019",
-		content: "Badges now available for purchase! Buy before May 1st and score our Early Bird price of $149. Want to buy conference badges for your entire team? Don’t worry we’re all setup to cover group purchases this year.",
+		title: 'Conference badges on sale!',
+		author: 'DVLP Board',
+		date: '4/18/2019',
+		content:
+			'Badges now available for purchase! Buy before May 1st and score our Early Bird price of $149. Want to buy conference badges for your entire team? Don’t worry we’re all setup to cover group purchases this year.',
 	},
 	{
-		title: "Tickets on sale soon!",
-		author: "DVLP Board",
-		date: "2/19/2019",
-		content: "The dates for Develop Denver 2019 have been announced! Mark your calendars for August 15-16. Ticket sales will start soon!",
+		title: 'Tickets on sale soon!',
+		author: 'DVLP Board',
+		date: '2/19/2019',
+		content:
+			'The dates for Develop Denver 2019 have been announced! Mark your calendars for August 15-16. Ticket sales will start soon!',
 	},
 	// 	{
 	// 		title: 'Schedule is Live!',
