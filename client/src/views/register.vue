@@ -45,11 +45,16 @@ export default {
 
 .register {
 	@include grid;
-	grid-template-columns: repeat(8, 1fr);
-	grid-auto-rows: auto;
 	margin: $baseline * 8 0;
+	@media (max-width: $small-breakpoint) {
+		margin: $baseline * 2 0;
+		padding: $baseline;
+	}
 	> h2, .edit-profile, p {
 		grid-column: 2 / span 6;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+		}
 	}
 	> p {
 		margin-bottom: $baseline;

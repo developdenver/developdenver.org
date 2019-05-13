@@ -48,10 +48,15 @@ export default {
 @import '@/styles/_general.scss';
 
 .sponsors {
+	@include grid;
 	.gold-sponsors {
+		@include grid-heading;
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: flex-start;
+		@media (max-width: $small-breakpoint) {
+			justify-content: center;
+		}
 		img {
 			max-width: 200px;
 			// filter: grayscale(100%);
@@ -66,15 +71,17 @@ export default {
 	}
 	.sponsor-call-to-action {
 		@include grid;
-		grid-template: auto auto / repeat(7, 1fr);
+		@include grid-full-width;
 		p {
 			margin-bottom: $baseline;
-			grid-row: 1;
-			grid-column: 1 / span 7;
+			grid-column: 3 / span 6;
+			@media (max-width: $small-breakpoint) {
+				margin-top: $baseline;
+				grid-column: 1;
+			}
 		}
 		.button {
-			grid-row: 2;
-			grid-column: 1 / span 3;
+			@include grid-cta;
 			@include call-to-action;
 		}
 	}

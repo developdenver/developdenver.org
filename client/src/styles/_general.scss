@@ -18,4 +18,68 @@
 @mixin grid {
 	display: grid;
 	column-gap: $gutter;
+	grid-auto-rows: auto;
+	grid-template-columns: repeat(9, 1fr);
+	@media (max-width: $small-breakpoint){
+		grid-template-columns: 1fr;
+	}
+}
+
+@mixin grid-heading {
+	grid-column: 3 / span 8;
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+
+@mixin grid-full-width {
+	grid-column: 1 / span 9;
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+
+@mixin grid-cta {
+	grid-column: 3 / span 3;
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+
+@mixin grid-text-0 {
+	grid-column: 3 / span 2;
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+@mixin grid-text-1 {
+	grid-column: 5 / span 2;
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+@mixin grid-text-2 {
+	grid-column: 7 / span 3;
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+
+@mixin grid-form {
+	grid-column: 4 / span 3;
+	@media (max-width: $medium-breakpoint){
+		grid-column: 3 / span 5;
+	}
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+@mixin grid-countdown {
+	grid-column: 8 / span 3;
+	@media (max-width: $medium-breakpoint){
+		grid-column: 6 / span 5;
+	}
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
 }

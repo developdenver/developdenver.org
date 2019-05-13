@@ -1,24 +1,27 @@
 <template>
   <section class="talk">
-		<div class="image-icon">
-		  <img :src="talk.properties.icon" alt="Icon" />
-		</div>
-		<div class="talk-details">
-		  <h3>{{talk.properties.title}}</h3>
-		  <div class="description">
-			<p class="author">
-			  <router-link
-				:to="{
-								name: 'profile',
-								params: {
-									id: talk.properties.authorId,
-								},
-							}"
-			  >{{talk.properties.firstName}} {{talk.properties.lastName}}</router-link>
-			</p>
-			<div class="description-html" v-html="descriptionHtml"></div>
-		  </div>
-		</div>
+	<div class="image-icon">
+	  <img :src="talk.properties.icon" alt="Icon" />
+	</div>
+	<div class="talk-details">
+	  <h3>{{talk.properties.title}}</h3>
+	  <div class="description">
+		<p class="author">
+		  <router-link
+			:to="{
+							name: 'profile',
+							params: {
+								id: talk.properties.authorId,
+							},
+						}"
+		  >{{talk.properties.firstName}} {{talk.properties.lastName}}</router-link>
+		</p>
+		<details class="description-html">
+			<summary v-html="truncatedDescriptionHtml"></summary>
+			<div v-html="descriptionHtml"></div>
+		</details>
+	  </div>
+	</div>
   </section>
 </template>
 
@@ -64,6 +67,14 @@ export default {
         },
     },
     computed: {
+		truncatedDescriptionHtml() {
+			const summaryLength = 250;
+			let truncatedDescription = this.talk.properties.description || ''
+			truncatedDescription = truncatedDescription.length > summaryLength
+				? `${truncatedDescription.substring(0, summaryLength)}...`
+				: truncatedDescription;
+            return showdown.makeHtml(truncatedDescription);
+		},
         descriptionHtml() {
             return this.talk.properties.description
                 ? showdown.makeHtml(this.talk.properties.description)
@@ -88,27 +99,36 @@ export default {
 
 .talk {
 	@include grid;
-	grid-template: auto / repeat(8, 1fr);
 	margin-bottom: $baseline * 2;
 	.image-icon {
 		grid-row: 1;
-		grid-column: 1 / span 1;
+		grid-column: 3 / span 1;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
 		img {
 			width: 50%;
 		}
 	}
 	.talk-details {
 		grid-row: 1;
-		grid-column: 3 / span 5;
-		column-width: 300px;
+		grid-column: 5 / span 4;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+			column-width: initial;
+		}
 		a {
 			text-decoration: underline;
 		}
 		.description-html {
 			margin-top: $baseline;
-			display: grid;
-			grid-gap: $baseline;
-			grid-template: auto / repeat(8, 1fr);
+			@include grid;
+			grid-template-columns: repeat(2, 1fr);
+			&[open] {
+				summary p {
+					display: none;
+				}
+			}
 		}
 	}
 }

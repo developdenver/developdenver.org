@@ -7,21 +7,15 @@
 					<li><router-link :to="{name: 'news'}">News</router-link></li>
 					<li><a href="mailto:hello@developdenver.org">Contact</a></li>
 					<li><router-link :to="{name: 'tickets'}">Buy Tickets</router-link></li>
+					<li><router-link :to="{name: 'talks'}">Talks</router-link></li>
 					<li><router-link :to="{name: 'submit-talk'}">Submit a Talk</router-link></li>
 					<li><a href="mailto:sponsorship@developdenver.org">Sponsorship</a></li>
 					<li class="social-links">
 						<ul>
-							<li>
-								<a href="https://twitter.com/dvlpdnvr" target="BLANK">Twitter</a>
-							</li>
-							<li>
-								<a href="https://www.instagram.com/dvlpdnvr/" target="BLANK">Instagram</a>
-							</li>
-							<li>
-								<a href="https://www.youtube.com/channel/dvlpdnvr" target="BLANK">YouTube</a>
-							</li>
-							<li>
-								<a href="https://www.facebook.com/dvlpdnvr" target="BLANK">Facebook</a>
+							<li v-for="socialLink in socialLinks">
+								<a :href="socialLink.linkUrl" target="BLANK">
+									<img :src="socialLink.iconUrl" alt="socialLink.altText" />
+								</a>
 							</li>
 						</ul>
 					</li>
@@ -32,7 +26,33 @@
 </template>
 
 <script>
+import twitterIcon from '@/assets/icons/twitter_white.svg';
+import instagramIcon from '@/assets/icons/instagram_white.svg';
+import youtubeIcon from '@/assets/icons/youtube_white.svg';
+import facebookIcon from '@/assets/icons/facebook_white.svg';
+
 export default {
+	data() {
+		return {
+			socialLinks: [{
+				linkUrl: "https://twitter.com/dvlpdnvr",
+				altText: "Twitter",
+				iconUrl: twitterIcon,
+			},{
+				linkUrl: "https://www.instagram.com/dvlpdnvr/",
+				altText: "Instagram",
+				iconUrl: instagramIcon,
+			},{
+				linkUrl: "https://www.youtube.com/channel/dvlpdnvr",
+				altText: "YouTube",
+				iconUrl: youtubeIcon,
+			},{
+				linkUrl: "https://www.facebook.com/dvlpdnvr",
+				altText: "Facebook",
+				iconUrl: facebookIcon,
+			}],
+		}
+	},
 	props: {
 		isMenuOpen: Boolean,
 	}
@@ -48,32 +68,69 @@ export default {
 	position: relative;
 	.hamburger-menu {
 		position: fixed;
-		width: 100%;
-		z-index: 100;
-		left: -100vw;
+		//width: 100%;
+		z-index: 50;
+		left: -200vw;
 		right: auto;
 		transition: left 0.2s, right 0.2s;
 		background-color: black;
+		@media (max-width: $small-breakpoint) {
+			left: initial;
+			right: initial;
+			top: auto;
+			bottom: -200vh;
+			transition: bottom 0.2s, top 0.2s;
+		}
 		&.open {
-			left: 94px;
+			left: 80px;
+			@media (max-width: $small-breakpoint) {
+				left: initial;
+				bottom: $mobile-footer-size;
+					width: 100%;
+			}
 		}
 		li {
 			@include primary-header-font;
+			background-color: $black;
 		}
 		nav {
 			> ul {
 				display: flex;
 				flex-flow: rows nowrap;
+				@media (max-width: $small-breakpoint) {
+					flex-flow: column nowrap;
+					width: 100%;
+				}
 				> li {
 					border-left: 1px solid $white;
 					padding: $baseline;
 					&:not(.social-links) {
 						writing-mode: vertical-rl;
 						transform: rotate(180deg);
+						@media (max-width: $small-breakpoint) {
+							writing-mode: initial;
+							transform: initial;
+							font-size: $baseline;
+						}
 					}
-					.social-links {
-						display: flex;
-						flex-flow: row wrap;
+					&.social-links {
+						ul {
+							display: flex;
+							flex-flow: row wrap;
+							width: 200px;
+							@media (max-width: $small-breakpoint) {
+								width: auto;
+							}
+							img {
+								margin: auto $baseline;
+								width: 60px;
+								height: 60px;
+								@media (max-width: $small-breakpoint) {
+									width: 30px;
+									height: 30px;
+								}
+							}
+						}
 					}
 					a:hover {
 						color: $accent-color;

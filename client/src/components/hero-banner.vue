@@ -25,8 +25,10 @@ export default {
 .hero {
 	height: 100vh;
 	@include grid;
-	grid-template: auto 1fr / repeat(8, 1fr);
-	padding: $baseline;
+	grid-template-rows: auto 1fr;
+	@media (max-width: $small-breakpoint) {
+		height: calc(100vh - #{$mobile-header-size}); // header size
+	}
 	&::after {
 		content: "";
 		opacity: 0.3;
@@ -41,11 +43,16 @@ export default {
 	}
 	.call-to-registration {
 		grid-row: 2;
-		grid-column: 2 / span 3;
+		grid-column: 3 / span 3;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+		}
 	}
 	.countdown {
-		grid-row: 1;
-		grid-column: 7 / span 2;
+		@include grid-countdown;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
 	}
 }
 </style>

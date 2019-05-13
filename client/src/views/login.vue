@@ -1,5 +1,6 @@
 <template>
   <section class="login">
+	<countdown />
     <h2>Login to Develop Denver</h2>
     <form @submit.prevent="login">
       <input
@@ -25,7 +26,12 @@
 </template>
 
 <script>
+import Countdown from "@/components/count-down";
+
 export default {
+	components: {
+		Countdown,
+	},
     data() {
         return {
             email: '',
@@ -70,15 +76,11 @@ export default {
 
 .login {
 	@include grid;
-	grid-template-columns: repeat(8, 1fr);
-	grid-auto-rows: auto;
-	margin: $baseline * 8 0;
-	max-width: $max-width;
-	h2 {
-		grid-column: 2 / span 6;
+	@media (max-width: $small-breakpoint) {
+		padding: $baseline;
 	}
 	form, .error, .alternatives {
-		grid-column: 4 / span 3;
+		@include grid-form;
 	}
 	.alternative {
 		margin-bottom: $baseline;
@@ -92,6 +94,12 @@ export default {
 	}
 	a:hover {
 		color: $accent-color;
+	}
+	.countdown {
+		@include grid-countdown;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
 	}
 }
 </style>

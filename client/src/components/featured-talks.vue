@@ -1,10 +1,10 @@
 <template>
-  <div class="featured-talks">
+  <section class="featured-talks">
     <h2>Featured Talks</h2>
     <div class="talks">
       <TalkInfo :talk="talk" v-for="(talk, ix) in talks" :key="ix"/>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -35,11 +35,14 @@ export default {
 
 .featured-talks {
 	@include grid;
-	grid-template: repeat(8, 1fr);
-	grid-auto-rows: auto;
-	margin-bottom: $baseline * 8 0;
+	h2, .talks {
+		@include grid-full-width;
+	}
+	.talk {
+		@include grid-full-width;
+	}
 	h2 {
-		grid-columns: 2 / span 5
+		@include grid-heading;
 	}
 }
 </style>

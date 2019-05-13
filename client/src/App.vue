@@ -1,5 +1,9 @@
 <template>
 	<div id="app">
+		<header class="mobile-header">
+			<circle-logo />
+			<countdown />
+		</header>
 		<app-header
 			@toggleMenu="toggleMenu"
 			:isMenuOpen="isMenuOpen"
@@ -22,12 +26,17 @@ import AppHeader from '@/components/app-header';
 import AppFooter from '@/components/app-footer';
 import HamburgerMenu from '@/components/hamburger-menu';
 
+import CircleLogo from '@/components/circle-logo';
+import Countdown from '@/components/count-down';
+
 export default {
 	hagridActions: ['tickets/fetchTickets'],
 	components: {
 		AppHeader,
 		AppFooter,
 		HamburgerMenu,
+		CircleLogo,
+		Countdown,
 	},
 	data() {
 		return {
@@ -47,7 +56,6 @@ export default {
 			this.isMenuOpen = !this.isMenuOpen
 		},
 		closeMenu() {
-			console.log('close')
 			this.isMenuOpen = false
 		}
 	},
@@ -59,22 +67,47 @@ export default {
 @import '@/styles/_sizes.scss';
 @import '@/styles/_typography.scss';
 @import '@/styles/_colors.scss';
+@import '@/styles/_general.scss';
 
 #app {
 	min-height: 100vh;
 	display: flex;
 	flex-flow: row nowrap;
-	h2 {
-		@include primary-header-font;
-		border-bottom: 1px solid $white;
-		margin-bottom: $baseline;
+	padding: $baseline;
+	.mobile-header {
+		display: none;
 	}
-	h3 {
-		font-weight: 700;
-		margin-bottom: $baseline / 2;
+	main {
+		width: 100%;
 	}
-	.app-header-content {
-		z-index: 1000;
+	@media (max-width: $small-breakpoint) {
+		flex-flow: column nowrap;
+		margin: $mobile-header-size auto $mobile-footer-size auto; // Makes room for fixed header and footer;
+		padding: 0;
+		min-height: initial;
+		.mobile-header {
+			background-color: $black;
+			display: flex;
+			position: fixed;
+			top: 0;
+			width: 100%;
+			padding: $baseline;
+			justify-content: space-between;
+			z-index: 1;
+			.countdown {
+				max-width: 70%;
+			}
+			.circle-logo {
+				width: 30%;
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				#circle {
+					height: 100%;
+					width: 100%;
+				}
+			}
+		}
 	}
 }
 </style>

@@ -54,12 +54,22 @@ export default {
 
 <style lang="scss">
 @import '@/styles/_sizes.scss';
+@import '@/styles/_general.scss';
 
 .venues {
+	@include grid;
 	.logos {
+		grid-column: 3 / span 7;
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: space-between;
+		a:not(:first-child) {
+			margin-left: $baseline;
+		}
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+			justify-content: center;
+		}
 		img {
 			max-width: 200px;
 		}

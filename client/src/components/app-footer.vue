@@ -74,6 +74,10 @@ export default {
 .app-footer {
 	padding: 0 $baseline * 2;
 	max-width: $max-width;
+	margin-top: $baseline * 8;
+	@media (max-width: $small-breakpoint) {
+		display: none;
+	}
 	> nav {
 		margin-bottom: $baseline * 2;
 		&> ul {

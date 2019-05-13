@@ -1,5 +1,6 @@
 <template>
   <section class="tickets">
+	<countdown />
 	<h2>Tickets</h2>
 	<div class="ticket-details">
 		<div class="date-and-location">
@@ -12,7 +13,6 @@
 		<div class="groups">
 			<p>Don’t worry, we’re all setup so you can purchase a group of conference badges. You’ll be asked to provide an email address for each attendee and you’re good to go. Have questions? Please contact us at <a href="mailto:hello@developdenver.org">hello@developdenver.org</a> if you need help.</p>
 		</div>
-
 	</div>
 	<venue-list />
     <ticket-purchase :levels="levels" :isDiscountCode="false"/>
@@ -22,11 +22,13 @@
 <script>
 import TicketPurchase from '../components/ticket-purchase';
 import VenueList from '@/components/venue-list';
+import Countdown from '@/components/count-down';
 
 export default {
     components: {
         TicketPurchase,
 		VenueList,
+		Countdown,
     },
     data() {
         return {
@@ -64,17 +66,36 @@ export default {
 
 .tickets {
 	@include grid;
-	grid-template-columns: repeat(8, 1fr);
-	margin: $baseline * 8 0;
-	grid-auto-rows: auto;
-	h2, .ticket-details, .venues {
-		grid-column: 2 / span 6;
+	@media (max-width: $small-breakpoint) {
+		padding: $baseline;
 	}
-	.ticket-purchase {
-		grid-column: 4 / span 3;
+	.ticket-details {
+		@include grid-full-width;
+		@include grid;
+		.date-and-location {
+			@include grid-text-0;
+		}
+		.benefits {
+			@include grid-text-1;
+		}
+		.groups {
+			@include grid-text-2;
+		}
+	}
+	.venues, .ticket-purchase {
+		@include grid-full-width;;
 	}
 	.ticket-details, .venues {
 		margin-bottom: $baseline * 8;
+		@media (max-width: $small-breakpoint) {
+			margin-bottom: $baseline * 2;
+		}
+	}
+	.countdown {
+		@include grid-countdown;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
 	}
 }
 </style>

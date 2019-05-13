@@ -3,7 +3,7 @@
         <img :src="profile.properties.profilePhotoUrl" alt="profile photo" />
         <div class="profile-details">
             <h2>{{fullName}}</h2>
-            <p>{{profile.properties.position}} at {{profile.properties.employer}}</p>
+			<p>{{profile.properties.position}}<span v-if="profile.properties.employer"> at {{profile.properties.employer}}</span></p>
             <div class="bio">
                 <p>{{profile.properties.bio}}</p>
                 <p v-if="profile.properties.website" class="website">
@@ -72,7 +72,45 @@ export default {
 @import "@/styles/_typography.scss";
 @import "@/styles/_sizes.scss";
 @import "@/styles/_colors.scss";
+@import "@/styles/_general.scss";
 
 .user-profile {
+	@include grid;
+	@media (max-width: $small-breakpoint) {
+		padding: $baseline;
+	}
+	> img {
+		grid-column: 2 / span 3;
+		max-width: 100%;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+		}
+	}
+	.profile-details {
+		grid-column: 5 / span 4;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+		}
+		display: flex;
+		flex-flow: column nowrap;
+	}
+	.social {
+		display: flex;
+		flex-flow: row wrap;
+		li {
+			&:not(:first-child){
+				margin-left: $baseline;
+			}
+			width: 40px;
+			height: 40px;
+			svg {
+				width: 100%;
+				height: 100%;
+				&:hover {
+					color: $accent-color;
+				}
+			}
+		}
+	}
 }
 </style>

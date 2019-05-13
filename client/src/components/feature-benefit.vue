@@ -31,35 +31,56 @@ export default {
 @import '@/styles/_general.scss';
 
 .feature {
+	@include grid;
+	h2 {
+		@include grid-heading;
+	}
 	.benefit {
 		@include grid;
-		grid-template: auto auto / repeat(7, 1fr);
-
+		@include grid-full-width;
 		.primary-description {
-			grid-row: 2;
-			grid-column: 3 / span 2;
+			@include grid-text-1;
 		}
 		.secondary-description {
-			grid-row: 2;
-			grid-column: 5 / span 3;
+			@include grid-text-2;
 		}
 	}
 	.demo-reel {
-		margin-top: $baseline * 8;
 		@include grid;
-		grid-template: auto auto / repeat(7, 1fr);
+		@include grid-full-width;
+		margin-top: $baseline * 8;
+		@media (max-width: $small-breakpoint) {
+			margin-top: $baseline * 2;
+		}
 		h2 {
 			writing-mode: vertical-rl;
 			transform: rotate(180deg);
 			@include primary-header-font;
 			border-bottom: 0!important;
-			border-left: 1px solid $white;
+			text-decoration: underline;
 			margin-bottom: 0;
 			text-align: right;
-			justify-self: end;
+			justify-self: flex-start;
+			grid-row: 1;
+			grid-column: 3;
+			@media (max-width: $small-breakpoint) {
+				writing-mode: initial;
+				transform: initial;
+				grid-column: 1;
+				text-decoration: none;
+				border-bottom: 1px solid $white!important;
+				width: 100%;
+				text-align: left;
+			}
 		}
 		.video {
-			grid-column: 2 / span 7;
+			grid-column: 4 / span 6;
+			grid-row: 1;
+			@media (max-width: $small-breakpoint) {
+				margin-top: $baseline * 2;
+				grid-column: 1;
+				grid-row: 2;
+			}
 		}
 	}
 }

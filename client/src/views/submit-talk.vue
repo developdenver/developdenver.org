@@ -1,7 +1,8 @@
 <template>
     <section class="submit-talk">
+		<countdown />
 		<p class="error" v-if="error">{{error}}</p>
-		<h2>Submit Talk</h2>
+		<h2>Submit A Talk</h2>
         <edit-talk
 			buttonLabel="Submit"
 			:talk="talk"
@@ -11,8 +12,9 @@
 </template>
 
 <script>
-import EditTalk from "../components/edit-talk";
-import Talk from "../models/talk";
+import EditTalk from "@/components/edit-talk";
+import Talk from "@/models/talk";
+import Countdown from "@/components/count-down";
 
 export default {
 	data() {
@@ -28,6 +30,7 @@ export default {
 	},
 	components: {
 		EditTalk,
+		Countdown,
 	},
 	methods: {
 		async createTalk(talk) {
@@ -55,20 +58,21 @@ export default {
 </script>
 <style lang="scss">
 @import "@/styles/_sizes.scss";
-@import "@/styles/_colors.scss";
 @import "@/styles/_general.scss";
 
 .submit-talk {
 	@include grid;
-	grid-template-columns: repeat(8, 1fr);
-	grid-auto-rows: auto;
-	margin: $baseline * 8 0;
-	max-width: $max-width;
-	h2 {
-		grid-column: 2 / span 6;
+	@media (max-width: $small-breakpoint) {
+		padding: $baseline;
 	}
 	.error, form {
-		grid-column: 4 / span 3;
+		@include grid-form;
+	}
+	.countdown {
+		@include grid-countdown;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
 	}
 }
 

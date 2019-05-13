@@ -2,16 +2,18 @@
 	<form class="ticket-purchase" @submit.prevent="submit">
 		<div class="levels">
 			<div class="level" v-for="(level, index) in levels" :key="index">
-				<input
-					v-if="currentProfile.id"
-					type="radio"
-					required
-					name="ticket-level"
-					:id="level.sku"
-					:value="level.sku"
-					v-model="ticketSKU"
+				<span>
+					<input
+						v-if="currentProfile.id"
+						type="radio"
+						required
+						name="ticket-level"
+						:id="level.sku"
+						:value="level.sku"
+						v-model="ticketSKU"
 					>
-				<label :for="level.sku"><h3>{{level.label}}</h3></label>
+					<label :for="level.sku"><h3>{{level.label}}</h3></label>
+				</span>
 				<p class="level-description">{{level.description}}</p>
 			</div>
 		</div>
@@ -195,24 +197,29 @@ export default {
 @import '@/styles/_sizes.scss';
 
 .ticket-purchase {
+	@include grid;
 	.levels {
-		@include grid;
-		grid-template-columns: repeat(7, 1fr);
-		grid-auto-rows: auto;
-		input {
-			margin-right: $baseline;
-		}
-		input, label, h3 {
-			display: inline;
-		}
 		.level {
-			grid-column: 1 / span 7;
+			display: grid;
+			grid-template: auto auto / 1fr;
+			grid-row-gap: $baseline / 2;
+			input, label, h3 {
+				display: inline;
+				width: auto;
+				grid-row: 1;
+			}
+			input {
+				margin-right: $baseline;
+			}
 			.level-description {
+				grid-row: 2;
+				grid-column: 1;
 				margin-bottom: $baseline * 2;
 			}
 		}
 	}
-	.ticket-quantity, .invitees, .credit-card-payment {
+	.levels, .ticket-quantity, .invitees, .credit-card-payment {
+		@include grid-form;
 		margin-bottom: $baseline;
 		input {
 			width: 100%;
@@ -236,34 +243,10 @@ export default {
 			padding: $baseline;
 		}
 	}
-	.ticket-details {
-		@include grid;
-		grid-template-columns: repeat(7, 1fr);
-		grid-auto-rows: auto;
-
-		h2 {
-			grid-column: 1 / span 7;
-		}
-		.date-and-location {
-			grid-column: 1 / span 2;
-			p {
-				margin-bottom: $baseline;
-			}
-		}
-		.benefits {
-			grid-column: 3 / span 2;
-		}
-		.groups {
-			grid-column: 5 / span 3;
-		}
-		.button {
-			grid-column: 1 / span 3;
-			margin-top: $baseline * 2;
-			@include call-to-action;
-		}
-	}
 	.call-to-action, [type=submit] {
+		@include grid-form;
 		@include call-to-action;
+		padding: 0;
 	}
 }
 

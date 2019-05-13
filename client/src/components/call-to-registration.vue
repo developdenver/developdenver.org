@@ -28,7 +28,11 @@ export default {
 @import '@/styles/_sizes.scss';
 
 .call-to-registration {
+	@media (max-width: $small-breakpoint) {
+		padding: ($baseline * 4) $baseline ($baseline * 2) $baseline;
+	}
 	.button {
+		margin-top: $baseline * 2;
 		@include call-to-action;
 	}
 	.slogan {

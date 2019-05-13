@@ -45,16 +45,22 @@ export default {
 .index {
 	display: contents;
 	.conference-info {
-		@include grid;
-		grid-template: auto / repeat(8, 1fr);
 		padding: 0 $baseline * 2;
 		margin-top: $baseline * 9;
-		max-width: $max-width;
-		.feature, .ticket-details, .venues, .sponsors, .featured-talks {
-			grid-column: 2 / span 7;
+		@media (max-width: $small-breakpoint) {
+			margin-top: $baseline * 2;
+			padding: 0;
 		}
+		max-width: $max-width;
 		> section {
 			margin-bottom: $baseline * 9;
+			@media (max-width: $small-breakpoint) {
+				padding: $baseline;
+				margin-bottom: $baseline * 2;
+				&.featured-talks {
+					margin-bottom: 0;
+				}
+			}
 		}
 	}
 }

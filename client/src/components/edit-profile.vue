@@ -178,13 +178,11 @@ export default {
 
 .edit-profile {
 	@include grid;
-	grid-template-columns: repeat(7, 1fr);
-	grid-auto-rows: auto;
 	fieldset {
-		grid-column: 3 / span 3;
+		@include grid-form;
 	}
 	h2 {
-		grid-column: 1 / span 7;
+		@include grid-heading;
 		span {
 			display: block;
 			@include body-font;

@@ -68,6 +68,9 @@ export default {
 		grid-template: 1 / 7;
 		grid-template-areas:
 			"days days-divider hours hours-divider minutes minutes-divider seconds";
+		@media (max-width: $small-breakpoint) {
+			font-size: $baseline;
+		}
 	}
 
 	.labels {
@@ -78,11 +81,20 @@ export default {
 		padding: $baseline 0;
 		border-top: 1px solid $white;
 		border-bottom: 1px solid $white;
+		@media (max-width: $small-breakpoint) {
+			font-size: $baseline / 2;
+			padding: ($baseline / 2) 0;
+		}
 	}
 
 	.description {
 		grid-area: description;
 		padding-top: $baseline;
+		@media (max-width: $small-breakpoint) {
+			font-size: $baseline / 2;
+			padding-top: $baseline / 2;
+			margin-bottom: 0;
+		}
 	}
 
 	.days {

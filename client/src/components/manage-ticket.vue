@@ -77,6 +77,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/styles/_sizes.scss';
+@import '@/styles/_general.scss';
+
 .manage-ticket {
+	@include grid;
+	@include grid-form;
+	@media (max-width: $small-breakpoint) {
+		padding: $baseline;
+	}
 }
 </style>

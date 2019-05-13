@@ -25,32 +25,45 @@
 
 .ticket-details {
 	@include grid;
-	grid-template: repeat(3, auto) / repeat(7, 1fr);
+	@media (max-width: $small-breakpoint) {
+		grid-auto-rows: auto;
+	}
 
+	a {
+		text-decoration: underline;
+	}
 	h2 {
+		@include grid-heading;
 		grid-row: 1;
-		grid-column: 1 / span 7;
 	}
 	.date-and-location {
 		grid-row: 2;
-		grid-column: 1 / span 2;
-		p {
-			margin-bottom: $baseline;
+		@include grid-text-0;
+		@media (max-width: $small-breakpoint) {
 		}
 	}
 	.benefits {
 		grid-row: 2;
-		grid-column: 3 / span 2;
+		@include grid-text-1;
+		@media (max-width: $small-breakpoint) {
+			grid-row: 3;
+		}
 	}
 	.groups {
 		grid-row: 2;
-		grid-column: 5 / span 3;
+		@include grid-text-2;
+		@media (max-width: $small-breakpoint) {
+			grid-row: 4;
+		}
 	}
 	.button {
 		grid-row: 3;
-		grid-column: 1 / span 3;
 		margin-top: $baseline * 2;
+		@include grid-cta;
 		@include call-to-action;
+		@media (max-width: $small-breakpoint) {
+			grid-row: 5;
+		}
 	}
 }
 </style>

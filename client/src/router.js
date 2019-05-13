@@ -96,7 +96,7 @@ const router = new Router({
 			name: 'submit-talk',
 			component: SubmitTalk,
 			meta: {
-				requiresAuth: true,
+				//requiresAuth: true,
 			},
 		},
 		{
