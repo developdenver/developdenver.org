@@ -30,7 +30,8 @@ export default {
 			return this.$store.state.talks.list.map(talk => {
 				const randomIndex = Math.floor(Math.random() * 2)
 				const icon = icons[randomIndex]
-				return Object.assign({}, talk, { icon });
+				talk.properties = Object.assign({}, talk.properties, { icon })
+				return talk
 			})
 		},
 	},
