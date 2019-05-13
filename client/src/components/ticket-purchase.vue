@@ -236,11 +236,17 @@ export default {
 				padding: 16px;
 			}
 			.tags-input-badge-pill {
+				background: $black;
+				border: 1px solid $white;
+				color: $white;
 				margin: 2px;
+				border-radius: 0;
+				padding-left:4px;
+				padding-right:4px;
 			}
 			.tags-input-remove {
 				&::before, &::after {
-					background: $black;
+					background: $white;
 				}
 			}
 		}
