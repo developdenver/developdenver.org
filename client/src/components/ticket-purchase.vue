@@ -224,13 +224,24 @@ export default {
 	}
 	.invitees {
 		.tags-input-wrapper-default {
-			padding: 0;
+			background: none;
+			border: 2px solid $white;
+			border-radius: 0;
+			padding: 8px;
 			input {
 				width: 100%;
 				background-color: $black;
 				color: $white;
-				border: 2px solid $white;
 				margin: 0;
+				padding: 16px;
+			}
+			.tags-input-badge-pill {
+				margin: 2px;
+			}
+			.tags-input-remove {
+				&::before, &::after {
+					background: $black;
+				}
 			}
 		}
 	}

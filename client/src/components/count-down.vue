@@ -30,9 +30,11 @@ export default {
 			today: Date.now(),
 		};
 	},
+	mounted() {
+		this.startInterval();
+	},
 	computed: {
 		countDownToConference() {
-			this.startInterval();
 			const distance = this.conferenceDate - this.today;
 			const days = this.toTwoDigits(Math.floor(distance / (1000 * 60 * 60 * 24)));
 			const hours = this.toTwoDigits(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
@@ -70,6 +72,12 @@ export default {
 			"days days-divider hours hours-divider minutes minutes-divider seconds";
 		@media (max-width: $small-breakpoint) {
 			font-size: $baseline;
+		}
+		span {
+			max-width: 45px;
+		}
+		span[class$="-divider"] {
+			max-width: 30px;
 		}
 	}
 
