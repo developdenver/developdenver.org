@@ -51,6 +51,7 @@ This conversation will cover the human side of technology and suggest ways to de
 		lastName:'Baliga',
 		authorId: 764,
 		type: 'talk',
+		icon: 'happy',
 		title: 'Logging In: Creating Space for Mental Health in the Workplace',
 		description: `“Panic Attack at the Code Review” isn’t just a cool idea for a band name, it’s a real experience many people have had at work. Every business, group and congregation is neurodiverse -- and an estimated 1 in 6 people have a brain disorder. Yet, 68% of employees never discuss mental health with their employer. This is even more common in the tech industry. If you’re a developer, designer, manager or entrepreneur who’s experienced stress, burnout, anxiety or depression, this talk is for you (that’s likely 100% of you reading this!). We’ll discuss why mental health issues are common in the tech industry, and how addressing mental health at the workplace can improve your diversity and inclusion efforts.  You’ll walk away with concrete tips on how to begin these discussions at your company, and some quick tips for you on how you can “log out” to take care of your own mental health.`,
 	},
@@ -59,6 +60,7 @@ This conversation will cover the human side of technology and suggest ways to de
 		lastName: 'Keane',
 		authorId: 717,
 		type: 'talk',
+		icon: 'skull',
 		title: "I Love You But I Don't Need You: the use of color in accessible design",
 		description: `From indicating errors to emphasizing a call to action, color can play a critical role in how we communicate with users. But what role does it play in accessibility? In this talk, we'll examine the ways color can improve or detract from an app's usability, and learn to make our apps intuitive, delightful, and informative without relying on color to do all of the heavy lifting. Useful for both designers and developers, this talk will look into a variety of tools we can leverage to create semantic, pleasant applications that serve everyone - not just users with perfect color vision.`
 	},
