@@ -102,7 +102,7 @@ export default {
 				display: flex;
 				align-items: center;
 				justify-content: flex-start;
-				#circle {
+				img {
 					height: 100%;
 					width: 100%;
 				}

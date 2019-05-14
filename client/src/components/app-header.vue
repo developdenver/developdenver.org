@@ -75,6 +75,8 @@ export default {
 					width: 100%;
 				}
 			}
+			.circle-logo {
+			}
 			h1 {
 				@include primary-header-font;
 				writing-mode: vertical-rl;

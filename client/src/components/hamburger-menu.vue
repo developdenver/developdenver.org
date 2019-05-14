@@ -112,25 +112,35 @@ export default {
 	position: relative;
 	.hamburger-menu {
 		position: fixed;
-		//width: 100%;
-		z-index: 50;
+		display: flex;
+		align-items: center;
+		width: calc(100% - 100px);
 		left: -200vw;
+		top: 0;
+		bottom: 0;
 		right: auto;
-		transition: left 0.2s, right 0.2s;
-		background-color: black;
+		transition: left 0.5s linear;
+		background-color: rgba($black, 0.7);
+		z-index: 50;
 		@media (max-width: $small-breakpoint) {
-			left: initial;
-			right: initial;
+			left: 0;
+			right: 0;
 			top: auto;
 			bottom: -200vh;
-			transition: bottom 0.2s, top 0.2s;
+			width: 100%;
+			height: calc(100% - $mobile-footer-size);
 		}
 		&.open {
 			left: 80px;
 			@media (max-width: $small-breakpoint) {
-				left: initial;
+				align-items: flex-end;
+				justify-content: flex-end;
+				left: 0;
+				top: 0;
+				right: 0;
 				bottom: $mobile-footer-size;
-					width: 100%;
+				border: none;
+				transition: bottom 0.3s linear;
 			}
 		}
 		li {
@@ -148,6 +158,9 @@ export default {
 				> li {
 					border-left: 1px solid $white;
 					padding: $baseline;
+					@media (max-width: $small-breakpoint) {
+						border: none;
+					}
 					&:not(.social-links) {
 						writing-mode: vertical-rl;
 						transform: rotate(180deg);
