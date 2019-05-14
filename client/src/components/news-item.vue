@@ -39,11 +39,18 @@ export default {
 
 .news-item {
 	margin-bottom: $baseline * 2;
+	h3 {
+		@include talk-title-font;
+		margin-bottom: 0;
+	}
 	.byline {
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: space-between;
-		margin-bottom: $baseline;
+		margin-bottom: 0;
+		time {
+			@include talk-title-font;
+		}
 		address {
 			font-style: italic;
 		}

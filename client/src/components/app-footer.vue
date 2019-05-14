@@ -84,15 +84,30 @@ export default {
 			@include grid;
 			grid-template: auto / repeat(8, 1fr);
 			li {
-				@include footer-font;
 				writing-mode: vertical-lr;
 				transform: rotate(180deg);
+			}
+			> li {
+				@include footer-font;
 				display: flex;
 				align-items: flex-end;
 				justify-content: flex-end;
+				padding-right: $baseline;
+				&:nth-child(odd){
+					border-right: 1px solid $white;
+				}
+				&:nth-child(even){
+					border-right: 1px solid $accent-color;
+					color: $accent-color;
+				}
 				a:hover {
 					color: $accent-color;
 				}
+			}
+			ul.social-links {
+				padding-left: $baseline;
+				border-left: 1px solid $accent-color;
+				color: $accent-color;
 			}
 			.coc {
 				grid-column: 2;

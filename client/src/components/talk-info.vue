@@ -114,8 +114,11 @@ export default {
 			display: none;
 		}
 		img {
-			width: 50%;
+			width: 70%;
 		}
+	}
+	h3 {
+		@include talk-title-font;
 	}
 	.talk-details {
 		grid-row: 1;

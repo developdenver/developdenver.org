@@ -10,6 +10,7 @@
 		>
 			<hamburger-menu
 				:isMenuOpen="isMenuOpen"
+				@click.native="closeMenu"
 			/>
 		</app-header>
 		<main

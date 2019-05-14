@@ -20,6 +20,12 @@
 	line-height: 1.5;
 }
 
+@mixin talk-title-font {
+	font-family: DVLP;
+    font-size: 20px;
+	line-height: 1.5;
+}
+
 @mixin footer-font {
 	font-family: DVLP;
     font-size: 24px;
