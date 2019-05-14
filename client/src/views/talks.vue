@@ -10,11 +10,8 @@
 <script>
 import TalkList from "@/components/talk-list.vue";
 import Countdown from "@/components/count-down.vue";
-import bomb from '@/assets/icons/bomb_white.svg';
-import happy from '@/assets/icons/happy_white.svg';
-import skull from '@/assets/icons/skull_white.svg';
 
-const icons = [ bomb, happy, skull ]
+const icons = ["bomb", "happy", "skull" ]
 
 export default {
 	components: {

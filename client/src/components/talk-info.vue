@@ -114,7 +114,7 @@ export default {
 			display: none;
 		}
 		img {
-			width: 70%;
+			width: 30%;
 		}
 	}
 	h3 {

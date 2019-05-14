@@ -130,7 +130,7 @@ export default {
 			top: auto;
 			bottom: -200vh;
 			width: 100%;
-			height: calc(100% - $mobile-footer-size);
+			height: calc(100% - #{$mobile-footer-size});
 		}
 		&.open {
 			left: 80px;
