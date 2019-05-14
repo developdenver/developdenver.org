@@ -14,7 +14,6 @@
 			<p>Don’t worry, we’re all setup so you can purchase a group of conference badges. You’ll be asked to provide an email address for each attendee and you’re good to go. Have questions? Please contact us at <a href="mailto:hello@developdenver.org">hello@developdenver.org</a> if you need help.</p>
 		</div>
 	</div>
-	<venue-list />
     <ticket-purchase :levels="levels" :isDiscountCode="false"/>
   </section>
 </template>

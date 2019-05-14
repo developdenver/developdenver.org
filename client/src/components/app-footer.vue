@@ -9,7 +9,7 @@
 					<router-link :to="{name: 'privacy-policy'}">Privacy Policy</router-link>
 				</li>
 				<li class="contact-email">
-					<a href="mailto:hello@developdenver.org">Contact</a>
+					<a href="mailto:hello@developdenver.org" target="_BLANK">Contact</a>
 				</li>
 				<ul class="social-links">
 					<li v-for="socialLink in socialLinks" :key="socialLink.linkUrl">
