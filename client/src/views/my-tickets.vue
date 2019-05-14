@@ -2,7 +2,7 @@
   <div class="my-tickets">
 	<countdown />
     <h2>My Tickets</h2>
-    <ul>
+    <ul class="manage-tickets">
       <li v-for="ticket in tickets" :key="ticket.id">
         <ManageTicket v-bind="ticket"/>
       </li>
@@ -35,6 +35,12 @@ export default {
 	@include grid-full-width;
 	@media (max-width: $small-breakpoint) {
 		padding: $baseline;
+	}
+	.manage-tickets {
+		@include grid-full-width;
+		.manage-ticket {
+			margin-bottom: $baseline * 2;
+		}
 	}
 	.countdown {
 		@include grid-countdown;

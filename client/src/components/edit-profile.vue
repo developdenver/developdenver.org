@@ -177,6 +177,7 @@ export default {
 @import "@/styles/_typography.scss";
 
 .edit-profile {
+	@include grid-full-width;
 	@include grid;
 	fieldset {
 		@include grid-form;
@@ -195,6 +196,7 @@ export default {
 		@include call-to-action;
 		background-color: hsla(0, 0%, 0%, 0);
 		color: $white;
+		cursor: pointer;
 	}
 	textarea {
 		height: $baseline * 8;

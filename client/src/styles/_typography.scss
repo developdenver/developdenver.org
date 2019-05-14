@@ -19,3 +19,9 @@
     font-size: 36px;
 	line-height: 1.5;
 }
+
+@mixin footer-font {
+	font-family: DVLP;
+    font-size: 24px;
+	line-height: 1.5;
+}

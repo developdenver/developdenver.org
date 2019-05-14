@@ -62,16 +62,17 @@ export default {
 		grid-column: 3 / span 7;
 		display: flex;
 		flex-flow: row wrap;
-		justify-content: space-between;
-		a:not(:first-child) {
-			margin-left: $baseline;
+		justify-content: center;
+		align-items: center;
+		a {
+			margin: $baseline $baseline * 2;
 		}
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
 			justify-content: center;
 		}
 		img {
-			max-width: 200px;
+			width: 200px;
 		}
 	}
 }

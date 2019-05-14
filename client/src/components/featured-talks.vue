@@ -16,7 +16,8 @@ export default {
     data() {
         return {
 			talks: talkData.map(talk => {
-				return { properties: talk };
+				const featuredTalk = Object.assign({}, talk, { isFeatured: true })
+				return { properties: featuredTalk };
 			})
 		}
     },

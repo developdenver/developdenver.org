@@ -84,7 +84,7 @@ export default {
 			@include grid;
 			grid-template: auto / repeat(8, 1fr);
 			li {
-				@include primary-header-font;
+				@include footer-font;
 				writing-mode: vertical-lr;
 				transform: rotate(180deg);
 				display: flex;

@@ -92,8 +92,9 @@ export default {
 		@include call-to-action;
 		padding: 0;
 	}
-	a:hover {
+	a {
 		color: $accent-color;
+		text-decoration: underline;
 	}
 	.countdown {
 		@include grid-countdown;

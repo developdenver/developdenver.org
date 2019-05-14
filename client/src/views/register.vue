@@ -50,8 +50,14 @@ export default {
 		margin: $baseline * 2 0;
 		padding: $baseline;
 	}
-	> h2, .edit-profile, p {
-		grid-column: 2 / span 6;
+	> h2, p {
+		@include grid-heading
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+		}
+	}
+	.edit-profile {
+		@include grid-full-width;
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
 		}
@@ -60,6 +66,7 @@ export default {
 		margin-bottom: $baseline;
 		a {
 			text-decoration: underline;
+			color: $accent-color;
 		}
 	}
 }

@@ -29,8 +29,9 @@
 		grid-auto-rows: auto;
 	}
 
-	a {
+	a:not(.button) {
 		text-decoration: underline;
+		color: $accent-color;
 	}
 	h2 {
 		@include grid-heading;

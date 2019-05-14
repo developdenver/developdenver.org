@@ -56,6 +56,7 @@ export default {
 	}
 	a {
 		text-decoration: underline;
+		color: $accent-color;
 	}
 	h2 {
 		@include grid-heading;

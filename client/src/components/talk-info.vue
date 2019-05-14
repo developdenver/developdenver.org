@@ -6,7 +6,7 @@
 	<div class="talk-details">
 	  <h3>{{talk.properties.title}}</h3>
 	  <div class="description">
-		<p class="author">
+		<p v-if="talk.properties.isFeatured" class="author">
 		  <router-link
 			:to="{
 							name: 'profile',
@@ -136,6 +136,12 @@ export default {
 					display: none;
 				}
 			}
+		}
+		summary::-webkit-details-marker {
+			color: $accent-color;
+		}
+		summary::marker {
+			color: $accent-color;
 		}
 	}
 }

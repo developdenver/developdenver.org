@@ -2,16 +2,15 @@
   <div class="manage-ticket">
     <div v-if="attendee">
       <div class="ticket-status">
-        <font-awesome-icon :icon="['fas', 'ticket-alt']"/>Claimed
+		  <font-awesome-icon class="ticket-icon" :icon="['fas', 'ticket-alt']"/>
+		  <p>Claimed by {{ attendeeName }} <span v-if="myTicket">(that's you!)</span></p>
       </div>
-      by {{ attendeeName }}
-      <span v-if="myTicket">(that's you!)</span>
     </div>
     <div v-else-if="unclaimed_ticket && unclaimed_ticket.emailed_to">
       <div class="ticket-status">
-        <font-awesome-icon :icon="['fas', 'ticket-alt']"/>Unclaimed
+        <font-awesome-icon class="ticket-icon" :icon="['fas', 'ticket-alt']"/>Unclaimed
       </div>
-      emailed to {{ unclaimed_ticket.emailed_to }}
+	  <p>Emailed to {{ unclaimed_ticket.emailed_to }}</p>
       <div class="ticket-actions">
         <button @click="remind">Send a reminder</button>
         <button @click="revoke">Revoke invitation</button>
@@ -19,7 +18,7 @@
     </div>
     <div v-else>
       <div class="ticket-status">
-        <font-awesome-icon :icon="['fas', 'ticket-alt']"/>Not yet shared
+        <font-awesome-icon class="ticket-icon" :icon="['fas', 'ticket-alt']"/>Not yet shared
       </div>
       <div class="ticket-actions">
         <input type="email" v-model="shareWith" placeholder="friend@email.com">
@@ -82,9 +81,30 @@ export default {
 
 .manage-ticket {
 	@include grid;
-	@include grid-form;
-	@media (max-width: $small-breakpoint) {
-		padding: $baseline;
+	> div, > p {
+		@include grid-form;
+	}
+	input {
+		width: 100%;
+	}
+	button {
+		@include call-to-action;
+		background: none;
+		color: $white;
+		@include footer-font;
+		margin-bottom: $baseline / 2;
+	}
+	.ticket-actions {
+		margin-bottom: $baseline;
+	}
+	.ticket-status {
+		margin-bottom: $baseline / 2;
+		p {
+			display: inline-block;
+		}
+	}
+	.ticket-icon {
+		margin-right: $baseline;
 	}
 }
 </style>
