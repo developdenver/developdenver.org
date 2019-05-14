@@ -55,5 +55,11 @@ export default {
 			font-style: italic;
 		}
 	}
+	main {
+		a {
+			color: $accent-color;
+			text-decoration: underline;
+		}
+	}
 }
 </style>
