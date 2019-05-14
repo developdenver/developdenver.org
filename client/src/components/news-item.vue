@@ -36,6 +36,7 @@ export default {
 <style lang="scss">
 @import "@/styles/_typography.scss";
 @import "@/styles/_sizes.scss";
+@import "@/styles/_colors.scss";
 
 .news-item {
 	margin-bottom: $baseline * 2;
@@ -55,11 +56,9 @@ export default {
 			font-style: italic;
 		}
 	}
-	main {
-		a {
-			color: $accent-color;
-			text-decoration: underline;
-		}
+	a {
+		color: $accent-color;
+		text-decoration: underline;
 	}
 }
 </style>

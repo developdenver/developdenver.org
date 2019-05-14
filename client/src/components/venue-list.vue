@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import zeppelinLogo from "@/assets/logos/zeppelin_station_logo.svg"
-import bigTroubleLogo from "@/assets/logos/big_trouble_logo.svg"
+import zeppelinLogo from "@/assets/logos/zeppelin_station_logo.png"
+import bigTroubleLogo from "@/assets/logos/big_trouble_logo.png"
 import catalystLogo from "@/assets/logos/catalyst_logo_rgb_l.png"
 import bigsbyLogo from "../assets/logos/bigsbys_folly_logo_small.png"
-import sourceLogo from "../assets/logos/source_hotel_logo.svg"
+import sourceLogo from "../assets/logos/source_hotel_logo.png"
 import helikonLogo from "../assets/logos/helikon_logo_final-01.png"
 
 export default {
