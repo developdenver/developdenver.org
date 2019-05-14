@@ -93,13 +93,7 @@ export default {
 				align-items: flex-end;
 				justify-content: flex-end;
 				padding-right: $baseline;
-				&:nth-child(odd){
-					border-right: 1px solid $white;
-				}
-				&:nth-child(even){
-					border-right: 1px solid $accent-color;
-					color: $accent-color;
-				}
+				border-right: 1px solid $white;
 				a:hover {
 					color: $accent-color;
 				}

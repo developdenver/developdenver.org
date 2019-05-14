@@ -28,6 +28,7 @@ import Events from '@/views/events';
 import Schedule from '@/views/schedule';
 import MyTickets from '@/views/my-tickets';
 import ClaimTicket from '@/views/claim-ticket';
+import Sponsorship from '@/views/sponsorship';
 
 Vue.use(Router);
 
@@ -166,6 +167,11 @@ const router = new Router({
 			path: '/about',
 			name: 'about',
 			component: About,
+		},
+		{
+			path: '/sponsorship',
+			name: 'sponsorship',
+			component: Sponsorship,
 		},
 		{
 			path: '/community',

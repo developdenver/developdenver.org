@@ -31,7 +31,6 @@
 
     .code-of-conduct {
 		@include grid;
-		grid-template: auto / repeat(8, 1fr);
 		margin: $baseline * 8 0;
 		> div {
 			grid-column: 2 / span 6;

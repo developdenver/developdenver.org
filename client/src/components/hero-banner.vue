@@ -47,6 +47,13 @@ export default {
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
 		}
+		.button {
+			margin-top: $baseline * 2;
+			@include call-to-action;
+		}
+		.slogan {
+			@include primary-header-font;
+		}
 	}
 	.countdown {
 		@include grid-countdown;

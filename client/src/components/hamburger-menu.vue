@@ -21,7 +21,9 @@
 					<li v-if="isLoggedIn">
 					  <router-link :to="{name: 'my-profile'}">My Profile</router-link>
 					</li>
-					<li><a href="mailto:sponsorship@developdenver.org">Sponsorship</a></li>
+					<li>
+					  <router-link :to="{name: 'sponsorship'}">Sponsorship</router-link>
+					</li>
 					<li v-if="isLoggedIn">
 					  <a href="#" @click.prevent="logout">Logout {{userFirstName}}</a>
 					</li>
@@ -114,13 +116,13 @@ export default {
 		position: fixed;
 		display: flex;
 		align-items: center;
-		width: calc(100% - 100px);
+		width: calc(100% - 80px);
 		left: -200vw;
 		top: 0;
 		bottom: 0;
 		right: auto;
 		transition: left 0.5s linear;
-		background-color: rgba($black, 0.7);
+		background-color: rgba($black, 0.9);
 		z-index: 50;
 		@media (max-width: $small-breakpoint) {
 			left: 0;
@@ -145,7 +147,6 @@ export default {
 		}
 		li {
 			@include primary-header-font;
-			background-color: $black;
 		}
 		nav {
 			> ul {
