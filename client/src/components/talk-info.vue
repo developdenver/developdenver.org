@@ -135,9 +135,22 @@ export default {
 			@include grid;
 			grid-template-columns: repeat(2, 1fr);
 			&[open] {
-				summary p {
+				summary p, summary ul, summary ol, summary h2, summary h3 {
 					display: none;
 				}
+			}
+			ul, ol {
+				list-style: disc;
+				margin-bottom: $baseline;
+				li {
+					margin-left: $baseline;
+				}
+			}
+			strong {
+				font-weight: 700;
+			}
+			em {
+				font-style: italic;
 			}
 		}
 		summary::-webkit-details-marker {
