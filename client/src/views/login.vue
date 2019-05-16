@@ -1,25 +1,37 @@
 <template>
   <section class="login">
+	<countdown />
     <h2>Login to Develop Denver</h2>
     <form @submit.prevent="login">
-      <label for="email">Email</label>
-      <input type="text" id="email" name="email" placeholder v-model="email">
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" v-model="password">
+      <input
+        type="text"
+        id="email"
+        name="email"
+        placeholder="Email"
+        v-model="email"
+      >
+      <input type="password" id="password" name="password" placeholder="Password" v-model="password">
       <input type="submit" value="Login">
     </form>
     <p v-if="error" class="error">{{error}}</p>
-    <div class="alternatives">
-      <router-link :to="{name: 'request-reset'}">Forgot your password?</router-link>
-    </div>
-    <div class="alternatives">
-      <router-link :to="{name: 'register', query: $route.query }">Register</router-link>
-    </div>
+	<div class="alternatives">
+		<div class="alternative">
+		  <router-link :to="{name: 'request-reset'}">Forgot your password?</router-link>
+		</div>
+		<div class="alternative">
+		  <router-link :to="{name: 'register'}">Register</router-link>
+		</div>
+	</div>
   </section>
 </template>
 
 <script>
+import Countdown from "@/components/count-down";
+
 export default {
+	components: {
+		Countdown,
+	},
     data() {
         return {
             email: '',
@@ -63,31 +75,32 @@ export default {
 @import '@/styles/_general.scss';
 
 .login {
-    padding: $baseline;
-    margin: $xl 0 $xxxl 0;
-    h2 {
-        @include tertiary-header-font;
-        margin-bottom: $xl;
-    }
-    input,
-    label {
-        display: block;
-        width: 100%;
-    }
-    label {
-        @include fieldset-header-font;
-    }
-    input {
-        margin-bottom: $baseline;
-    }
-    [type='submit'] {
-        @include call-to-action-button;
-    }
-    .error {
-        color: $warning;
-    }
-    .alternatives {
-        margin-bottom: $large;
-    }
+	@include grid;
+	@media (max-width: $small-breakpoint) {
+		padding: $baseline;
+	}
+	form, .error, .alternatives {
+		@include grid-form;
+	}
+	.alternative {
+		margin-bottom: $baseline;
+	}
+	input, button {
+		width: 100%;
+	}
+	[type=submit] {
+		@include call-to-action;
+		padding: 0;
+	}
+	a {
+		color: $accent-color;
+		text-decoration: underline;
+	}
+	.countdown {
+		@include grid-countdown;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
+	}
 }
 </style>

@@ -1,18 +1,20 @@
 <template>
     <section class="profile-page">
+		<countdown />
         <user-profile v-if="currentProfile" :profile="currentProfile" />
-        <profile-card-list v-if="shuffledProfiles" :profiles="shuffledProfiles" />
     </section>
 </template>
 
 <script>
 import ProfileCardList from "@/components/profile-card-list.vue";
 import UserProfile from "@/components/user-profile.vue";
+import Countdown from "@/components/count-down";
 
 export default {
 	components: {
 		ProfileCardList,
 		UserProfile,
+		Countdown,
 	},
 	created() {
 		this.$store.dispatch("profiles/fetchProfiles");
@@ -47,9 +49,18 @@ export default {
 </script>
 
 <style lang="scss">
-    .profile-page {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-    }
+@import "@/styles/_general.scss";
+
+.profile-page {
+	@include grid;
+	.countdown {
+		@include grid-countdown;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
+	}
+	.user-profile {
+		@include grid-full-width;
+	}
+}
 </style>

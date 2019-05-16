@@ -31,24 +31,5 @@ export default {
 @import '@/styles/_general.scss';
 
 .call-for-talks {
-    padding: $xxl;
-    background-color: $tertiary-color;
-    .talk-call-to-action {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: $xl;
-        p {
-            @include body-font;
-            font-size: $large;
-            max-width: 100%;
-            text-align: center;
-            margin-bottom: $large;
-        }
-        .button {
-            @include call-to-action-button;
-            margin: 0 auto;
-        }
-    }
 }
 </style>

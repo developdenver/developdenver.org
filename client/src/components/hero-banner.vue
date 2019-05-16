@@ -1,6 +1,5 @@
 <template>
   <div class="hero">
-    <app-header />
 	<countdown />
     <call-to-registration />
   </div>
@@ -8,13 +7,11 @@
 
 <script>
 import Countdown from "@/components/count-down.vue";
-import AppHeader from "@/components/app-header.vue";
 import CallToRegistration from "@/components/call-to-registration.vue";
 
 export default {
 	components: {
 		Countdown,
-		AppHeader,
 		CallToRegistration,
 	},
 };
@@ -26,19 +23,43 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .hero {
-    min-height: 100vh;
-    width: 100%;
-    background: linear-gradient(rgba(0,0,0,0.7)), url("/img/ballmer-peak.jpeg");
-    background-size: cover;
-    position: relative;
-    color: $white;
-    @media (max-width: $large-breakpoint){
-        display: block;
-        position: relative;
-        padding: 0 $baseline;
-    }
-	.app-header {
-		margin-bottom: $xxl;
+	height: 100vh;
+	@include grid;
+	grid-template-rows: auto 1fr;
+	@media (max-width: $small-breakpoint) {
+		height: calc(100vh - #{$mobile-header-size}); // header size
+	}
+	&::after {
+		content: "";
+		opacity: 0.3;
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: url("/img/ballmer-peak.jpeg");
+		background-size: cover;
+	}
+	.call-to-registration {
+		grid-row: 2;
+		grid-column: 3 / span 3;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+		}
+		.button {
+			margin-top: $baseline * 2;
+			@include call-to-action;
+		}
+		.slogan {
+			@include primary-header-font;
+		}
+	}
+	.countdown {
+		@include grid-countdown;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
 	}
 }
 </style>

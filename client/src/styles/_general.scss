@@ -2,32 +2,86 @@
 @import "@/styles/_sizes.scss";
 @import "@/styles/_typography.scss";
 
-@mixin call-to-action-button {
-	@include call-to-action-font;
-	display: inline-block;
-	background-color: $primary-color;
-	transition: all $transition;
-	color: $white;
+@mixin call-to-action {
+	display: block;
+	border: 2px solid $white;
+	@include primary-header-font;
 	text-decoration: none;
-	padding: $baseline;
 	text-align: center;
-	border: none;
+	width: 100%;
+	background: none;
+	padding: $baseline / 2;
 	&:hover {
-		background-color: $secondary-color;
+		color: $accent-color;
+		border: 2px solid $accent-color;
 	}
 }
 
-.responsive-iframe-container {
-	position: relative;
-	overflow: hidden;
-	padding-top: 56.25%;
-	margin-bottom: 3rem;
-	.responsive-iframe {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		border: 0;
+@mixin grid {
+	display: grid;
+	column-gap: $gutter;
+	grid-auto-rows: auto;
+	grid-template-columns: repeat(9, 1fr);
+	@media (max-width: $small-breakpoint){
+		grid-template-columns: 1fr;
+	}
+}
+
+@mixin grid-heading {
+	grid-column: 3 / span 8;
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+
+@mixin grid-full-width {
+	grid-column: 1 / span 9;
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+
+@mixin grid-cta {
+	grid-column: 3 / span 3;
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+
+@mixin grid-text-0 {
+	grid-column: 3 / span 2;
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+@mixin grid-text-1 {
+	grid-column: 5 / span 2;
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+@mixin grid-text-2 {
+	grid-column: 7 / span 3;
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+
+@mixin grid-form {
+	grid-column: 4 / span 3;
+	@media (max-width: $medium-breakpoint){
+		grid-column: 3 / span 5;
+	}
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
+	}
+}
+@mixin grid-countdown {
+	grid-column: 8 / span 3;
+	@media (max-width: $medium-breakpoint){
+		grid-column: 6 / span 5;
+	}
+	@media (max-width: $small-breakpoint){
+		grid-column: 1;
 	}
 }

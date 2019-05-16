@@ -182,75 +182,7 @@ export default {
 @import "@/styles/_colors.scss";
 
 .schedule-wrapper {
-	width: 100%;
-	display: flex;
-	flex-flow: column nowrap;
-	align-items: center;
-	.filters {
-		position: sticky;
-		top: 0;
-		background-color: $white;
-		z-index: 50;
-		padding: $baseline;
-		opacity: 0.97;
-		.filter {
-			display: flex;
-			flex-flow: row nowrap;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: $small;
-			width: 100%;
-			label, select {
-				display: inline;
-			}
-			label {
-				margin-right: $baseline;
-			}
-			select {
-				min-width: 10rem;
-			}
-		}
-	}
 }
 .schedule {
-	max-width: 600px;
-	display: flex;
-	flex-flow: column nowrap;
-	flex: 1;
-	h2 {
-		@include secondary-header-font;
-		align-self: center;
-		margin-bottom: $baseline;
-		padding: $baseline;
-	}
-	header {
-		display: flex;
-		justify-content: flex-start;
-		width: 100%;
-		h3 {
-			@include section-header-font;
-			margin-bottom: $baseline;
-			padding: $baseline;
-		}
-	}
-	.list-wrapper {
-		width: 100%;
-		display: flex;
-		flex-flow: column nowrap;
-		align-items: center;
-		.event-card-list {
-			max-width: 800px;
-		}
-	}
-	.services {
-		align-self: flex-start;
-		margin-bottom: $xl;
-		padding: 0 $baseline;
-		list-style-type: circle;
-		li {
-			margin-left: $baseline;
-			margin-bottom: $small;
-		}
-	}
 }
 </style>

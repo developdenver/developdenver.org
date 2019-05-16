@@ -3,7 +3,7 @@
         <img :src="profile.properties.profilePhotoUrl" alt="profile photo" />
         <div class="profile-details">
             <h2>{{fullName}}</h2>
-            <p>{{profile.properties.position}} at {{profile.properties.employer}}</p>
+			<p>{{profile.properties.position}}<span v-if="profile.properties.employer"> at {{profile.properties.employer}}</span></p>
             <div class="bio">
                 <p>{{profile.properties.bio}}</p>
                 <p v-if="profile.properties.website" class="website">
@@ -72,95 +72,45 @@ export default {
 @import "@/styles/_typography.scss";
 @import "@/styles/_sizes.scss";
 @import "@/styles/_colors.scss";
-
-$clip-amount: 80px;
+@import "@/styles/_general.scss";
 
 .user-profile {
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: flex-end;
-    // margin-bottom: calc($clip-amount * -1) + $large;
-    .profile-details {
-        order: 1;
-        margin-top: $xl * -1;
-        margin-right: $xl * -1;
-        background-color: $pure-white;
-        padding: $large;
-        z-index: 10;
-		min-width: 40%;
-        h2 {
-            @include section-header-font;
-        }
-        p {
-            @include stylized-body-font;
-        }
-        .bio {
-            padding: $large 0;
-            border-top: 0.5px solid $medium-light-grey;
-            border-bottom: 0.5px solid $medium-light-grey;
-            a {
-                color: $primary-color;
-            }
-            .website {
-                margin-top: $xl;
-            }
-        }
-        .social {
-            padding: $large 0;
-			z-index: 30;
-			li {
-				display: inline-block;
-				+ li {
-					margin-left: $baseline;
-				}
-				a {
-					color: $medium-grey;
-					svg {
-						font-size: $large;
-					}
-				}
-			}
-        }
-    }
-    img {
-        order: 2;
-        clip-path: inset($clip-amount 0);
-        max-width: 60%;
-    }
-	@media (max-width: $medium-breakpoint) {
-		flex-flow: column nowrap;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-        img {
-            order: 1;
-            width: 100%;
-			clip-path: none;
-        }
-		.profile-details {
-			width: 100%;
-			margin: 0;
+	@include grid;
+	@media (max-width: $small-breakpoint) {
+		padding: $baseline;
+	}
+	> img {
+		grid-column: 2 / span 3;
+		max-width: 100%;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
 		}
 	}
-    @media (max-width: $large-breakpoint){
-        align-self: auto;
-        flex-flow: column nowrap;
-        align-self: flex-start;
-		justify-content: center;
-        width: 100%;
-		margin-top: 0;
-		margin-bottom: $large;
-		img {
-            order: 1;
-			display: block;
-			width: 100%;
-			clip-path: none;
+	.profile-details {
+		grid-column: 5 / span 4;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
 		}
-		.profile-details {
-			margin-right: 0;
+		display: flex;
+		flex-flow: column nowrap;
+	}
+	.social {
+		display: flex;
+		flex-flow: row wrap;
+		li {
+			&:not(:first-child){
+				margin-left: $baseline;
+			}
+			width: 40px;
+			height: 40px;
+			svg {
+				width: 100%;
+				height: 100%;
+				&:hover {
+					color: $accent-color;
+				}
+			}
 		}
-    }
+	}
 }
 </style>

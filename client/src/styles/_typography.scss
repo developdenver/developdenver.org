@@ -1,107 +1,33 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:100,400,700");
 @import "_sizes";
 
 @font-face {
 	font-family: DVLP;
-	src: url("~@/assets/fonts/dvlp-ocr.otf") format("opentype");
+	src: url("~@/assets/fonts/DVLPOCR.otf") format("opentype");
+}
+@font-face {
+	font-family: TStar;
+	src: url("~@/assets/fonts/TSTAR-PRO-Regular.otf") format("opentype");
 }
 
-body {
-    font-family: "Montserrat", sans-serif;
+@mixin body-font {
+    font-family: TStar, sans-serif;
+    font-size: 20px;
 }
 
 @mixin primary-header-font {
 	font-family: DVLP;
-    font-size: $xxl;
+    font-size: 36px;
+	line-height: 1.5;
 }
 
-@mixin link-font {
-    font-weight: 100;
-    font-size: $baseline;
-    text-transform: lowercase;
+@mixin talk-title-font {
+	font-family: DVLP;
+    font-size: 20px;
+	line-height: 1.5;
 }
 
-@mixin footer-link-font {
-    font-weight: 400;
-    font-size: $baseline;
-}
-
-@mixin secondary-header-font {
-    font-weight: 700;
-    font-size: $xxl;
-    letter-spacing: 1px;
-    line-height: $xxl;
-    text-transform: uppercase;
-    @media (max-width: $large-breakpoint){
-        font-size: $large;
-        line-height: $large;
-    }
-}
-
-@mixin tertiary-header-font {
-    font-weight: 700;
-    font-size: $baseline;
-    letter-spacing: 1px;
-    line-height: $large;
-    text-transform: uppercase;
-}
-
-@mixin section-header-font {
-    font-family: DVLP;
-    font-weight: 700;
-    font-size: $xl;
-    max-width: $max-line-length;
-    text-transform: uppercase;
-    margin-bottom: $baseline;
-}
-
-@mixin fieldset-header-font {
-    font-weight: 700;
-    font-size: $baseline;
-    margin-bottom: $baseline;
-}
-
-@mixin call-to-action-font {
-    font-weight: 700;
-    font-size: $baseline;
-    text-transform: uppercase;
-}
-
-@mixin body-font {
-    font-weight: 400;
-    font-size: $baseline;
-    line-height: $baseline + $small;
-    max-width: $max-line-length;
-}
-
-@mixin bold-body-font {
-    @include body-font;
-    font-weight: 700;
-}
-
-@mixin italic-body-font {
-    @include body-font;
-    font-style: italic;
-}
-
-@mixin stylized-body-font {
-    @include body-font;
-    letter-spacing: 1px;
-    @media (max-width: $large-breakpoint){
-        letter-spacing: 0;
-    }
-}
-
-@mixin system-font {
-    font-weight: 400;
-    font-size: $baseline;
-    font-family: sans-serif;
-    line-height: $baseline + $small;
-}
-
-@mixin countdown-font {
-    font-weight: 300;
-    font-size: $baseline;
-    font-family: DVLP;
-    line-height: $baseline + $small;
+@mixin footer-font {
+	font-family: DVLP;
+    font-size: 24px;
+	line-height: 1.5;
 }

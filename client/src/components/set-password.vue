@@ -1,22 +1,23 @@
 <template>
     <div class="set-password">
-        <label for="password">Password</label>
         <input
             required
+			class="password"
             type="password"
             id="password"
             title="At least 7 characters"
             pattern=".{7,}"
-			placeholder="Minimum 7 characters"
+			placeholder="Password"
             ref="password"
             v-model.trim="password"
             @input="updatePassword"
         />
-        <label for="confirmPassword">Confirm Password</label>
         <input ref="confirmPassword"
             required
+			class="confirm-password"
             type="password"
             id="confirmPassword"
+			placeholder="Confirm Password"
             title="At least 7 characters"
             v-model.trim="confirmPassword"
             @input="updatePassword"
@@ -58,3 +59,9 @@ export default {
 	},
 };
 </script>
+
+<style lang="scss">
+	.set-password {
+		display: contents;
+	}
+</style>

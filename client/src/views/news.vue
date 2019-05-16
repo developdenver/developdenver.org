@@ -1,5 +1,6 @@
 <template>
   <section class="news">
+	<countdown />
     <h2>Conference News</h2>
     <ul>
       <li v-for="(newsItem, index) in newsItems" :key="index">
@@ -16,11 +17,15 @@
 
 <script>
 import NewsItem from '../components/news-item.vue';
+import Countdown from '../components/count-down.vue';
 import newsItems from '../data/news-items';
+import CircleLogo from "@/components/circle-logo";
 
 export default {
     components: {
         NewsItem,
+		Countdown,
+		CircleLogo,
     },
     data() {
         return {
@@ -33,19 +38,23 @@ export default {
 <style lang="scss">
 @import '@/styles/_typography.scss';
 @import '@/styles/_sizes.scss';
+@import '@/styles/_general.scss';
 
 .news {
-    display: flex;
-    flex-flow: column nowrap;
-    flex-grow: 1;
-    max-width: $max-line-length;
-    margin: $xl 0 $xxxl 0;
-    padding: $baseline;
-    h2 {
-        display: none;
-    }
-    > ul > li {
-        margin-bottom: $xxl;
-    }
+	@include grid;
+	@media (max-width: $small-breakpoint) {
+		padding: $baseline;;
+	}
+	ul {
+		@include grid-form;
+	}
+	h2 {
+	}
+	.countdown {
+		@include grid-countdown;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
+	}
 }
 </style>

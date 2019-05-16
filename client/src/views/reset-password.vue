@@ -1,5 +1,6 @@
 <template>
 	<section class="reset-password">
+		<countdown />
 		<h2>Reset Your Password</h2>
 		<form @submit.prevent="resetPassword">
 			<set-password @updatePassword="updatePassword" />
@@ -11,6 +12,7 @@
 
 <script>
 import SetPassword from "../components/set-password";
+import Countdown from "@/components/count-down";
 
 export default {
 	data() {
@@ -21,6 +23,7 @@ export default {
 	},
 	components: {
 		SetPassword,
+		Countdown,
 	},
 	computed: {
 		isLoading() {
@@ -59,31 +62,32 @@ export default {
 @import "@/styles/_colors.scss";
 
 .reset-password {
-    margin: $xl 0 $xxxl 0;
-	h2 {
-		@include tertiary-header-font;
+	@include grid;
+	@media (max-width: $small-breakpoint) {
+		padding: $baseline;
+	}
+	form, .error, .alternatives {
+		@include grid-form;
+	}
+	.alternative {
 		margin-bottom: $baseline;
 	}
-	form {
-		display: flex;
-		flex-flow: column nowrap;
-		flex-grow: 1;
-		max-width: $max-line-length;
-		margin-bottom: $large;
-		input, label {
-			display: block;
-			width: 100%;
-		}
-		input {
-			margin-bottom: $baseline;
-		}
-		[type=submit] {
-			@include call-to-action-button;
-		}
+	input, button {
+		width: 100%;
 	}
-	.error {
-		max-width: $max-line-length;
-		color: $warning;
+	[type=submit] {
+		@include call-to-action;
+		padding: 0;
+	}
+	a {
+		color: $accent-color;
+		text-decoration: underline;
+	}
+	.countdown {
+		@include grid-countdown;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
 	}
 }
 </style>

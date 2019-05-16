@@ -115,7 +115,7 @@ We'll keep you up to date. Thank you for contributing to the Denver tech communi
 
 If you purchased more than one ticket, you can manage your invitations at ${
         process.env.FRONTEND_URL
-    }/profiles/me/tickets
+    }/profiles/me/conference-badges
     `;
     return send(email, "You're Going to DVLP DNVR!", content);
 }

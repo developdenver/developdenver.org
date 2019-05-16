@@ -34,57 +34,5 @@ export default {
     @import "@/styles/_typography.scss";
 
     .talk-card {
-        position: relative;
-        width: 100%;
-        height: 400px;
-        overflow: hidden;
-		background-color: $light-grey;
-		z-index: 1;
-        &:hover {
-            .title-plate {
-                border: 10px solid $primary-color;
-            }
-        }
-		.disabled {
-			pointer-events: none;
-		}
-		.image-wrapper {
-			position: relative;
-			z-index: -10;
-			width: 100%;
-			height: 100%;
-			background-size: cover;
-			transition: transform 3s cubic-bezier(0, 1, 1, 1);
-		}
-        .title-plate {
-            position: absolute;
-            bottom: 0;
-            height: 40%;
-            width: 100%;
-            transition: all 0.3s cubic-bezier(0.666, 0, 0.333, 1);
-            opacity: 1;
-            transform: translateY(0);
-            background-color: transparentize($dark-grey, 0.1);
-            color: $white;
-            padding: $large;
-            .title {
-                @include bold-body-font;
-                margin-bottom: 0;
-            }
-            .type {
-                @include body-font;
-            }
-        }
-        .frame {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transition: border 0.3s cubic-bezier(0.666, 0, 0.333, 1);
-            z-index: 10;
-            border: 0 solid $primary-color;
-        }
-        .voted-for-frame {
-            border: solid $tertiary-color;
-        }
     }
 </style>

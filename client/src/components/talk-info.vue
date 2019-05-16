@@ -1,28 +1,37 @@
 <template>
   <section class="talk">
-    <div class="talk-details">
-      <h2>{{talk.properties.title}}</h2>
-      <div class="description">
-        <p class="author">
-          <router-link
-            :to="{
+	<div class="image-icon" v-if="talk.properties.icon">
+	  <img :src="iconSrc" alt="Icon" />
+	</div>
+	<div class="talk-details">
+	  <h3>{{talk.properties.title}}</h3>
+	  <div class="description">
+		<p v-if="talk.properties.isFeatured" class="author">
+		  <router-link
+			:to="{
 							name: 'profile',
 							params: {
 								id: talk.properties.authorId,
 							},
 						}"
-          >{{talk.properties.firstName}} {{talk.properties.lastName}}</router-link>
-        </p>
-        <div class="description-html" v-html="descriptionHtml"></div>
-        <p class="talk-type">Type: {{talkLabel}}</p>
-      </div>
-    </div>
+		  >{{talk.properties.firstName}} {{talk.properties.lastName}}</router-link>
+		</p>
+		<details class="description-html">
+			<summary v-html="truncatedDescriptionHtml"></summary>
+			<div v-html="descriptionHtml"></div>
+		</details>
+	  </div>
+	</div>
   </section>
 </template>
 
 <script>
+import bomb from '@/assets/icons/bomb_white.svg';
+import happy from '@/assets/icons/happy_white.svg';
+import skull from '@/assets/icons/skull_white.svg';
 import Showdown from 'showdown';
 const showdown = new Showdown.Converter();
+const icons = { bomb, happy, skull };
 
 export default {
     data() {
@@ -62,6 +71,17 @@ export default {
         },
     },
     computed: {
+		iconSrc() {
+			return icons[this.talk.properties.icon];
+		},
+		truncatedDescriptionHtml() {
+			const summaryLength = 250;
+			let truncatedDescription = this.talk.properties.description || ''
+			truncatedDescription = truncatedDescription.length > summaryLength
+				? `${truncatedDescription.substring(0, summaryLength)}...`
+				: truncatedDescription;
+            return showdown.makeHtml(truncatedDescription);
+		},
         descriptionHtml() {
             return this.talk.properties.description
                 ? showdown.makeHtml(this.talk.properties.description)
@@ -82,103 +102,63 @@ export default {
 @import '@/styles/_typography.scss';
 @import '@/styles/_sizes.scss';
 @import '@/styles/_colors.scss';
-
-$clip-amount: 80px;
+@import '@/styles/_general.scss';
 
 .talk {
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: flex-end;
-    .talk-image {
-        max-height: 100vh;
-    }
-    .talk-details {
-        order: 1;
-        margin-top: $xl * -1;
-        margin-right: $xl * -1;
-        background-color: $pure-white;
-        padding: $large;
-        z-index: 10;
-        min-width: 40%;
-        h2 {
-            @include section-header-font;
-        }
-        p {
-            @include stylized-body-font;
-        }
-        .description {
-            padding: $large 0;
-            border-top: 0.5px solid $medium-light-grey;
-            border-bottom: 0.5px solid $medium-light-grey;
-            a {
-                color: $primary-color;
-            }
-            .talk-type {
-                @include italic-body-font;
-            }
-            .description-html {
-                line-height: 1.5;
-                h1,
-                h2,
-                h3,
-                h4,
-                h5,
-                h6 {
-                    @include fieldset-header-font;
-                }
-                ul,
-                ol {
-                    list-style-type: circle;
-                    margin-bottom: $baseline;
-                }
-                strong {
-                    font-weight: 700;
-                }
-                em {
-                    font-style: italic;
-                }
-            }
-        }
-    }
-    img {
-        order: 2;
-        clip-path: inset($clip-amount 0);
-        max-width: 60%;
-    }
-    @media (max-width: $medium-breakpoint) {
-        flex-flow: column nowrap;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        img {
-            order: 1;
-            width: 100%;
-            clip-path: none;
-        }
-        .talk-details {
-            width: 100%;
-            margin: 0;
-        }
-    }
-    @media (max-width: $large-breakpoint) {
-        align-self: auto;
-        flex-flow: column nowrap;
-        align-self: flex-start;
-        justify-content: center;
-        width: 100%;
-        margin-top: 0;
-        margin-bottom: $large;
-        img {
-            order: 1;
-            display: block;
-            width: 100%;
-            clip-path: none;
-        }
-        .talk-details {
-            margin-right: 0;
-        }
-    }
+	@include grid;
+	margin-bottom: $baseline * 2;
+	.image-icon {
+		grid-row: 1;
+		grid-column: 3 / span 1;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
+		img {
+			width: 30%;
+		}
+	}
+	h3 {
+		@include talk-title-font;
+	}
+	.talk-details {
+		grid-row: 1;
+		grid-column: 5 / span 4;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+			column-width: initial;
+		}
+		a {
+			text-decoration: underline;
+		}
+		.description-html {
+			margin-top: $baseline;
+			@include grid;
+			grid-template-columns: repeat(2, 1fr);
+			&[open] {
+				summary p, summary ul, summary ol, summary h2, summary h3 {
+					display: none;
+				}
+			}
+			ul, ol {
+				list-style: disc;
+				margin-bottom: $baseline;
+				li {
+					margin-left: $baseline;
+				}
+			}
+			strong {
+				font-weight: 700;
+			}
+			em {
+				font-style: italic;
+			}
+		}
+		summary::-webkit-details-marker {
+			color: $accent-color;
+		}
+		summary::marker {
+			color: $accent-color;
+		}
+	}
 }
 </style>

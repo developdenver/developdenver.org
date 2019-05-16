@@ -56,12 +56,5 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .community {
-	width: 100%;
-	h2 {
-		@include tertiary-header-font;
-		text-align: center;
-		margin-bottom: $baseline;
-		padding: $baseline;
-	}
 }
 </style>

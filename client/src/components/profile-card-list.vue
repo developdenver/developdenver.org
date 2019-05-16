@@ -26,16 +26,5 @@ export default {
     @import "@/styles/_typography.scss";
 
     .profile-card-list {
-        display: flex;
-        flex-flow: row wrap;
-        li {
-            width: calc((100vw - (100vw - 100%)) * (1/4));
-			@media (max-width: $large-breakpoint) {
-				width: calc(100% * (1/2));
-			}
-			@media (max-width: $small-breakpoint) {
-				width: 100%;
-			}
-        }
     }
 </style>

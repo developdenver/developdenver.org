@@ -28,6 +28,7 @@ import Events from '@/views/events';
 import Schedule from '@/views/schedule';
 import MyTickets from '@/views/my-tickets';
 import ClaimTicket from '@/views/claim-ticket';
+import Sponsorship from '@/views/sponsorship';
 
 Vue.use(Router);
 
@@ -67,6 +68,7 @@ const router = new Router({
 		},
 		{
 			path: '/profiles/me/conference-badges',
+			alias: '/profiles/me/tickets',
 			name: 'my-tickets',
 			component: MyTickets,
 			meta: {
@@ -96,7 +98,7 @@ const router = new Router({
 			name: 'submit-talk',
 			component: SubmitTalk,
 			meta: {
-				requiresAuth: true,
+				//requiresAuth: true,
 			},
 		},
 		{
@@ -165,6 +167,11 @@ const router = new Router({
 			path: '/about',
 			name: 'about',
 			component: About,
+		},
+		{
+			path: '/sponsorship',
+			name: 'sponsorship',
+			component: Sponsorship,
 		},
 		{
 			path: '/community',

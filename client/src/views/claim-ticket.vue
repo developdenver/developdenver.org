@@ -37,9 +37,5 @@ export default {
 
 <style lang="scss">
 .claim-ticket {
-    h1 {
-        font-size: 2rem;
-        font-weight: bold;
-    }
 }
 </style>

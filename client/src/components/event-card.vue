@@ -69,59 +69,14 @@ export default {
     @import "@/styles/_typography.scss";
 
 	.devops {
-		background-color: $devops-color;
 	}
 	.careers {
-		background-color: $career-color;
 	}
 	.product {
-		background-color: $product-color;
 	}
 	.development {
-		background-color: $development-color;
 	}
 
     .event-card {
-		.category-bar {
-			width: 100%;
-			height: 10px;
-			margin-top: 0;
-			position: absolute;
-		}
-		display: flex;
-		flex-flow: row nowrap;
-		justify-content: center;
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-		background-color: $light-grey;
-		z-index: 1;
-		@media (max-width: $small-breakpoint) {
-			flex-flow: column nowrap;
-		}
-		figure {
-			z-index: 2;
-			max-width: 200px;
-			@media (max-width: $small-breakpoint) {
-				max-width: initial;
-				padding: $baseline;
-			}
-			img {
-				width: 100%;
-			}
-		}
-		.details {
-			padding: $large;
-			flex: 1;
-			h4 > a {
-				@include tertiary-header-font;
-			}
-			.category {
-				@include italic-body-font;
-			}
-		}
-		.disabled {
-			pointer-events: none;
-		}
     }
 </style>

@@ -1,72 +1,67 @@
 <template>
-  <footer class="app-footer">
-    <nav>
-      <ul>
-        <li v-if="!isLoggedIn">
-          <router-link :to="{name: 'register'}">Register</router-link>
-        </li>
-        <li v-if="!isLoggedIn">
-          <router-link :to="{name: 'login'}">Login</router-link>
-        </li>
-		<li v-if="!isAttendee">
-			<router-link :to="{name: 'tickets'}">Purchase Badges</router-link>
-		</li>
-        <li v-if="isAttendee">
-          <router-link :to="{name: 'news'}">News</router-link>
-        </li>
-        <!--
-				<li>
-					<router-link :to="{name: 'submit-talk'}">Submit a Talk</router-link>
+	<footer class="app-footer">
+		<nav>
+			<ul>
+				<li class="coc">
+					<router-link :to="{name: 'code-of-conduct'}">Code Of Conduct</router-link>
 				</li>
-				<li>
-					<router-link :to="{name: 'schedule'}">Schedule</router-link>
+				<li class="pp">
+					<router-link :to="{name: 'privacy-policy'}">Privacy Policy</router-link>
 				</li>
-				<li>
-					<router-link :to="{name: 'talks'}">Submissions</router-link>
+				<li class="contact-email">
+					<a href="mailto:hello@developdenver.org" target="_BLANK">Contact</a>
 				</li>
-				<li><router-link :to="{name: 'community'}">Community</router-link></li>
-        -->
-        <!-- <li><a href=" https://goo.gl/forms/o7MTeIjYjoFYiE1B2" target="_BLANK">Volunteering</a></li> -->
-        <li>
-          <router-link :to="{name: 'code-of-conduct'}">Code Of Conduct</router-link>
-        </li>
-        <li>
-          <router-link :to="{name: 'privacy-policy'}">Privacy Policy</router-link>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <a href="mailto:hello@developdenver.org">Contact</a>
-        </li>
-        <li>
-          <a href="https://twitter.com/dvlpdnvr">Twitter</a>
-        </li>
-        <li>
-          <a href="https://www.instagram.com/dvlpdnvr/">Instagram</a>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/channel/dvlpdnvr">YouTube</a>
-        </li>
-      </ul>
-    </nav>
-    <div class="devetry-plug">
-      Website maintained by
-      <a href="https://devetry.com/">Devetry</a>.
-      We simplify the complex world of software.
-    </div>
-  </footer>
+				<ul class="social-links">
+					<li v-for="socialLink in socialLinks" :key="socialLink.linkUrl">
+						<a :href="socialLink.linkUrl" target="BLANK">
+							<img :src="socialLink.iconUrl" alt="socialLink.altText" />
+						</a>
+					</li>
+				</ul>
+			</ul>
+		</nav>
+		<div class="devetry-plug">
+			<p>Website maintained by <a href="https://devetry.com/">Devetry</a>.  We simplify the complex world of software.</p>
+		</div>
+	</footer>
 </template>
 
 <script>
+import twitterIcon from '@/assets/icons/twitter_white.svg';
+import instagramIcon from '@/assets/icons/instagram_white.svg';
+import youtubeIcon from '@/assets/icons/youtube_white.svg';
+import facebookIcon from '@/assets/icons/facebook_white.svg';
+
 export default {
-    computed: {
-        isLoggedIn() {
-            return this.$store.getters['services/user/isLoggedIn'];
-        },
-        isAttendee() {
-            return this.$store.getters['tickets/isAttendee'];
-        },
-    },
+	data() {
+		return {
+			socialLinks: [{
+				linkUrl: "https://twitter.com/dvlpdnvr",
+				altText: "Twitter",
+				iconUrl: twitterIcon,
+			},{
+				linkUrl: "https://www.instagram.com/dvlpdnvr/",
+				altText: "Instagram",
+				iconUrl: instagramIcon,
+			},{
+				linkUrl: "https://www.youtube.com/channel/dvlpdnvr",
+				altText: "YouTube",
+				iconUrl: youtubeIcon,
+			},{
+				linkUrl: "https://www.facebook.com/dvlpdnvr",
+				altText: "Facebook",
+				iconUrl: facebookIcon,
+			}],
+		}
+	},
+	computed: {
+		isLoggedIn() {
+			return this.$store.getters['services/user/isLoggedIn'];
+		},
+		isAttendee() {
+			return this.$store.getters['tickets/isAttendee'];
+		},
+	},
 };
 </script>
 
@@ -74,44 +69,72 @@ export default {
 @import '@/styles/_typography.scss';
 @import '@/styles/_sizes.scss';
 @import '@/styles/_colors.scss';
+@import '@/styles/_general.scss';
 
 .app-footer {
-    position: relative;
-    background-image: url('../assets/bottom-banner.png');
-    background-size: 100% auto;
-    background-color: #2f2a2b;
-    background-repeat: no-repeat;
-    color: $white;
-    padding: $large;
-    .bottom-bar {
-        position: absolute;
-        top: 0;
-    }
-    ul {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        @media (max-width: $large-breakpoint) {
-            flex-flow: column nowrap;
-        }
-        li {
-            display: inline-block;
-            padding: $baseline;
-            a {
-                @include footer-link-font;
-                transition: all $transition;
-                text-decoration: none;
-                &:hover {
-                    color: $secondary-color;
-                }
-            }
-        }
-    }
-    .devetry-plug {
-        margin-top: 15px;
-        line-height: 1.3em;
-        margin: 25px 10px auto;
-        text-align: center;
-    }
+	padding: 0 $baseline * 2;
+	max-width: $max-width;
+	margin-top: $baseline * 8;
+	@media (max-width: $small-breakpoint) {
+		display: none;
+	}
+	> nav {
+		margin-bottom: $baseline * 2;
+		&> ul {
+			@include grid;
+			grid-template: auto / repeat(8, 1fr);
+			li {
+				writing-mode: vertical-lr;
+				transform: rotate(180deg);
+			}
+			> li {
+				@include footer-font;
+				display: flex;
+				align-items: flex-end;
+				justify-content: flex-end;
+				padding-right: $baseline;
+				border-right: 1px solid $white;
+				a:hover {
+					color: $accent-color;
+				}
+			}
+			ul.social-links {
+				padding-left: $baseline;
+				border-left: 1px solid $accent-color;
+				color: $accent-color;
+			}
+			.coc {
+				grid-column: 2;
+			}
+			.pp {
+				grid-column: 4;
+			}
+			.contact-email {
+				grid-column: 6;
+			}
+			.social-links {
+				grid-column: 8;
+				li {
+					display: inline-block;
+					writing-mode: horizontal-tb;
+					transform: rotate(0);
+					text-align: right;
+					@include primary-header-font;
+					img {
+						margin: $baseline / 2 $baseline * 2;
+						height: 40px;
+						width: 40px;
+					}
+				}
+			}
+		}
+	}
+	.devetry-plug {
+		@include grid;
+		grid-template: auto / repeat(8, 1fr);
+		p {
+			grid-column: 2 / span 7;
+		}
+	}
 }
 </style>

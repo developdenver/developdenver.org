@@ -44,8 +44,5 @@ export default {
 
 <style lang="scss" scoped>
 .valid-claim-token {
-    > div {
-        margin-top: 20px;
-    }
 }
 </style>

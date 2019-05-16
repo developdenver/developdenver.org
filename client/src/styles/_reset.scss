@@ -50,49 +50,80 @@ table {
 	border-spacing: 0;
 }
 
+// Custom
+@import "_sizes";
+@import "_colors.scss";
+@import "_typography.scss";
+@import "_general.scss";
+
+h2 {
+	@include primary-header-font;
+	@include grid-heading;
+	border-bottom: 1px solid $white;
+	margin-bottom: $baseline;
+}
+h3 {
+	font-weight: 700;
+	margin-bottom: $baseline / 2;
+}
+
 a {
 	color: inherit;
+	text-decoration: none;
 }
 a:visited {
 	color: inherit;
-	text-decoration: none;
+}
+
+p {
+	margin-bottom: $baseline;
 }
 
 * {
 	box-sizing: border-box;
 }
 
-@import "@/styles/_typography.scss";
-@import "@/styles/_sizes.scss";
-@import "@/styles/_colors.scss";
-p {
-	@include body-font;
-	margin-bottom: $baseline;
+textarea {
+	resize: none;
 }
 
-label, input, textarea, button {
-	display: block;
-	width: 100%;
+body, textarea, select, input {
+	@include body-font;
 }
-label {
-	color: $medium-grey;
-	margin-bottom: $xxs;
+
+body {
+	background-color: $black;
+	color: $white;
 }
+
 input, textarea {
-	margin-bottom: $baseline;
+	display: block;
+	border: 2px solid $white;
+	background-color: $black;
+	color: $white;
 	padding: $baseline;
-	border: 0.5px solid $medium-light-grey;
-	&:focus {
-		border-bottom: 1px solid $primary-color;
+	margin-bottom: $baseline / 2;
+	&::placeholder {
+		color: $white;
 	}
 }
-select {
-	padding: $small;
-	border: 0.5px solid $medium-light-grey;
-	background-color: $white;
+
+.responsive-iframe-container {
+	position: relative;
+	overflow: hidden;
+	padding-top: 56.25%;
+	margin-bottom: 3rem;
+	.responsive-iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
 }
-textarea {
-	height: $xxl * 2;
-	resize: none;
-	@include system-font;
+
+.error {
+	color: hsl(0, 70%, 50%);
+	font-weight: 700;
 }

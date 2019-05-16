@@ -1,15 +1,12 @@
-$xxs: 0.236rem;
-$xs: 0.382rem;
-$small: 0.618rem;
-$baseline: 1rem;
-$large: 1.618rem;
-$xl: 2.618rem;
-$xxl: 4.236rem;
-$xxxl: 6.854rem;
+$gutter: 10px;
+$baseline: 20px;
 
 $max-line-length: 40rem;
+$max-width: 1600px;
 $transition: 0.2s;
 
-$large-breakpoint: 1150px;
-$medium-breakpoint: 800px;
 $small-breakpoint: 600px;
+$medium-breakpoint: 1000px;
+
+$mobile-header-size: 125px;
+$mobile-footer-size: 75px;

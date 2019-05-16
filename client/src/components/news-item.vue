@@ -36,40 +36,29 @@ export default {
 <style lang="scss">
 @import "@/styles/_typography.scss";
 @import "@/styles/_sizes.scss";
+@import "@/styles/_colors.scss";
 
 .news-item {
-	header {
-		margin-bottom: $baseline;
-		h3 {
-			@include section-header-font;
+	margin-bottom: $baseline * 2;
+	h3 {
+		@include talk-title-font;
+		margin-bottom: 0;
+	}
+	.byline {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+		margin-bottom: 0;
+		time {
+			@include talk-title-font;
 		}
-		.byline {
-			@include italic-body-font;
-			time {
-				display: inline;
-				margin-right: $xs;
-				&:after {
-					margin-left: $xs;
-					content: "-";
-				}
-			}
-			address {
-				display: inline;
-			}
+		address {
+			font-style: italic;
 		}
 	}
-	main {
-		h4 {
-			@include fieldset-header-font;
-		}
-		ul {
-			list-style-type: circle;
-			margin-bottom: $baseline;
-			li {
-				@include body-font;
-				margin-left: $large;
-			}
-		}
+	a {
+		color: $accent-color;
+		text-decoration: underline;
 	}
 }
 </style>
