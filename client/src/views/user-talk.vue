@@ -13,6 +13,8 @@
 import EditTalk from "@/components/edit-talk.vue";
 
 export default {
+	name: 'UserTalk',
+	hagridActions: ['talks/fetchTalks'],
 	components: {
 		EditTalk,
 	},
@@ -38,5 +40,7 @@ export default {
 @import "@/styles/_sizes.scss";
 
 .user-talk {
+	padding-left: 100px;
+	padding-top: 100px;
 }
 </style>

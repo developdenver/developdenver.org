@@ -3,11 +3,6 @@
     <div class="talk-info-wrapper">
       <talk-info :talk="currentTalk"/>
     </div>
-    <router-link
-      class="edit-talk-link"
-      v-if="isCurrentUserTalk"
-      :to="{name: 'edit-talk', params: {id: currentTalk.id}}"
-    >Edit Talk</router-link>
     <!--
 		<button
 			:class="{voted: voteType === 'Unvote'}"
@@ -80,6 +75,4 @@ export default {
 @import '@/styles/_sizes.scss';
 @import '@/styles/_colors.scss';
 
-.talk-page {
-}
 </style>

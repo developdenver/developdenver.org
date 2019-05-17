@@ -4,7 +4,14 @@
 	  <img :src="iconSrc" alt="Icon" />
 	</div>
 	<div class="talk-details">
-	  <h3>{{talk.properties.title}}</h3>
+	  <h3>
+		  {{talk.properties.title}}
+		  <router-link
+			v-if="isCurrentUserTalk"
+			class="edit-talk-link"
+		    :to="{name: 'edit-talk', params: {id: talk.id}}"
+	  	  >Edit Talk</router-link>
+</h3>
 	  <div class="description">
 		<p v-if="talk.properties.isFeatured" class="author">
 		  <router-link
@@ -93,6 +100,14 @@ export default {
                       type => type.value === this.talk.properties.type,
                   ).label
                 : '';
+		},
+		currentUser() {
+            return this.$store.getters['services/user/currentProfile'];
+        },
+        isCurrentUserTalk() {
+            return this.currentUser
+                ? +this.talk.properties.userId === +this.currentUser.id
+                : false;
         },
     },
 };
@@ -158,6 +173,9 @@ export default {
 		}
 		summary::marker {
 			color: $accent-color;
+		}
+		.edit-talk-link {
+			margin-left: 8px;
 		}
 	}
 }

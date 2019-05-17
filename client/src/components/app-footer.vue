@@ -44,7 +44,7 @@ export default {
 				altText: "Instagram",
 				iconUrl: instagramIcon,
 			},{
-				linkUrl: "https://www.youtube.com/channel/dvlpdnvr",
+				linkUrl: "https://www.youtube.com/dvlpdnvr",
 				altText: "YouTube",
 				iconUrl: youtubeIcon,
 			},{

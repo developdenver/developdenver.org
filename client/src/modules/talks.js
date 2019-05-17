@@ -8,11 +8,12 @@ export default {
 		votes: [],
 	},
 	getters: {
+		noDependencies: ()=>{ return true; },
 		getTalksByUserId: (state) => (userId) => {
 			return state.list.filter(talk => talk.properties.userId === userId);
 		},
 		getTalkById: (state) => (id) => {
-			return state.list.find(talk => talk.id === id) || {
+			return state.list.find(talk => talk.id == id) || {
 				properties: {
 					title: "Loading...",
 					type: "",
@@ -105,5 +106,8 @@ export default {
 			return success;
 		},
 		*/
+	},
+	hagridResources: {
+		fetchTalks: 'noDependencies',
 	},
 };
