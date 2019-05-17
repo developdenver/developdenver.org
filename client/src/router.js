@@ -64,6 +64,7 @@ const router = new Router({
 			component: EditProfile,
 			meta: {
 				requiresAuth: true,
+				takeItBackNowYall: true,
 			},
 		},
 		{
@@ -73,6 +74,7 @@ const router = new Router({
 			component: MyTickets,
 			meta: {
 				requiresAuth: true,
+				takeItBackNowYall: true,
 			},
 		},
 		{
@@ -98,7 +100,8 @@ const router = new Router({
 			name: 'submit-talk',
 			component: SubmitTalk,
 			meta: {
-				//requiresAuth: true,
+				requiresAuth: true,
+				takeItBackNowYall: true,
 			},
 		},
 		{
@@ -218,12 +221,16 @@ router.beforeEach(async (to, from, next) => {
 	const routeNotYetAvailable = to.matched.some(
 		record => record.meta.notYetAvailable,
 	);
+	const takeItBackNowYall = to.matched.find(
+		record => record.meta.takeItBackNowYall,
+	);
 	await store.getters['services/user/profileLoaded'];
 	const userIsLoggedIn = store.getters['services/user/isLoggedIn'];
 	if (routeNotYetAvailable) {
 		next({ name: 'news' });
 	} else if (routeRequiresAuth && !userIsLoggedIn) {
-		next({ name: 'login' });
+		const query = takeItBackNowYall && { redirect: takeItBackNowYall.path };
+		next({ name: 'login', query });
 	} else if (routeRequiresGuest && userIsLoggedIn) {
 		next({ name: 'news' });
 	} else if (routeRequiresAttendee) {
