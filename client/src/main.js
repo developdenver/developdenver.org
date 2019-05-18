@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import hagrid from "./hagrid";
-import "./registerServiceWorker";
+// import "./registerServiceWorker";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCoffee, faTicketAlt, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
