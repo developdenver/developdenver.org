@@ -3,12 +3,37 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import hagrid from "./hagrid";
-// import "./registerServiceWorker";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCoffee, faTicketAlt, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+
+// This kills any old service workers
+(function killServiceWorker(){
+	if (navigator.serviceWorker){
+		navigator.serviceWorker.getRegistrations().then(registrations => {
+			console.log("Killing service workers");
+			for (let registration of registrations) {
+				console.log("Found a registration");
+				registration.unregister().then(() => {
+					console.log("Unregistered");
+					return self.clients.matchAll();
+				}).then(clients => {
+					console.log("Found the client");
+					clients.forEach(client => {
+						console.log("Found a browser");
+						if (client.url && "navigate" in client){
+							console.log("Refreshing...");
+							client.navigate(client.url);
+						}
+					});
+				});
+			}
+		});
+	}
+})();
+
 
 library.add(fab);
 library.add(faCoffee);
