@@ -82,6 +82,7 @@ export default {
 	> img {
 		grid-column: 2 / span 3;
 		max-width: 100%;
+		filter: grayscale(100%);
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
 		}

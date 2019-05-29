@@ -203,6 +203,9 @@ export default {
 	}
 	.profile-photo {
 		filter: grayscale(100%);
+		img {
+			max-width: 100%;
+		}
 	}
 	.self-employed {
 		display: flex;
