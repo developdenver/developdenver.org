@@ -3,6 +3,7 @@ const passport = require('passport');
 const router = express.Router();
 const VoteController = require('../controllers/vote');
 const Ticket = require('../models/ticket');
+const Talk = require('../models/talk');
 
 const { create, read, update, destroy, list } = require('../controllers/talk');
 
@@ -17,6 +18,16 @@ async function isTicketHolder(request, response, next) {
     }
 }
 
+async function mustOwnTalk(req, res, next) {
+    const user = req.user;
+    const talk = await Talk.find(req.params.id);
+    if (talk.user_id !== user.id) {
+        next(new Error('must own talk to take this action'));
+    } else {
+        next();
+    }
+}
+
 export default app => {
     router.get('/', list);
     router.get('/:title', read);
@@ -24,8 +35,8 @@ export default app => {
     router.post('/:id/vote', isTicketHolder, VoteController.vote);
     router.post('/:id/unvote', isTicketHolder, VoteController.unvote);
     router.post('/', create);
-    router.put('/:id', update);
-    router.delete('/:id', destroy);
+    router.put('/:id', mustOwnTalk, update);
+    router.delete('/:id', mustOwnTalk, destroy);
 
     return router;
 };
