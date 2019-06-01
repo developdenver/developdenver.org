@@ -71,10 +71,10 @@ export default {
 			}
 			return success;
 		},
-		async fetchTalks({ state, commit, dispatch }) {
+		async fetchTalks({ state, commit, dispatch, rootState }) {
 			dispatch("services/loading/pushLoading", {}, { root: true });
 
-			let talks = await Talk.fetchAll("talk");
+			let talks = await Talk.fetchAll("talk", rootState.services.user.token);
 			talks = talks.map(talk => new Talk(talk));
 			commit("updateTalks", shuffle(talks));
 			dispatch("services/loading/popLoading", {}, { root: true });

@@ -24,6 +24,17 @@ async function secretProvider(request, rawJwt, next){
     next(null, user.secret_key);
 }
 
+async function checkLogin(req, res, next) {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) return next();
+    const rawJwt = authHeader.split(' ')[1];
+    const decoded = decodeJwt(rawJwt);
+    if (!decoded) next();
+    req.user = await profile.find(decoded.sub, true)
+        .catch(next);
+    next();
+}
+
 async function verifyLogin(username, password, next){
     const user = await profile.query({ email: username }, true)
         .catch(error => next(error));
@@ -50,3 +61,4 @@ module.exports = (app) => {
     app.use(passport.initialize())
     return app;
 };
+module.exports.checkLogin = checkLogin;

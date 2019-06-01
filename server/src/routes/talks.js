@@ -1,6 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
+const { checkLogin } =require('../auth/auth-middleware');
 const VoteController = require('../controllers/vote');
 const Ticket = require('../models/ticket');
 const Talk = require('../models/talk');
@@ -29,7 +30,7 @@ async function mustOwnTalk(req, res, next) {
 }
 
 export default app => {
-    router.get('/', list);
+    router.get('/', checkLogin, list);
     router.get('/:title', read);
     router.use(passport.authenticate('jwt', { session: false }));
     router.post('/:id/vote', isTicketHolder, VoteController.vote);

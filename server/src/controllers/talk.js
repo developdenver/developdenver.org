@@ -38,6 +38,7 @@ function destroy(request, response, next) {
 
 function list(request, response, next) {
   const loggedInUser = request.user && request.user.id || null;
+  console.log('LOGGED IN USER', loggedInUser, request.user)
   const knex = Talk.database;
 
   knex
@@ -48,7 +49,6 @@ function list(request, response, next) {
         .andOn('vote.user_id', '=', knex.raw('?', [loggedInUser]));
     })
     .where({ event_date: Ticket.nextEventDate })
-
 
     .then(talks => {
       response.status(200).json({
