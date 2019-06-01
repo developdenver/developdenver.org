@@ -8,15 +8,6 @@
       v-if="isCurrentUserTalk"
       :to="{name: 'edit-talk', params: {id: currentTalk.id}}"
     >Edit Talk</router-link>
-    <!--
-		<button
-			:class="{voted: voteType === 'Unvote'}"
-			:disabled="isLoading"
-			v-if="!isCurrentUserTalk && isAttendee"
-			@click="updateVote"
-			>{{voteType}}
-		</button>
-    -->
   </section>
 </template>
 
@@ -34,18 +25,6 @@ export default {
         isLoading() {
             return this.$store.getters['services/loading/isLoading'];
         },
-        /*
-		voteType() {
-			if (this.$store.getters["talks/votedTalksById"][this.$route.params.id]) {
-				return "Unvote";
-			} else {
-				return "Vote";
-			}
-		},
-		isAttendee() {
-			return this.$store.getters["tickets/isAttendee"];
-		},
-		*/
         currentUser() {
             return this.$store.getters['services/user/currentProfile'];
         },
@@ -61,16 +40,6 @@ export default {
         },
     },
     methods: {
-        /*
-		async updateVote() {
-			if (this.voteType === "Vote") {
-				await this.$store.dispatch("talks/vote", this.currentTalk);
-			} else {
-				await this.$store.dispatch("talks/unvote", this.currentTalk);
-			}
-			await this.$store.dispatch("talks/fetchAllVotes");
-		}
-		*/
     },
 };
 </script>

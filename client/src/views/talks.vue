@@ -20,7 +20,6 @@ export default {
 	},
 	created() {
 		this.$store.dispatch("talks/fetchTalks");
-		// this.$store.dispatch("talks/fetchAllVotes");
 	},
 	computed: {
 		shuffledTalks() {

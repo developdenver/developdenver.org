@@ -19,11 +19,6 @@ export default {
 		},
 	},
 	computed: {
-		/*
-		voted() {
-			return this.$store.getters["talks/votedTalksById"][this.talk.id];
-		}
-		*/
 	}
 };
 </script>

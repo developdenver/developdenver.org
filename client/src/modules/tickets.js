@@ -1,5 +1,6 @@
 import withLoading from "../utilities/withLoading";
 import sleep from "../utilities/sleep";
+import updateInList from '../utilities/updateInList';
 import emptyPromise from "empty-promise";
 import {
 	listTickets,
@@ -8,9 +9,6 @@ import {
 	shareUnclaimedTicket,
 } from "./api";
 
-function updateInList(lst, where, update) {
-	return lst.map(val => (where(val) ? update(val) : val));
-}
 
 const ticketsLoaded = emptyPromise();
 

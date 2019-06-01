@@ -37,9 +37,19 @@ function destroy(request, response, next) {
 }
 
 function list(request, response, next) {
-  Talk.database(Talk.modelName)
+  const loggedInUser = request.user && request.user.id || null;
+  const knex = Talk.database;
+
+  knex
+    .select(knex.raw('talk.*, vote.id IS NOT NULL as voted'))
+    .from('talk')
+    .leftJoin('vote', function() {
+      this.on('talk.id', '=', 'vote.talk_id')
+        .andOn('vote.user_id', '=', knex.raw('?', [loggedInUser]));
+    })
     .where({ event_date: Ticket.nextEventDate })
-    .select(Talk.propertyList())
+
+
     .then(talks => {
       response.status(200).json({
         data: talks

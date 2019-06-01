@@ -11,7 +11,7 @@
 			class="edit-talk-link"
 		    :to="{name: 'edit-talk', params: {id: talk.id}}"
 	  	  >Edit Talk</router-link>
-</h3>
+	  </h3>
 	  <div class="description">
 		<p v-if="talk.properties.isFeatured" class="author">
 		  <router-link
@@ -29,6 +29,9 @@
 		</details>
 	  </div>
 	</div>
+	<button v-if="isAttendee" class="vote-button" @click="voteOrUnvote">
+		{{ voteText }}
+	</button>
   </section>
 </template>
 
@@ -76,8 +79,20 @@ export default {
             type: Object,
             required: true,
         },
-    },
+	},
+	methods: {
+		voteOrUnvote() {
+			if (this.talk.properties.voted) {
+				this.$store.dispatch('talks/unvote', this.talk);
+			} else {
+				this.$store.dispatch('talks/vote', this.talk);
+			}
+		},
+	},
     computed: {
+		isAttendee() {
+			return this.$store.getters['tickets/isAttendee'];
+		},
 		iconSrc() {
 			return icons[this.talk.properties.icon];
 		},
@@ -108,7 +123,10 @@ export default {
             return this.currentUser
                 ? +this.talk.properties.userId === +this.currentUser.id
                 : false;
-        },
+		},
+		voteText() {
+			return this.talk.properties.voted ? 'unvote' : 'vote';
+		},
     },
 };
 </script>
@@ -177,6 +195,14 @@ export default {
 		.edit-talk-link {
 			margin-left: 8px;
 		}
+	}
+	.vote-button {
+		@include call-to-action;
+		text-transform: uppercase;
+		grid-column: 3 / span 1;
+		color: white;
+		outline: none;
+		user-select: none;
 	}
 }
 </style>

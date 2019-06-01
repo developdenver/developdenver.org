@@ -1,11 +1,12 @@
 import Talk from "../models/talk";
 import { shuffle } from "../utilities/shuffle";
+import updateInList from '../utilities/updateInList';
+import withLoading from '../utilities/withLoading';
 
 export default {
 	namespaced: true,
 	state: {
 		list: [],
-		votes: [],
 	},
 	getters: {
 		noDependencies: ()=>{ return true; },
@@ -22,24 +23,28 @@ export default {
 				},
 			};
 		},
-		/*
-		votedTalksById: (state) => {
-			return state.votes.reduce((byId, vote) => {
-				byId[vote.talk_id] = true;
-				return byId;
-			}, {});
-		},
-		*/
 	},
 	mutations: {
 		updateTalks(state, talks) {
 			state.list = talks;
 		},
-		/*
 		setVotes(state, votes) {
 			state.votes = votes;
-		}
-		*/
+		},
+		UPDATE_VOTE(state, { id, voted }) {
+			updateInList(state.list, (t) => t.id === id, t => {
+				t.properties.voted = voted;
+				// FUUUCK this pattern!!
+				return new Talk(t.serialize());
+			});
+		},
+		VOTING_ERROR(state, { id, error }) {
+			updateInList(state.list, (t) => t.id === id, t => {
+				t.properties.error = error;
+				// have I mentioned that I find this model shit distasteful?
+				return new Talk(t.serialize());
+			});
+		},
 	},
 	actions: {
 		async createTalk({ dispatch, commit, rootState }, talk) {
@@ -74,38 +79,20 @@ export default {
 			commit("updateTalks", shuffle(talks));
 			dispatch("services/loading/popLoading", {}, { root: true });
 		},
-		/*
-		async fetchAllVotes({ commit, dispatch, rootState }) {
-			dispatch("services/loading/pushLoading", {}, { root: true });
-			let votes = await Talk.fetchVotes(rootState.services.user.token);
-			commit("setVotes", votes.data);
-			dispatch("services/loading/popLoading", {}, { root: true });
+		vote({ dispatch, rootState, commit }, currentTalk) {
+			return withLoading(dispatch, () =>
+				currentTalk.vote(rootState.services.user.token)
+					.then(() => commit('UPDATE_VOTE', { id: currentTalk.id, voted: true }))
+					.catch((error) => commit('VOTING_ERROR', { id: currentTalk.id, error }))
+			);
 		},
-		async vote({ dispatch, rootState }, currentTalk) {
-			dispatch("services/loading/pushLoading", {}, { root: true });
-			let success = true;
-			try {
-				success = await currentTalk.vote(rootState.services.user.token);
-			} catch (error) {
-				success = false;
-			} finally {
-				dispatch("services/loading/popLoading", {}, { root: true });
-			}
-			return success;
+		unvote({ dispatch, rootState, commit }, currentTalk) {
+			return withLoading(dispatch, () =>
+				currentTalk.unvote(rootState.services.user.token)
+					.then(() => commit('UPDATE_VOTE', { id: currentTalk.id, voted: false }))
+					.catch((error) => commit('VOTING_ERROR', { id: currentTalk.id, error }))
+			);
 		},
-		async unvote({ dispatch, rootState }, currentTalk) {
-			dispatch("services/loading/pushLoading", {}, { root: true });
-			let success = true;
-			try {
-				success = await currentTalk.unvote(rootState.services.user.token);
-			} catch (error) {
-				success = false;
-			} finally {
-				dispatch("services/loading/popLoading", {}, { root: true });
-			}
-			return success;
-		},
-		*/
 	},
 	hagridResources: {
 		fetchTalks: 'noDependencies',
