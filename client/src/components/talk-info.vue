@@ -157,7 +157,6 @@ export default {
 		grid-row: 1;
 		grid-column: 5 / span 4;
 		@media (max-width: $small-breakpoint) {
-			grid-column: 1;
 			column-width: initial;
 		}
 		a {
@@ -199,10 +198,14 @@ export default {
 	.vote-button {
 		@include call-to-action;
 		text-transform: uppercase;
+		grid-row: 2;
 		grid-column: 3 / span 1;
 		color: white;
 		outline: none;
 		user-select: none;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+		}
 	}
 }
 </style>
