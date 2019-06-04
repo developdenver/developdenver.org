@@ -1,6 +1,9 @@
 <template>
   <section class="talk">
-	<div class="image-icon" v-if="talk.properties.icon">
+	<div v-if="talk.properties.isFeatured" class="speaker-image">
+	  <img :src="talk.properties.authorImageUrl" alt="Speaker headshot" />
+	</div>
+	<div v-else class="image-icon">
 	  <img :src="iconSrc" alt="Icon" />
 	</div>
 	<div class="talk-details">
@@ -150,6 +153,17 @@ export default {
 			width: 30%;
 		}
 	}
+	.speaker-image {
+		grid-row: 1;
+		grid-column: 3 / span 2;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
+		img {
+			width: 100%;
+			filter: grayscale(100%);
+		}
+	}
 	h3 {
 		@include talk-title-font;
 	}
@@ -183,6 +197,9 @@ export default {
 			}
 			em {
 				font-style: italic;
+			}
+			h1, h2, h3, h4, h5, h6 {
+				font-size: 1rem;
 			}
 		}
 		summary::-webkit-details-marker {
