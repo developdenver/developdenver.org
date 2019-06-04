@@ -221,6 +221,7 @@ export default {
 		color: white;
 		outline: none;
 		user-select: none;
+		font-size: 20px;
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
 		}
