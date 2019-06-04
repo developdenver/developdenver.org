@@ -32,7 +32,7 @@
 		</details>
 	  </div>
 	</div>
-	<button v-if="isAttendee" class="vote-button" @click="voteOrUnvote">
+	<button v-if="isAttendee && !talk.properties.isFeatured" class="vote-button" @click="voteOrUnvote">
 		{{ voteText }}
 	</button>
   </section>
@@ -216,7 +216,7 @@ export default {
 		@include call-to-action;
 		text-transform: uppercase;
 		grid-row: 2;
-		grid-column: 3 / span 1;
+		grid-column: 5 / span 2;
 		color: white;
 		outline: none;
 		user-select: none;
