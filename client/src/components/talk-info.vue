@@ -1,5 +1,5 @@
 <template>
-  <section class="talk">
+	<section class="talk" :id="`submission-${talk.id}`">
 	<div v-if="talk.properties.isFeatured" class="speaker-image">
 	  <img :src="talk.properties.authorImageUrl" alt="Speaker headshot" />
 	</div>
