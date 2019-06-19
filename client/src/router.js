@@ -18,11 +18,11 @@ import About from '@/views/about';
 import News from '@/views/news';
 import ResetPassword from '@/views/reset-password';
 import RequestReset from '@/views/request-reset';
-import SubmitTalk from '@/views/submit-talk';
+//import SubmitTalk from '@/views/submit-talk';
 import TalkPage from '@/views/talk-page';
 import ScheduleListingPage from '@/views/schedule-listing-page';
 import WorkshopPage from '@/views/workshop-page';
-import Talks from '@/views/talks';
+//import Talks from '@/views/talks';
 import UserTalk from '@/views/user-talk';
 import Events from '@/views/events';
 import Schedule from '@/views/schedule';
@@ -95,6 +95,7 @@ const router = new Router({
 			name: 'schedule',
 			component: Schedule,
 		},
+		/*
 		{
 			path: '/submit-talk',
 			name: 'submit-talk',
@@ -104,6 +105,7 @@ const router = new Router({
 				takeItBackNowYall: true,
 			},
 		},
+		*/
 		{
 			path: '/talks/:id',
 			name: 'talk',
@@ -119,11 +121,13 @@ const router = new Router({
 			name: 'workshop',
 			component: WorkshopPage,
 		},
+		/*
 		{
 			path: '/talks',
 			name: 'talks',
 			component: Talks,
 		},
+		*/
 		{
 			path: '/edit-talk/:id',
 			name: 'edit-talk',
