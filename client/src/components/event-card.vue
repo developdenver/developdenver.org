@@ -17,6 +17,13 @@
 					>{{authorName}}</router-link>
 				</p>
 				<div class="description-html" v-html="descriptionHtml"></div>
+				<div v-if="!isLinkShowing" @click="showLink"><font-awesome-icon icon="share" /></div>
+				<p v-else><router-link :to="{
+					name: 'talk',
+					params: {
+						id: event.id,
+					},
+				}">Link to this talk</router-link></p>
 			</div>
 		</div>
   </section>
@@ -27,6 +34,11 @@ import Showdown from 'showdown';
 const showdown = new Showdown.Converter();
 
 export default {
+	data() {
+		return {
+			isLinkShowing: false
+		}
+	},
 	props: {
 		event: {
 			type: Object,
@@ -47,6 +59,11 @@ export default {
                 : '';
         },
 	},
+	methods: {
+		showLink() {
+			this.isLinkShowing = true;
+		},
+	}
 };
 </script>
 

@@ -206,8 +206,10 @@ const router = new Router({
 			component: RequestReset,
 		},
 	],
-	scrollBehavior() {
-		return { x: 0, y: 0 };
+	scrollBehavior(to) {
+		return to.hash
+			? { selector: to.hash }
+			: { x: 0, y: 0 };
 	},
 });
 

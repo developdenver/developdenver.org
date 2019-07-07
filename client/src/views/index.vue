@@ -3,7 +3,6 @@
 		<hero-banner/>
 		<section class="conference-info">
 			<feature-benefit />
-			<featured-talks />
 			<ticket-details />
 			<sponsor-list />
 			<venue-list />

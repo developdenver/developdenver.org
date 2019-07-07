@@ -5,7 +5,7 @@ import store from "./store";
 import hagrid from "./hagrid";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCoffee, faTicketAlt, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faCoffee, faTicketAlt, faBars, faTimes, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 
@@ -40,6 +40,7 @@ library.add(faCoffee);
 library.add(faTicketAlt);
 library.add(faBars);
 library.add(faTimes);
+library.add(faShare);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

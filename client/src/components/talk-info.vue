@@ -1,10 +1,7 @@
 <template>
 	<section class="talk" :id="`submission-${talk.id}`">
-	<div v-if="talk.properties.isFeatured" class="speaker-image">
-	  <img :src="talk.properties.authorImageUrl" alt="Speaker headshot" />
-	</div>
-	<div v-else class="image-icon">
-	  <img :src="iconSrc" alt="Icon" />
+	<div class="image-icon">
+	  <img :src="photoUrl" alt="Speaker headshot" />
 	</div>
 	<div class="talk-details">
 	  <h3>
@@ -26,10 +23,8 @@
 						}"
 		  >{{talk.properties.firstName}} {{talk.properties.lastName}}</router-link>
 		</p>
-		<details class="description-html">
-			<summary v-html="truncatedDescriptionHtml"></summary>
-			<div v-html="descriptionHtml"></div>
-		</details>
+		<div v-html="descriptionHtml"></div>
+		<p class="events-link"><router-link :to="{name: 'events'}">See our other great events!</router-link></p>
 	  </div>
 	</div>
 	<button v-if="isAttendee && !talk.properties.isFeatured" class="vote-button" @click="voteOrUnvote">
@@ -130,6 +125,10 @@ export default {
 		voteText() {
 			return this.talk.properties.voted ? 'unvote' : 'vote';
 		},
+		photoUrl() {
+			const fallback = "https://pbs.twimg.com/profile_images/1033908994870374400/2nUcOGak_400x400.jpg";
+			return this.talk.properties.profilePhotoUrl || fallback;
+		},
     },
 };
 </script>
@@ -143,14 +142,20 @@ export default {
 .talk {
 	@include grid;
 	margin-bottom: $baseline * 2;
+	margin-top: $baseline * 4;
+	a {
+		text-decoration: underline;
+		color: $accent-color;
+	}
 	.image-icon {
 		grid-row: 1;
-		grid-column: 3 / span 1;
+		grid-column: 3 / span 2;
 		@media (max-width: $small-breakpoint) {
 			display: none;
 		}
 		img {
-			width: 30%;
+			width: 100%;
+			filter: grayscale(100%);
 		}
 	}
 	.speaker-image {
@@ -169,13 +174,17 @@ export default {
 	}
 	.talk-details {
 		grid-row: 1;
-		grid-column: 5 / span 4;
+		grid-column: 5 / span 5;
+		padding-left: $baseline;
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
 			column-width: initial;
 		}
 		a {
 			text-decoration: underline;
+		}
+		.events-link {
+			margin-top: $baseline * 2;
 		}
 		.description-html {
 			margin-top: $baseline;

@@ -1,8 +1,7 @@
 <template>
   <section class="talk-page">
-    <div class="talk-info-wrapper">
-      <talk-info :talk="currentTalk"/>
-    </div>
+	  <countdown />
+	  <talk-info :talk="currentTalk" />
     <!--
 		<button
 			:class="{voted: voteType === 'Unvote'}"
@@ -17,13 +16,15 @@
 
 <script>
 import TalkInfo from '@/components/talk-info.vue';
+import Countdown from '@/components/count-down';
 
 export default {
     components: {
         TalkInfo,
+		Countdown,
     },
     mounted() {
-        this.$store.dispatch('talks/fetchTalks');
+        this.$store.dispatch('events/fetchEvents');
     },
     computed: {
         isLoading() {
@@ -50,7 +51,7 @@ export default {
                 : false;
         },
         currentTalk() {
-            return this.$store.getters['talks/getTalkById'](
+            return this.$store.getters['events/getEventById'](
                 Number(this.$route.params.id),
             );
         },
@@ -74,5 +75,18 @@ export default {
 @import '@/styles/_general.scss';
 @import '@/styles/_sizes.scss';
 @import '@/styles/_colors.scss';
+
+.talk-page {
+	@include grid;
+	.countdown {
+		@include grid-countdown;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
+	}
+	.talk {
+		@include grid-full-width;
+	}
+}
 
 </style>

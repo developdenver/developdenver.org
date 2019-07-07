@@ -6,6 +6,16 @@ export default {
 		list: [],
 	},
 	getters: {
+		getEventById: (state) => (id) => {
+			return state.list.find(event => event.id == id) || {
+				properties: {
+					title: "Loading...",
+					type: "",
+					talkPhotoUrl: "",
+					description: "Loading..."
+				},
+			};
+		},
 	},
 	mutations: {
 		updateEvents(state, events) {

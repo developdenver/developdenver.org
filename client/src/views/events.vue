@@ -93,6 +93,7 @@ export default {
 			@include grid-heading;
 			h3 {
 				@include primary-header-font;
+				font-size: 28px;
 			}
 		}
 		.event-card-list {
