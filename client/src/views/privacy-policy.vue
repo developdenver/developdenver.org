@@ -1,7 +1,7 @@
 <template>
     <section class="privacy-policy">
+		<h2>Develop Denver Privacy Policy</h2>
 		<div>
-			<h2>Develop Denver Privacy Policy</h2>
 			<p>This Privacy Policy governs the manner in which Develop Denver collects, uses, maintains and discloses information collected from users (each, a "User") of the https://developdenver.org website ("Site").</p>
 
 			<h3>Personal identification information</h3>
@@ -50,7 +50,7 @@
 		@include grid;
 		margin: $baseline * 8 0;
 		> div {
-			grid-column: 2 / span 6;
+			grid-column: 5 / span 5;
 			p {
 				margin-bottom: $baseline;
 			}

@@ -1,7 +1,7 @@
 <template>
     <section class="code-of-conduct">
+		<h2>Develop Denver Code Of Conduct</h2>
 		<div>
-			<h2>Develop Denver Code Of Conduct</h2>
 			<p>All attendees, speakers, sponsors and volunteers at our conference are required to agree with the following code of conduct. Organisers will enforce this code throughout the event. We are expecting cooperation from all participants to help ensuring a safe environment for everybody.</p>
 
 			<p><strong>tl;dr:</strong> Be excellent with each other</p>
@@ -33,7 +33,7 @@
 		@include grid;
 		margin: $baseline * 8 0;
 		> div {
-			grid-column: 2 / span 6;
+			grid-column: 5 / span 5;
 			p {
 				margin-bottom: $baseline;
 			}
