@@ -1,47 +1,32 @@
 <template>
-    <div class="event-card">
-		<div class="category-bar" :class="{[event.properties.category]: true}"></div>
-		<figure>
-			<router-link
-				:to="{
-					name: 'profile',
-					params: {id: event.properties.authorId}
-				}"
-				:class="{disabled: !event.properties.authorId}"
-			>
-				<img :src="photoUrl" :alt="authorName" />
-			</router-link>
-		</figure>
-		<div class="details">
-			<h4>
-				<router-link
-					:to="{
-						name: event.properties.isWorkshop ? 'workshop' : 'talk',
-						params: {id: event.id}
-					}"
-					:class="{disabled: !event.id}"
-				>
-					{{event.properties.title}}
-				</router-link>
-			</h4>
-			<p>{{authorName}}</p>
-			<p v-if="category" class="category">Category: {{category}}</p>
+	<section class="event-card" :id="`submission-${event.id}`">
+		<div class="speaker-image">
+			<img :src="photoUrl" alt="Speaker headshot" />
 		</div>
-    </div>
+		<div class="talk-details">
+			<h3>{{event.properties.title}}</h3>
+			<div class="description">
+				<p class="author">
+					<router-link
+						:to="{
+							name: 'profile',
+							params: {
+								id: event.properties.authorId,
+							},
+						}"
+					>{{authorName}}</router-link>
+				</p>
+				<div class="description-html" v-html="descriptionHtml"></div>
+			</div>
+		</div>
+  </section>
 </template>
 
 <script>
+import Showdown from 'showdown';
+const showdown = new Showdown.Converter();
+
 export default {
-	data() {
-		return {
-			categories: {
-				devops: "DevOps",
-				careers: "Careers",
-				development: "Development",
-				product: "Product",
-			}
-		};
-	},
 	props: {
 		event: {
 			type: Object,
@@ -56,27 +41,79 @@ export default {
 			const fallback = "https://pbs.twimg.com/profile_images/1033908994870374400/2nUcOGak_400x400.jpg";
 			return this.event.properties.profilePhotoUrl || fallback;
 		},
-		category() {
-			return this.categories[this.event.properties.category];
-		},
+        descriptionHtml() {
+            return this.event.properties.description
+                ? showdown.makeHtml(this.event.properties.description)
+                : '';
+        },
 	},
 };
 </script>
 
 <style lang="scss">
-    @import "@/styles/_sizes.scss";
-    @import "@/styles/_colors.scss";
-    @import "@/styles/_typography.scss";
+@import '@/styles/_typography.scss';
+@import '@/styles/_sizes.scss';
+@import '@/styles/_colors.scss';
+@import '@/styles/_general.scss';
 
-	.devops {
+.event-card {
+	@include grid;
+	margin-bottom: $baseline * 2;
+	.image-icon {
+		grid-row: 1;
+		grid-column: 3 / span 1;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
+		img {
+			width: 30%;
+		}
 	}
-	.careers {
+	.speaker-image {
+		grid-row: 1;
+		grid-column: 3 / span 2;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
+		img {
+			width: 100%;
+			filter: grayscale(100%);
+		}
 	}
-	.product {
+	h3 {
+		@include talk-title-font;
+		font-size: $baseline;
 	}
-	.development {
+	.talk-details {
+		margin-left: $baseline;
+		grid-row: 1;
+		grid-column: 5 / span 4;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+			column-width: initial;
+		}
+		a {
+			text-decoration: underline;
+		}
+		.description-html {
+			margin-top: $baseline;
+			ul, ol {
+				list-style: disc;
+				margin-bottom: $baseline;
+				li {
+					margin-left: $baseline;
+				}
+			}
+			strong {
+				font-weight: 700;
+			}
+			em {
+				font-style: italic;
+			}
+			h1, h2, h3, h4, h5, h6 {
+				font-size: 1rem;
+			}
+		}
 	}
-
-    .event-card {
-    }
+}
 </style>

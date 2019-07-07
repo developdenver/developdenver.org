@@ -7,12 +7,24 @@
       <li v-if="!isLoggedIn">
         <router-link :to="{name: 'login', query: redirectToPageQuery }">Login</router-link>
       </li>
+      <li v-if="isLoggedIn">
+        <router-link :to="{name: 'my-profile'}">My Profile</router-link>
+      </li>
+      <li>
+        <router-link :to="{name: 'events'}">Events</router-link>
+      </li>
       <li>
         <router-link :to="{name: 'tickets'}">Purchase Badges</router-link>
       </li>
       <li>
         <router-link :to="{name: 'news'}">News</router-link>
       </li>
+      <li>
+		<router-link :to="{name: 'community'}">Community</router-link>
+      </li>
+	  <li>
+		<a href="mailto:hello@developdenver.org">Contact</a>
+	  </li>
       <!-- <li>
                 <router-link :to="{name: 'schedule'}">Schedule</router-link>
             </li>
@@ -22,13 +34,10 @@
       <li v-if="isLoggedIn">
         <router-link :to="{name: 'submit-talk'}">Submit a Talk</router-link>
       </li>
-      <li>
-                <router-link :to="{name: 'community'}">Community</router-link>
-      </li>-->
-
-      <li v-if="isLoggedIn">
-        <router-link :to="{name: 'my-profile'}">My Profile</router-link>
-      </li>
+	  -->
+	  <li>
+	    <router-link :to="{name: 'sponsorship'}">Sponsorship</router-link>
+	  </li>
       <li v-if="isLoggedIn">
         <a href="#" @click.prevent="logout">Logout {{userFirstName}}</a>
       </li>
@@ -72,9 +81,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/styles/_typography.scss';
-@import '@/styles/_sizes.scss';
-
 .primary-navigation {
 }
 </style>

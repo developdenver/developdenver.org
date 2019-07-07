@@ -1,5 +1,12 @@
 export default [
 	{
+		title: '2019 Develop Denver events published!',
+		author: 'DVLP Board',
+		date: '7/1/2019',
+		content:
+			'After hundreds of submissions and thousands of votes, we\'ve selected the [events](/events) that are going to make this the best Develop Denver ever. We\'re still confirming the last few, but we\'re so excited to share what we\'ve got so far we couldn\'t wait. Stay tuned for the schedule, and we\'ll see you in August! ',
+	},
+	{
 		title: 'Call for proposals now open',
 		author: 'DVLP Board',
 		date: '5/1/2019',

@@ -1,16 +1,19 @@
 <template>
 	<section class="community">
-		<h2>Our Community</h2>
+		<countdown />
+		<h2>Community</h2>
 		<profile-card-list :profiles="shuffledProfiles" />
 	</section>
 </template>
 
 <script>
 import ProfileCardList from "@/components/profile-card-list.vue";
+import Countdown from '../components/count-down.vue';
 
 export default {
 	components: {
 		ProfileCardList,
+		Countdown,
 	},
 	created() {
 		return this.$store.dispatch("profiles/fetchProfiles");
@@ -52,9 +55,20 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/styles/_general.scss";
 @import "@/styles/_typography.scss";
 @import "@/styles/_sizes.scss";
 
 .community {
+	@include grid;
+	.profile-card-list {
+		grid-column: 3 / span 8;
+	}
+	.countdown {
+		@include grid-countdown;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
+	}
 }
 </style>

@@ -23,8 +23,25 @@ export default {
 </script>
 
 <style lang="scss">
-    @import "@/styles/_typography.scss";
-
+	@import "@/styles/_general.scss";
     .profile-card-list {
+		@include grid;
+		display: grid;
+		column-gap: $gutter;
+		grid-template-columns: repeat(3, 1fr);
+		grid-auto-rows: auto;
+		padding-top: $baseline * 10;
+		li {
+			margin-bottom: $baseline * 5;
+			&:nth-child(3n + 1){
+				margin-top: $baseline * -8;
+			}
+			&:nth-child(3n + 2){
+				margin-top: $baseline * -1;
+			}
+			&:nth-child(3n + 3){
+				margin-top: $baseline * -10;
+			}
+		}
     }
 </style>

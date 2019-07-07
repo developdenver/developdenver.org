@@ -9,20 +9,30 @@
 					<li v-if="!isLoggedIn">
 						<router-link :to="{name: 'login', query: redirectToPageQuery}">Login</router-link>
 					</li>
+					<li v-if="isLoggedIn">
+					  <router-link :to="{name: 'my-profile'}">My Profile</router-link>
+					</li>
+					<li>
+						<router-link :to="{name: 'events'}">Events</router-link>
+					</li>
+					<li>
+						<router-link :to="{name: 'tickets'}">Purchase Badges</router-link>
+					</li>
 					<li>
 						<router-link :to="{name: 'news'}">News</router-link>
 					</li>
-					<li><a href="mailto:hello@developdenver.org">Contact</a></li>
-					<li><router-link :to="{name: 'tickets'}">Buy Tickets</router-link></li>
+					<li>
+					  <router-link :to="{name: 'community'}">Community</router-link>
+					</li>
+					<li>
+						<a href="mailto:hello@developdenver.org">Contact</a>
+					</li>
 					<!--
 					<li><router-link :to="{name: 'talks'}">Submissions</router-link></li>
 					<li v-if="isLoggedIn">
 					  <router-link :to="{name: 'submit-talk'}">Submit a Talk</router-link>
 					</li>
 					-->
-					<li v-if="isLoggedIn">
-					  <router-link :to="{name: 'my-profile'}">My Profile</router-link>
-					</li>
 					<li>
 					  <router-link :to="{name: 'sponsorship'}">Sponsorship</router-link>
 					</li>

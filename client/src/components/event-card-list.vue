@@ -23,8 +23,4 @@ export default {
 </script>
 
 <style lang="scss">
-    @import "@/styles/_typography.scss";
-
-    .event-card-list {
-    }
 </style>
