@@ -34,7 +34,7 @@ export default {
                     sku: 'skuStudent',
                     label: '$99 - Student',
                     description:
-                        'I’m currently a student and I need financial help attending the conference. Note: If this is still too expensive please contact us via email at hello@developdenver.com and explain your situation.',
+                        'I’m currently a student and I need financial help attending the conference. Note: If this is still too expensive please contact us via email at hello@developdenver.com and ask about volunteer opportunities.',
                 },
             ],
         };
@@ -69,7 +69,7 @@ export default {
 		@include grid-full-width;;
 	}
 	.ticket-details, .venues {
-		margin-bottom: $baseline * 8;
+		margin-bottom: $baseline * 4;
 		@media (max-width: $small-breakpoint) {
 			margin-bottom: $baseline * 2;
 		}

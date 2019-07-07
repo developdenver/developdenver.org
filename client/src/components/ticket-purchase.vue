@@ -32,7 +32,7 @@
 				/>
 		</div>
 
-		<div v-if="currentProfile.id && isDiscountCode">
+		<div class="discount-code" v-if="currentProfile.id && isDiscountCode">
 			<label for="discount-code">Discount Code</label>
 			<input required type="text" id="discount-code" name="discount-code" v-model="discountCode">
 		</div>
@@ -219,7 +219,7 @@ export default {
 			}
 		}
 	}
-	.levels, .ticket-quantity, .invitees, .credit-card-payment {
+	.levels, .ticket-quantity, .invitees, .credit-card-payment, .discount-code {
 		@include grid-form;
 		margin-bottom: $baseline;
 		input {

@@ -27,9 +27,11 @@
 		<p class="events-link"><router-link :to="{name: 'events'}">See our other great events!</router-link></p>
 	  </div>
 	</div>
+	<!--
 	<button v-if="isAttendee && !talk.properties.isFeatured" class="vote-button" @click="voteOrUnvote">
 		{{ voteText }}
 	</button>
+	-->
   </section>
 </template>
 

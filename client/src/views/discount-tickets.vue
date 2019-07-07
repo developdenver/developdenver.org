@@ -68,7 +68,7 @@ export default {
 		@include grid-full-width;;
 	}
 	.ticket-details, .venues {
-		margin-bottom: $baseline * 8;
+		margin-bottom: $baseline * 4;
 		@media (max-width: $small-breakpoint) {
 			margin-bottom: $baseline * 2;
 		}
