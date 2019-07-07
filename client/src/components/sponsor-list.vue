@@ -20,22 +20,30 @@
 </template>
 
 <script>
+import zeppelinLogo from "@/assets/logos/zeppelin_station_logo.png"
+
 export default {
     data() {
         return {
             premiumSponsor: null,
-            siteSponsors: [
-                {
+            siteSponsors: [{
+					name: "Flatiron School",
+					imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/FS_wiki.png/250px-FS_wiki.png",
+					link: "https://flatironschool.com/",
+			},{
+					name: "Zeppelin Station",
+					imageUrl: zeppelinLogo,
+					link: "https://zeppelinstation.com/",
+			},{
 					name: "By The Pixel",
 					imageUrl: "https://s3-media1.fl.yelpcdn.com/bphoto/efFNBfcJaL2uXmtlWcVeVA/ls.jpg",
 					link: "https://bythepixel.com/",
-			}, {
+			},{
                     name: 'Devetry',
                     imageUrl:
                         'https://devetry.com/wp-content/uploads/2017/10/logo-opt.png',
                     link: 'https://devetry.com/',
-                },
-            ],
+			}],
         };
     },
 };
@@ -59,9 +67,10 @@ export default {
 		}
 		img {
 			max-width: 200px;
-			// filter: grayscale(100%);
+			filter: grayscale(100%);
 		}
 		li {
+			margin-right: $baseline;
 			a {
 				height: 100%;
 				display: flex;
