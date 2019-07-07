@@ -18,7 +18,7 @@ In this talk we will discuss how WCAG can be applied to mobile web and native ap
 		firstName: 'Nick',
 		lastName: 'Anderson',
 		authorId: 969,
-		authorImageUrl: "http://nickanderson.rocks/assets/images/about.jpg",
+		authorImageUrl: "https://develop-denver-user-images.s3-us-west-2.amazonaws.com/nick-anderson.jpg",
 		type: 'talk',
 		icon: 'happy',
 		description: `If you were working a VR food truck, how would you let the simulation know you were ready to leave? Try to walk out the door? Look for a “exit” button? In Job Simulator, you take a bite out of a burrito labeled “quit” - twice to confirm your choice. It’s just one of many ways designers are experimenting with UI design in VR.

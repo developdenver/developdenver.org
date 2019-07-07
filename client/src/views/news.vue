@@ -48,8 +48,6 @@ export default {
 	ul {
 		@include grid-form;
 	}
-	h2 {
-	}
 	.countdown {
 		@include grid-countdown;
 		@media (max-width: $small-breakpoint) {

@@ -22,20 +22,6 @@ export default {
 			required: true,
 		},
 	},
-	data(){
-		return {
-			profile: {
-				id: 1,
-				properties: {
-					firstName: "Kyle",
-					lastName: "Coberly",
-					position: "Teacher",
-					employer: "Flatiron School",
-					profilePhotoUrl: "https://pbs.twimg.com/profile_images/1079062407685693440/pbYecn7U.jpg",
-				}
-			}
-		}
-	}
 };
 </script>
 
@@ -45,9 +31,16 @@ export default {
     @import "@/styles/_typography.scss";
 
     .profile-card {
-		img {
-			max-width: 100%;
-			filter: grayscale(100%);
+		.image-wrapper {
+			max-height: 400px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			img {
+				width: 100%;
+				filter: grayscale(100%);
+			}
 		}
 		.name-plate {
 			@include talk-title-font;

@@ -22,7 +22,7 @@ export default {
 		shuffledProfiles() {
 			const profilesWithPhotos = this.$store.state.profiles.list
 				.filter(profile => this.isValidUrl(profile.properties.profilePhotoUrl))
-				.filter(profile => profile.properties.ticketLevel);
+				.filter(profile => profile.properties.role);
 			return this.shuffle(profilesWithPhotos);
 		},
 	},
@@ -61,8 +61,12 @@ export default {
 
 .community {
 	@include grid;
+	padding: $baseline;
 	.profile-card-list {
 		grid-column: 3 / span 8;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+		}
 	}
 	.countdown {
 		@include grid-countdown;
