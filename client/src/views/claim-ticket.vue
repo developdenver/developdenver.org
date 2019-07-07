@@ -37,5 +37,7 @@ export default {
 
 <style lang="scss">
 .claim-ticket {
+  margin-left: 100px;
+  margin-top: 100px;
 }
 </style>
