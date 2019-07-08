@@ -21,6 +21,7 @@
 
 <script>
 import zeppelinLogo from "@/assets/logos/zeppelin_station_logo.png"
+import denverFlatironLogo from '@/assets/logos/flatiron_Gray_Logo_white.png';
 
 export default {
     data() {
@@ -28,7 +29,7 @@ export default {
             premiumSponsor: null,
             siteSponsors: [{
 					name: "Flatiron School",
-					imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/FS_wiki.png/250px-FS_wiki.png",
+					imageUrl: denverFlatironLogo,
 					link: "https://flatironschool.com/",
 			},{
 					name: "Zeppelin Station",
