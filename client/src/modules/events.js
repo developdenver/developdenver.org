@@ -1,6 +1,9 @@
 import Event from "../models/event";
 import updateInList from "../utilities/updateInList";
 
+import workshops from "../data/workshops"
+import performances from "../data/performances"
+
 export default {
 	namespaced: true,
 	state: {
@@ -39,6 +42,7 @@ export default {
 				dispatch("services/loading/pushLoading", {}, { root: true });
 				let events = await Event.fetchAll("event");
 				events = events.map(event => new Event(event));
+				events = [...events, ...workshops, ...performances]
 				commit("updateEvents", events);
 				dispatch("services/loading/popLoading", {}, { root: true });
 			}

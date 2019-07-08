@@ -3,7 +3,7 @@ export default [{
 	properties: {
 		category: "careers",
 		title: "Suck Less at Interviewing",
-		profilePhotoUrl: "https://kylecoberly.com/images/headshot.jpg",
+		profilePhotoUrl: "https://pbs.twimg.com/profile_images/1079062407685693440/pbYecn7U.jpg",
 		talkPhotoUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png",
 		firstName: "Kyle",
 		lastName: "Coberly",

@@ -1,11 +1,17 @@
 export default [{
+	id: "sprint-ux-podcast",
 	properties: {
 		category: "product",
 		title: "Sprint UX Podcast",
 		profilePhotoUrl: "https://static1.squarespace.com/static/584dd01dbebafb9fcae5e2f2/t/584f27cc6b8f5b32b20ebc1e/1481582549510/?format=500w",
 		firstName: "Michael Dusing, Kyle Coberly, Emily McCammon",
 		lastName: "",
+		type: "performance",
+		description: `
+Michael Dusing, Kyle Coberly and Emily McCammon sit down for Sprint, a UX podcast. Listen as they drink and converse their way through UX, design and tech news.
+		`
 	}
+	/*
 }, {
 	properties: {
 		category: "product",
@@ -14,12 +20,18 @@ export default [{
 		firstName: "House of Pod",
 		lastName: "",
 	}
+	*/
 }, {
+	id: "coding-garden",
 	properties: {
 		category: "development",
 		title: "Coding Garden",
 		profilePhotoUrl: "https://i.ytimg.com/vi/moLu596PvHU/hqdefault.jpg",
 		firstName: "CJ",
 		lastName: "Reynolds",
+		type: "performance",
+		description: `
+Grow your coding skills one day at a time with tutorials, walk throughs and live coding streams about Full Stack Web Development and other related tech.
+		`
 	}
 }];

@@ -52,7 +52,7 @@ export default {
         },
         currentTalk() {
             return this.$store.getters['events/getEventById'](
-                Number(this.$route.params.id),
+                this.$route.params.id,
             );
         },
     },

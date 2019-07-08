@@ -10,14 +10,18 @@
 				:events="category.data"
 			/>
 		</section>
+		<section class="event-categories">
+			<header>
+				<h3>PLUS!</h3>
+			</header>
+			<p class="extra-events">Free food and alcohol both days, opening keynote from Guild Education founder Rachel Carlson, Dev Trivia, opening night party at The Source, the 8th annual Ballmer Peaker Hackathon, closing night party on the rooftop of Industry, and more!</p>
+		</section>
 	</section>
 </template>
 
 <script>
 import EventCardList from "@/components/event-card-list";
 import SponsorList from "@/components/sponsor-list";
-import workshops from "@/data/workshops";
-import performances from "@/data/performances";
 import Countdown from "@/components/count-down.vue";
 import {shuffle} from "@/utilities/shuffle";
 
@@ -41,14 +45,12 @@ export default {
 			},{
 				title: "Lightning Talks",
 				data: this.lightningTalks,
-				/*
 			},{
 				title: "Workshops",
 				data: this.workshops,
 			},{
 				title: "Performances",
-				data: this.workshops,
-				*/
+				data: this.performances,
 			}]
 		},
 		events() {
@@ -64,10 +66,10 @@ export default {
 			return shuffle(this.events.filter(event => event.properties.type === "lightning"));
 		},
 		workshops() {
-			return workshops;
+			return shuffle(this.events.filter(event => event.properties.type === "workshop"));
 		},
 		performances() {
-			return performances;
+			return shuffle(this.events.filter(event => event.properties.type === "performance"));
 		},
 	},
 };
@@ -98,6 +100,9 @@ export default {
 		}
 		.event-card-list {
 			@include grid-full-width;
+		}
+		.extra-events {
+			@include grid-heading;
 		}
 	}
 	a {
