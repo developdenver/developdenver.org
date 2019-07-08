@@ -1,7 +1,6 @@
 <template>
   <section class="profile">
 	<countdown />
-    <!--
 		<section v-if="talks.length">
 			<h2>My Submitted Talks</h2>
 			<div v-for="talk in talks" :key="talk.id">
@@ -12,7 +11,6 @@
 				</p>
 			</div>
 		</section>
-    -->
     <section class="ticket-management" v-if="tickets.length">
       <router-link :to="{ name: 'my-tickets' }">Manage Tickets</router-link>
     </section>
@@ -49,7 +47,7 @@ export default {
         talks() {
             return this.$store.getters['talks/getTalksByUserId'](
                 this.profile.id,
-            );
+			).filter(talk => talk.properties.isAccepted);
         },
     },
     methods: {

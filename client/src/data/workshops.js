@@ -25,7 +25,7 @@ Come prepared to quickly improve your answers and walk out of the room ready for
 	properties: {
 		category: "careers",
 		title: "Suck Less at Networking",
-		profilePhotoUrl: "https://pbs.twimg.com/profile_images/1033908994870374400/2nUcOGak_400x400.jpg",
+		profilePhotoUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png",
 		talkPhotoUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png",
 		firstName: "Develop",
 		lastName: "Denver",
@@ -38,30 +38,25 @@ During this workshop, we’ll help you craft a plan for your next networking eve
 		`,
 	}
 }, {
-	id: "testing-web-applications",
+	id: "writing-sql",
 	properties: {
 		category: "development",
-		title: "Testing Web Applications",
-		profilePhotoUrl: "https://secure.meetupstatic.com/photos/member/d/2/7/a/highres_272993882.jpeg",
+		title: "Writing SQL",
+		profilePhotoUrl: "https://media.licdn.com/dms/image/C4E03AQETLfmXUMdEaQ/profile-displayphoto-shrink_800_800/0?e=1568246400&v=beta&t=FdQU0zeCRqK8U_wCKdHzyqKynnrrcJEAiv3257KJCww",
 		talkPhotoUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png",
-		firstName: "Michelle",
-		lastName: "Bergquist",
+		firstName: "Elyse",
+		lastName: "Coberly",
 		isWorkshop: true,
 		type: "workshop",
 		description: `
-Testing web applications doesn't have to be painful. Join us for this workshop to get some hands-on experience with Cypress, an end-to-end framework that tests any app that has a user interface.
-
-* By the end of this workshop, participants will be able to:
-* Install and configure Cypress tests from scratch
-* Write at least 3 Cypress assertions
-* Stretch: Test user input with Cypress actions
+SQL is a core skill for working with data of any size or complexity, but it can be daunting to get started with and it's easy to rest on the basics once you have them. In this workshop targeted at people with multiple skill levels, you'll walk away with some new SQL skills whether you've never written a query before or are just a little rusty on your PL/SQL.
 		`,
 	}
 }, {
-	id: "getting-started-with-devops",
+	id: "cultivating-continuous-learning",
 	properties: {
-		category: "devops",
-		title: "Getting Started with DevOps",
+		category: "careers",
+		title: "Cultivating Continuous Learning in Your Software Team",
 		profilePhotoUrl: "http://res.cloudinary.com/kimschlesinger/image/upload/c_scale,w_2960/v1524009870/kimschlesinger-headshot.jpg",
 		talkPhotoUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png",
 		firstName: "Kim",
@@ -69,16 +64,11 @@ Testing web applications doesn't have to be painful. Join us for this workshop t
 		isWorkshop: true,
 		type: "workshop",
 		description: `
-Continuous Integration and Continuous Deployment is essential for companies that want their developers to be able to deploy code quickly, efficiently, and with minimal application downtime.
+In the best engineering organizations, continuous learning is part of the software development and deployment cycle. This is achieved by team leads who cultivate a safe learning environment, and those who use teaching techniques to speed up the learning of their junior and mid-level engineers.
 
-In this workshop, you will get a taste of what it takes to setup a CI/CD pipeline using CircleCI and Heroku. For the workshop, we will provide you with a working application with a functional test suite.
+In this interactive workshop, you’ll learn and practice 3 high-impact teaching techniques from Doug Lemov’s manual Practice Perfect. You’ll leave the workshop ready to coach your team and mentor with confidence, using the techniques Lock It In, Analyze the Game, Replace Your Purpose with an Objective.
 
-By the end of this workshop, participants will be able to:
-
-* Manually run the application test suite
-* Manually deploy the application to Heroku
-* Configure CircleCI to run your test suite
-* Configure CircleCI to deploy your app to Heroku if all tests are passing.
+This workshop is designed for anyone who wants to help foster the development and growth of other engineers. Executives who are thinking about how to build and grow their software teams, Senior Engineers who want to coach and teach engineers with confidence and junior engineers who want to get better at coaching themselves and their peers.
 		`,
 	}
 }];

@@ -111,6 +111,7 @@ export default {
 @import '@/styles/_typography.scss';
 
 .edit-talk {
+	@include grid-form;
 	input, textarea, select, button {
 		width: 100%;
 		margin-bottom: $baseline;

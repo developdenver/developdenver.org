@@ -1,5 +1,7 @@
 <template>
     <section class="user-talk">
+		<countdown />
+		<h2>Edit Talk</h2>
         <edit-talk
 			buttonLabel="Update Talk"
 			:talk="talk"
@@ -11,12 +13,14 @@
 
 <script>
 import EditTalk from "@/components/edit-talk.vue";
+import Countdown from '../components/count-down.vue';
 
 export default {
 	name: 'UserTalk',
 	hagridActions: ['talks/fetchTalks'],
 	components: {
 		EditTalk,
+		Countdown,
 	},
 	computed: {
 		talk() {
@@ -38,9 +42,15 @@ export default {
 
 <style lang="scss">
 @import "@/styles/_sizes.scss";
+@import "@/styles/_general.scss";
 
 .user-talk {
-	padding-left: 100px;
-	padding-top: 100px;
+	@include grid;
+	.countdown {
+		@include grid-countdown;
+		@media (max-width: $small-breakpoint) {
+			display: none;
+		}
+	}
 }
 </style>
