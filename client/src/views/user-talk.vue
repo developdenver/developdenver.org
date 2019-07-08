@@ -30,6 +30,7 @@ export default {
 	methods: {
 		async updateTalk(talk) {
 			const success = await this.$store.dispatch("talks/updateTalk", talk);
+			console.log('updateTalk returned', success);
 			if (success) {
 				this.$router.push({ name: "talk", params: { id: talk.properties.id } });
 			} else {

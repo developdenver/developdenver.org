@@ -21,7 +21,8 @@ function read(request, response, next) {
 }
 
 function update(request, response, next) {
-  Talk.update(request.params.id, request.body)
+  const { description, title } = request.body;
+  Talk.update(request.params.id, { description, title })
     .then(talk => {
       response.status(200).json({
         data: talk

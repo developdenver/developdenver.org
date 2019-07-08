@@ -31,19 +31,15 @@ export default {
 		setVotes(state, votes) {
 			state.votes = votes;
 		},
-		UPDATE_VOTE(state, { id, voted }) {
+		UPDATE_TALK(state, { id, changes }) {
 			updateInList(state.list, (t) => t.id === id, t => {
-				t.properties.voted = voted;
+				t.properties = { ...t.properties, ...changes };
 				// FUUUCK this pattern!!
 				return new Talk(t.serialize());
 			});
 		},
-		VOTING_ERROR(state, { id, error }) {
-			updateInList(state.list, (t) => t.id === id, t => {
-				t.properties.error = error;
-				// have I mentioned that I find this model shit distasteful?
-				return new Talk(t.serialize());
-			});
+		INSERT_TALK(state, talk) {
+			state.list = [...state.list, new Talk(talk.serialize())];
 		},
 	},
 	actions: {
@@ -52,6 +48,7 @@ export default {
 			let success = true;
 			try {
 				success = await talk.create(rootState.services.user.token);
+				commit('INSERT_TALK', talk);
 			} catch (error) {
 				success = false;
 			} finally {
@@ -64,8 +61,13 @@ export default {
 			let success = true;
 			try {
 				success = await talk.update(rootState.services.user.token);
+				commit('UPDATE_TALK', { id: talk.id, changes: talk.properties });
+				// grumble grumble
+				await dispatch('events/updatedEvent', { id: talk.id, changes: talk.properties }, { root: true });
 			} catch (error) {
+				console.error(error);
 				success = false;
+				commit('UPDATE_TALK', { id: talk.id, changes: { error } });
 			} finally {
 				dispatch("services/loading/popLoading", {}, { root: true });
 			}
@@ -82,15 +84,15 @@ export default {
 		vote({ dispatch, rootState, commit }, currentTalk) {
 			return withLoading(dispatch, () =>
 				currentTalk.vote(rootState.services.user.token)
-					.then(() => commit('UPDATE_VOTE', { id: currentTalk.id, voted: true }))
-					.catch((error) => commit('VOTING_ERROR', { id: currentTalk.id, error }))
+					.then(() => commit('UPDATE_VOTE', { id: currentTalk.id, changes: { voted: true } }))
+					.catch((error) => commit('VOTING_ERROR', { id: currentTalk.id, changes: { error } }))
 			);
 		},
 		unvote({ dispatch, rootState, commit }, currentTalk) {
 			return withLoading(dispatch, () =>
 				currentTalk.unvote(rootState.services.user.token)
-					.then(() => commit('UPDATE_VOTE', { id: currentTalk.id, voted: false }))
-					.catch((error) => commit('VOTING_ERROR', { id: currentTalk.id, error }))
+					.then(() => commit('UPDATE_VOTE', { id: currentTalk.id, changes: { voted: false } }))
+					.catch((error) => commit('VOTING_ERROR', { id: currentTalk.id, changes: { error } }))
 			);
 		},
 	},

@@ -85,7 +85,6 @@ describe('/profiles', () => {
     });
     describe('DELETE', () => {
         before(async () => {
-            debugger;
             try {
                 this.firstListResponse = await request(app).get('/profiles');
                 this.deleteResponse = await request(app)

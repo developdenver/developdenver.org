@@ -1,4 +1,5 @@
 import Event from "../models/event";
+import updateInList from "../utilities/updateInList";
 
 export default {
 	namespaced: true,
@@ -23,7 +24,14 @@ export default {
 		},
 		setVotes(state, votes) {
 			state.votes = votes;
-		}
+		},
+		UPDATE_EVENT(state, { id, changes }) {
+			updateInList(state.list, e => e.id === id, t => {
+				t.properties = { ...t.properties, ...changes };
+				// FUUUCK this pattern!!
+				return new Event(t.serialize());
+			});
+		},
 	},
 	actions: {
 		async fetchEvents({ state, commit, dispatch }) {
@@ -34,6 +42,9 @@ export default {
 				commit("updateEvents", events);
 				dispatch("services/loading/popLoading", {}, { root: true });
 			}
+		},
+		updatedEvent({ commit }, { id, changes }) {
+			commit('UPDATE_EVENT', { id, changes });
 		},
 	},
 };

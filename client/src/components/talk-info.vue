@@ -121,7 +121,7 @@ export default {
         },
         isCurrentUserTalk() {
             return this.currentUser
-                ? +this.talk.properties.userId === +this.currentUser.id
+                ? +this.talk.properties.authorId === +this.currentUser.id
                 : false;
 		},
 		voteText() {
