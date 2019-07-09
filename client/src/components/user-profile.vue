@@ -13,17 +13,17 @@
             <ul class="social">
                 <li v-if="profile.properties.githubUsername" class="github">
                     <a :href="githubUrl" target="_BLANK">
-						<font-awesome-icon :icon="['fab', 'github']" />
+						<img :src="githubIcon" alt="GitHub" />
 					</a>
                 </li>
                 <li v-if="profile.properties.linkedinUsername" class="linkedin">
                     <a :href="linkedinUrl" target="_BLANK">
-						<font-awesome-icon :icon="['fab', 'linkedin']" />
+						<img :src="linkedinIcon" alt="LinkedIn" />
 					</a>
                 </li>
                 <li v-if="profile.properties.twitterUsername" class="twitter">
                     <a :href="twitterUrl" target="_BLANK">
-						<font-awesome-icon :icon="['fab', 'twitter']" />
+						<img :src="twitterIcon" alt="Twitter" />
 					</a>
                 </li>
             </ul>
@@ -32,8 +32,14 @@
 </template>
 
 <script>
+import linkedinIcon from "@/assets/icons/linkedin.png"
+import githubIcon from "@/assets/icons/github.png"
+import twitterIcon from "@/assets/icons/twitter_white.svg"
 
 export default {
+	data() {
+		return {linkedinIcon, githubIcon, twitterIcon}
+	},
 	props: {
 		profile: {
 			type: Object,

@@ -17,7 +17,9 @@
 					>{{authorName}}</router-link>
 				</p>
 				<div class="description-html" v-html="descriptionHtml"></div>
-				<div v-if="!isLinkShowing" @click="showLink"><font-awesome-icon icon="share" /></div>
+				<div v-if="!isLinkShowing" @click="showLink">
+					<img :src="shareIcon" alt="Share" />
+				</div>
 				<p v-else><router-link :to="{
 					name: 'talk',
 					params: {
@@ -32,11 +34,13 @@
 <script>
 import Showdown from 'showdown';
 const showdown = new Showdown.Converter();
+import shareIcon from "@/assets/icons/share.png";
 
 export default {
 	data() {
 		return {
-			isLinkShowing: false
+			isLinkShowing: false,
+			shareIcon,
 		}
 	},
 	props: {
