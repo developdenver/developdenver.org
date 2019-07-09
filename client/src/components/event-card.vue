@@ -17,7 +17,7 @@
 					>{{authorName}}</router-link>
 				</p>
 				<div class="description-html" v-html="descriptionHtml"></div>
-				<div v-if="!isLinkShowing" @click="showLink">
+				<div class="share-icon" v-if="!isLinkShowing" @click="showLink">
 					<img :src="shareIcon" alt="Share" />
 				</div>
 				<p v-else><router-link :to="{
@@ -115,6 +115,12 @@ export default {
 		}
 		a {
 			text-decoration: underline;
+		}
+		.share-icon {
+			img {
+				width: 32px;
+				cursor: pointer;
+			}
 		}
 		.description-html {
 			margin-top: $baseline;
