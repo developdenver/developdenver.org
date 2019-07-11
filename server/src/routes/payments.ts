@@ -28,6 +28,9 @@ async function purchaseTicket({
     if (sku === 'skuEarly' && new Date() > closeOfEarlyPricing) {
         throw new ClientError('Too late for early pricing');
     }
+    if (sku === 'skuDiscount' &&  discount_code !== 'dvlpdnvr') {
+        throw new ClientError('Invalid discount code');
+    }
     const orderParams = {
         currency: 'usd',
         items: [{

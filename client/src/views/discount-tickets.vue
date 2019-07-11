@@ -31,7 +31,7 @@ export default {
         return {
             levels: [
                 {
-                    level: 'discount',
+                    sku: 'skuDiscount',
                     label: '$199 - Discount',
                     description: 'Thank you for being a part of our community!',
                 },
