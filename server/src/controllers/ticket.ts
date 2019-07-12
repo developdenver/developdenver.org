@@ -109,14 +109,17 @@ export function sendConfirmationEmail(email, unclaimedTickets) {
     const content = `
 ## Success!
 
-Hi-five! You've purchased your ticket to DVLP DNVR. We will see you on Aug 15th and 16th. Before then make sure to come back to the site and log in. We'll email you when Call for Proposals start. After all call to proposals are in, all ticket holders will have time to submit their votes. These votes help determine our schedule for the year.
+Hi-five! You just got your ticket for Develop Denver 2017! We are super excited for this year and cannot wait to see you on August 15th and 16th.
 
-We'll keep you up to date. Thank you for contributing to the Denver tech community! It's going to be awesome.
+Make sure you complete your profile and upload a photo so others can know who you are and connect!
 
 If you purchased more than one ticket, you can manage your invitations at ${
-        process.env.FRONTEND_URL
-    }/profiles/me/conference-badges
-    `;
+    process.env.FRONTEND_URL
+}/profiles/me/conference-badges
+
+See you in August!
+Develop Denver
+`;
     return send(email, "You're Going to DVLP DNVR!", content);
 }
 
