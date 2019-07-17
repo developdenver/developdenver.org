@@ -63,7 +63,8 @@ export default {
 			return `https://www.github.com/${this.profile.properties.githubUsername}`;
 		},
 		linkedinUrl() {
-			return `https://www.linkedin.com/in/${this.profile.properties.linkedinUsername}`;
+			return /^https?:/.test(this.profile.properties.linkedinUsername) ? this.profile.properties.linkedinUsername :
+			`https://www.linkedin.com/in/${this.profile.properties.linkedinUsername}`;
 		},
 		websiteWithProtocol() {
 			return /^https?:\/\//.test(this.profile.properties.website)
