@@ -109,7 +109,7 @@ export function sendConfirmationEmail(email, unclaimedTickets) {
     const content = `
 ## Success!
 
-Hi-five! You just got your ticket for Develop Denver 2017! We are super excited for this year and cannot wait to see you on August 15th and 16th.
+Hi-five! You just got your ticket for Develop Denver 2019! We are super excited for this year and cannot wait to see you on August 15th and 16th.
 
 Make sure you complete your profile and upload a photo so others can know who you are and connect!
 
