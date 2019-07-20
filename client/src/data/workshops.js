@@ -25,7 +25,7 @@ Come prepared to quickly improve your answers and walk out of the room ready for
 	properties: {
 		category: "careers",
 		title: "Suck Less at Networking",
-		profilePhotoUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png",
+		profilePhotoUrl: "https://develop-denver-user-images.s3.us-west-2.amazonaws.com/1562588662175_enquireheadshotsmiling.jpg",
 		talkPhotoUrl: "https://s3-us-west-2.amazonaws.com/develop-denver-user-images/dvlp_workshops.png",
 		firstName: "Develop",
 		lastName: "Denver",

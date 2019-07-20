@@ -34,4 +34,19 @@ Michael Dusing, Kyle Coberly and Emily McCammon sit down for Sprint, a UX podcas
 Grow your coding skills one day at a time with tutorials, walk throughs and live coding streams about Full Stack Web Development and other related tech.
 		`
 	}
-}];
+},
+{
+	id: 'brooks-builds',
+	properties: {
+		category: 'development',
+		title: 'Brooks Builds',
+		profilePhotoUrl: 'https://develop-denver-user-images.s3.us-west-2.amazonaws.com/1537983199386_Photo%20on%209-26-18%20at%2011.33%20AM.jpg',
+		firstName: 'Brooks',
+		lastName: 'Patton',
+		type: 'performance',
+		description: `
+Brooks Builds is a stream about learning through doing and teaching. Let’s learn and improve ourselves together.
+		`
+	},
+}
+];
