@@ -11,7 +11,9 @@
 						:to="{ name: 'profile', params: { id: 1051 } }"
 					>Angela Daniels</router-link>
 					and
-					John Lui
+					<router-link
+						:to="{ name: 'profile', params: { id: 1160 } }"
+					>Jon Liu</router-link>
 				</p>
 				<p class="author" v-else>
 					<router-link
