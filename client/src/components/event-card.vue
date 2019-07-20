@@ -6,7 +6,14 @@
 		<div class="talk-details">
 			<h3>{{event.properties.title}}</h3>
 			<div class="description">
-				<p class="author">
+				<p class="author" v-if="event.properties.id == 135">
+					<router-link
+						:to="{ name: 'profile', params: { id: 1051 } }"
+					>Angela Daniels</router-link>
+					and
+					John Lui
+				</p>
+				<p class="author" v-else>
 					<router-link
 						:to="{
 							name: 'profile',
