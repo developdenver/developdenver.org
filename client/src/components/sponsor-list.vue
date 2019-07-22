@@ -83,6 +83,12 @@ export default {
 				display: flex;
 				align-items: center;
 			}
+			a[href="https://relentful.com"] {
+				height: 200px;
+				img {
+					filter: invert(100%) grayscale(100%);
+				}
+			}
 		}
 	}
 	.sponsor-call-to-action {
