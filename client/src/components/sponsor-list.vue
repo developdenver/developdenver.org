@@ -44,7 +44,13 @@ export default {
                     imageUrl:
                         'https://devetry.com/wp-content/uploads/2017/10/logo-opt.png',
                     link: 'https://devetry.com/',
-			}],
+			},
+			{
+				name: 'Relentful',
+				imageUrl: 'https://images.squarespace-cdn.com/content/5ca38424f4e5316dcd872aa8/1559102804487-AQ48MRHWI3ML0HCOUGGU/Relentful_Navy.png?format=1500w&content-type=image%2Fpng',
+				link: 'https://relentful.com',
+			},
+			],
         };
     },
 };
