@@ -15,6 +15,15 @@
 						:to="{ name: 'profile', params: { id: 1160 } }"
 					>Jon Liu</router-link>
 				</p>
+				<p class="author" v-else-if="event.properties.id == 90">
+					<router-link
+						:to="{ name: 'profile', params: { id: 84 } }"
+					>Derik Linch</router-link>
+					and
+					<router-link
+						:to="{ name: 'profile', params: { id: 1214 } }"
+					>Ethan Holliger</router-link>
+				</p>
 				<p class="author" v-else>
 					<router-link
 						:to="{
