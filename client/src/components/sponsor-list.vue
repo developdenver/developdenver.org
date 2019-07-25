@@ -40,16 +40,21 @@ export default {
 					imageUrl: "https://s3-media1.fl.yelpcdn.com/bphoto/efFNBfcJaL2uXmtlWcVeVA/ls.jpg",
 					link: "https://bythepixel.com/",
 			},{
-                    name: 'Devetry',
-                    imageUrl:
-                        'https://devetry.com/wp-content/uploads/2017/10/logo-opt.png',
-                    link: 'https://devetry.com/',
+					name: 'Devetry',
+					imageUrl:
+							'https://devetry.com/wp-content/uploads/2017/10/logo-opt.png',
+					link: 'https://devetry.com/',
 			},
 			{
 				name: 'Relentful',
 				imageUrl: 'https://images.squarespace-cdn.com/content/5ca38424f4e5316dcd872aa8/1559102804487-AQ48MRHWI3ML0HCOUGGU/Relentful_Navy.png?format=1500w&content-type=image%2Fpng',
 				link: 'https://relentful.com',
 			},
+			{
+				name: 'Name.com',
+				imageUrl: 'https://clip.brianschiller.com/NTda7M4-2019-07-24-NameLogoForJared.png',
+				link: 'https://name.com',
+			}
 			],
         };
     },
