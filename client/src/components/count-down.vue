@@ -17,7 +17,7 @@
 		<span class="seconds-label">Sec</span>
 	</div>
 
-	<p class="description">Until Dvlp // Dvnr // 2019</p>
+	<p class="description">Until Dvlp // Dnvr // 2019</p>
 </div>
 </template>
 
