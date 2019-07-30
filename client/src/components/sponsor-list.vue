@@ -48,7 +48,7 @@ export default {
 			{
 				name: 'Relentful',
 				imageUrl: 'https://images.squarespace-cdn.com/content/5ca38424f4e5316dcd872aa8/1559102804487-AQ48MRHWI3ML0HCOUGGU/Relentful_Navy.png?format=1500w&content-type=image%2Fpng',
-				link: 'https://relentful.com',
+				link: 'https://www.relentful.com',
 			},
 			{
 				name: 'Name.com',
