@@ -29,6 +29,7 @@ import Events from '@/views/events';
 import MyTickets from '@/views/my-tickets';
 import ClaimTicket from '@/views/claim-ticket';
 import Sponsorship from '@/views/sponsorship';
+import LetterToBoss from '@/views/letter-to-boss';
 
 Vue.use(Router);
 
@@ -205,6 +206,11 @@ const router = new Router({
 			name: 'request-reset',
 			component: RequestReset,
 		},
+		{
+			path: '/letter-to-boss',
+			name: 'letter-to-boss',
+			component: LetterToBoss,
+		}
 	],
 	scrollBehavior(to) {
 		return to.hash

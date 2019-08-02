@@ -22,7 +22,7 @@
 <script>
 import zeppelinLogo from "@/assets/logos/zeppelin_station_logo.png"
 import denverFlatironLogo from '@/assets/logos/flatiron_Gray_Logo_white.png';
-
+import checkrLogo from '@/assets/logos/Checkr_Logo_white-602x281-5c456d8.png';
 export default {
     data() {
         return {
@@ -54,7 +54,12 @@ export default {
 				name: 'Name.com',
 				imageUrl: 'https://clip.brianschiller.com/NTda7M4-2019-07-24-NameLogoForJared.png',
 				link: 'https://name.com',
-			}
+			},
+			{
+				name: 'Checkr',
+				imageUrl: checkrLogo,
+				link: 'https://checkr.com/',
+			},
 			],
         };
     },
@@ -88,7 +93,7 @@ export default {
 				display: flex;
 				align-items: center;
 			}
-			a[href="https://relentful.com"] {
+			a[href="https://www.relentful.com"] {
 				height: 200px;
 				img {
 					filter: invert(100%) grayscale(100%);
