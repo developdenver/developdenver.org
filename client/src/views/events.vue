@@ -2,6 +2,7 @@
 	<section class="events">
 		<countdown />
 		<h2>Events</h2>
+		<a href="dd_2019_schedule_mobile.pdf" class="button">Download the full schedule</a>
 		<section class="event-categories" v-for="category in categories" :key="category.title">
 			<header>
 				<h3>{{category.title}}</h3>
@@ -85,8 +86,23 @@ export default {
 	@media (max-width: $small-breakpoint) {
 		padding: $baseline;
 	}
+	.button {
+		grid-row: 3;
+		margin-top: $baseline;
+		@include grid-cta;
+		@include call-to-action;
+		@media (max-width: $small-breakpoint) {
+			grid-row: 2;
+		}
+		grid-column: 3/ span 5;
+		margin-bottom: $baseline;
+		color: white;
+	}
 	h2 {
 		@include grid-heading;
+		@media (max-width: $small-breakpoint) {
+			margin-top: 30px;
+		}
 	}
 	.event-categories {
 		@include grid-full-width;
