@@ -23,6 +23,8 @@
 import zeppelinLogo from "@/assets/logos/zeppelin_station_logo.png"
 import denverFlatironLogo from '@/assets/logos/flatiron_Gray_Logo_white.png';
 import checkrLogo from '@/assets/logos/Checkr_Logo_white-602x281-5c456d8.png';
+import visibleLogo from '@/assets/logos/visible_core_palette_logo_3.svg';
+import mozillaLogo from '@/assets/logos/moz-logo-1color-white-rgb.png';
 export default {
     data() {
         return {
@@ -60,6 +62,16 @@ export default {
 				imageUrl: checkrLogo,
 				link: 'https://checkr.com/',
 			},
+			{
+				name: 'Visible',
+				imageUrl: visibleLogo,
+				link: 'https://www.visible.com',
+			},
+			{
+				name: 'Mozilla',
+				imageUrl: mozillaLogo,
+				link: 'https://www.mozilla.org',
+			},
 			],
         };
     },
@@ -84,17 +96,18 @@ export default {
 		}
 		img {
 			max-width: 200px;
+			max-height: 200px;
 			filter: grayscale(100%);
 		}
 		li {
 			margin-right: $baseline;
 			a {
-				height: 100%;
+				height: 200px;
 				display: flex;
 				align-items: center;
 			}
-			a[href="https://www.relentful.com"] {
-				height: 200px;
+			a[href="https://www.relentful.com"], a[href="https://www.visible.com"] {
+				width: 200px;
 				img {
 					filter: invert(100%) grayscale(100%);
 				}
