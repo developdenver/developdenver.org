@@ -68,7 +68,6 @@
 			</div>
             <input
 				class="employer"
-				v-if="!profile.properties.isSelfEmployed"
 				type="text"
 				id="employer"
 				placeholder="Employer"
