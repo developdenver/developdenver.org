@@ -4,7 +4,7 @@ export default [
 		author: 'DVLP Board',
 		date: '8/5/2019',
 		content: `
-The [schedule](https://developdenver.org/dd_2019_schedule_mobile.pdf) for Develop Denver 2019 is live! We have over 60 events across 2 days and 5 venues. Check-in starts at 8am, August 15th at Big Trouble (inside Zepellin Station), and opening ceremonies are at 9am at Catalyst. See you next week!`
+The [schedule](https://developdenver.org/dvlp_schedule_digital.pdf) for Develop Denver 2019 is live! We have over 60 events across 2 days and 5 venues. Check-in starts at 8am, August 15th at Big Trouble (inside Zepellin Station), and opening ceremonies are at 9am at Catalyst. See you next week!`
 	},
 	{
 		title: '2019 Develop Denver events published!',

@@ -4,7 +4,7 @@
     <div class="description">
   		<p>Two days packed with talks, workshops, and events!</p>
     </div>
-		<a class="button" href="/dd_2019_schedule_mobile.pdf">Download Schedule</a>
+		<a class="button" href="/dvlp_schedule_digital.pdf">Download Schedule</a>
 	</section>
 </template>
 

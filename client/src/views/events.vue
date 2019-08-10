@@ -2,7 +2,7 @@
 	<section class="events">
 		<countdown />
 		<h2>Events</h2>
-		<a href="dd_2019_schedule_mobile.pdf" class="button">Download the full schedule</a>
+		<a href="dvlp_schedule_digital.pdf" class="button">Download the full schedule</a>
 		<section class="event-categories" v-for="category in categories" :key="category.title">
 			<header>
 				<h3>{{category.title}}</h3>
