@@ -1,23 +1,28 @@
 <template>
 <div class="countdown">
-	<div class="numbers">
-		<span class="days">{{toTwoDigits(countDownToConference.days)}}</span>
+	<div class="numbers" v-if="unixDeltaToStart">
+		<span class="days">{{countDownToConference.days}}</span>
 		<span class="days-divider">/</span>
-		<span class="hours">{{toTwoDigits(countDownToConference.hours)}}</span>
+		<span class="hours">{{countDownToConference.hours}}</span>
 		<span class="hours-divider">/</span>
-		<span class="minutes">{{toTwoDigits(countDownToConference.minutes)}}</span>
+		<span class="minutes">{{countDownToConference.minutes}}</span>
 		<span class="minutes-divider">/</span>
-		<span class="seconds">{{toTwoDigits(countDownToConference.seconds)}}</span>
+		<span class="seconds">{{countDownToConference.seconds}}</span>
+	</div>
+	<div class="numbers" v-else>
+		<span class="hours dvlp">DVLP</span>
+		<span class="hours-divider">/</span>
+		<span class="minutes">DNVR</span>
 	</div>
 
-	<div class="labels">
+	<div class="labels" v-if="unixDeltaToStart">
 		<span class="days-label">Days</span>
 		<span class="hours-label">Hours</span>
 		<span class="minutes-label">Min</span>
 		<span class="seconds-label">Sec</span>
 	</div>
 
-	<p class="description">Until Dvlp // Dnvr // 2019</p>
+	<p class="description" v-if="unixDeltaToStart">Until Dvlp // Dnvr // 2019</p>
 </div>
 </template>
 
@@ -34,8 +39,15 @@ export default {
 		this.startInterval();
 	},
 	computed: {
-		countDownToConference() {
+		unixDeltaToStart() {
 			const distance = this.conferenceDate - this.today;
+			if (distance < 0) {
+				return null;
+			}
+			return distance;
+		},
+		countDownToConference() {
+			const distance = this.unixDeltaToStart;
 			const days = this.toTwoDigits(Math.floor(distance / (1000 * 60 * 60 * 24)));
 			const hours = this.toTwoDigits(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
 			const minutes = this.toTwoDigits(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
@@ -75,6 +87,9 @@ export default {
 		}
 		span {
 			max-width: 45px;
+			&.dvlp, &.dnvr {
+				max-width: 90px;
+			}
 		}
 		span[class$="-divider"] {
 			max-width: 30px;
