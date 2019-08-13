@@ -6,8 +6,38 @@
 
 			<p><strong>tl;dr:</strong> Be excellent with each other</p>
 
-			<h3>Need Help?</h3>
-			<p>Contact us directly by emailing <a href="mailto:hello@developdenverorg">hello@developdenver.org</a></p>
+			<h3>Need Help or Need to Report a Code of Conduct Violation?</h3>
+			<p>
+				You can talk with any conference organizer in person, email us at
+				<a href="mailto:hello@developdenverorg">hello@developdenver.org</a>,
+				or slack Kim Schlesinger or Kyle Coberly on the Denver Devs slack workspace.
+			</p>
+			<p>
+				If you feel uncomfortable talking with a conference organizer, please reach out to one of the following people:
+			</p>
+			<ul class="bulleted">
+				<li>
+					Scott Miller
+					<ul>
+						<li>In person</li>
+						<li>Via text or phone: 303-513-2124</li>
+					</ul>
+				</li>
+				<li>
+					Alison Lawrence Daley
+					<ul>
+						<li>In person</li>
+						<li>On Denver Devs: <code>@Al.Is.On</code></li>
+					</ul>
+				</li>
+				<li>
+					Nina Baliga
+					<ul>
+						<li>In person on Thursday</li>
+						<li>Via email Thursday and Friday: <a href="mailto:nina@hirediversity.us">nina@hirediversity.us</a></li>
+					</ul>
+				</li>
+			</ul>
 
 			<h3>The Quick Version:</h3>
 			<p>Our conference is dedicated to providing a harassment-free conference experience for everyone, regardless of gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, or religion (or lack thereof). We do not tolerate harassment of conference participants in any form. Sexual language and imagery is not appropriate for any conference venue, including talks, workshops, parties, Twitter and other online media. Conference participants violating these rules may be sanctioned or expelled from the conference without a refund at the discretion of the conference organisers.</p>
@@ -29,7 +59,7 @@
     @import "@/styles/_sizes.scss";
     @import "@/styles/_general.scss";
 
-    .code-of-conduct {
+	.code-of-conduct {
 		@include grid;
 		margin: $baseline * 8 0;
 		> div {
@@ -37,6 +67,18 @@
 			p {
 				margin-bottom: $baseline;
 			}
+
 		}
-    }
+		ul.bulleted {
+		 	li {
+				list-style: circle;
+				margin-left: 15px;
+				margin-bottom: 10px;
+				li {
+					list-style: disc;
+				}
+			}
+			margin-bottom: 20px;
+		}
+	}
 </style>
