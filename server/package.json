@@ -8,8 +8,7 @@
         "dev": "npx tsc-watch --onSuccess 'node dist/index.js'",
         "postinstall": "tsc",
         "dev:database:setup": "knex migrate:latest && knex seed:run",
-        "test": "NODE_ENV=test mocha -r ts-node/register --reporter min tests/routes",
-        "test:unit": "NODE_ENV=test mocha -wG --reporter min -r ts-node/register -r tests/test-setup.js tests/routes",
+        "test": "NODE_ENV=test mocha -r ts-node/register --reporter min tests/routes --exit",
         "test:database:setup": "knex migrate:latest --env test",
         "start": "node dist/index.js"
     },

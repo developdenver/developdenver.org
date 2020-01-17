@@ -1,7 +1,7 @@
 /* global before, describe, it, assert */
 const Profile = require("../../src/models/profile").default;
 
-describe("profile", function() {
+xdescribe("profile", function() {
 	describe("#constructor", () => {
 		describe("normalizes a passed in object", () => {
 			before(() => {

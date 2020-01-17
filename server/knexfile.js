@@ -7,7 +7,7 @@ module.exports = {
     },
     test: {
         client: "pg",
-        connection: `postgres:///${process.env.TEST_DATABASE_NAME}`,
+        connection: `${process.env.TEST_DATABASE_URL}`,
     },
     staging: {
         client: "pg",
