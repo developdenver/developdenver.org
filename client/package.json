@@ -25,7 +25,7 @@
     "jwt-decode": "^2.2.0",
     "pluralize": "^7.0.0",
     "register-service-worker": "^1.6.2",
-    "showdown": "^1.8.6",
+    "showdown": "^1.9.1",
     "vue": "^2.6.10",
     "vue-await": "0.0.2",
     "vue-hagrid": "^0.2.1",
@@ -44,7 +44,7 @@
     "ajv": "6.8.1",
     "chai": "^4.1.2",
     "lint-staged": "^7.2.2",
-    "node-sass": "^4.9.2",
+    "node-sass": "^4.13.1",
     "sass-loader": "^7.0.1",
     "vue-cli-plugin-editorconfig": "^0.2.1",
     "vue-template-compiler": "^2.6.10"
