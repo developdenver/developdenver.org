@@ -37,7 +37,7 @@ jobs:
         npm test
       env:
         CI: true
-        TEST_DATABASE_NAME: postgres
+        TEST_DATABASE_URL: postgres://postgres:postgres@localhost/postgres
         STRIPE_KEY: ${{ secrets.STRIPE_TEST_KEY }}
         FROM_EMAIL_ADDRESS: username@domain.org
         EMAIL_PASSWORD: email_password
