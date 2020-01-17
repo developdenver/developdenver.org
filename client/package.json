@@ -7,7 +7,7 @@
     "build:staging": "vue-cli-service build --mode staging",
     "build:production": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "VUE_APP_SENTRY_ENVIRONMENT=test vue-cli-service test:unit --reporter min -r tests/unit-setup.js",
+    "test": "VUE_APP_SENTRY_ENVIRONMENT=test vue-cli-service test:unit --reporter min -r tests/unit-setup.js",
     "test:unit:watch": "vue-cli-service test:unit --reporter min --watch -G -r tests/unit-setup.js",
     "test:e2e": "vue-cli-service test:e2e --headless"
   },

@@ -3,6 +3,37 @@ name: Node CI
 on: [push]
 
 jobs:
+  test_client:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Client, npm install, build, and test
+        run: |
+          cd client
+          npm ci
+          npm run build --if-present
+          npm test
+
+        env:
+          CI: true
+          VUE_APP_API_URL: http://localhost:3000
+          VUE_APP_IMAGE_UPLOAD_URL: http://localhost:3001/images
+          VUE_APP_UNIQUE_EMAIL_ENDPOINT: profiles/email
+          VUE_APP_LOGIN_PATH: auth/login
+          VUE_APP_STRIPE_KEY: pk_test_xxxx
+          VUE_APP_PAYMENTS_URL: http://localhost:3000/payments
+          VUE_APP_RESET_PASSWORD_PATH: auth/reset-password
+          VUE_APP_RESET_REQUEST_PATH: auth/reset-request
+          VUE_APP_SENTRY_ENVIRONMENT: dev
   test_server:
 
     runs-on: ubuntu-latest
