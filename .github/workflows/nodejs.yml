@@ -82,18 +82,20 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: login
-      uses: actions/heroku@master
+      uses: ./actions/heroku
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       with:
-        args: container:login
+        args: heroku container:login
     - name: set remote
-      uses: actions/heroku@master
+      uses: ./actions/heroku
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       with:
-        args: git:remote -a develop-denver-staging
+        args: heroku git:remote -a develop-denver-staging
     - name: push
-      run: git subtree push --prefix server heroku master
+      uses: ./actions/heroku
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      with:
+        args: git subtree push --prefix server heroku master
