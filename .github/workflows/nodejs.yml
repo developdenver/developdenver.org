@@ -86,7 +86,7 @@ jobs:
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       with:
-        args: heroku container:login
+        args: container:login
     - name: set remote
       uses: actions/heroku@master
       env:
@@ -95,3 +95,5 @@ jobs:
         args: git:remote -a develop-denver-staging
     - name: push
       run: git subtree push --prefix server heroku master
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
