@@ -98,4 +98,4 @@ jobs:
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       with:
-        args: git subtree push --prefix server heroku master
+        args: cat ~/.netrc
