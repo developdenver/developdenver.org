@@ -4,18 +4,13 @@
 			<circle-logo />
 			<countdown />
 		</header>
-		<app-header
-			@toggleMenu="toggleMenu"
-			:isMenuOpen="isMenuOpen"
-		>
+		<app-header @toggleMenu="toggleMenu" :isMenuOpen="isMenuOpen">
 			<hamburger-menu
 				:isMenuOpen="isMenuOpen"
 				@click.native="closeMenu"
 			/>
 		</app-header>
-		<main
-			@click="closeMenu"
-		>
+		<main @click="closeMenu">
 			<router-view />
 			<app-footer />
 		</main>
@@ -41,40 +36,40 @@ export default {
 	},
 	data() {
 		return {
-			isMenuOpen: false
-		}
+			isMenuOpen: false,
+		};
 	},
 	mounted() {
 		this.$store.dispatch('services/user/fetchProfile');
 	},
 	watch: {
-		'$route' (){
-			this.isMenuOpen = false
-		}
+		$route() {
+			this.isMenuOpen = false;
+		},
 	},
 	methods: {
 		toggleMenu() {
-			this.isMenuOpen = !this.isMenuOpen
+			this.isMenuOpen = !this.isMenuOpen;
 		},
 		closeMenu() {
-			this.isMenuOpen = false
-		}
+			this.isMenuOpen = false;
+		},
 	},
 };
 </script>
 
 <style lang="scss">
+@import '@/styles/_colors.scss';
+@import '@/styles/_flex.scss';
+@import '@/styles/_general.scss';
 @import '@/styles/_reset.scss';
 @import '@/styles/_sizes.scss';
 @import '@/styles/_typography.scss';
-@import '@/styles/_colors.scss';
-@import '@/styles/_general.scss';
 
 #app {
+	@include flexbox;
+	@include flex-flow(row nowrap);
 	min-height: 100vh;
-	display: flex;
-	flex-flow: row nowrap;
-	padding: $baseline;
 	.mobile-header {
 		display: none;
 	}
@@ -82,27 +77,27 @@ export default {
 		width: 100%;
 	}
 	@media (max-width: $small-breakpoint) {
-		flex-flow: column nowrap;
+		@include flex-flow(column nowrap);
 		margin: $mobile-header-size auto $mobile-footer-size auto; // Makes room for fixed header and footer;
-		padding: 0;
 		min-height: initial;
+		padding: 0;
 		.mobile-header {
 			background-color: $black;
 			display: flex;
+			justify-content: space-between;
+			padding: $baseline;
 			position: fixed;
 			top: 0;
 			width: 100%;
-			padding: $baseline;
-			justify-content: space-between;
 			z-index: 1;
 			.countdown {
 				max-width: 70%;
 			}
 			.circle-logo {
+				@include flexbox;
+				@include align-items(center);
+				@include justify-content(start);
 				width: 30%;
-				display: flex;
-				align-items: center;
-				justify-content: flex-start;
 				img {
 					height: 100%;
 					width: 100%;
