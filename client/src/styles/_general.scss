@@ -5,39 +5,39 @@
 $thin-border-width: 1px;
 
 @mixin call-to-action {
-	display: block;
-	border: 2px solid $white;
 	@include primary-header-font;
+	background: none;
+	border: 2px solid $white;
+	display: block;
+	padding: $baseline / 2;
 	text-decoration: none;
 	text-align: center;
 	width: 100%;
-	background: none;
-	padding: $baseline / 2;
 	&:hover {
-		color: $accent-color;
 		border: 2px solid $accent-color;
+		color: $accent-color;
 	}
 }
 
 @mixin grid {
-	display: grid;
 	column-gap: $gutter;
+	display: grid;
 	grid-auto-rows: auto;
-	grid-template-columns: repeat(9, 1fr);
+	grid-template-columns: repeat(6, 1fr);
 	@media (max-width: $small-breakpoint) {
 		grid-template-columns: 1fr;
 	}
 }
 
 @mixin grid-heading {
-	grid-column: 3 / span 8;
+	grid-column: 1 / span 6;
 	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 	}
 }
 
 @mixin grid-full-width {
-	grid-column: 1 / span 9;
+	grid-column: 1 / span 6;
 	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 	}
@@ -51,26 +51,26 @@ $thin-border-width: 1px;
 }
 
 @mixin grid-text-0 {
-	grid-column: 3 / span 2;
+	grid-column: 1 / span 2;
 	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 	}
 }
 @mixin grid-text-1 {
-	grid-column: 5 / span 2;
+	grid-column: 1 / span 2;
 	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 	}
 }
 @mixin grid-text-2 {
-	grid-column: 7 / span 3;
+	grid-column: 1 / span 3;
 	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 	}
 }
 
 @mixin grid-form {
-	grid-column: 4 / span 3;
+	grid-column: 1 / span 3;
 	@media (max-width: $medium-breakpoint) {
 		grid-column: 3 / span 5;
 	}
@@ -78,10 +78,11 @@ $thin-border-width: 1px;
 		grid-column: 1;
 	}
 }
+
 @mixin grid-countdown {
-	grid-column: 8 / span 3;
+	grid-column: 6 / span 1;
 	@media (max-width: $medium-breakpoint) {
-		grid-column: 6 / span 5;
+		grid-column: 6 / span 1;
 	}
 	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
