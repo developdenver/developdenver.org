@@ -1,49 +1,77 @@
 <template>
 	<div class="hamburger-container">
-		<div class="hamburger-menu" :class="{open: isMenuOpen}">
+		<div class="hamburger-menu" :class="{ open: isMenuOpen }">
 			<nav>
 				<ul>
+					<li>
+						<router-link :to="{ name: 'about' }">About</router-link>
+					</li>
+					<li>
+						<router-link :to="{ name: 'schedule' }">
+							Schedule
+						</router-link>
+					</li>
+					<li>
+						<router-link :to="{ name: 'tickets' }">
+							Tickets
+						</router-link>
+					</li>
+					<li>
+						<router-link :to="{ name: 'sponsorship' }">
+							Sponsorship
+						</router-link>
+					</li>
+					<li>
+						<router-link :to="{ name: 'talks' }"
+							>Submissions</router-link
+						>
+					</li>
+					<li v-if="isLoggedIn">
+						<router-link :to="{ name: 'submit-talk' }"
+							>Submit a Talk</router-link
+						>
+					</li>
+					<li>
+						<router-link :to="{ name: 'contact' }">
+							Contact
+						</router-link>
+					</li>
 					<li v-if="!isLoggedIn">
-						<router-link :to="{name: 'register', query: redirectToPageQuery}">Register</router-link>
-					</li>
-					<li v-if="!isLoggedIn">
-						<router-link :to="{name: 'login', query: redirectToPageQuery}">Login</router-link>
-					</li>
-					<li v-if="isLoggedIn">
-					  <router-link :to="{name: 'my-profile'}">My Profile</router-link>
-					</li>
-					<li>
-						<router-link :to="{name: 'events'}">Events</router-link>
-					</li>
-					<li>
-						<router-link :to="{name: 'tickets'}">Purchase Badges</router-link>
-					</li>
-					<li>
-						<router-link :to="{name: 'news'}">News</router-link>
-					</li>
-					<li>
-					  <router-link :to="{name: 'community'}">Community</router-link>
-					</li>
-					<li>
-						<a href="mailto:hello@developdenver.org">Contact</a>
-					</li>
-					<!--
-					<li><router-link :to="{name: 'talks'}">Submissions</router-link></li>
-					<li v-if="isLoggedIn">
-					  <router-link :to="{name: 'submit-talk'}">Submit a Talk</router-link>
-					</li>
-					-->
-					<li>
-					  <router-link :to="{name: 'sponsorship'}">Sponsorship</router-link>
+						<router-link
+							:to="{ name: 'login', query: redirectToPageQuery }"
+							>Login</router-link
+						>
 					</li>
 					<li v-if="isLoggedIn">
-					  <a href="#" @click.prevent="logout">Logout {{userFirstName}}</a>
+						<router-link :to="{ name: 'my-profile' }"
+							>My Profile</router-link
+						>
 					</li>
+					<li v-if="isLoggedIn">
+						<a href="#" @click.prevent="logout"
+							>Logout {{ userFirstName }}</a
+						>
+					</li>
+					<!-- <li v-if="!isLoggedIn">
+						<router-link
+							:to="{
+								name: 'register',
+								query: redirectToPageQuery,
+							}"
+							>Register</router-link
+						>
+					</li> -->
+
 					<li class="social-links">
 						<ul>
-							<li v-for="socialLink in socialLinks" :key="socialLink.linkUrl">
+							<li
+								v-for="socialLink in socialLinks"
+								:key="socialLink.linkUrl"
+							>
 								<a :href="socialLink.linkUrl" target="BLANK">
-									<img :src="socialLink.iconUrl" alt="socialLink.altText" />
+									<component
+										v-bind:is="socialLink.icon"
+									></component>
 								</a>
 							</li>
 						</ul>
@@ -54,157 +82,200 @@
 	</div>
 </template>
 
+/* SCRIPT */
 <script>
-import twitterIcon from '@/assets/icons/twitter_white.svg';
-import instagramIcon from '@/assets/icons/instagram_white.svg';
-import youtubeIcon from '@/assets/icons/youtube_white.svg';
-import facebookIcon from '@/assets/icons/facebook_white.svg';
+import twitterIcon from '@/components/icon-twitter.vue';
+import instagramIcon from '@/components/icon-instagram.vue';
+import youtubeIcon from '@/components/icon-youtube.vue';
+import facebookIcon from '@/components/icon-facebook.vue';
 
 export default {
 	data() {
 		return {
-			socialLinks: [{
-				linkUrl: "https://twitter.com/dvlpdnvr",
-				altText: "Twitter",
-				iconUrl: twitterIcon,
-			},{
-				linkUrl: "https://www.instagram.com/dvlpdnvr/",
-				altText: "Instagram",
-				iconUrl: instagramIcon,
-			},{
-				linkUrl: "https://www.youtube.com/channel/dvlpdnvr",
-				altText: "YouTube",
-				iconUrl: youtubeIcon,
-			},{
-				linkUrl: "https://www.facebook.com/dvlpdnvr",
-				altText: "Facebook",
-				iconUrl: facebookIcon,
-			}],
-		}
+			socialLinks: [
+				{
+					linkUrl: 'https://twitter.com/dvlpdnvr',
+					altText: 'Twitter',
+					icon: 'twitterIcon',
+				},
+				{
+					linkUrl: 'https://www.instagram.com/dvlpdnvr/',
+					altText: 'Instagram',
+					icon: 'instagramIcon',
+				},
+				{
+					linkUrl: 'https://www.youtube.com/channel/dvlpdnvr',
+					altText: 'YouTube',
+					icon: 'youtubeIcon',
+				},
+				{
+					linkUrl: 'https://www.facebook.com/dvlpdnvr',
+					altText: 'Facebook',
+					icon: 'facebookIcon',
+				},
+			],
+		};
+	},
+	components: {
+		twitterIcon,
+		instagramIcon,
+		youtubeIcon,
+		facebookIcon,
 	},
 	props: {
 		isMenuOpen: Boolean,
 	},
-    computed: {
-        isLoggedIn() {
-            return this.$store.getters['services/user/isLoggedIn'] || false;
-        },
-        isAttendee() {
-            return this.$store.getters['tickets/isAttendee'] || false;
-        },
-        currentUser() {
-            return this.$store.getters['services/user/currentProfile'];
-        },
-        userFirstName() {
-            return this.currentUser.properties.firstName || '';
-        },
-        redirectToPageQuery() {
-            if (this.$route.meta.takeItBackNowYall) {
-                return { redirect: this.$route.path };
-            }
-            if (this.$route.query.redirect) {
-                return this.$route.query;
-            }
-            return null;
-        },
-    },
-    methods: {
-        logout() {
-            this.$store.dispatch('services/user/logout');
-            this.$router.push('/');
-        },
-    },
+	computed: {
+		currentIconComponent: function() {
+			return this.icon;
+		},
+		isLoggedIn() {
+			return this.$store.getters['services/user/isLoggedIn'] || false;
+		},
+		isAttendee() {
+			return this.$store.getters['tickets/isAttendee'] || false;
+		},
+		currentUser() {
+			return this.$store.getters['services/user/currentProfile'];
+		},
+		userFirstName() {
+			return this.currentUser.properties.firstName || '';
+		},
+		redirectToPageQuery() {
+			if (this.$route.meta.takeItBackNowYall) {
+				return { redirect: this.$route.path };
+			}
+			if (this.$route.query.redirect) {
+				return this.$route.query;
+			}
+			return null;
+		},
+	},
+	methods: {
+		logout() {
+			this.$store.dispatch('services/user/logout');
+			this.$router.push('/');
+		},
+	},
 };
 </script>
 
+/* STYLES */
 <style lang="scss">
+@import '@/styles/_colors.scss';
+@import '@/styles/_flex.scss';
+@import '@/styles/_general.scss';
 @import '@/styles/_sizes.scss';
 @import '@/styles/_typography.scss';
-@import '@/styles/_colors.scss';
 
 .hamburger-container {
 	position: relative;
 	.hamburger-menu {
-		position: fixed;
-		display: flex;
-		align-items: center;
-		width: calc(100% - 80px);
-		left: -200vw;
-		top: 0;
+		@include align-items(center);
+		background: $yellow;
 		bottom: 0;
+		display: flex;
+		left: -200vw;
+		position: fixed;
+		width: calc(100% - 100px);
 		right: auto;
+		top: 0;
 		transition: left 0.5s linear;
-		background-color: rgba($black, 0.9);
 		z-index: 50;
 		@media (max-width: $small-breakpoint) {
+			bottom: -200vh;
+			height: calc(100% - #{$mobile-footer-size});
 			left: 0;
 			right: 0;
 			top: auto;
-			bottom: -200vh;
 			width: 100%;
-			height: calc(100% - #{$mobile-footer-size});
 		}
 		&.open {
-			left: 80px;
+			left: 100px;
 			@media (max-width: $small-breakpoint) {
-				align-items: flex-end;
-				justify-content: flex-end;
-				left: 0;
-				top: 0;
-				right: 0;
+				@include align-items(flex-end);
+				@include justify-content(flex-end);
 				bottom: $mobile-footer-size;
 				border: none;
+				left: 0;
+				right: 0;
+				top: 0;
 				transition: bottom 0.3s linear;
 			}
 		}
-		li {
-			@include primary-header-font;
-		}
 		nav {
+			height: 100%;
+			width: 100%;
 			> ul {
 				display: flex;
 				flex-flow: rows nowrap;
+				height: 100%;
 				@media (max-width: $small-breakpoint) {
 					flex-flow: column nowrap;
 					width: 100%;
 				}
 				> li {
-					border-left: 1px solid $white;
-					padding: $baseline;
+					@include primary-header-font;
+					font-size: 5vw;
+					border-left: $thin-border-width solid $black;
+
 					@media (max-width: $small-breakpoint) {
 						border: none;
 					}
+
+					a {
+						padding: $baseline;
+						padding-top: $baseline * 2;
+					}
+					&:hover {
+						background: $black;
+						a {
+							color: $yellow;
+						}
+					}
+
 					&:not(.social-links) {
-						writing-mode: vertical-rl;
 						transform: rotate(180deg);
+						writing-mode: vertical-rl;
 						@media (max-width: $small-breakpoint) {
-							writing-mode: initial;
-							transform: initial;
 							font-size: $baseline;
 							padding: $baseline / 2;
+							transform: initial;
+							writing-mode: initial;
 						}
 					}
 					&.social-links {
+						border-left: none;
+						border-right: $thin-border-width solid $black;
+						&:hover {
+							background: $yellow;
+							a {
+								color: $black;
+							}
+						}
 						ul {
-							display: flex;
-							flex-flow: row wrap;
-							width: 200px;
+							@include flexbox;
+							@include flex-flow(column);
+							@include justify-content(space-between);
+							height: 100%;
 							@media (max-width: $small-breakpoint) {
 								width: auto;
 							}
-							img {
+							svg {
 								margin: auto $baseline;
-								width: 60px;
-								height: 60px;
+								width: 50px;
+								path {
+									fill: $black;
+								}
+								&:hover {
+									fill: $red;
+								}
 								@media (max-width: $small-breakpoint) {
-									width: 30px;
 									height: 30px;
+									width: 30px;
 								}
 							}
 						}
-					}
-					a:hover {
-						color: $accent-color;
 					}
 				}
 			}
