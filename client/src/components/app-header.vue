@@ -97,6 +97,7 @@ export default {
 		border-right: none;
 		border-top: none;
 		color: $black;
+		margin-top: 0;
 		width: 100%;
 		padding-top: $baseline;
 		padding-bottom: $baseline;
