@@ -74,6 +74,9 @@ export default {
 		display: none;
 	}
 	main {
+		margin-left: 100px;
+		max-width: 100%;
+		overflow: hidden;
 		width: 100%;
 	}
 	@media (max-width: $small-breakpoint) {

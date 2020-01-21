@@ -1,37 +1,33 @@
 <template>
-<div class="countdown">
-	<div class="numbers" v-if="unixDeltaToStart">
-		<span class="days">{{countDownToConference.days}}</span>
-		<span class="days-divider">/</span>
-		<span class="hours">{{countDownToConference.hours}}</span>
-		<span class="hours-divider">/</span>
-		<span class="minutes">{{countDownToConference.minutes}}</span>
-		<span class="minutes-divider">/</span>
-		<span class="seconds">{{countDownToConference.seconds}}</span>
-	</div>
-	<div class="numbers" v-else>
-		<span class="hours dvlp">DVLP</span>
-		<span class="hours-divider">/</span>
-		<span class="minutes">DNVR</span>
-	</div>
+	<div class="countdown">
+		<div class="numbers" v-if="unixDeltaToStart">
+			<span class="days">{{ countDownToConference.days }}</span>
+			<span class="days-divider">/</span>
+			<span class="hours">{{ countDownToConference.hours }}</span>
+			<span class="hours-divider">/</span>
+			<span class="minutes">{{ countDownToConference.minutes }}</span>
+		</div>
+		<div class="numbers" v-else>
+			<span class="hours dvlp">DVLP</span>
+			<span class="hours-divider">/</span>
+			<span class="minutes">DNVR</span>
+		</div>
 
-	<div class="labels" v-if="unixDeltaToStart">
-		<span class="days-label">Days</span>
-		<span class="hours-label">Hours</span>
-		<span class="minutes-label">Min</span>
-		<span class="seconds-label">Sec</span>
+		<div class="labels" v-if="unixDeltaToStart">
+			<span class="days-label">Days</span>
+			<span class="hours-label">Hours</span>
+			<span class="minutes-label">Min</span>
+		</div>
 	</div>
-
-	<p class="description" v-if="unixDeltaToStart">Until Dvlp // Dnvr // 2019</p>
-</div>
 </template>
 
+/* SCRIPTS */
 <script>
 export default {
-	name: "Countdown",
+	name: 'Countdown',
 	data() {
 		return {
-			conferenceDate: new Date("Aug 15, 2019 08:00:00").getTime(),
+			conferenceDate: new Date('Aug 13, 2020 08:00:00').getTime(),
 			today: Date.now(),
 		};
 	},
@@ -48,10 +44,20 @@ export default {
 		},
 		countDownToConference() {
 			const distance = this.unixDeltaToStart;
-			const days = this.toTwoDigits(Math.floor(distance / (1000 * 60 * 60 * 24)));
-			const hours = this.toTwoDigits(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-			const minutes = this.toTwoDigits(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
-			const seconds = this.toTwoDigits(Math.floor((distance % (1000 * 60)) / 1000));
+			const days = this.toTwoDigits(
+				Math.floor(distance / (1000 * 60 * 60 * 24)),
+			);
+			const hours = this.toTwoDigits(
+				Math.floor(
+					(distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+				),
+			);
+			const minutes = this.toTwoDigits(
+				Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+			);
+			const seconds = this.toTwoDigits(
+				Math.floor((distance % (1000 * 60)) / 1000),
+			);
 			return { days, hours, minutes, seconds };
 		},
 	},
@@ -62,61 +68,58 @@ export default {
 			}, 1000);
 		},
 		toTwoDigits(num) {
-			return (+num < 10 ? "0" : "") + +num;
+			return (+num < 10 ? '0' : '') + +num;
 		},
 	},
 };
 </script>
 
+/* STYLES */
 <style lang="scss">
-@import "@/styles/_typography.scss";
-@import "@/styles/_sizes.scss";
-@import "@/styles/_colors.scss";
+@import '@/styles/_colors.scss';
+@import '@/styles/_flex.scss';
+@import '@/styles/_general.scss';
+@import '@/styles/_typography.scss';
+@import '@/styles/_sizes.scss';
 
 .countdown {
-	width: 100%;
-
+	background: $yellow;
+	grid-column: 6;
+	@media (max-width: $small-breakpoint) {
+		display: none;
+	}
 	.numbers {
 		@include primary-header-font;
+		@include justify-content(space-between);
+		border-bottom: $thin-border-width solid $black;
 		display: grid;
-		grid-template: 1 / 7;
-		grid-template-areas:
-			"days days-divider hours hours-divider minutes minutes-divider seconds";
-		@media (max-width: $small-breakpoint) {
-			font-size: $baseline;
-		}
+		font-size: 30px;
+		grid-template: 1 / 5;
+		grid-template-areas: 'days days-divider hours hours-divider minutes';
 		span {
-			max-width: 45px;
-			&.dvlp, &.dnvr {
-				max-width: 90px;
+			padding-right: 5px;
+			&:last-child {
+				padding-right: 0;
 			}
 		}
-		span[class$="-divider"] {
-			max-width: 30px;
+		@media (max-width: $small-breakpoint) {
+			font-size: $baseline;
 		}
 	}
 
 	.labels {
+		@include secondary-font;
+		@include justify-content(space-between);
 		display: grid;
-		grid-template: 1 / 7;
-		grid-template-areas:
-			"days-label . hours-label . minutes-label . seconds-label";
-		padding: $baseline 0;
-		border-top: 1px solid $white;
-		border-bottom: 1px solid $white;
+		font-size: 12px;
+		grid-template: 1 / 5;
+		grid-template-areas: 'days-label . hours-label . minutes-label';
+		letter-spacing: 0.25em;
+		padding-top: 10px;
+		text-transform: uppercase;
 		@media (max-width: $small-breakpoint) {
 			font-size: $baseline / 2;
 			padding: ($baseline / 2) 0;
-		}
-	}
-
-	.description {
-		grid-area: description;
-		padding-top: $baseline;
-		@media (max-width: $small-breakpoint) {
-			font-size: $baseline / 2;
-			padding-top: $baseline / 2;
-			margin-bottom: 0;
 		}
 	}
 
@@ -141,22 +144,8 @@ export default {
 	.minutes {
 		grid-area: minutes;
 	}
-	.minutes-divider {
-		grid-area: minutes-divider;
-	}
 	.minutes-label {
 		grid-area: minutes-label;
 	}
-	.seconds {
-		grid-area: seconds;
-		width: 20px;
-	}
-	.seconds-divider {
-		grid-area: seconds-divider;
-	}
-	.seconds-label {
-		grid-area: seconds-label;
-	}
 }
-
 </style>

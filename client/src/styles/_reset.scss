@@ -109,6 +109,7 @@ html {
 	font-size: 16px;
 }
 body {
+	color: #000;
 	line-height: 1;
 }
 ol,
@@ -134,22 +135,24 @@ table {
 // Custom
 @import '_colors.scss';
 @import '_general.scss';
-@import '_sizes';
 @import '_typography.scss';
+@import '_sizes';
 
 h2 {
 	@include primary-header-font;
-	@include grid-heading;
-	border-bottom: 1px solid $white;
-	margin-bottom: $baseline;
 }
 h3 {
 	font-weight: 700;
 	margin-bottom: $baseline / 2;
 }
+p {
+	font-size: 26px;
+	line-height: 2.2rem;
+}
 
 a {
 	color: inherit;
+	display: block;
 	text-decoration: none;
 }
 a:visited {
@@ -203,11 +206,6 @@ textarea,
 select,
 input {
 	@include body-font;
-}
-
-body {
-	background-color: $black;
-	color: $white;
 }
 
 input,
