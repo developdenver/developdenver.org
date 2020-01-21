@@ -3,19 +3,87 @@ v2.0 | 20110126
 License: none (public domain)
  */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -24,8 +92,17 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
 	display: block;
 }
 html {
@@ -34,14 +111,18 @@ html {
 body {
 	line-height: 1;
 }
-ol, ul {
+ol,
+ul {
 	list-style: none;
 }
-blockquote, q {
+blockquote,
+q {
 	quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
 	content: '';
 	content: none;
 }
@@ -51,10 +132,10 @@ table {
 }
 
 // Custom
-@import "_sizes";
-@import "_colors.scss";
-@import "_typography.scss";
-@import "_general.scss";
+@import '_colors.scss';
+@import '_general.scss';
+@import '_sizes';
+@import '_typography.scss';
 
 h2 {
 	@include primary-header-font;
@@ -75,6 +156,36 @@ a:visited {
 	color: inherit;
 }
 
+a,
+button {
+	outline: 0;
+	&:focus,
+	&:visited,
+	&:hover,
+	&:focus {
+		outline: none;
+	}
+}
+
+button {
+	@include primary-header-font;
+	background: none;
+	border: $thin-border-width solid $black;
+	display: block;
+	margin-top: $baseline * 3;
+	padding: $baseline 0;
+	text-decoration: none;
+	text-align: center;
+	width: 100%;
+	&:hover {
+		background: $black;
+		color: $yellow;
+	}
+	&:hover {
+		cursor: pointer;
+	}
+}
+
 p {
 	margin-bottom: $baseline;
 }
@@ -87,7 +198,10 @@ textarea {
 	resize: none;
 }
 
-body, textarea, select, input {
+body,
+textarea,
+select,
+input {
 	@include body-font;
 }
 
@@ -96,7 +210,8 @@ body {
 	color: $white;
 }
 
-input, textarea {
+input,
+textarea {
 	display: block;
 	border: 2px solid $white;
 	background-color: $black;
@@ -126,4 +241,27 @@ input, textarea {
 .error {
 	color: hsl(0, 70%, 50%);
 	font-weight: 700;
+}
+
+// Background STYLES
+.yellow-background {
+	background: $yellow;
+}
+
+// Section Styling
+section {
+	@include grid;
+	grid-template-rows: auto 1fr;
+	margin: 0 auto;
+	max-width: 1200px;
+	padding: $baseline * 3;
+	&.full {
+		max-width: 100%;
+	}
+	&.no-padding {
+		padding: 0;
+	}
+	@media (max-width: $small-breakpoint) {
+		height: calc(100vh - #{$mobile-header-size}); // header size
+	}
 }
