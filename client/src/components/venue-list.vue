@@ -5,7 +5,6 @@
 				title="Locations"
 				v-bind:imageUrl="require('@/assets/icons/happy_black.svg')"
 			/>
-
 			<LocationMap />
 		</section>
 	</div>

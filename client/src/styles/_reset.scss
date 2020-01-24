@@ -177,7 +177,7 @@ button {
 button {
 	@include primary-header-font;
 	background: none;
-	border: $thin-border-width solid $black;
+	border: $medium-border-width solid $black;
 	display: block;
 	margin-top: $baseline * 3;
 	padding: $baseline 0;
@@ -186,7 +186,7 @@ button {
 	width: 100%;
 	&:hover {
 		background: $black;
-		color: $yellow;
+		color: $white;
 	}
 	&:hover {
 		cursor: pointer;

@@ -19,8 +19,10 @@
 			<p>
 				Don’t worry, we’re all setup so you can purchase a group of
 				conference badges. You’ll be asked to provide an email address
-				for each attendee and you’re good to go. Have questions? Please
-				contact us at
+				for each attendee and you’re good to go. Have questions?
+			</p>
+			<p>
+				Please contact us at
 				<a href="mailto:hello@developdenver.org"
 					>hello@developdenver.org</a
 				>
