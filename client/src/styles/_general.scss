@@ -3,6 +3,7 @@
 @import '@/styles/_typography.scss';
 
 $thin-border-width: 1px;
+$medium-border-width: 3px;
 
 @mixin call-to-action {
 	@include primary-header-font;

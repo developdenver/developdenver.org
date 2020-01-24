@@ -154,7 +154,11 @@ a {
 	color: inherit;
 	display: block;
 	text-decoration: none;
+	&:hover {
+		color: $red;
+	}
 }
+
 a:visited {
 	color: inherit;
 }

@@ -9,6 +9,15 @@
 	src: url('~@/assets/fonts/TSTAR-PRO-Regular.otf') format('opentype');
 }
 
+@mixin dvlpfont {
+	font-family: DVLP;
+}
+@mixin label-font {
+	display: block;
+	font-family: poppins, sans-serif;
+	font-size: 12px;
+	padding: 10px 0 5px 0;
+}
 @mixin body-font {
 	font-family: poppins, sans-serif;
 	font-weight: 300;
@@ -30,6 +39,7 @@
 	font-family: stolzl, sans-serif;
 	font-weight: 500;
 	font-style: normal;
+	line-height: 1.2em;
 }
 
 @mixin tertiary-font {
