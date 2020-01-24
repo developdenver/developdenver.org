@@ -35,6 +35,11 @@
 	font-size: 36px;
 }
 
+@mixin primary-button-font {
+	font-family: DVLP;
+	font-size: 30px;
+}
+
 @mixin secondary-font {
 	font-family: stolzl, sans-serif;
 	font-weight: 500;

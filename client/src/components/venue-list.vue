@@ -3,7 +3,9 @@
 		<section id="locations">
 			<HeaderBar
 				title="Locations"
-				v-bind:imageUrl="require('@/assets/icons/happy_black.svg')"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_SKULL.png')
+				"
 			/>
 			<LocationMap />
 		</section>

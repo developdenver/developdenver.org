@@ -2,7 +2,8 @@
 	<section id="ticket-details">
 		<HeaderBar
 			title="Tickets"
-			v-bind:imageUrl="require('@/assets/icons/happy_black.svg')"
+			v-bind:imageUrl="require('@/assets/icons/DD_SITE_ICONS_TIX.png')"
+			v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_TICKET.svg')"
 		/>
 		<div class="benefits">
 			<p>

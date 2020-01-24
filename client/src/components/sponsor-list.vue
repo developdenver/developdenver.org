@@ -2,7 +2,10 @@
 	<section class="sponsors">
 		<HeaderBar
 			title="Sponsors"
-			v-bind:imageUrl="require('@/assets/icons/happy_black.svg')"
+			v-bind:imageUrl="
+				require('@/assets/icons/DD_SITE_ICONS_SPONSORS.png')
+			"
+			v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_SPONSORS.svg')"
 		/>
 		<!-- <ul v-if="premiumSponsor" class="platinum-sponsors">
 			<li>Sponsor Here</li>

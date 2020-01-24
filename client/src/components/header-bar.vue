@@ -2,7 +2,10 @@
 	<div class="header-bar">
 		<h2>{{ title }}</h2>
 		<div class="icon-container">
-			<img v-bind:src="imageUrl" alt="Speaker headshot" />
+			<img v-bind:src="imageUrl" />
+			<div class="hover-icon">
+				<img v-bind:src="hoverUrl" />
+			</div>
 		</div>
 	</div>
 </template>
@@ -39,10 +42,58 @@ export default {
 		border-right: $thin-border-width solid $black;
 		margin-right: $baseline * 4;
 		padding: $baseline;
+		position: relative;
 		img {
 			height: auto;
 			width: 50px;
 		}
+		.hover-icon {
+			display: none;
+			left: -4vw;
+			position: absolute;
+			top: -4vw;
+			transform: translate(-5%, -5%) skewX(40deg);
+			transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+			width: 15vw;
+			svg,
+			img {
+				animation: orbit 5s infinite;
+				animation-timing-function: linear;
+				width: 100%;
+				height: auto;
+			}
+		}
+		&:hover {
+			.hover-icon {
+				display: block;
+			}
+		}
+	}
+}
+
+@keyframes orbit {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@-moz-keyframes orbit {
+	from {
+		-moz-transform: rotate(0deg);
+	}
+	to {
+		-moz-transform: rotate(360deg);
+	}
+}
+@-webkit-keyframes orbit {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
 	}
 }
 </style>

@@ -175,7 +175,7 @@ button {
 }
 
 button {
-	@include primary-header-font;
+	@include primary-button-font;
 	background: none;
 	border: $medium-border-width solid $black;
 	display: block;

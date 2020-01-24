@@ -3,7 +3,12 @@
 		<section id="about">
 			<HeaderBar
 				title="Community First"
-				v-bind:imageUrl="require('@/assets/icons/happy_black.svg')"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_COMMUNITY.png')
+				"
+				v-bind:hoverUrl="
+					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
+				"
 			/>
 			<div class="full-text">
 				<p>
