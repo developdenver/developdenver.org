@@ -225,6 +225,11 @@ textarea {
 	}
 }
 
+// img {
+// 	max-width: 100%;
+// 	width: 100%;
+// }
+
 .responsive-iframe-container {
 	position: relative;
 	overflow: hidden;
@@ -256,7 +261,7 @@ section {
 	grid-template-rows: auto 1fr;
 	margin: 0 auto;
 	max-width: 1200px;
-	padding: $baseline * 3;
+	padding: $baseline * 3 $baseline * 3 $baseline * 6 $baseline * 3;
 	&.full {
 		max-width: 100%;
 	}

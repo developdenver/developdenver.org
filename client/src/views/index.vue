@@ -3,6 +3,12 @@
 		<landing-screen />
 		<about />
 		<venue-list />
+		<section class="image-break">
+			<div class="image-container">
+				<img src="/img/ballmer-peak.jpeg" />
+			</div>
+			<div class="plus-grid red"></div>
+		</section>
 		<ticket-details />
 		<!-- <schedule-download /> -->
 		<sponsor-list />
@@ -45,21 +51,21 @@ export default {
 
 .index {
 	display: contents;
-	.conference-info {
-		@media (max-width: $small-breakpoint) {
-			margin-top: $baseline * 2;
-			padding: 0;
-		}
-		max-width: $max-width;
-		> section {
-			margin-bottom: $baseline * 9;
-			@media (max-width: $small-breakpoint) {
-				padding: $baseline;
-				margin-bottom: $baseline * 2;
-				&.featured-talks {
-					margin-bottom: 0;
-				}
+	.image-break {
+		.image-container {
+			grid-column: 1 / span 4;
+			grid-row: 1;
+			img {
+				max-width: 100%;
+				width: 100%;
 			}
+		}
+		.plus-grid {
+			@include plus-grid;
+			grid-column: 3 / span 4;
+			grid-row: 1;
+			height: 300px;
+			margin-top: -100px;
 		}
 	}
 }
