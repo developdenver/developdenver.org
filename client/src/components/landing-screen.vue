@@ -36,11 +36,12 @@ export default {
 	position: relative;
 	.plus-grid-container {
 		background: $yellow;
-		bottom: 0;
+		// bottom: 0;
+		height: 200vh;
 		left: 0;
 		position: absolute;
 		right: 0;
-		top: 0;
+		top: -100%;
 		z-index: -1;
 	}
 	.landing-headline {

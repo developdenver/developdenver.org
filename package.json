@@ -9,7 +9,5 @@
     },
     "author": "Develop Denver PBC",
     "license": "Private",
-    "dependencies": {
-        "vue-fragment": "^1.5.1"
-    }
+    "dependencies": {}
 }
