@@ -36,9 +36,9 @@
 <script>
 import Vue from 'vue';
 import Fragment from 'vue-fragment';
+import Countdown from '@/components/count-down.vue';
 import EventCardList from '@/components/event-card-list';
 import SponsorList from '@/components/sponsor-list';
-import Countdown from '@/components/count-down.vue';
 import { shuffle } from '@/utilities/shuffle';
 
 export default {

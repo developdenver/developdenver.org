@@ -71,7 +71,7 @@ $medium-border-width: 3px;
 }
 
 @mixin grid-form {
-	grid-column: 1 / span 3;
+	grid-column: 2 / span 3;
 	@media (max-width: $medium-breakpoint) {
 		grid-column: 3 / span 5;
 	}

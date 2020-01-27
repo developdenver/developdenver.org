@@ -157,13 +157,13 @@ a {
 	color: inherit;
 	display: block;
 	text-decoration: none;
+	&:visited {
+		color: inherit;
+	}
 	&:hover {
 		color: $red;
+		cursor: pointer;
 	}
-}
-
-a:visited {
-	color: inherit;
 }
 
 a,
@@ -177,7 +177,8 @@ button {
 	}
 }
 
-button {
+button,
+[type='submit'] {
 	@include primary-button-font;
 	background: none;
 	border: $medium-border-width solid $black;
@@ -193,6 +194,14 @@ button {
 	}
 	&:hover {
 		cursor: pointer;
+	}
+	&.black {
+		background: $black;
+		color: $yellow;
+		&:hover {
+			background: $yellow;
+			color: $black;
+		}
 	}
 }
 
@@ -217,14 +226,15 @@ input {
 
 input,
 textarea {
+	background: none;
+	border: $medium-border-width solid $black;
 	display: block;
-	border: 2px solid $white;
-	background-color: $black;
-	color: $white;
-	padding: $baseline;
 	margin-bottom: $baseline / 2;
+	padding: $baseline;
+	text-decoration: none;
+	width: 100%;
 	&::placeholder {
-		color: $white;
+		color: $black;
 	}
 }
 
@@ -284,6 +294,17 @@ section {
 	padding-top: $baseline * 1.5;
 	h1 {
 		grid-column: 1 / span 3;
+	}
+	.plus-grid-container {
+		background: url('/img/plus_black.png');
+		background-repeat: repeat;
+		background-size: 20px 20px;
+		height: 200vh;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: -100%;
+		z-index: -1;
 	}
 }
 

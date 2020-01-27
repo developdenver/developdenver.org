@@ -31,17 +31,6 @@ export default {
 	height: 100vh;
 	position: relative;
 	z-index: -2;
-	.plus-grid-container {
-		background: url('/img/plus_black.png');
-		background-repeat: repeat;
-		background-size: 20px 20px;
-		height: 200vh;
-		left: 0;
-		position: absolute;
-		right: 0;
-		top: -100%;
-		z-index: -1;
-	}
 	.landing-headline {
 		@include align-self(center);
 		@include headline-font;
