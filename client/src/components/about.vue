@@ -61,7 +61,6 @@ section.about-image {
 	background: $yellow;
 	.full-text {
 		@include grid-heading;
-		// padding: $baseline * 2 0;
 	}
 	.plus-grid.red {
 		@include plus-grid;

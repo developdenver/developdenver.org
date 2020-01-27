@@ -138,6 +138,9 @@ table {
 @import '_typography.scss';
 @import '_sizes';
 
+h1 {
+	@include headline-font;
+}
 h2 {
 	@include primary-header-font;
 }
@@ -271,4 +274,8 @@ section {
 	@media (max-width: $small-breakpoint) {
 		height: calc(100vh - #{$mobile-header-size}); // header size
 	}
+}
+
+.full-text {
+	@include grid-heading;
 }

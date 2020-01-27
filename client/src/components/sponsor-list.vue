@@ -7,9 +7,18 @@
 			"
 			v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_SPONSORS.svg')"
 		/>
+		<div class="sponsor-call-to-action">
+			<p>
+				Support the Denver development, product, and design community!
+			</p>
+			<a href="mailto:sponsorship@developdenver.org"
+				><button>Become a Sponsor</button></a
+			>
+		</div>
 		<!-- <ul v-if="premiumSponsor" class="platinum-sponsors">
 			<li>Sponsor Here</li>
 		</ul> -->
+		<div class="plus-grid"></div>
 		<ul v-if="siteSponsors.length" class="gold-sponsors">
 			<li v-for="(sponsor, index) in siteSponsors" :key="index">
 				<a :href="sponsor.link">
@@ -21,15 +30,6 @@
 				</a>
 			</li>
 		</ul>
-
-		<div class="sponsor-call-to-action">
-			<p>
-				Support the Denver development, product, and design community!
-			</p>
-			<a href="mailto:sponsorship@developdenver.org"
-				><button>Become a Sponsor</button></a
-			>
-		</div>
 	</section>
 </template>
 
@@ -142,15 +142,8 @@ export default {
 		}
 	}
 	.sponsor-call-to-action {
-		grid-column: 1 / span 6;
-		p {
-			grid-column: 1 / span 6;
-			margin-bottom: $baseline;
-			@media (max-width: $small-breakpoint) {
-				grid-column: 1;
-				margin-top: $baseline;
-			}
-		}
+		grid-column: 1 / span 2;
+		grid-row: 2;
 	}
 }
 </style>

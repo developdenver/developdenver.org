@@ -28,15 +28,15 @@ export default {
 @import '@/styles/_general.scss';
 @import '@/styles/_typography.scss';
 #landing {
-	background: url('/img/plus_black.png');
-	background-repeat: repeat;
-	background-size: 20px 20px;
+	background: $yellow;
 	height: 100vh;
 	padding-top: 30px;
 	position: relative;
+	z-index: -2;
 	.plus-grid-container {
-		background: $yellow;
-		// bottom: 0;
+		background: url('/img/plus_black.png');
+		background-repeat: repeat;
+		background-size: 20px 20px;
 		height: 200vh;
 		left: 0;
 		position: absolute;
