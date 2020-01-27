@@ -21,11 +21,11 @@
 							Sponsorship
 						</router-link>
 					</li>
-					<li>
+					<!--<li>
 						<router-link :to="{ name: 'talks' }"
 							>Submissions</router-link
 						>
-					</li>
+					</li> -->
 					<li v-if="isLoggedIn">
 						<router-link :to="{ name: 'submit-talk' }"
 							>Submit a Talk</router-link

@@ -280,7 +280,11 @@ section {
 	@include grid-heading;
 }
 .landing-screen {
+	background: $yellow;
 	padding-top: $baseline * 1.5;
+	h1 {
+		grid-column: 1 / span 3;
+	}
 }
 
 .countdown {

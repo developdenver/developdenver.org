@@ -28,7 +28,6 @@ export default {
 @import '@/styles/_general.scss';
 @import '@/styles/_typography.scss';
 #landing {
-	background: $yellow;
 	height: 100vh;
 	position: relative;
 	z-index: -2;

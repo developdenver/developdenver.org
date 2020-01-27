@@ -109,13 +109,8 @@ export default {
 @import '@/styles/_sizes.scss';
 @import '@/styles/_typography.scss';
 #about-landing {
-	background: $yellow;
 	grid-column: 1 / span 6;
 	position: relative;
-	h1 {
-		grid-column: 1 / span 3;
-		grid-row: 2;
-	}
 	.plus-grid.red {
 		@include plus-grid;
 		grid-column: 3 / span 4;
