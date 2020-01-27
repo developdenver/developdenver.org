@@ -3,8 +3,22 @@
 		<section id="tickets-landing" class="full landing-screen">
 			<countdown />
 			<h1>The hottest ticket in town</h1>
+			<div class="cta">
+				<router-link :to="{ name: 'register' }">
+					<button>Register To Attend</button>
+				</router-link>
+			</div>
 		</section>
 		<section>
+			<HeaderBar
+				title="The Details"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_COMMUNITY.png')
+				"
+				v-bind:hoverUrl="
+					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
+				"
+			/>
 			<div class="ticket-details">
 				<div class="date-and-location">
 					<p>When: August 15 and 16, 2019</p>

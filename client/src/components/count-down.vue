@@ -84,10 +84,7 @@ export default {
 
 .countdown {
 	background: $yellow;
-	grid-column: 6;
-	@media (max-width: $small-breakpoint) {
-		display: none;
-	}
+	grid-row: 1;
 	.numbers {
 		@include primary-header-font;
 		@include justify-content(space-between);
@@ -102,7 +99,10 @@ export default {
 				padding-right: 0;
 			}
 		}
-		@media (max-width: $small-breakpoint) {
+	}
+	@media (max-width: $small-breakpoint) {
+		justify-self: end;
+		.numbers {
 			font-size: $baseline;
 		}
 	}

@@ -140,10 +140,38 @@ export default {
 				}
 			}
 		}
+		@media (max-width: $small-breakpoint) {
+			li {
+				@include flexbox;
+				@include justify-content(center);
+				@include flex(auto);
+				width: 50%;
+				&:nth-child(1n) {
+					padding: 0 $baseline 0 0;
+				}
+				&:nth-child(2n) {
+					padding: 0 0 0 $baseline;
+				}
+				a {
+					@include justify-content(center);
+					img {
+						width: 100%;
+						height: auto;
+					}
+				}
+			}
+		}
 	}
 	.sponsor-call-to-action {
 		grid-column: 1 / span 2;
 		grid-row: 2;
+		@media (max-width: $medium-breakpoint) {
+			grid-column: 1 / span 6;
+			padding-bottom: $baseline * 3;
+		}
+		@media (max-width: $medium-breakpoint) {
+			grid-column: 1;
+		}
 	}
 }
 </style>

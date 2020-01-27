@@ -1,9 +1,9 @@
 <template>
 	<div id="app">
-		<header class="mobile-header">
+		<!-- <header class="mobile-header">
 			<circle-logo />
 			<countdown />
-		</header>
+		</header> -->
 		<app-header @toggleMenu="toggleMenu" :isMenuOpen="isMenuOpen">
 			<hamburger-menu
 				:isMenuOpen="isMenuOpen"
@@ -78,19 +78,19 @@ export default {
 		max-width: 100%;
 		overflow: hidden;
 		width: 100%;
+		@media (max-width: $small-breakpoint) {
+			margin-left: 0;
+		}
 	}
 	@media (max-width: $small-breakpoint) {
 		@include flex-flow(column nowrap);
-		margin: $mobile-header-size auto $mobile-footer-size auto; // Makes room for fixed header and footer;
+		//	margin: $mobile-header-size auto $mobile-footer-size auto; // Makes room for fixed header and footer;
 		min-height: initial;
 		padding: 0;
 		.mobile-header {
-			background-color: $black;
+			background-color: $yellow;
 			display: flex;
 			justify-content: space-between;
-			padding: $baseline;
-			position: fixed;
-			top: 0;
 			width: 100%;
 			z-index: 1;
 			.countdown {

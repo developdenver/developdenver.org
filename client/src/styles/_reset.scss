@@ -151,6 +151,10 @@ h3 {
 p {
 	font-size: 26px;
 	line-height: 2.2rem;
+	@media (max-width: $small-breakpoint) {
+		font-size: 17px;
+		line-height: 1.7rem;
+	}
 }
 
 a {
@@ -282,7 +286,8 @@ section {
 		padding: 0;
 	}
 	@media (max-width: $small-breakpoint) {
-		height: calc(100vh - #{$mobile-header-size}); // header size
+		// height: calc(100vh - #{$mobile-header-size}); // header size
+		padding: $baseline * 3 $baseline * 2 $baseline * 4 $baseline * 2;
 	}
 }
 
@@ -306,10 +311,10 @@ section {
 		top: -100%;
 		z-index: -1;
 	}
-}
-
-.countdown {
-	background: #f0ff0a;
-	grid-column: 6;
-	grid-row: 1;
+	.cta {
+		grid-column: 4 / span 3;
+		grid-row: 1;
+		margin-top: 40vh;
+		text-align: center;
+	}
 }

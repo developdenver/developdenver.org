@@ -119,12 +119,6 @@ export default {
 @import '@/styles/_general.scss';
 
 #schedule-landing {
-	.cta {
-		grid-column: 4 / span 3;
-		grid-row: 1;
-		margin-top: 50vh;
-		text-align: center;
-	}
 }
 
 .event-categories {
@@ -147,8 +141,5 @@ export default {
 
 .countdown {
 	@include grid-countdown;
-	@media (max-width: $small-breakpoint) {
-		display: none;
-	}
 }
 </style>

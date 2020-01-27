@@ -33,10 +33,11 @@ export default {
 	z-index: -2;
 	.landing-headline {
 		@include align-self(center);
-		@include headline-font;
+
 		grid-row: 2;
 		grid-column: 2 / span 5;
 		h1 {
+			@include headline-font;
 			background: $yellow;
 			float: left;
 			line-height: 1em;
@@ -45,6 +46,18 @@ export default {
 			height: 40px;
 			float: left;
 			width: 100%;
+		}
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+			h1 {
+				font-size: 76px;
+			}
+		}
+	}
+	.plus-grid-container {
+		&.onScroll {
+			transform: translate(-5%, -5%) skewX(40deg);
+			transition: all 1s cubic-bezier(0.77, 0, 0.175, 1);
 		}
 	}
 }

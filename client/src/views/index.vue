@@ -68,5 +68,16 @@ export default {
 			margin-top: -100px;
 		}
 	}
+	@media (max-width: $small-breakpoint) {
+		.image-break {
+			.image-container,
+			.plus-grid {
+				grid-column: 1;
+			}
+			.image-container {
+				margin-top: $baseline * 4;
+			}
+		}
+	}
 }
 </style>

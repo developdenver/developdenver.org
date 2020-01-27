@@ -33,6 +33,9 @@
 @mixin primary-header-font {
 	font-family: DVLP;
 	font-size: 36px;
+	@media (max-width: $small-breakpoint) {
+		font-size: 25px;
+	}
 }
 
 @mixin primary-button-font {

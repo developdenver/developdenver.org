@@ -9,6 +9,10 @@
 			</button>
 			<div class="title-wrap">
 				<img src="/img/DVLP_DNVR_text.png" />
+				<img
+					src="/img/DVLP_DNVR_text_horizontal.png"
+					class="mobile-title"
+				/>
 			</div>
 		</div>
 		<slot />
@@ -60,9 +64,13 @@ export default {
 		@media (max-width: $small-breakpoint) {
 			@include flexbox;
 			@include flex-flow(nowrap);
+			@include align-items(center);
 			@include justify-content(space-between);
+			border: 0;
+			border-top: $thin-border-width solid $black;
 			bottom: 0;
 			height: auto;
+			padding: $baseline;
 			left: auto;
 			max-width: 100%;
 			top: auto;
@@ -79,33 +87,49 @@ export default {
 			@include justify-content(center);
 			@include align-items(center);
 			height: 78%;
+			.mobile-title {
+				display: none;
+			}
 			img {
 				height: 100%;
 				max-height: 400px;
 				width: auto;
 			}
+			@media (max-width: $small-breakpoint) {
+				@include justify-content(flex-start);
+				@include align-items(center);
+				width: 70%;
+				img {
+					display: none;
+					&.mobile-title {
+						display: block;
+						width: 100%;
+						height: auto;
+					}
+				}
+			}
 		}
 	}
 	.menu {
 		@include align-items(center);
-		@include justify-content(center);
+		@include justify-content(flex-end);
 		cursor: pointer;
 		display: inline-flex;
 		background: none;
+		border: none;
 		border-bottom: $thin-border-width solid $black;
-		border-left: none;
-		border-right: none;
-		border-top: none;
 		color: $black;
 		margin-top: 0;
+		padding: $baseline 0;
 		width: 100%;
-		padding-top: $baseline;
-		padding-bottom: $baseline;
 		@media (max-width: $small-breakpoint) {
+			border-bottom: none;
 			@include flex(1);
 			justify-self: flex-end;
 			margin: 0;
 			order: 2;
+			padding: 0;
+			width: 30%;
 		}
 		svg {
 			width: 100%;

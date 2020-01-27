@@ -299,6 +299,8 @@ export default {
 	grid-column: 1 / span 6;
 	grid-row: 2;
 	.venue-logo {
+		@include flexbox;
+		@include align-items(center);
 		@include flex(1);
 		margin: $baseline $baseline * 2;
 		&:hover {
@@ -306,12 +308,21 @@ export default {
 		}
 		img {
 			width: 16.66%;
-			min-width: 100px;
+			// min-width: 100px;
+		}
+		@media (max-width: $medium-breakpoint) {
+			margin: $baseline;
+			img {
+				width: 80%;
+			}
 		}
 	}
 	@media (max-width: $small-breakpoint) {
+		@include justify-content(center);
 		grid-column: 1;
-		justify-content: center;
+		.venue-logo {
+			margin: 0 $baseline / 4;
+		}
 	}
 }
 .map {
@@ -382,6 +393,9 @@ export default {
 				font-size: 16px;
 			}
 		}
+	}
+	@media (max-width: $small-breakpoint) {
+		grid-column: 1;
 	}
 }
 svg {

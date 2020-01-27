@@ -73,6 +73,9 @@ section.about-image {
 			grid-column: 5 / span 2;
 			grid-row: 4;
 			margin-top: -$baseline * 2;
+			@media (max-width: $medium-breakpoint) {
+				grid-column: 4 / span 3;
+			}
 		}
 	}
 
@@ -80,9 +83,29 @@ section.about-image {
 		grid-column: 3 / span 3;
 		grid-row: 3;
 		margin-top: $baseline * 2;
+
 		img {
 			height: auto;
 			width: 100%;
+		}
+		@media (max-width: $medium-breakpoint) {
+			grid-column: 3 / span 4;
+		}
+	}
+	@media (max-width: $small-breakpoint) {
+		.plus-grid.red:first-child,
+		.plus-grid.red:last-child,
+		.about-image {
+			grid-column: 1;
+		}
+		.plus-grid.red:first-child {
+			grid-row: 2;
+		}
+		.about-image {
+			margin-top: -$baseline * 3;
+		}
+		.plus-grid.red:last-child {
+			display: none;
 		}
 	}
 }

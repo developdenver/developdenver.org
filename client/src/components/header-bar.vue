@@ -69,6 +69,14 @@ export default {
 			}
 		}
 	}
+	@media (max-width: $small-breakpoint) {
+		.icon-container {
+			margin-right: $baseline;
+			img {
+				width: 30px;
+			}
+		}
+	}
 }
 
 @keyframes orbit {

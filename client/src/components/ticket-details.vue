@@ -55,5 +55,21 @@ export default {
 		grid-column: 5 / span 2;
 		grid-row: 2;
 	}
+	@media (max-width: $medium-breakpoint) {
+		.benefits,
+		.groups {
+			grid-column: 1 / span 6;
+		}
+		.groups {
+			grid-row: 3;
+			padding-top: $baseline * 3;
+		}
+	}
+	@media (max-width: $small-breakpoint) {
+		.benefits,
+		.groups {
+			grid-column: 1;
+		}
+	}
 }
 </style>
