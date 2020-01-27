@@ -4,20 +4,33 @@
 			<nav>
 				<ul>
 					<li>
-						<router-link :to="{ name: 'about' }">About</router-link>
+						<router-link
+							class-active="active"
+							:to="{ name: 'about' }"
+							>About</router-link
+						>
 					</li>
 					<li>
-						<router-link :to="{ name: 'schedule' }">
+						<router-link
+							class-active="active"
+							:to="{ name: 'schedule' }"
+						>
 							Schedule
 						</router-link>
 					</li>
 					<li>
-						<router-link :to="{ name: 'tickets' }">
+						<router-link
+							class-active="active"
+							:to="{ name: 'tickets' }"
+						>
 							Tickets
 						</router-link>
 					</li>
 					<li>
-						<router-link :to="{ name: 'sponsorship' }">
+						<router-link
+							class-active="active"
+							:to="{ name: 'sponsorship' }"
+						>
 							Sponsorship
 						</router-link>
 					</li>
@@ -27,23 +40,31 @@
 						>
 					</li> -->
 					<li v-if="isLoggedIn">
-						<router-link :to="{ name: 'submit-talk' }"
+						<router-link
+							class-active="active"
+							:to="{ name: 'submit-talk' }"
 							>Submit a Talk</router-link
 						>
 					</li>
 					<li>
-						<router-link :to="{ name: 'contact' }">
+						<router-link
+							class-active="active"
+							:to="{ name: 'contact' }"
+						>
 							Contact
 						</router-link>
 					</li>
 					<li v-if="!isLoggedIn">
 						<router-link
+							class-active="active"
 							:to="{ name: 'login', query: redirectToPageQuery }"
 							>Login</router-link
 						>
 					</li>
 					<li v-if="isLoggedIn">
-						<router-link :to="{ name: 'my-profile' }"
+						<router-link
+							class-active="active"
+							:to="{ name: 'my-profile' }"
 							>My Profile</router-link
 						>
 					</li>
@@ -227,6 +248,10 @@ export default {
 					a {
 						padding: $baseline;
 						padding-top: $baseline * 2;
+						&.router-link-active {
+							background: $black;
+							color: $yellow;
+						}
 					}
 					&:hover {
 						background: $black;
