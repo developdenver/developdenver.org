@@ -1,5 +1,5 @@
 <template>
-	<section id="landing" class="full">
+	<section id="landing" class="full landing-screen">
 		<div class="plus-grid-container"></div>
 		<div class="landing-headline">
 			<h1>August</h1>
@@ -30,7 +30,6 @@ export default {
 #landing {
 	background: $yellow;
 	height: 100vh;
-	padding-top: 30px;
 	position: relative;
 	z-index: -2;
 	.plus-grid-container {

@@ -279,3 +279,12 @@ section {
 .full-text {
 	@include grid-heading;
 }
+.landing-screen {
+	padding-top: $baseline * 1.5;
+}
+
+.countdown {
+	background: #f0ff0a;
+	grid-column: 6;
+	grid-row: 1;
+}

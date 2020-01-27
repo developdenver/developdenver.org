@@ -48,11 +48,11 @@ export default {
 
 #ticket-details {
 	.benefits {
-		grid-column: 1 / span 2;
+		grid-column: 1 / span 3;
 		grid-row: 2;
 	}
 	.groups {
-		grid-column: 4 / span 2;
+		grid-column: 5 / span 2;
 		grid-row: 2;
 	}
 }

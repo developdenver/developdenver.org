@@ -83,6 +83,7 @@ export default {
 	padding: 0 $baseline * 2;
 	position: fixed;
 	right: 0;
+	z-index: 100;
 	@media (max-width: $small-breakpoint) {
 		display: none;
 	}
