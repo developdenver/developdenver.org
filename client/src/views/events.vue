@@ -10,9 +10,7 @@
 					<button>Download the full schedule</button>
 				</a>
 			-->
-				<router-link :to="{ name: 'tickets' }">
-					<button>Buy Tickets</button>
-				</router-link>
+				<BuyTicketsButton />
 			</div>
 		</section>
 		<section id="schedule-intro">
@@ -74,6 +72,7 @@
 <script>
 import Vue from 'vue';
 import Fragment from 'vue-fragment';
+import BuyTicketsButton from '@/components/buy-tickets-button.vue';
 import Countdown from '@/components/count-down.vue';
 import HeaderBar from '@/components/header-bar.vue';
 import EventCardList from '@/components/event-card-list';
@@ -82,6 +81,7 @@ import { shuffle } from '@/utilities/shuffle';
 
 export default {
 	components: {
+		BuyTicketsButton,
 		EventCardList,
 		SponsorList,
 		Countdown,
@@ -159,7 +159,7 @@ export default {
 @import '@/styles/_general.scss';
 
 .intro {
-	grid-column: 1 / span 6;
+	@include grid-full-width;
 }
 a {
 	grid-column: 1 / span 3;

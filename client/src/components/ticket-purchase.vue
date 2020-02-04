@@ -1,50 +1,97 @@
 <template>
 	<form class="ticket-purchase" @submit.prevent="submit">
-		<div class="levels">
-			<div class="level" v-for="(level, index) in levels" :key="index">
-				<span>
-					<input
-						v-if="currentProfile.id"
-						type="radio"
-						required
-						name="ticket-level"
-						:id="level.sku"
-						:value="level.sku"
-						v-model="ticketSKU"
-					>
-					<label :for="level.sku"><h3>{{level.label}}</h3></label>
-				</span>
-				<p class="level-description">{{level.description}}</p>
+		<div class="levels form-section">
+			<h3>Ticket Type</h3>
+			<div
+				class="level form-row radio-input"
+				v-bind:class="{ 'is-disabled': !currentProfile.id }"
+				v-for="(level, index) in levels"
+				:key="index"
+			>
+				<input
+					v-if="currentProfile.id"
+					type="radio"
+					required
+					name="ticket-level"
+					:id="level.sku"
+					:value="level.sku"
+					v-model="ticketSKU"
+				/>
+				<label :for="level.sku"
+					><h4>{{ level.label }}</h4></label
+				>
+				<div class="level-info">
+					<h4>{{ level.price }}</h4>
+					<p class="level-description">{{ level.description }}</p>
+				</div>
 			</div>
 		</div>
-		<div class="ticket-quantity" v-if="currentProfile.id">
-			<label for="ticket-quantity">Quantity</label>
-			<input type="number" name="ticket-quantity" v-model.number="ticketQuantity">
-		</div>
-
-		<div class="invitees" :class="{ 'not-enough-tickets': notEnoughTickets }" v-if="currentProfile.id">
-			<label for="invitees">Email address(es) for each badge (don’t worry, you can add or edit later)</label>
-			<VoerroTagsInput
-				v-model="invitees"
-				:typeahead="false"
-				:placeholder="remainingTicketsMessage"
-				:limit="ticketQuantity"
+		<div class="form-section" v-if="currentProfile.id">
+			<h3>Number of Tickets</h3>
+			<div class="ticket-quantity form-row">
+				<label for="ticket-quantity"><h4>Quantity</h4></label>
+				<input
+					type="number"
+					name="ticket-quantity"
+					v-model.number="ticketQuantity"
 				/>
+			</div>
 		</div>
 
-		<div class="discount-code" v-if="currentProfile.id && isDiscountCode">
-			<label for="discount-code">Discount Code</label>
-			<input required type="text" id="discount-code" name="discount-code" v-model="discountCode">
+		<div
+			class="invitees form-section"
+			:class="{ 'not-enough-tickets': notEnoughTickets }"
+			v-if="currentProfile.id"
+		>
+			<h3>Email address(es)</h3>
+			<div class="form-row">
+				<label for="invitees">
+					Email addresses (enter an email for for each badge)
+				</label>
+				<VoerroTagsInput
+					v-model="invitees"
+					:typeahead="false"
+					:placeholder="remainingTicketsMessage"
+					:limit="ticketQuantity"
+				/>
+			</div>
 		</div>
 
-		<credit-card-payment v-if="currentProfile.id" :card="card" @setError="setError"/>
+		<div class="discount-code form-section" v-if="true && isDiscountCode">
+			<h3>Discount Code</h3>
+			<div class="form-row">
+				<label for="discount-code">Discount Code</label>
+				<input
+					required
+					type="text"
+					id="discount-code"
+					name="discount-code"
+					v-model="discountCode"
+				/>
+			</div>
+		</div>
 
-		<input v-if="currentProfile.id" type="submit" :disabled="isLoading || formInvalid" value="Pay">
-		<router-link v-else :to="{name: 'register', query: { redirect: 'conference-badges' } }" class="call-to-action">Register To Buy!</router-link>
-    <div class="errors">{{error}}</div>
-    <div class="message">{{message}}</div>
+		<credit-card-payment
+			v-if="currentProfile.id"
+			:card="card"
+			@setError="setError"
+		/>
 
-  </form>
+		<input
+			v-if="currentProfile.id"
+			type="submit"
+			:disabled="isLoading || formInvalid"
+			value="Buy Tickets"
+		/>
+		<router-link
+			v-else
+			:to="{ name: 'register', query: { redirect: 'conference-badges' } }"
+			class="call-to-action"
+			><button>Register To Buy</button></router-link
+		>
+		<div class="errors">{{ error }}</div>
+		<div class="message">{{ message }}</div>
+	</form>
 </template>
 
 <script>
@@ -83,9 +130,14 @@ export default {
 			style: {
 				base: {
 					fontSize: '20px',
-					color: '#ffffff',
-				}
-			}
+					color: '#000000',
+					fontFamily: 'poppins, sans-serif',
+					fontWeight: '300',
+					fontStyle: 'normal',
+					lineHeight: '1.5em',
+					textTransform: 'capitalize',
+				},
+			},
 		};
 		this.card = elements.create('card', options);
 		await this.profileLoaded;
@@ -116,13 +168,16 @@ export default {
 			if (this.remainingTickets < 0) {
 				return 'not enough tickets!';
 			}
-			if (this.remainingTickets === 0) {
-				return '0 remaining';
+			if (
+				this.remainingTickets === 0 ||
+				(this.remainingTickets === 1 && this.ticketQuantity === 1)
+			) {
+				return '';
 			}
 			if (this.remainingTickets === 1) {
-				return '1 more email';
+				return '1 email left';
 			}
-			return `${this.remainingTickets} more emails`;
+			return `${this.remainingTickets} emails left`;
 		},
 		notEnoughTickets() {
 			return this.remainingTickets < 0;
@@ -175,8 +230,8 @@ export default {
 							!this.invitees.includes(
 								this.currentProfile.properties.email,
 							) || this.quantity > 1
-							? { name: 'my-tickets' }
-							: { name: 'news' };
+								? { name: 'my-tickets' }
+								: { name: 'news' };
 						this.$router.push(next);
 					})
 					.catch(error => {
@@ -193,84 +248,136 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/styles/_typography.scss';
+@import '@/styles/_flex.scss';
 @import '@/styles/_general.scss';
 @import '@/styles/_sizes.scss';
+@import '@/styles/_typography.scss';
 
 .ticket-purchase {
-	@include grid;
-	.levels {
-		.level {
-			display: grid;
-			grid-template: auto auto / 1fr;
-			grid-row-gap: $baseline / 2;
-			input, label, h3 {
-				display: inline;
-				width: auto;
-				grid-row: 1;
+	@include grid-full-width;
+	max-width: 700px;
+	.form-section {
+		&.credit-card-payment {
+			border-bottom: none;
+		}
+	}
+
+	.form-row {
+		label {
+			cursor: pointer;
+			padding: 12px $baseline * 2;
+			transition: color 200ms ease-in;
+			@media (max-width: $small-breakpoint) {
+				padding-left: 0;
 			}
-			input {
-				margin-right: $baseline;
+		}
+		input {
+			display: block;
+		}
+		&.level {
+			.level-info {
+				padding-left: $baseline * 2;
+				h4 {
+					padding-bottom: $baseline / 2;
+				}
+				@media (max-width: $small-breakpoint) {
+					padding-left: 0;
+					h4 {
+						padding-left: 0;
+					}
+				}
 			}
 			.level-description {
-				grid-row: 2;
+				font-size: 15px;
+				line-height: 1.5rem;
 				grid-column: 1;
 				margin-bottom: $baseline * 2;
 			}
 		}
-	}
-	.levels, .ticket-quantity, .invitees, .credit-card-payment, .discount-code {
-		@include grid-form;
-		margin-bottom: $baseline;
-		input {
-			width: 100%;
+		&.ticket-quantity {
+			@include flexbox;
+			@include justify-content(space-between);
+			label {
+				display: inline;
+			}
+			input {
+				display: inline;
+				width: 100px;
+			}
 		}
 	}
+
 	.invitees {
 		.tags-input-wrapper-default {
 			background: none;
-			border: 2px solid $white;
+			border: $thin-border-width solid $black;
 			border-radius: 0;
-			padding: 8px;
+			margin-left: $baseline * 2;
+			padding: 0;
 			input {
 				width: 100%;
-				background-color: $black;
-				color: $white;
-				margin: 0;
-				padding: 16px;
+				margin-bottom: 0;
+			}
+			@media (max-width: $small-breakpoint) {
+				margin-left: 0;
+			}
+			.tags-input-badge {
+				@include tertiary-font;
+				font-size: 100%;
 			}
 			.tags-input-badge-pill {
-				background: $black;
-				border: 1px solid $white;
-				color: $white;
-				margin: 2px;
+				background: $yellow;
+				color: $black;
+				margin-left: $baseline/2;
 				border-radius: 0;
-				padding-left:4px;
-				padding-right:4px;
+				padding: $baseline/4;
+				@media (max-width: $small-breakpoint) {
+					margin-left: 0;
+				}
 			}
 			.tags-input-remove {
-				&::before, &::after {
-					background: $white;
+				height: 15px;
+				width: 15px;
+				&::before,
+				&::after {
+					background: $black;
+				}
+				&:hover {
+					&::before,
+					&::after {
+						background: $red;
+					}
 				}
 			}
 		}
+		.tags-input input:active,
+		.tags-input input:focus {
+			background: $yellow;
+		}
 	}
 	.credit-card-payment {
+		input,
+		#card-element {
+			margin-left: $baseline * 2;
+			width: calc(100% - 40px);
+			@media (max-width: $small-breakpoint) {
+				margin-left: 0;
+				width: 100%;
+			}
+		}
+
 		.StripeElement {
-			border: 2px solid $white;
+			border: $thin-border-width solid $black;
 			padding: $baseline;
 		}
 	}
-	.call-to-action, [type=submit] {
-		@include grid-form;
-		@include call-to-action;
-		padding: 0;
-		&:disabled:hover {
-			cursor: not-allowed;
-			color: $white;
-			border-color: $white;
+	input[type='submit'] {
+		margin-left: $baseline * 2;
+		width: calc(100% - 40px);
+		@media (max-width: $small-breakpoint) {
+			margin-left: 0;
+			width: 100%;
 		}
 	}
 }
-
 </style>

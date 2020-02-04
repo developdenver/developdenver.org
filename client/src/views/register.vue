@@ -1,22 +1,46 @@
 <template>
-  <section class="register">
-    <h2>Register</h2>
-    <p>
-      Create a profile to use for the conference. Already have a profile?
-      <router-link :to="{name: 'login', query: $route.query }">Log in</router-link> to purchase a badge.
-    </p>
-    <edit-profile
-      buttonLabel="Register"
-      :isNewProfile="true"
-      :profile="profile"
-      @updateProfile="updateProfile"
-    />
-  </section>
+	<fragment>
+		<section id="register-landing" class="full landing-screen">
+			<countdown />
+			<h1>Sign Up to Get In</h1>
+			<div class="plus-grid red"></div>
+		</section>
+		<section id="register">
+			<HeaderBar
+				title="Register"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
+				"
+				v-bind:hoverUrl="
+					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
+				"
+			/>
+			<div class="registration-instructions">
+				<p>
+					Create a profile to buy tickets. Already have a profile?
+					<router-link :to="{ name: 'login', query: $route.query }"
+						>Log in</router-link
+					>
+					to purchase a badge.
+				</p>
+			</div>
+			<edit-profile
+				buttonLabel="Register"
+				:isNewProfile="true"
+				:profile="profile"
+				@updateProfile="updateProfile"
+			/>
+		</section>
+	</fragment>
 </template>
 
 <script>
+import Vue from 'vue';
+import Fragment from 'vue-fragment';
+import Countdown from '@/components/count-down';
 import EditProfile from '../components/edit-profile';
 import Profile from '../models/profile';
+import HeaderBar from '@/components/header-bar.vue';
 
 export default {
 	data() {
@@ -25,7 +49,9 @@ export default {
 		};
 	},
 	components: {
+		Countdown,
 		EditProfile,
+		HeaderBar,
 	},
 	methods: {
 		async updateProfile(profile) {
@@ -43,30 +69,26 @@ export default {
 @import '@/styles/_general.scss';
 @import '@/styles/_colors.scss';
 
-.register {
-	@include grid;
-	margin: $baseline * 8 0;
-	@media (max-width: $small-breakpoint) {
-		margin: $baseline * 2 0;
-		padding: $baseline;
+#register-landing {
+	.plus-grid.red {
+		@include plus-grid;
+		grid-column: 2 / span 4;
+		height: 30vh;
+		margin-top: 25vh;
+		position: absolute !important;
+		width: 50vw;
+		right: 0;
+		z-index: 1;
 	}
-	> h2, p {
-		@include grid-heading
-		@media (max-width: $small-breakpoint) {
-			grid-column: 1;
-		}
-	}
-	.edit-profile {
+}
+#register {
+	div {
 		@include grid-full-width;
-		@media (max-width: $small-breakpoint) {
-			grid-column: 1;
-		}
 	}
-	> p {
-		margin-bottom: $baseline;
+	p {
+		display: inline-block;
 		a {
-			text-decoration: underline;
-			color: $accent-color;
+			display: inline-block;
 		}
 	}
 }

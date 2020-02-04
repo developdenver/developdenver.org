@@ -12,9 +12,7 @@
 				breakfast, and lunch at Zeppelin Station vendors both days,
 				opening and closing parties, 8th annual Ballmer Peak Hackathon
 			</p>
-			<router-link :to="{ name: 'tickets' }">
-				<button>Buy Tickets</button>
-			</router-link>
+			<BuyTicketsButton />
 		</div>
 		<div class="groups">
 			<p>
@@ -35,8 +33,10 @@
 
 <script>
 import HeaderBar from '@/components/header-bar.vue';
+import BuyTicketsButton from '@/components/buy-tickets-button.vue';
 export default {
 	components: {
+		BuyTicketsButton,
 		HeaderBar,
 	},
 };
@@ -58,7 +58,7 @@ export default {
 	@media (max-width: $medium-breakpoint) {
 		.benefits,
 		.groups {
-			grid-column: 1 / span 6;
+			@include grid-full-width;
 		}
 		.groups {
 			grid-row: 3;

@@ -3,26 +3,31 @@
 		<div class="plus-grid-container"></div>
 		<countdown />
 		<div class="form-wrapper">
-			<div class="form-label">
-				<h2>Log In</h2>
-			</div>
-
 			<form @submit.prevent="login">
-				<input
-					type="text"
-					id="email"
-					name="email"
-					placeholder="Email"
-					v-model="email"
-				/>
-				<input
-					type="password"
-					id="password"
-					name="password"
-					placeholder="Password"
-					v-model="password"
-				/>
-				<input class="black" type="submit" value="Login" />
+				<div class="form-section">
+					<h3>Log In</h3>
+					<div class="form-row">
+						<label for="ticket-quantity">Email</label>
+						<input
+							type="text"
+							id="email"
+							name="email"
+							placeholder="Email"
+							v-model="email"
+						/>
+					</div>
+					<div class="form-row">
+						<label for="ticket-quantity">password</label>
+						<input
+							type="password"
+							id="password"
+							name="password"
+							placeholder="Password"
+							v-model="password"
+						/>
+					</div>
+				</div>
+				<input type="submit" value="Login" />
 			</form>
 			<p v-if="error" class="error">{{ error }}</p>
 			<div class="alternatives">
@@ -93,23 +98,21 @@ export default {
 @import '@/styles/_general.scss';
 
 #login {
-	height: 100vh;
+	margin-bottom: 0;
 	min-height: 100vh;
 	position: relative;
-	z-index: -2;
+	z-index: 1;
 	.form-wrapper {
-		@include grid-form;
-		@include flexbox;
-		@include justify-content(center);
-		// @include align-items(center);
-		@include flex-flow(column);
 		grid-row: 2;
-		.form-label {
-			margin-bottom: $baseline;
-			h2 {
+		.form-section {
+			h3 {
 				background: $yellow;
 				display: inline;
 			}
+		}
+		.form-row label {
+			background: $yellow;
+			display: inline-block;
 		}
 	}
 	.alternative {
@@ -121,6 +124,15 @@ export default {
 	}
 	input:not([type='submit']) {
 		background: $yellow;
+	}
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus,
+	input:-webkit-autofill:active {
+		-webkit-box-shadow: 0 0 0 50px $yellow inset !important;
+	}
+	input[type='submit'] {
+		margin-top: 0;
 	}
 }
 </style>

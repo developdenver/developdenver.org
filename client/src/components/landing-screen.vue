@@ -48,7 +48,7 @@ export default {
 			width: 100%;
 		}
 		@media (max-width: $medium-breakpoint) {
-			grid-column: 1 / span 6;
+			@include grid-full-width;
 		}
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;

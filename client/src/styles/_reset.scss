@@ -145,8 +145,14 @@ h2 {
 	@include primary-header-font;
 }
 h3 {
-	font-weight: 700;
+	@include tertiary-font;
+	font-size: 20px;
 	margin-bottom: $baseline / 2;
+}
+h4 {
+	@include secondary-font;
+	font-size: 18px;
+	line-height: 1.5rem;
 }
 p,
 ul li {
@@ -185,20 +191,28 @@ button {
 button,
 [type='submit'] {
 	@include primary-button-font;
-	background: none;
+	background: $yellow;
 	border: $medium-border-width solid $black;
+	color: $black;
 	display: block;
-	margin-top: $baseline * 3;
+	margin-top: $baseline * 2;
 	padding: $baseline 0;
 	text-decoration: none;
 	text-align: center;
 	width: 100%;
 	&:hover {
 		background: $black;
-		color: $white;
-	}
-	&:hover {
+		color: $yellow;
 		cursor: pointer;
+	}
+	&.disabled {
+		background: $black;
+		color: $white;
+		&:hover {
+			background: $black;
+			color: $white;
+			cursor: not-allowed;
+		}
 	}
 	&.black {
 		background: $black;
@@ -228,11 +242,12 @@ select,
 input {
 	@include body-font;
 }
+/* FORM STUFF */
 
 input,
 textarea {
 	background: none;
-	border: $medium-border-width solid $black;
+	border: $thin-border-width solid $black;
 	display: block;
 	margin-bottom: $baseline / 2;
 	padding: $baseline;
@@ -241,13 +256,155 @@ textarea {
 	&::placeholder {
 		color: $black;
 	}
+	&:focus {
+		background: $yellow;
+		outline: none;
+	}
+	&:active {
+		background: $yellow;
+	}
 }
 
-// img {
-// 	max-width: 100%;
-// 	width: 100%;
-// }
+input[type='number'] {
+	text-align: right;
+	&::-webkit-inner-spin-button {
+		opacity: 0;
+	}
+}
+/* For input changes on Google Autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	-webkit-box-shadow: 0 0 0 50px $white inset !important;
+}
 
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+	-webkit-text-fill-color: $black !important;
+}
+
+/* Radio buttons */
+.radio-input {
+	label {
+		padding: 12px $baseline * 2;
+		display: block;
+		text-align: left;
+		color: $black;
+		cursor: pointer;
+		position: relative;
+		z-index: 2;
+		transition: color 200ms ease-in;
+		overflow: hidden;
+		width: 100%;
+
+		&:before {
+			width: 11px;
+			height: 10px;
+			border-radius: 50%;
+			content: '';
+			background-color: $yellow;
+			position: absolute;
+			left: 45%;
+			top: 50%;
+			transform: translate(-50%, -50%) scale3d(1, 1, 1);
+			transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+			opacity: 0;
+			z-index: -1;
+		}
+		&:after {
+			width: 32px;
+			height: 32px;
+			content: '';
+			border: $thin-border-width solid $black;
+			background-color: $white;
+			background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
+			background-repeat: no-repeat;
+			background-position: 2px 3px;
+			border-radius: 50%;
+			z-index: 2;
+			position: absolute;
+			right: 30px;
+			top: 50%;
+			transform: translateY(-50%);
+			cursor: pointer;
+			transition: all 200ms ease-in;
+		}
+	}
+	&.is-disabled {
+		label:before,
+		label:after {
+			display: none;
+		}
+	}
+	input:checked ~ label {
+		color: $black;
+
+		&:before {
+			transform: translate(-50%, -50%) scale3d(56, 56, 1);
+			opacity: 1;
+		}
+
+		&:after {
+			background-color: $black;
+			border-color: $black;
+		}
+	}
+
+	input {
+		width: 32px;
+		height: 32px;
+		order: 1;
+		z-index: 2;
+		position: absolute;
+		right: 30px;
+		top: 50%;
+		transform: translateY(-50%);
+		cursor: pointer;
+		visibility: hidden;
+	}
+}
+
+.form-wrapper {
+	@include grid-form;
+	@include flexbox;
+	@include justify-content(center);
+	// @include align-items(center);
+	@include flex-flow(column);
+}
+
+.form-section {
+	border-bottom: $thin-border-width solid $black;
+	padding: $baseline 0;
+	&:last-of-type {
+		border-bottom: none;
+	}
+	h3 {
+		padding-bottom: $baseline;
+	}
+}
+
+.form-row {
+	display: block;
+	margin: 10px 0;
+	position: relative;
+	label {
+		color: $black;
+		display: block;
+		font-size: 15px;
+		line-height: 1.5rem;
+		overflow: hidden;
+		padding: 12px 0 2px 0;
+		position: relative;
+		text-align: left;
+		z-index: 2;
+	}
+	input {
+		display: block;
+	}
+}
+
+/* Video */
 .responsive-iframe-container {
 	position: relative;
 	overflow: hidden;
@@ -282,6 +439,15 @@ section {
 	padding: $baseline * 3 $baseline * 3 $baseline * 6 $baseline * 3;
 	&.full {
 		max-width: 100%;
+		.header-bar,
+		.content-container {
+			margin: $baseline * 3 $baseline * 3 $baseline * 3 $baseline * 3;
+			max-width: 1200px;
+		}
+		.content-container {
+			@include grid-full-width;
+			margin: 0 $baseline * 3;
+		}
 	}
 	&.no-padding {
 		padding: 0;
@@ -291,7 +457,7 @@ section {
 	}
 	@media (max-width: $small-breakpoint) {
 		// height: calc(100vh - #{$mobile-header-size}); // header size
-		padding: $baseline * 3 $baseline * 2 $baseline * 4 $baseline * 2;
+		padding: $baseline * 3 $baseline * 2;
 	}
 }
 
@@ -308,21 +474,35 @@ section {
 			margin-top: $baseline * 3;
 		}
 	}
-	.plus-grid-container {
-		background: url('/img/plus_black.png');
-		background-repeat: repeat;
-		background-size: 20px 20px;
-		height: 200vh;
-		left: 0;
-		position: absolute;
-		right: 0;
-		top: -100%;
-		z-index: -1;
-	}
+
 	.cta {
 		grid-column: 5 / span 2;
 		grid-row: 1;
 		margin-top: 40vh;
 		text-align: center;
+	}
+	@media (max-width: $small-breakpoint) {
+		.cta {
+			grid-column: 1;
+			grid-row: 3;
+			margin-top: 0;
+		}
+	}
+}
+
+.plus-grid-container {
+	background: url('/img/plus_black.png');
+	background-repeat: repeat;
+	background-size: 20px 20px;
+	height: 100vh;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: -1;
+	&.red {
+		background: url('/img/plus_red.png');
+		background-repeat: repeat;
+		background-size: 20px 20px;
 	}
 }

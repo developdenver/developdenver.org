@@ -48,9 +48,7 @@
 			<router-link :to="{ name: 'submit-talk' }"
 				><button>Submit a Talk</button></router-link
 			>
-			<router-link :to="{ name: 'tickets' }">
-				<button>Buy Tickets</button>
-			</router-link>
+			<BuyTicketsButton />
 		</section>
 		<section id="what-to-expect">
 			<HeaderBar
@@ -77,9 +75,7 @@
 					<li>9th annual Ballmer Peak Hackathon</li>
 					<li>Closing Party</li>
 				</ul>
-				<router-link :to="{ name: 'tickets' }">
-					<button>Buy Tickets</button>
-				</router-link>
+				<BuyTicketsButton />
 			</div>
 		</section>
 	</fragment>
@@ -90,17 +86,22 @@ import Vue from 'vue';
 import Fragment from 'vue-fragment';
 
 import boardProfiles from '../data/board-profiles';
+import BuyTicketsButton from '@/components/buy-tickets-button.vue';
 import Countdown from '@/components/count-down.vue';
 import HeaderBar from '@/components/header-bar.vue';
 
 export default {
 	components: {
+		BuyTicketsButton,
 		Countdown,
 		HeaderBar,
 	},
 	computed: {
 		boardProfiles() {
 			return boardProfiles;
+		},
+		isLoggedIn() {
+			return this.$store.getters['services/user/isLoggedIn'] || false;
 		},
 	},
 };
@@ -112,7 +113,7 @@ export default {
 @import '@/styles/_sizes.scss';
 @import '@/styles/_typography.scss';
 #about-landing {
-	grid-column: 1 / span 6;
+	@include grid-full-width;
 	position: relative;
 	.plus-grid.red {
 		@include plus-grid;
@@ -135,7 +136,7 @@ export default {
 }
 .demo-reel {
 	background: $yellow;
-	grid-column: 1 / span 6;
+	@include grid-full-width;
 	position: relative;
 	.video {
 		grid-column: 1 / span 5;
@@ -156,7 +157,7 @@ export default {
 #what-it-is {
 	.intro,
 	.wte-list {
-		grid-column: 1 / span 6;
+		@include grid-full-width;
 		grid-row: 2;
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;

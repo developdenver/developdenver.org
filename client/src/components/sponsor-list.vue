@@ -166,7 +166,7 @@ export default {
 		grid-column: 1 / span 2;
 		grid-row: 2;
 		@media (max-width: $medium-breakpoint) {
-			grid-column: 1 / span 6;
+			@include grid-full-width;
 			padding-bottom: $baseline * 3;
 		}
 		@media (max-width: $medium-breakpoint) {

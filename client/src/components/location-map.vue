@@ -296,7 +296,7 @@ export default {
 
 .logos-row {
 	@include flexbox;
-	grid-column: 1 / span 6;
+	@include grid-full-width;
 	grid-row: 2;
 	.venue-logo {
 		@include flexbox;
@@ -326,7 +326,7 @@ export default {
 	}
 }
 .map {
-	grid-column: 1 / span 6;
+	@include grid-full-width;
 	grid-row: 3;
 	position: relative;
 	svg {

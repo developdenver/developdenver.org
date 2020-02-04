@@ -1,114 +1,149 @@
 <template>
-    <form enctype="multipart/form-data" class="edit-profile" @submit.prevent="updateProfile">
-        <fieldset class="required">
-            <input
-				required
-				class="first-name"
-				type="text"
-				id="first-name"
-				placeholder="First Name"
-				v-model.trim="profile.properties.firstName"
-			/>
-            <input
-				required
-				class="last-name"
-				type="text"
-				id="last-name"
-				placeholder="Last Name"
-				v-model.trim="profile.properties.lastName"
-			/>
-            <input
-				required
-				class="email"
-				type="email"
-				id="email"
-				placeholder="Email"
-				ref="email"
-				v-model.trim="profile.properties.email"
-				@change="verifyUniqueEmail"
-			/>
-            <SetPassword
-				v-if="isNewProfile"
-                @updatePassword="updatePassword"
-            />
-        </fieldset>
-		<h2>Optional <span>(but encouraged)</span></h2>
-        <fieldset class="optional">
-            <image-upload
-				class="profile-photo"
-                title="Profile Photo"
-                :uploadUrl="imageUploadUrl"
-                @imageUrl="setImageUrl"
-            >
-                <figure v-if="profile.properties.profilePhotoUrl" class="profile-photo">
-                    <img :src="profile.properties.profilePhotoUrl" alt="Profile Photo" />
-                </figure>
-            </image-upload>
-            <textarea
-				class="bio"
-				id="bio"
-				placeholder="Bio"
-				v-model.trim="profile.properties.bio"
-			></textarea>
-            <input
-				type="text"
-				class="position"
-				id="position"
-				placeholder="Position"
-				v-model.trim="profile.properties.position"
-			/>
-			<div class="self-employed">
-				<label for="isSelfEmployed">Self-employed?</label>
-				<input
-					class="self-employed"
-					type="checkbox"
-					id="isSelfEmployed"
-					v-model="profile.properties.isSelfEmployed"
+	<form
+		enctype="multipart/form-data"
+		class="edit-profile"
+		@submit.prevent="updateProfile"
+	>
+
+			<!--<h3>Required Info</h3> -->
+
+      <div class="form-section">
+				<div class="form-row">
+					<label for="first-name">First Name </label>
+					<input
+						required
+						class="first-name"
+						type="text"
+						name="first-name"
+						id="first-name"
+						v-model.trim="profile.properties.firstName"
+					/>
+				</div>
+				<div class="form-row">
+					<label for="last-name"> Last Name </label>
+					<input
+						required
+						class="last-name"
+						type="text"
+						id="last-name"
+						v-model.trim="profile.properties.lastName"
+					/>
+				</div>
+      </div>
+      <div class="form-section">
+				<div class="form-row">
+					<label for="email"> Email Address </label>
+					<input
+						required
+						class="email"
+						name="email"
+						type="email"
+						id="email"
+						placeholder="name@domain.com"
+						ref="email"
+						v-model.trim="profile.properties.email"
+						@change="verifyUniqueEmail"
+					/>
+				</div>
+      </div>
+      <div class="form-section">
+				<SetPassword
+					v-if="isNewProfile"
+					@updatePassword="updatePassword"
 				/>
-			</div>
-            <input
-				class="employer"
-				type="text"
-				id="employer"
-				placeholder="Employer"
-				v-model.trim="profile.properties.employer"
-			/>
-            <input
-				type="text"
-				id="website"
-				placeholder="Website"
-				v-model.trim="profile.properties.website"
-			/>
-            <input
-				type="text"
-				id="github-username"
-				placeholder="Github Username"
-				v-model.trim="profile.properties.githubUsername"
-			/>
-            <input
-				type="text"
-				id="twitter-username"
-				placeholder="Twitter Username"
-				v-model.trim="profile.properties.twitterUsername"
-			/>
-            <input
-				type="text"
-				id="linkedin-username"
-				placeholder="LinkedIn Username"
-				v-model.trim="profile.properties.linkedinUsername"
-			/>
-			<button :disabled="isLoading">{{buttonLabel}}</button>
-        </fieldset>
-    </form>
+      </div>
+		</div>
+		<!--<div class="form-section">
+			<h3>Optional Info</h3>
+			<fieldset class="optional">
+				<div class="form-row">
+					<label for="image-upload"> Image upload </label>
+					<image-upload
+						class="profile-photo"
+						title="Profile Photo"
+						:uploadUrl="imageUploadUrl"
+						@imageUrl="setImageUrl"
+					>
+						<figure
+							v-if="profile.properties.profilePhotoUrl"
+							class="profile-photo"
+						>
+							<img
+								:src="profile.properties.profilePhotoUrl"
+								alt="Profile Photo"
+							/>
+						</figure>
+					</image-upload>
+				</div>
+				<textarea
+					class="bio"
+					id="bio"
+					placeholder="Bio"
+					v-model.trim="profile.properties.bio"
+				></textarea>
+				<input
+					type="text"
+					class="position"
+					id="position"
+					placeholder="Position"
+					v-model.trim="profile.properties.position"
+				/>
+				<div class="self-employed">
+					<label for="isSelfEmployed">Self-employed?</label>
+					<input
+						class="self-employed"
+						type="checkbox"
+						id="isSelfEmployed"
+						v-model="profile.properties.isSelfEmployed"
+					/>
+				</div>
+				<input
+					class="employer"
+					type="text"
+					id="employer"
+					placeholder="Employer"
+					v-model.trim="profile.properties.employer"
+				/>
+				<input
+					type="text"
+					id="website"
+					placeholder="Website"
+					v-model.trim="profile.properties.website"
+				/>
+				<input
+					type="text"
+					id="github-username"
+					placeholder="Github Username"
+					v-model.trim="profile.properties.githubUsername"
+				/>
+				<input
+					type="text"
+					id="twitter-username"
+					placeholder="Twitter Username"
+					v-model.trim="profile.properties.twitterUsername"
+				/>
+				<input
+					type="text"
+					id="linkedin-username"
+					placeholder="LinkedIn Username"
+					v-model.trim="profile.properties.linkedinUsername"
+				/>
+
+			</fieldset>
+		</div>-->
+		<button class="button" :disabled="isLoading">{{ buttonLabel }}</button>
+	</form>
 </template>
 
 <script>
-import Vue from "vue";
-import ImageUpload from "@/components/image-upload.vue";
-import SetPassword from "@/components/set-password.vue";
+import Vue from 'vue';
+import ImageUpload from '@/components/image-upload.vue';
+import SetPassword from '@/components/set-password.vue';
 
 const imageUploadUrl = process.env.VUE_APP_IMAGE_UPLOAD_URL;
-const uniqueEmailUrl = `${process.env.VUE_APP_API_URL}/${process.env.VUE_APP_UNIQUE_EMAIL_ENDPOINT}`;
+const uniqueEmailUrl = `${process.env.VUE_APP_API_URL}/${
+	process.env.VUE_APP_UNIQUE_EMAIL_ENDPOINT
+}`;
 
 export default {
 	components: {
@@ -118,7 +153,7 @@ export default {
 	data() {
 		return {
 			imageUploadUrl,
-			password: "",
+			password: '',
 		};
 	},
 	props: {
@@ -131,7 +166,7 @@ export default {
 	},
 	computed: {
 		isLoading() {
-			return this.$store.getters["services/loading/isLoading"];
+			return this.$store.getters['services/loading/isLoading'];
 		},
 	},
 	methods: {
@@ -140,44 +175,48 @@ export default {
 				this.profile.properties.password = this.password;
 			}
 			this.profile.properties.email = this.profile.properties.email.toLowerCase();
-			return this.$emit("updateProfile", this.profile);
+			return this.$emit('updateProfile', this.profile);
 		},
 		setImageUrl(url) {
-			Vue.set(this.profile.properties, "profilePhotoUrl", url);
+			Vue.set(this.profile.properties, 'profilePhotoUrl', url);
 		},
 		updatePassword(password) {
 			this.password = password;
 		},
 		async verifyUniqueEmail(event) {
-			this.$store.dispatch("services/loading/pushLoading");
+			this.$store.dispatch('services/loading/pushLoading');
 			await fetch(uniqueEmailUrl, {
-				method: "POST",
+				method: 'POST',
 				headers: {
-					"Content-Type": "application/json",
+					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({email: event.target.value}),
-			}).then(response => response.status)
+				body: JSON.stringify({ email: event.target.value }),
+			})
+				.then(response => response.status)
 				.then(status => {
 					+status === 200
-						? this.$refs.email.setCustomValidity("")
-						: this.$refs.email.setCustomValidity("This email is already registered. Login?");
-				}).catch(error => {
+						? this.$refs.email.setCustomValidity('')
+						: this.$refs.email.setCustomValidity(
+								'This email is already registered. Login?',
+						  );
+				})
+				.catch(error => {
 					console.error(error.message);
 				});
-			this.$store.dispatch("services/loading/popLoading");
-		}
+			this.$store.dispatch('services/loading/popLoading');
+		},
 	},
 };
 </script>
 
 <style lang="scss">
-@import "@/styles/_general.scss";
-@import "@/styles/_colors.scss";
-@import "@/styles/_typography.scss";
+@import '@/styles/_general.scss';
+@import '@/styles/_colors.scss';
+@import '@/styles/_typography.scss';
 
 .edit-profile {
 	@include grid-full-width;
-	@include grid;
+	max-width: 700px;
 	fieldset {
 		@include grid-form;
 	}
@@ -187,15 +226,6 @@ export default {
 			display: block;
 			@include body-font;
 		}
-	}
-	input, textarea {
-		width: 100%;
-	}
-	button {
-		@include call-to-action;
-		background-color: hsla(0, 0%, 0%, 0);
-		color: $white;
-		cursor: pointer;
 	}
 	textarea {
 		height: $baseline * 8;
