@@ -94,6 +94,7 @@ export default {
 			@include flexbox;
 			@include justify-content(space-between);
 			> li {
+				font-size: 12px;
 				a:hover {
 					color: $red;
 				}

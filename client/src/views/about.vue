@@ -92,13 +92,11 @@ import Fragment from 'vue-fragment';
 import boardProfiles from '../data/board-profiles';
 import Countdown from '@/components/count-down.vue';
 import HeaderBar from '@/components/header-bar.vue';
-import ProfileCardList from '../components/profile-card-list';
 
 export default {
 	components: {
 		Countdown,
 		HeaderBar,
-		ProfileCardList,
 	},
 	computed: {
 		boardProfiles() {

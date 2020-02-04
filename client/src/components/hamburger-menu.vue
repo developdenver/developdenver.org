@@ -46,14 +46,6 @@
 							>Submit a Talk</router-link
 						>
 					</li>
-					<li>
-						<router-link
-							class-active="active"
-							:to="{ name: 'contact' }"
-						>
-							Contact
-						</router-link>
-					</li>
 					<li v-if="!isLoggedIn">
 						<router-link
 							class-active="active"
