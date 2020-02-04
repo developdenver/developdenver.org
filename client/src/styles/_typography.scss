@@ -28,6 +28,9 @@
 @mixin headline-font {
 	font-family: DVLP;
 	font-size: 10vw;
+	@media (max-width: $small-breakpoint) {
+		font-size: 70px;
+	}
 }
 
 @mixin primary-header-font {

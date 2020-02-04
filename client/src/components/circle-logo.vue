@@ -1,7 +1,7 @@
 <template>
 	<div id="container" class="circle-logo">
 		<img
-			src="../assets/icons/DD_smiley-yellow-red.gif"
+			src="../assets/icons/DD_slash-yellow-red.gif"
 			alt="Spinning logo"
 		/>
 	</div>

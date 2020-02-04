@@ -126,11 +126,5 @@ export default {
 			margin-bottom: $baseline * 2;
 		}
 	}
-	.countdown {
-		@include grid-countdown;
-		@media (max-width: $small-breakpoint) {
-			display: none;
-		}
-	}
 }
 </style>

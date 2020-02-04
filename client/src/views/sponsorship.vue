@@ -298,11 +298,5 @@ export default {
 			}
 		}
 	}
-	.countdown {
-		@include grid-countdown;
-		@media (max-width: $small-breakpoint) {
-			display: none;
-		}
-	}
 }
 </style>

@@ -1,18 +1,18 @@
 <template>
-    <section class="user-talk">
+	<section class="user-talk">
 		<countdown />
 		<h2>Edit Talk</h2>
-        <edit-talk
+		<edit-talk
 			buttonLabel="Update Talk"
 			:talk="talk"
 			@updateTalk="updateTalk"
-            componentTitle="Edit Talk"
-         />
-    </section>
+			componentTitle="Edit Talk"
+		/>
+	</section>
 </template>
 
 <script>
-import EditTalk from "@/components/edit-talk.vue";
+import EditTalk from '@/components/edit-talk.vue';
 import Countdown from '../components/count-down.vue';
 
 export default {
@@ -24,17 +24,26 @@ export default {
 	},
 	computed: {
 		talk() {
-			return this.$store.getters["talks/getTalkById"](this.$route.params.id);
-		}
+			return this.$store.getters['talks/getTalkById'](
+				this.$route.params.id,
+			);
+		},
 	},
 	methods: {
 		async updateTalk(talk) {
-			const success = await this.$store.dispatch("talks/updateTalk", talk);
+			const success = await this.$store.dispatch(
+				'talks/updateTalk',
+				talk,
+			);
 			console.log('updateTalk returned', success);
 			if (success) {
-				this.$router.push({ name: "talk", params: { id: talk.properties.id } });
+				this.$router.push({
+					name: 'talk',
+					params: { id: talk.properties.id },
+				});
 			} else {
-				this.error = "There was an error updating your talk. Please try again.";
+				this.error =
+					'There was an error updating your talk. Please try again.';
 			}
 		},
 	},
@@ -42,16 +51,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/_sizes.scss";
-@import "@/styles/_general.scss";
+@import '@/styles/_sizes.scss';
+@import '@/styles/_general.scss';
 
 .user-talk {
 	@include grid;
-	.countdown {
-		@include grid-countdown;
-		@media (max-width: $small-breakpoint) {
-			display: none;
-		}
-	}
 }
 </style>

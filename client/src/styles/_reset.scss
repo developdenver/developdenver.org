@@ -148,9 +148,10 @@ h3 {
 	font-weight: 700;
 	margin-bottom: $baseline / 2;
 }
-p {
+p,
+ul li {
 	font-size: 26px;
-	line-height: 2.2rem;
+	line-height: 2.7rem;
 	@media (max-width: $small-breakpoint) {
 		font-size: 17px;
 		line-height: 1.7rem;
@@ -285,6 +286,9 @@ section {
 	&.no-padding {
 		padding: 0;
 	}
+	&:last-of-type {
+		margin-bottom: $baseline * 6;
+	}
 	@media (max-width: $small-breakpoint) {
 		// height: calc(100vh - #{$mobile-header-size}); // header size
 		padding: $baseline * 3 $baseline * 2 $baseline * 4 $baseline * 2;
@@ -299,6 +303,10 @@ section {
 	padding-top: $baseline * 1.5;
 	h1 {
 		grid-column: 1 / span 3;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+			margin-top: $baseline * 3;
+		}
 	}
 	.plus-grid-container {
 		background: url('/img/plus_black.png');

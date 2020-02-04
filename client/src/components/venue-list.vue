@@ -4,7 +4,7 @@
 			<HeaderBar
 				title="Locations"
 				v-bind:imageUrl="
-					require('@/assets/icons/DD_SITE_ICONS_SKULL.png')
+					require('@/assets/icons/DD_SITE_ICONS_LOCATION.png')
 				"
 			/>
 			<LocationMap />

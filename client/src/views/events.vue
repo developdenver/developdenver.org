@@ -138,8 +138,4 @@ export default {
 		@include grid-heading;
 	}
 }
-
-.countdown {
-	@include grid-countdown;
-}
 </style>

@@ -1,13 +1,13 @@
 <template>
-  <div class="my-tickets">
-	<countdown />
-    <h2>My Tickets</h2>
-    <ul class="manage-tickets">
-      <li v-for="ticket in tickets" :key="ticket.id">
-        <ManageTicket v-bind="ticket"/>
-      </li>
-    </ul>
-  </div>
+	<div class="my-tickets">
+		<countdown />
+		<h2>My Tickets</h2>
+		<ul class="manage-tickets">
+			<li v-for="ticket in tickets" :key="ticket.id">
+				<ManageTicket v-bind="ticket" />
+			</li>
+		</ul>
+	</div>
 </template>
 
 <script>
@@ -16,13 +16,13 @@ import ManageTicket from '../components/manage-ticket';
 import Countdown from '../components/count-down';
 
 export default {
-    name: 'MyTickets',
-    components: { ManageTicket, Countdown },
-    computed: {
-        ...mapState({
-            tickets: state => state.tickets.list,
-        }),
-    },
+	name: 'MyTickets',
+	components: { ManageTicket, Countdown },
+	computed: {
+		...mapState({
+			tickets: state => state.tickets.list,
+		}),
+	},
 };
 </script>
 
@@ -40,12 +40,6 @@ export default {
 		@include grid-full-width;
 		.manage-ticket {
 			margin-bottom: $baseline * 2;
-		}
-	}
-	.countdown {
-		@include grid-countdown;
-		@media (max-width: $small-breakpoint) {
-			display: none;
 		}
 	}
 }

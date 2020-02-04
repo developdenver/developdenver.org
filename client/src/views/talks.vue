@@ -73,11 +73,5 @@ export default {
 	h2 {
 		@include grid-heading;
 	}
-	.countdown {
-		@include grid-countdown;
-		@media (max-width: $small-breakpoint) {
-			display: none;
-		}
-	}
 }
 </style>

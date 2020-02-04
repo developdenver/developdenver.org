@@ -47,6 +47,9 @@ export default {
 			float: left;
 			width: 100%;
 		}
+		@media (max-width: $medium-breakpoint) {
+			grid-column: 1 / span 6;
+		}
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
 			h1 {

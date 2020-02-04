@@ -1,14 +1,14 @@
 <template>
-    <section class="profile-page">
+	<section class="profile-page">
 		<countdown />
-        <user-profile v-if="currentProfile" :profile="currentProfile" />
-    </section>
+		<user-profile v-if="currentProfile" :profile="currentProfile" />
+	</section>
 </template>
 
 <script>
-import ProfileCardList from "@/components/profile-card-list.vue";
-import UserProfile from "@/components/user-profile.vue";
-import Countdown from "@/components/count-down";
+import ProfileCardList from '@/components/profile-card-list.vue';
+import UserProfile from '@/components/user-profile.vue';
+import Countdown from '@/components/count-down';
 
 export default {
 	components: {
@@ -17,11 +17,13 @@ export default {
 		Countdown,
 	},
 	created() {
-		this.$store.dispatch("profiles/fetchProfiles");
+		this.$store.dispatch('profiles/fetchProfiles');
 	},
 	computed: {
 		currentProfile() {
-			return this.$store.getters["profiles/getProfileById"](this.$route.params.id);
+			return this.$store.getters['profiles/getProfileById'](
+				this.$route.params.id,
+			);
 		},
 		shuffledProfiles() {
 			return this.shuffle(this.$store.state.profiles.list);
@@ -49,16 +51,11 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/_general.scss";
+@import '@/styles/_general.scss';
 
 .profile-page {
 	@include grid;
-	.countdown {
-		@include grid-countdown;
-		@media (max-width: $small-breakpoint) {
-			display: none;
-		}
-	}
+
 	.user-profile {
 		@include grid-full-width;
 	}

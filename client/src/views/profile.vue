@@ -1,64 +1,73 @@
 <template>
-  <section class="profile">
-	<countdown />
+	<section class="profile">
+		<countdown />
 		<section v-if="talks.length">
 			<h2>My Submitted Talks</h2>
 			<div v-for="talk in talks" :key="talk.id">
 				<p>
-					<router-link class="button" :to="{name: 'edit-talk', params: {id: talk.id}}">
-						{{talk.properties.title}}, {{talk.properties.type}}
+					<router-link
+						class="button"
+						:to="{ name: 'edit-talk', params: { id: talk.id } }"
+					>
+						{{ talk.properties.title }}, {{ talk.properties.type }}
 					</router-link>
 				</p>
 			</div>
 		</section>
-    <section class="ticket-management" v-if="tickets.length">
-      <router-link :to="{ name: 'my-tickets' }">Manage Tickets</router-link>
-    </section>
-    <section class="profile-editing">
-      <h2>Edit Profile</h2>
-      <edit-profile
-        buttonLabel="Update Profile"
-        :isNewProfile="false"
-        :profile="profile"
-        @updateProfile="updateProfile"
-      />
-      <router-link class="reset-password-link" :to="{name: 'reset-password'}">Reset password</router-link>
-    </section>
-  </section>
+		<section class="ticket-management" v-if="tickets.length">
+			<router-link :to="{ name: 'my-tickets' }"
+				>Manage Tickets</router-link
+			>
+		</section>
+		<section class="profile-editing">
+			<h2>Edit Profile</h2>
+			<edit-profile
+				buttonLabel="Update Profile"
+				:isNewProfile="false"
+				:profile="profile"
+				@updateProfile="updateProfile"
+			/>
+			<router-link
+				class="reset-password-link"
+				:to="{ name: 'reset-password' }"
+				>Reset password</router-link
+			>
+		</section>
+	</section>
 </template>
 
 <script>
 import EditProfile from '@/components/edit-profile.vue';
-import Countdown from "@/components/count-down";
+import Countdown from '@/components/count-down';
 import { mapState } from 'vuex';
 
 export default {
-    components: {
-        EditProfile,
+	components: {
+		EditProfile,
 		Countdown,
-    },
-    computed: {
-        ...mapState({
-            tickets: state => state.tickets.list,
-        }),
-        profile() {
-            return this.$store.getters['services/user/currentProfile'];
-        },
-        talks() {
-            return this.$store.getters['talks/getTalksByUserId'](
-                this.profile.id,
+	},
+	computed: {
+		...mapState({
+			tickets: state => state.tickets.list,
+		}),
+		profile() {
+			return this.$store.getters['services/user/currentProfile'];
+		},
+		talks() {
+			return this.$store.getters['talks/getTalksByUserId'](
+				this.profile.id,
 			).filter(talk => talk.properties.isAccepted);
-        },
-    },
-    methods: {
-        async updateProfile(profile) {
-            await this.$store.dispatch('services/user/setProfile', profile);
-            this.$router.push({ name: 'news' });
-        },
-    },
-    mounted() {
-        this.$store.dispatch('talks/fetchTalks');
-    },
+		},
+	},
+	methods: {
+		async updateProfile(profile) {
+			await this.$store.dispatch('services/user/setProfile', profile);
+			this.$router.push({ name: 'news' });
+		},
+	},
+	mounted() {
+		this.$store.dispatch('talks/fetchTalks');
+	},
 };
 </script>
 
@@ -94,12 +103,6 @@ export default {
 			margin-top: $baseline;
 			color: $accent-color;
 			text-decoration: underline;
-		}
-	}
-	.countdown {
-		@include grid-countdown;
-		@media (max-width: $small-breakpoint) {
-			display: none;
 		}
 	}
 }

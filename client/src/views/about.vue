@@ -16,6 +16,42 @@
 				></iframe>
 			</div>
 		</section>
+		<section id="what-it-is">
+			<HeaderBar
+				title="What is it"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_SMILEY.png')
+				"
+				v-bind:hoverUrl="
+					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
+				"
+			/>
+			<div class="intro">
+				<p>
+					DVLP DNVR (Develop Denver) is a two-day conference focused
+					on inspiring and building community – and blowing a few
+					minds along the way. Over the past eight years we've brought
+					together developers, designers, and anyone looking to dive
+					deeper into tech, to hear talks that you vote on presented
+					by your peers on topics ranging from design, dev ops,
+					frontend, backend, UX, strategy and more.
+				</p>
+				<p>
+					We are unique in that we are one of the only conference
+					where the content is picked by you. You read that right,
+					every talk, presentation and speaker at Develop Denver is
+					voted on by the ticketholders, which means more of exactly
+					what you want to hear.
+				</p>
+			</div>
+
+			<router-link :to="{ name: 'submit-talk' }"
+				><button>Submit a Talk</button></router-link
+			>
+			<router-link :to="{ name: 'tickets' }">
+				<button>Buy Tickets</button>
+			</router-link>
+		</section>
 		<section id="what-to-expect">
 			<HeaderBar
 				title="What to Expect"
@@ -26,27 +62,17 @@
 					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
 				"
 			/>
-			<div class="wte-intro">
-				<p>
-					DVLP DNVR is about you and what you want to hear.
-					Ticketholders vote on submitted talks by their peers to make
-					for an agenda with no bulls**t. DVLP DNVR is Denver
-					developers coming together (for better or worse) to network,
-					share, learn and most importantly, drink. You’ll hear from
-					and meet members of the Denver's development community
-					contributors. Have an idea? Great this conference is all
-					about you.
-				</p>
-				<router-link :to="{ name: 'submit-talk' }"
-					><button>Submit a Talk</button></router-link
-				>
-			</div>
 			<div class="wte-list">
 				<p>Expect this and more:</p>
 				<ul>
 					<li>Two days of talks on topics voted on by you</li>
 					<li>Breakfast and snacks</li>
 					<li>Free food and alcohol both days</li>
+					<li>After hours fun and community building</li>
+					<li>
+						A chance to network and connect with your community and
+						peers
+					</li>
 					<li>Opening Party</li>
 					<li>9th annual Ballmer Peak Hackathon</li>
 					<li>Closing Party</li>
@@ -55,27 +81,6 @@
 					<button>Buy Tickets</button>
 				</router-link>
 			</div>
-		</section>
-
-		<section class="organizers">
-			<HeaderBar
-				title="Organizers"
-				v-bind:imageUrl="
-					require('@/assets/icons/DD_SITE_ICONS_COMMUNITY.png')
-				"
-				v-bind:hoverUrl="
-					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
-				"
-			/>
-			<div class="full-text">
-				<p>
-					Behind the scenes is a group of friends who are passionate
-					about building community and bringing people together. Our
-					mission is to create something that empowers the makers and
-					doers of the community.
-				</p>
-			</div>
-			<profile-card-list :profiles="boardProfiles" />
 		</section>
 	</fragment>
 </template>
@@ -121,6 +126,14 @@ export default {
 		right: 0;
 		z-index: 1;
 	}
+	@media (max-width: $small-breakpoint) {
+		grid-column: 1;
+		.plus-grid.red {
+			grid-column: 1;
+			height: 55vh;
+			margin-top: 30vh;
+		}
+	}
 }
 .demo-reel {
 	background: $yellow;
@@ -129,20 +142,27 @@ export default {
 	.video {
 		grid-column: 1 / span 5;
 	}
+	@media (max-width: $small-breakpoint) {
+		grid-column: 1;
+		.video {
+			grid-column: 1;
+		}
+	}
 }
 .organizers {
 	.full-text {
 		padding-bottom: $baseline * 2;
 	}
 }
-#what-to-expect {
-	.wte-intro {
-		grid-column: 1 / span 3;
-		grid-row: 2;
-	}
+#what-to-expect,
+#what-it-is {
+	.intro,
 	.wte-list {
-		grid-column: 5 / span 2;
+		grid-column: 1 / span 6;
 		grid-row: 2;
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+		}
 		ul {
 			margin-left: 20px;
 			li {
@@ -153,6 +173,18 @@ export default {
 					left: -20px;
 					position: absolute;
 				}
+			}
+		}
+	}
+	a {
+		grid-column: 1 / span 3;
+		&:last-child {
+			grid-column: 4 / span 3;
+		}
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+			&:last-child {
+				grid-column: 1;
 			}
 		}
 	}

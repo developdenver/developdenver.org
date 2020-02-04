@@ -1,8 +1,8 @@
 <template>
-  <section class="talk-page">
-	  <countdown />
-	  <talk-info :talk="currentTalk" />
-    <!--
+	<section class="talk-page">
+		<countdown />
+		<talk-info :talk="currentTalk" />
+		<!--
 		<button
 			:class="{voted: voteType === 'Unvote'}"
 			:disabled="isLoading"
@@ -10,8 +10,7 @@
 			@click="updateVote"
 			>{{voteType}}
 		</button>
-    -->
-  </section>
+    --></section>
 </template>
 
 <script>
@@ -19,18 +18,18 @@ import TalkInfo from '@/components/talk-info.vue';
 import Countdown from '@/components/count-down';
 
 export default {
-    components: {
-        TalkInfo,
+	components: {
+		TalkInfo,
 		Countdown,
-    },
-    mounted() {
-        this.$store.dispatch('events/fetchEvents');
-    },
-    computed: {
-        isLoading() {
-            return this.$store.getters['services/loading/isLoading'];
-        },
-        /*
+	},
+	mounted() {
+		this.$store.dispatch('events/fetchEvents');
+	},
+	computed: {
+		isLoading() {
+			return this.$store.getters['services/loading/isLoading'];
+		},
+		/*
 		voteType() {
 			if (this.$store.getters["talks/votedTalksById"][this.$route.params.id]) {
 				return "Unvote";
@@ -42,22 +41,22 @@ export default {
 			return this.$store.getters["tickets/isAttendee"];
 		},
 		*/
-        currentUser() {
-            return this.$store.getters['services/user/currentProfile'];
-        },
-        isCurrentUserTalk() {
-            return this.currentUser
-                ? +this.currentTalk.properties.userId === +this.currentUser.id
-                : false;
-        },
-        currentTalk() {
-            return this.$store.getters['events/getEventById'](
-                this.$route.params.id,
-            );
-        },
-    },
-    methods: {
-        /*
+		currentUser() {
+			return this.$store.getters['services/user/currentProfile'];
+		},
+		isCurrentUserTalk() {
+			return this.currentUser
+				? +this.currentTalk.properties.userId === +this.currentUser.id
+				: false;
+		},
+		currentTalk() {
+			return this.$store.getters['events/getEventById'](
+				this.$route.params.id,
+			);
+		},
+	},
+	methods: {
+		/*
 		async updateVote() {
 			if (this.voteType === "Vote") {
 				await this.$store.dispatch("talks/vote", this.currentTalk);
@@ -67,7 +66,7 @@ export default {
 			await this.$store.dispatch("talks/fetchAllVotes");
 		}
 		*/
-    },
+	},
 };
 </script>
 
@@ -78,15 +77,9 @@ export default {
 
 .talk-page {
 	@include grid;
-	.countdown {
-		@include grid-countdown;
-		@media (max-width: $small-breakpoint) {
-			display: none;
-		}
-	}
+
 	.talk {
 		@include grid-full-width;
 	}
 }
-
 </style>
