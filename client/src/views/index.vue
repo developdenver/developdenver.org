@@ -11,7 +11,7 @@
 		</section>
 		<ticket-details />
 		<!-- <schedule-download /> -->
-		<sponsor-list />
+		<sponsor-list :showButton="true" />
 	</div>
 </template>
 

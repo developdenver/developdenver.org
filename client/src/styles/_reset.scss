@@ -164,6 +164,19 @@ ul li {
 	}
 }
 
+ul.bullet-list {
+	margin-left: 20px;
+	li {
+		padding: 0 0 $baseline 0;
+		position: relative;
+		&:before {
+			content: '+';
+			left: -20px;
+			position: absolute;
+		}
+	}
+}
+
 a {
 	color: inherit;
 	display: block;

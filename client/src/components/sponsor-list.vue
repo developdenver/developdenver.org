@@ -1,13 +1,13 @@
 <template>
 	<section class="sponsors">
 		<HeaderBar
-			title="Sponsors"
+			title="Current Sponsors"
 			v-bind:imageUrl="
 				require('@/assets/icons/DD_SITE_ICONS_SPONSORS.png')
 			"
 			v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_SPONSORS.svg')"
 		/>
-		<div class="sponsor-call-to-action">
+		<div class="sponsor-call-to-action" v-if="showButton">
 			<p>
 				Support the Denver development, product, and design community!
 			</p>
