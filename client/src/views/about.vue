@@ -62,7 +62,7 @@
 			/>
 			<div class="wte-list">
 				<p>Expect this and more:</p>
-				<ul>
+				<ul class="bullet-list">
 					<li>Two days of talks on topics voted on by you</li>
 					<li>Breakfast and snacks</li>
 					<li>Free food and alcohol both days</li>
@@ -161,18 +161,6 @@ export default {
 		grid-row: 2;
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
-		}
-		ul {
-			margin-left: 20px;
-			li {
-				padding: 0 0 $baseline 0;
-				position: relative;
-				&:before {
-					content: '+';
-					left: -20px;
-					position: absolute;
-				}
-			}
 		}
 	}
 	a {
