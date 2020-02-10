@@ -4,9 +4,17 @@
 			<router-link to="/" class="circle-logo-link"
 				><circle-logo
 			/></router-link>
-			<button class="menu" @click="toggleMenu" :isMenuOpen="isMenuOpen">
-				<font-awesome-icon :icon="menuIcon" />
-			</button>
+			<div
+				class="hamburger"
+				v-bind:class="{ open: isMenuOpen }"
+				@click="toggleMenu"
+				:isMenuOpen="isMenuOpen"
+			>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
 			<div class="title-wrap">
 				<img src="/img/DVLP_DNVR_text.png" />
 				<img
@@ -86,7 +94,11 @@ export default {
 			@include flexbox;
 			@include justify-content(center);
 			@include align-items(center);
+			border-top: $thin-border-width solid $black;
 			height: 78%;
+			@media (max-width: $small-breakpoint) {
+				border-top: none;
+			}
 			.mobile-title {
 				display: none;
 			}
@@ -110,32 +122,93 @@ export default {
 			}
 		}
 	}
-	.menu {
-		@include align-items(center);
-		@include justify-content(flex-end);
-		cursor: pointer;
-		display: inline-flex;
-		background: none;
-		border: none;
-		border-bottom: $thin-border-width solid $black;
-		color: $black;
-		margin-top: 0;
-		padding: $baseline 0;
-		width: 100%;
+	.hamburger {
+		height: 30px;
+		margin: $baseline/5 auto;
+		order: 2;
+		padding: 30px;
+		position: relative;
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		transform: rotate(0deg);
+		-webkit-transition: 0.5s ease-in-out;
+		-moz-transition: 0.5s ease-in-out;
+		-o-transition: 0.5s ease-in-out;
+		transition: 0.5s ease-in-out;
+		width: 30px;
 		@media (max-width: $small-breakpoint) {
-			border-bottom: none;
-			@include flex(1);
-			justify-self: flex-end;
 			margin: 0;
-			order: 2;
-			padding: 0;
-			width: 30%;
 		}
-		svg {
-			width: 100%;
-			height: 36px;
-			@media (max-width: $small-breakpoint) {
-				width: auto;
+		cursor: pointer;
+		span {
+			background: $black;
+			display: block;
+			height: 4px;
+			position: absolute;
+			opacity: 1;
+			left: 15px;
+			right: 15px;
+			-webkit-transform: rotate(0deg);
+			-moz-transform: rotate(0deg);
+			-o-transform: rotate(0deg);
+			transform: rotate(0deg);
+			-webkit-transition: 0.25s ease-in-out;
+			-moz-transition: 0.25s ease-in-out;
+			-o-transition: 0.25s ease-in-out;
+			transition: 0.25s ease-in-out;
+			width: calc(100% - 30px);
+			&:nth-child(1) {
+				top: 15px;
+			}
+			&:nth-child(2),
+			&:nth-child(3) {
+				left: 10px;
+				right: 5px;
+				top: 26px;
+			}
+			&:nth-child(4) {
+				top: 37px;
+			}
+		}
+		&:hover {
+			span {
+				&:nth-child(2),
+				&:nth-child(3) {
+					left: 15px;
+					right: 0px;
+				}
+			}
+		}
+		&.open {
+			span {
+				background: $black;
+				&:nth-child(1) {
+					top: 18px;
+					width: 0%;
+					left: 50%;
+				}
+				&:nth-child(2) {
+					left: 15px;
+					right: 0px;
+					-webkit-transform: rotate(45deg);
+					-moz-transform: rotate(45deg);
+					-o-transform: rotate(45deg);
+					transform: rotate(45deg);
+				}
+				&:nth-child(3) {
+					left: 15px;
+					right: 0px;
+					-webkit-transform: rotate(-45deg);
+					-moz-transform: rotate(-45deg);
+					-o-transform: rotate(-45deg);
+					transform: rotate(-45deg);
+				}
+				&:nth-child(4) {
+					top: 18px;
+					width: 0%;
+					left: 50%;
+				}
 			}
 		}
 	}

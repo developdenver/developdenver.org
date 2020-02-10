@@ -195,26 +195,24 @@ export default {
 		top: 0;
 		transition: left 0.5s linear;
 		z-index: 50;
-		@media (max-width: $small-breakpoint) {
-			bottom: -200vh;
-			height: calc(100% - #{$mobile-footer-size});
-			left: 0;
-			right: 0;
-			top: auto;
-			width: 100%;
-		}
 		&.open {
 			left: 100px;
 			@media (max-width: $small-breakpoint) {
 				@include align-items(flex-end);
 				@include justify-content(flex-end);
 				bottom: $mobile-footer-size;
-				border: none;
 				left: 0;
-				right: 0;
-				top: 0;
-				transition: bottom 0.3s linear;
 			}
+		}
+		@media (max-width: $small-breakpoint) {
+			bottom: -200vh;
+			border-top: $thin-border-width solid $black;
+			height: calc(100% - #{$mobile-footer-size});
+			left: 0;
+			right: 0;
+			top: auto;
+			width: 100%;
+			transition: bottom 0.5s linear;
 		}
 		nav {
 			height: 100%;
@@ -256,8 +254,7 @@ export default {
 						transform: rotate(180deg);
 						writing-mode: vertical-rl;
 						@media (max-width: $small-breakpoint) {
-							font-size: $baseline;
-							padding: $baseline / 2;
+							font-size: 10vw;
 							transform: initial;
 							writing-mode: initial;
 						}
@@ -276,22 +273,36 @@ export default {
 							@include flex-flow(column);
 							@include justify-content(space-between);
 							height: 100%;
-							@media (max-width: $small-breakpoint) {
-								width: auto;
-							}
-							svg {
-								margin: auto $baseline;
-								width: 50px;
-								path {
-									fill: $black;
+							li {
+								svg {
+									margin: auto $baseline;
+									width: 50px;
+									@media (max-width: $small-breakpoint) {
+										height: 40px;
+										width: 40px;
+										margin: 0;
+									}
+									path {
+										fill: $black;
+									}
 								}
 								&:hover {
-									fill: $red;
+									a {
+										background: $black;
+										svg {
+											path,
+											rect,
+											polygon {
+												fill: $yellow;
+											}
+										}
+									}
 								}
-								@media (max-width: $small-breakpoint) {
-									height: 30px;
-									width: 30px;
-								}
+							}
+							@media (max-width: $small-breakpoint) {
+								@include flex-flow(row);
+								width: 100%;
+								max-width: 100%;
 							}
 						}
 					}
