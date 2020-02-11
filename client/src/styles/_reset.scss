@@ -188,6 +188,9 @@ a {
 		color: $red;
 		cursor: pointer;
 	}
+	&.button {
+		display: block;
+	}
 }
 
 a,
