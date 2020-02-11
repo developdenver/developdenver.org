@@ -95,6 +95,9 @@ export default {
 			@include justify-content(space-between);
 			> li {
 				font-size: 12px;
+				a {
+					text-decoration: none;
+				}
 				a:hover {
 					color: $red;
 				}

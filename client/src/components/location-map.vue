@@ -308,7 +308,7 @@ export default {
 		}
 		img {
 			width: 16.66%;
-			// min-width: 100px;
+			min-width: 100px;
 		}
 		@media (max-width: $medium-breakpoint) {
 			margin: $baseline;

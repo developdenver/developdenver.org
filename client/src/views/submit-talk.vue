@@ -1,16 +1,38 @@
 <template>
-	<section class="submit-talk">
-		<countdown />
-		<p class="error" v-if="error">{{ error }}</p>
-		<h2>Submit A Talk</h2>
-		<edit-talk buttonLabel="Submit" :talk="talk" @updateTalk="createTalk" />
-	</section>
+	<fragment>
+		<section id="submit-talk-landing" class="full landing-screen">
+			<countdown />
+			<h1>Talk the Talk</h1>
+			<div class="plus-grid red"></div>
+		</section>
+		<section class="submit-talk">
+			<HeaderBar
+				title="Submit a Talk"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_SMILEY.png')
+				"
+				v-bind:hoverUrl="
+					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
+				"
+			/>
+			<p class="error" v-if="error">{{ error }}</p>
+			<edit-talk
+				buttonLabel="Submit"
+				:talk="talk"
+				@updateTalk="createTalk"
+			/>
+		</section>
+	</fragment>
 </template>
 
 <script>
-import EditTalk from '@/components/edit-talk';
-import Talk from '@/models/talk';
+import Vue from 'vue';
+import Fragment from 'vue-fragment';
+
 import Countdown from '@/components/count-down';
+import EditTalk from '@/components/edit-talk';
+import HeaderBar from '@/components/header-bar.vue';
+import Talk from '@/models/talk';
 
 export default {
 	data() {
@@ -25,8 +47,9 @@ export default {
 		};
 	},
 	components: {
-		EditTalk,
 		Countdown,
+		EditTalk,
+		HeaderBar,
 	},
 	methods: {
 		async createTalk(talk) {
@@ -63,14 +86,16 @@ export default {
 @import '@/styles/_sizes.scss';
 @import '@/styles/_general.scss';
 
-.submit-talk {
-	@include grid;
-	@media (max-width: $small-breakpoint) {
-		padding: $baseline;
-	}
-	.error,
-	form {
-		@include grid-form;
+#submit-talk-landing {
+	.plus-grid.red {
+		@include plus-grid;
+		grid-column: 2 / span 4;
+		height: 30vh;
+		margin-top: 15vh;
+		position: absolute !important;
+		width: 50vw;
+		right: 0;
+		z-index: 1;
 	}
 }
 </style>
