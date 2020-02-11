@@ -161,18 +161,21 @@ export default {
 .intro {
 	@include grid-full-width;
 }
-a {
-	grid-column: 1 / span 3;
-	&:last-child {
-		grid-column: 4 / span 3;
-	}
-	@media (max-width: $small-breakpoint) {
-		grid-column: 1;
+#schedule-intro {
+	a {
+		grid-column: 1 / span 3;
 		&:last-child {
+			grid-column: 4 / span 3;
+		}
+		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
+			&:last-child {
+				grid-column: 1;
+			}
 		}
 	}
 }
+
 .event-categories {
 	@include grid-full-width;
 	@include grid;

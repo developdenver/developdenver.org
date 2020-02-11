@@ -49,9 +49,9 @@ export default {
 		}
 		.hover-icon {
 			display: none;
-			left: -4vw;
+			left: -3vw;
 			position: absolute;
-			top: -4vw;
+			top: -3vw;
 			transform: translate(-5%, -5%) skewX(40deg);
 			transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
 			width: 15vw;
