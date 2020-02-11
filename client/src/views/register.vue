@@ -37,10 +37,11 @@
 <script>
 import Vue from 'vue';
 import Fragment from 'vue-fragment';
+
 import Countdown from '@/components/count-down';
 import EditProfile from '../components/edit-profile';
-import Profile from '../models/profile';
 import HeaderBar from '@/components/header-bar.vue';
+import Profile from '../models/profile';
 
 export default {
 	data() {
