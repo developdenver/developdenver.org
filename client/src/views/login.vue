@@ -12,7 +12,6 @@
 							type="text"
 							id="email"
 							name="email"
-							placeholder="Email"
 							v-model="email"
 						/>
 					</div>
@@ -22,7 +21,6 @@
 							type="password"
 							id="password"
 							name="password"
-							placeholder="Password"
 							v-model="password"
 						/>
 					</div>

@@ -237,6 +237,7 @@ export default {
 						height: 100%;
 						padding: $baseline;
 						padding-top: $baseline * 2;
+						text-decoration: none;
 						&.router-link-active {
 							background: $black;
 							color: $yellow;
