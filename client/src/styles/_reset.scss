@@ -179,7 +179,7 @@ ul.bullet-list {
 
 a {
 	color: inherit;
-	display: block;
+	display: inline-block;
 	text-decoration: none;
 	&:visited {
 		color: inherit;
@@ -239,6 +239,15 @@ button,
 
 p {
 	margin-bottom: $baseline;
+	strong {
+		font-weight: 700;
+		color: $red;
+	}
+}
+
+code {
+	@include primary-header-font;
+	font-size: 25px;
 }
 
 * {
