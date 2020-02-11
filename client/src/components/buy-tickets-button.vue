@@ -1,9 +1,17 @@
 <template>
 	<fragment>
-		<router-link v-if="isLoggedIn" :to="{ name: 'tickets#buy-tickets' }">
+		<router-link
+			class="button"
+			v-if="isLoggedIn"
+			:to="{ name: 'tickets#buy-tickets' }"
+		>
 			<button>Buy Tickets</button>
 		</router-link>
-		<router-link v-if="!isLoggedIn" :to="{ name: 'register' }">
+		<router-link
+			class="button"
+			v-if="!isLoggedIn"
+			:to="{ name: 'register' }"
+		>
 			<button>Buy Tickets</button>
 		</router-link>
 	</fragment>

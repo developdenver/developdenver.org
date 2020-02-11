@@ -37,10 +37,10 @@
 					not to be missed.
 				</p>
 			</div>
-			<router-link :to="{ name: 'submit-talk' }"
+			<router-link class="button" :to="{ name: 'submit-talk' }"
 				><button>Submit a Talk</button></router-link
 			>
-			<router-link :to="{ name: 'tickets' }">
+			<router-link class="button" :to="{ name: 'tickets' }">
 				<button>Buy Tickets</button>
 			</router-link>
 		</section>

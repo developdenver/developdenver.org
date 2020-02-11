@@ -87,7 +87,7 @@
 		/>
 		<router-link
 			v-else
-			class="cta"
+			class="cta button"
 			:to="{ name: 'register', query: { redirect: 'conference-badges' } }"
 			><button>Register To Buy</button></router-link
 		>

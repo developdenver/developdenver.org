@@ -11,7 +11,7 @@
 			<p>
 				Support the Denver development, product, and design community!
 			</p>
-			<a href="mailto:sponsorship@developdenver.org"
+			<a class="button" href="mailto:sponsorship@developdenver.org"
 				><button>Become a Sponsor</button></a
 			>
 		</div>
