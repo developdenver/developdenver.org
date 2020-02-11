@@ -57,8 +57,10 @@
 			</div>
 		</div>
 
-		<div class="discount-code form-section" v-if="true && isDiscountCode">
-			<h3>Discount Code</h3>
+		<div
+			class="discount-code form-section"
+			v-if="currentProfile.id && isDiscountCode"
+		>
 			<div class="form-row">
 				<label for="discount-code">Discount Code</label>
 				<input
@@ -85,8 +87,8 @@
 		/>
 		<router-link
 			v-else
+			class="cta"
 			:to="{ name: 'register', query: { redirect: 'conference-badges' } }"
-			class="call-to-action"
 			><button>Register To Buy</button></router-link
 		>
 		<div class="errors">{{ error }}</div>
@@ -306,6 +308,14 @@ export default {
 			}
 		}
 	}
+	#discount-code {
+		margin-left: $baseline * 2;
+		width: calc(100% - 40px);
+		@media (max-width: $small-breakpoint) {
+			margin-left: 0;
+			width: 100%;
+		}
+	}
 
 	.invitees {
 		.tags-input-wrapper-default {
@@ -371,7 +381,8 @@ export default {
 			padding: $baseline;
 		}
 	}
-	input[type='submit'] {
+	input[type='submit'],
+	.cta {
 		margin-left: $baseline * 2;
 		width: calc(100% - 40px);
 		@media (max-width: $small-breakpoint) {
