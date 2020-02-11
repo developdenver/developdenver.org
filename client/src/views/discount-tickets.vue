@@ -5,28 +5,7 @@
 			<h1>The hottest ticket in town</h1>
 			<div class="plus-grid red"></div>
 		</section>
-		<section class="discount-tickets">
-			<HeaderBar
-				title="The Details"
-				v-bind:imageUrl="
-					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
-				"
-				v-bind:hoverUrl="
-					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
-				"
-			/>
-			<div class="ticket-details">
-				<p>When: August 15 and 16, 2019</p>
-				<p>Where: RiNo Brighton Boulevard</p>
-				<p>
-					All badges include a custom printed 2-day conference badge,
-					access to keynote, talks, workshops, and live podcasts,
-					coffee, breakfast, and lunch at Zeppelin Station vendors
-					both days, opening and closing parties, 9th annual Ballmer
-					Peak Hackathon
-				</p>
-			</div>
-		</section>
+		<ticket-details />
 		<section id="buy-tickets">
 			<HeaderBar
 				title="Buy Tickets"
@@ -49,15 +28,17 @@ import Fragment from 'vue-fragment';
 import Countdown from '@/components/count-down';
 import HeaderBar from '@/components/header-bar.vue';
 import TicketPurchase from '../components/ticket-purchase';
+import TicketDetails from '../components/ticket-details';
 /* global Stripe */
 import CreditCardPayment from '../components/credit-card-payment';
 
 export default {
 	components: {
 		CreditCardPayment,
-		TicketPurchase,
 		Countdown,
 		HeaderBar,
+		TicketPurchase,
+		TicketDetails,
 	},
 	data() {
 		return {
