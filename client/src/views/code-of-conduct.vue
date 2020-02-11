@@ -1,6 +1,6 @@
 <template>
 	<fragment>
-		<section id="about-landing" class="full landing-screen">
+		<section id="coc-landing" class="full landing-screen">
 			<countdown />
 			<h1>The Code Behind the Code</h1>
 			<div class="plus-grid red"></div>
@@ -173,4 +173,18 @@ export default {
 @import '@/styles/_typography.scss';
 @import '@/styles/_sizes.scss';
 @import '@/styles/_general.scss';
+#coc-landing {
+  @include grid-full-width;
+	position: relative;
+	.plus-grid.red {
+		@include plus-grid;
+		grid-column: 3 / span 4;
+		height: 80vh;
+		margin-top: 20vh;
+		position: absolute !important;
+		width: 50vw;
+		right: 0;
+		z-index: 1;
+  }
+}
 </style>
