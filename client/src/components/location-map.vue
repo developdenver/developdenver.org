@@ -274,6 +274,12 @@ export default {
 					imageUrl: bigsbyLogo,
 					address: '3563 Wazee Street',
 				},
+				{
+					name: 'The Source Hotel Placeholder',
+					linkUrl: 'https://thesourcehotel.com/',
+					imageUrl: sourceLogo,
+					address: '3330 Brighton Blvd',
+				},
 			],
 			activeLocation: {},
 		};
@@ -307,13 +313,18 @@ export default {
 			cursor: pointer;
 		}
 		img {
-			width: 16.66%;
+			width: 80%;
 			min-width: 100px;
 		}
-		@media (max-width: $medium-breakpoint) {
+	}
+	@media (max-width: $medium-breakpoint) {
+		@include flex-flow(row wrap);
+		.venue-logo {
 			margin: $baseline;
 			img {
 				width: 80%;
+				min-width: 60px;
+				max-width: 60px;
 			}
 		}
 	}
@@ -322,6 +333,9 @@ export default {
 		grid-column: 1;
 		.venue-logo {
 			margin: 0 $baseline / 4;
+			img {
+				width: 16.6%;
+			}
 		}
 	}
 }

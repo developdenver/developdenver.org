@@ -46,11 +46,9 @@
 
 <script>
 import Countdown from '@/components/count-down';
-import HeaderBar from '@/components/header-bar.vue';
 export default {
 	components: {
 		Countdown,
-		HeaderBar,
 	},
 	data() {
 		return {
