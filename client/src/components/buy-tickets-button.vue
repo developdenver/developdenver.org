@@ -12,7 +12,7 @@
 			v-if="!isLoggedIn"
 			:to="{ name: 'register' }"
 		>
-			<button>Buy Tickets</button>
+			<button>Register To Buy</button>
 		</router-link>
 	</fragment>
 </template>

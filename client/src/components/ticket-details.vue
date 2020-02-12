@@ -20,6 +20,7 @@
 					both days, opening and closing parties, 8th annual Ballmer
 					Peak Hackathon
 				</p>
+				<BuyTicketsButton />
 			</div>
 		</section>
 		<section v-if="showGroup">
@@ -52,10 +53,17 @@
 import Vue from 'vue';
 import Fragment from 'vue-fragment';
 
+import BuyTicketsButton from '@/components/buy-tickets-button';
 import HeaderBar from '@/components/header-bar.vue';
+
 export default {
 	components: {
+		BuyTicketsButton,
 		HeaderBar,
+	},
+	props: {
+		showGroup: Boolean,
+		buyTixCta: Boolean,
 	},
 };
 </script>

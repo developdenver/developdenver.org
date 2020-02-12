@@ -3,6 +3,11 @@
 		<div class="hamburger-menu" :class="{ open: isMenuOpen }">
 			<nav>
 				<ul>
+					<li class="mobile-only">
+						<router-link class-active="active" to="/"
+							>Home</router-link
+						>
+					</li>
 					<li>
 						<router-link
 							class-active="active"
@@ -86,6 +91,22 @@
 								</a>
 							</li>
 						</ul>
+					</li>
+					<li class="footer mobile-only contact">
+						<router-link :to="{ name: 'contact' }">
+							Contact Us
+						</router-link>
+					</li>
+
+					<li class="footer mobile-only pp">
+						<router-link :to="{ name: 'privacy-policy' }"
+							>Privacy Policy</router-link
+						>
+					</li>
+					<li class="footer mobile-only coc">
+						<router-link :to="{ name: 'code-of-conduct' }"
+							>Code Of Conduct</router-link
+						>
 					</li>
 				</ul>
 			</nav>
@@ -202,15 +223,22 @@ export default {
 				left: 0;
 			}
 		}
+		.mobile-only {
+			display: none;
+		}
 		@media (max-width: $small-breakpoint) {
 			bottom: -200vh;
 			border-top: $thin-border-width solid $black;
 			height: calc(100% - #{$mobile-footer-size});
 			left: 0;
+			overflow: scroll;
 			right: 0;
 			top: auto;
 			width: 100%;
 			transition: bottom 0.5s linear;
+			.mobile-only {
+				display: block;
+			}
 		}
 		nav {
 			height: 100%;
@@ -243,8 +271,15 @@ export default {
 					@media (max-width: $small-breakpoint) {
 						border-left: none;
 						border-bottom: $thin-border-width solid $black;
+						&:last-child {
+							border-bottom: 0;
+						}
 						a {
 							padding: $baseline;
+							width: 100%;
+							&.router-link-active {
+								width: 100%;
+							}
 						}
 					}
 					&:hover {
@@ -266,6 +301,9 @@ export default {
 					&.social-links {
 						border-left: none;
 						border-right: $thin-border-width solid $black;
+						@media (max-width: $small-breakpoint) {
+							border-right: none;
+						}
 						&:hover {
 							background: $yellow;
 							a {

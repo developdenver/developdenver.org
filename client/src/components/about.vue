@@ -20,13 +20,11 @@
 					Develop Denver is two days of talks and hands-on workshops
 					on code, product and design. Attendees will learn from
 					professionals within the greater Denver community. Join us
-					for our 8th year of building Denver's tech scene.
+					for our 9th year of building Denver's tech scene.
 				</p>
-				<p>
-					A small Blurb about the neighborhood that its in and the
-					reason for that, and maybe a sentance about how handsome Tim
-					Sisk is.
-				</p>
+				<router-link class="button" :to="{ name: 'about' }">
+					<button>Learn More</button>
+				</router-link>
 			</div>
 		</section>
 		<section class="about-image full no-padding">
