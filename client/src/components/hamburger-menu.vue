@@ -317,7 +317,6 @@ export default {
 							height: 100%;
 							li {
 								svg {
-									margin: auto $baseline;
 									width: 50px;
 									@media (max-width: $small-breakpoint) {
 										height: 40px;
