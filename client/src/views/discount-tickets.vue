@@ -5,7 +5,7 @@
 			<h1>The hottest ticket in town</h1>
 			<div class="plus-grid red"></div>
 		</section>
-		<ticket-details />
+		<ticket-details :showGroup="true" />
 		<section id="buy-tickets">
 			<HeaderBar
 				title="Buy Tickets"

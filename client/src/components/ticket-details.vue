@@ -22,7 +22,7 @@
 				</p>
 			</div>
 		</section>
-		<section>
+		<section v-if="showGroup">
 			<HeaderBar
 				title="For Groups"
 				v-bind:imageUrl="
