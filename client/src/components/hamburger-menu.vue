@@ -214,7 +214,7 @@ export default {
 		}
 		nav {
 			height: 100%;
-			padding-bottom: $baseline * 3;
+			padding-bottom: 85px;
 			width: 100%;
 			> ul {
 				display: flex;
