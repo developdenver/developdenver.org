@@ -524,7 +524,7 @@ section {
 		padding: 0;
 	}
 	&:last-of-type {
-		// margin-bottom: $baseline * 6;
+		margin-bottom: $baseline * 6;
 	}
 	@media (max-width: $small-breakpoint) {
 		// height: calc(100vh - #{$mobile-header-size}); // header size

@@ -334,6 +334,7 @@ export default {
 		.venue-logo {
 			margin: 0 $baseline / 4;
 			img {
+				min-width: 40px;
 				width: 16.6%;
 			}
 		}

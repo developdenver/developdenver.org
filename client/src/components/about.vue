@@ -59,6 +59,9 @@ export default {
 section#about,
 section.about-image {
 	background: $yellow;
+	&:last-of-type {
+		margin-bottom: 0;
+	}
 	.full-text {
 		@include grid-heading;
 	}
