@@ -11,6 +11,7 @@
 
 @mixin dvlpfont {
 	font-family: DVLP;
+	letter-spacing: 0.09em;
 }
 @mixin label-font {
 	display: block;
@@ -28,6 +29,7 @@
 @mixin headline-font {
 	font-family: DVLP;
 	font-size: 10vw;
+	letter-spacing: 0.09em;
 	@media (max-width: $small-breakpoint) {
 		font-size: 70px;
 	}
@@ -36,6 +38,7 @@
 @mixin primary-header-font {
 	font-family: DVLP;
 	font-size: 36px;
+	letter-spacing: 0.09em;
 	@media (max-width: $small-breakpoint) {
 		font-size: 25px;
 	}
@@ -44,6 +47,7 @@
 @mixin primary-button-font {
 	font-family: DVLP;
 	font-size: 30px;
+	letter-spacing: 0.09em;
 }
 
 @mixin secondary-font {
@@ -62,11 +66,13 @@
 @mixin talk-title-font {
 	font-family: DVLP;
 	font-size: 20px;
+	letter-spacing: 0.09em;
 	line-height: 1.5;
 }
 
 @mixin footer-font {
 	font-family: DVLP;
 	font-size: 14px;
+	letter-spacing: 0.09em;
 	line-height: 1.5;
 }

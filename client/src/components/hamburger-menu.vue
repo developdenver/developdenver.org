@@ -214,7 +214,7 @@ export default {
 		}
 		nav {
 			height: 100%;
-			padding-bottom: 85px;
+			padding-bottom: 65px;
 			width: 100%;
 			> ul {
 				display: flex;
@@ -229,18 +229,22 @@ export default {
 					font-size: 5vw;
 					border-left: $thin-border-width solid $black;
 
-					@media (max-width: $small-breakpoint) {
-						border: none;
-					}
-
 					a {
 						height: 100%;
-						padding: $baseline;
+						padding: $baseline / 2;
 						padding-top: $baseline * 2;
+						line-height: 1em;
 						text-decoration: none;
 						&.router-link-active {
 							background: $black;
 							color: $yellow;
+						}
+					}
+					@media (max-width: $small-breakpoint) {
+						border-left: none;
+						border-bottom: $thin-border-width solid $black;
+						a {
+							padding: $baseline;
 						}
 					}
 					&:hover {
