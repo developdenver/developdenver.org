@@ -82,24 +82,28 @@ export default {
 input[type='file'] {
 	display: none;
 }
-.custom-file-upload {
-	@include dvlpfont;
-	background: $yellow;
-	border: $medium-border-width solid $black;
-	color: $black;
-	display: block;
-	text-align: center;
-	&:hover {
-		background: $black;
-		color: $yellow;
-		cursor: pointer;
-	}
-}
+
 .image-upload {
 	.form-row {
 		@include flexbox;
 		@include justify-content(space-between);
 		@include align-items(center);
+		.custom-file-upload {
+			@include dvlpfont;
+			background: $yellow;
+			border: $medium-border-width solid $black;
+			color: $black;
+			display: block;
+			text-align: center;
+			@media (max-width: $small-breakpoint) {
+				padding: 12px $baseline * 2;
+			}
+			&:hover {
+				background: $black;
+				color: $yellow;
+				cursor: pointer;
+			}
+		}
 	}
 
 	.progress {

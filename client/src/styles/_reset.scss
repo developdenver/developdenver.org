@@ -475,6 +475,9 @@ select option {
 			width: 10px;
 			z-index: 2;
 		}
+		@media (max-width: $small-breakpoint) {
+			margin-left: $baseline;
+		}
 	}
 	h3 {
 		padding-bottom: $baseline;

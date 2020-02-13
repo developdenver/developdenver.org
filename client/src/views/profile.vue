@@ -6,7 +6,12 @@
 			<div class="plus-grid red"></div>
 		</section>
 		<section v-if="acceptedTalks.length">
-			<TalkListItem :talks="acceptedTalks" />
+			<TalkInfo
+				view="profile"
+				:talk="talk"
+				v-for="(talk, ix) in acceptedTalks"
+				:key="'accepted' + ix"
+			/>
 		</section>
 		<section v-if="submittedTalks.length">
 			<HeaderBar
@@ -18,7 +23,12 @@
 					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
 				"
 			/>
-			<TalkListItem :talks="submittedTalks" />
+			<TalkInfo
+				view="profile"
+				:talk="talk"
+				v-for="(talk, ix) in submittedTalks"
+				:key="'submitted' + ix"
+			/>
 		</section>
 		<section class="ticket-management" v-if="tickets.length">
 			<HeaderBar
@@ -66,7 +76,7 @@ import Fragment from 'vue-fragment';
 import EditProfile from '@/components/edit-profile.vue';
 import Countdown from '@/components/count-down';
 import HeaderBar from '@/components/header-bar.vue';
-import TalkListItem from '@/components/talk-list-item.vue';
+import TalkInfo from '@/components/talk-info.vue';
 import { mapState } from 'vuex';
 
 export default {
@@ -74,7 +84,7 @@ export default {
 		Countdown,
 		EditProfile,
 		HeaderBar,
-		TalkListItem,
+		TalkInfo,
 	},
 	computed: {
 		...mapState({
@@ -87,6 +97,15 @@ export default {
 			return this.$store.getters['talks/getTalksByUserId'](
 				this.profile.id,
 			);
+			// let talks = this.$store.getters['talks/getTalksByUserId'](
+			// 	this.profile.id,
+			// );
+			// return talks.map(talk => {
+			// 	// const randomIndex = Math.floor(Math.random() * 3);
+			// 	// const icon = icons[randomIndex];
+			// 	// talk.properties = Object.assign({}, talk.properties, { icon });
+			// 	return talk;
+			// });
 		},
 		acceptedTalks() {
 			return this.$store.getters['talks/getTalksByUserId'](
@@ -144,38 +163,6 @@ export default {
 		width: 50vw;
 		right: 0;
 		z-index: 1;
-	}
-}
-.talk-row {
-	@include grid-full-width;
-	@include grid;
-	@include align-items(center);
-	padding-bottom: $baseline * 4;
-	.title-and-type {
-		grid-column: 1 / span 6;
-		grid-row: 1;
-		padding-bottom: $baseline * 2;
-
-		h4 {
-			font-size: 22px;
-			padding-bottom: $baseline / 5;
-			width: 100%;
-		}
-	}
-	.edit-talk {
-		grid-column: 1 / span 6;
-		padding-bottom: $baseline * 2;
-		button {
-			margin-top: 0;
-		}
-	}
-	.talk-description {
-		grid-column: 1 / span 6;
-	}
-	&:last-of-type {
-		.talk-description {
-			border-bottom: none;
-		}
 	}
 }
 .profile-editing {
