@@ -24,6 +24,10 @@
 					<h4>{{ talk.properties.title }}</h4>
 					<h3>{{ talk.properties.type }}</h3>
 				</span>
+
+				<p class="talk-description">
+					{{ talk.properties.description }}
+				</p>
 				<router-link
 					class="button edit-talk"
 					:to="{ name: 'edit-talk', params: { id: talk.id } }"
@@ -31,7 +35,7 @@
 					<button>Edit Talk</button>
 				</router-link>
 				<p class="talk-description">
-					{{ talk.properties.description }}
+					{{ abbreviatedDescription(talk.properties.description) }}
 				</p>
 			</div>
 		</section>
@@ -112,6 +116,23 @@ export default {
 			await this.$store.dispatch('services/user/setProfile', profile);
 			this.$router.push({ name: 'news' });
 		},
+		abbreviatedDescription: function(description) {
+			if (description.length > 170) {
+				//trim the string to the maximum length
+				let trimmedString = description.substr(0, 170);
+
+				//re-trim if we are in the middle of a word and
+				trimmedString = trimmedString.substr(
+					0,
+					Math.min(
+						trimmedString.length,
+						trimmedString.lastIndexOf(' '),
+					),
+				);
+				return trimmedString + '...';
+			}
+			return description;
+		},
 	},
 	mounted() {
 		this.$store.dispatch('talks/fetchTalks');
@@ -147,7 +168,7 @@ export default {
 	@include grid;
 	@include align-items(center);
 	.title-and-type {
-		grid-column: 1 / span 3;
+		grid-column: 1 / span 6;
 		grid-row: 1;
 		padding-bottom: $baseline * 2;
 		h4 {
@@ -156,18 +177,14 @@ export default {
 		}
 	}
 	.edit-talk {
-		grid-column: 5 / span 2;
-		grid-row: 1;
+		grid-column: 1 / span 6;
 		padding-bottom: $baseline * 2;
 		button {
 			margin-top: 0;
 		}
 	}
 	.talk-description {
-		border-bottom: $thin-border-width solid $black;
 		grid-column: 1 / span 6;
-		margin-bottom: $baseline * 2;
-		padding-bottom: $baseline * 2;
 	}
 	&:last-of-type {
 		.talk-description {

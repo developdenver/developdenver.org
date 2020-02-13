@@ -77,15 +77,23 @@ export default {
 @import '@/styles/_colors.scss';
 @import '@/styles/_flex.scss';
 @import '@/styles/_general.scss';
+@import '@/styles/_typography.scss';
 
 input[type='file'] {
 	display: none;
 }
 .custom-file-upload {
-	border: $thin-border-width solid $black;
-	display: inline-block;
-	padding: 6px 12px;
-	cursor: pointer;
+	@include dvlpfont;
+	background: $yellow;
+	border: $medium-border-width solid $black;
+	color: $black;
+	display: block;
+	text-align: center;
+	&:hover {
+		background: $black;
+		color: $yellow;
+		cursor: pointer;
+	}
 }
 .image-upload {
 	.form-row {

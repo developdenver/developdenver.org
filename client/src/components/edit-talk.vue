@@ -136,6 +136,6 @@ export default {
 @import '@/styles/_typography.scss';
 .edit-talk {
 	@include grid-full-width;
-	max-width: 700px;
+	// max-width: 700px;
 }
 </style>
