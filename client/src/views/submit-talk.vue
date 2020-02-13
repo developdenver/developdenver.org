@@ -87,6 +87,9 @@ export default {
 @import '@/styles/_general.scss';
 
 #submit-talk-landing {
+	h1 {
+		z-index: 2;
+	}
 	.plus-grid.red {
 		@include plus-grid;
 		grid-column: 2 / span 4;

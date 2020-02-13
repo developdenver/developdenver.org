@@ -59,6 +59,9 @@ export default {
 @import '@/styles/_general.scss';
 @import '@/styles/_sizes.scss';
 #tickets-landing {
+	h1 {
+		z-index: 2;
+	}
 	.plus-grid.red {
 		@include plus-grid;
 		grid-column: 2 / span 4;

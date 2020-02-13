@@ -71,6 +71,9 @@ export default {
 @import '@/styles/_colors.scss';
 
 #register-landing {
+	h1 {
+		z-index: 2;
+	}
 	.plus-grid.red {
 		@include plus-grid;
 		grid-column: 2 / span 4;
