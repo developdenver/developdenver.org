@@ -12,7 +12,6 @@
 					v-if="currentProfile.id"
 					type="radio"
 					required
-					name="ticket-level"
 					:id="level.sku"
 					:value="level.sku"
 					v-model="ticketSKU"
@@ -32,7 +31,7 @@
 				<label for="ticket-quantity"><h4>Quantity</h4></label>
 				<input
 					type="number"
-					name="ticket-quantity"
+					id="ticket-quantity"
 					v-model.number="ticketQuantity"
 				/>
 			</div>
@@ -67,7 +66,6 @@
 					required
 					type="text"
 					id="discount-code"
-					name="discount-code"
 					v-model="discountCode"
 				/>
 			</div>

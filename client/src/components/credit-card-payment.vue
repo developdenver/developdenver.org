@@ -3,7 +3,7 @@
 		<h3>Payment</h3>
 		<div class="form-row">
 			<label for="name">Full Name (as it appears on your card)</label>
-			<input id="name" name="name" type="text" required />
+			<input id="name" type="text" required />
 		</div>
 		<div class="form-row">
 			<label for="card-element">Credit Card Number</label>

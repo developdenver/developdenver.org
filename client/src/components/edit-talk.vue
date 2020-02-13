@@ -11,7 +11,6 @@
 					<input
 						required
 						type="text"
-						name="talk-title"
 						id="talk-title"
 						v-model.trim="talk.properties.title"
 						@change="setValid('title')"
@@ -43,7 +42,6 @@
 					<label for="desription"> Description </label>
 					<textarea
 						id="description"
-						name="description"
 						@change="setValid('description')"
 						placeholder="Describe your awesome talk here, markdown valid!"
 						v-model.trim="talk.properties.description"

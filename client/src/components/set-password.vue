@@ -6,7 +6,6 @@
 				required
 				class="password"
 				type="password"
-				name="password"
 				id="password"
 				title="At least 7 characters"
 				pattern=".{7,}"
@@ -21,7 +20,6 @@
 				ref="confirmPassword"
 				required
 				class="confirm-password"
-				name="confirm-password"
 				type="password"
 				id="confirmPassword"
 				title="At least 7 characters"

@@ -4,134 +4,149 @@
 		class="edit-profile"
 		@submit.prevent="updateProfile"
 	>
-
-			<!--<h3>Required Info</h3> -->
-
-      <div class="form-section">
-				<div class="form-row">
-					<label for="first-name">First Name </label>
-					<input
-						required
-						class="first-name"
-						type="text"
-						name="first-name"
-						id="first-name"
-						v-model.trim="profile.properties.firstName"
-					/>
-				</div>
-				<div class="form-row">
-					<label for="last-name"> Last Name </label>
-					<input
-						required
-						class="last-name"
-						type="text"
-						id="last-name"
-						v-model.trim="profile.properties.lastName"
-					/>
-				</div>
-      </div>
-      <div class="form-section">
-				<div class="form-row">
-					<label for="email"> Email Address </label>
-					<input
-						required
-						class="email"
-						name="email"
-						type="email"
-						id="email"
-						placeholder="name@domain.com"
-						ref="email"
-						v-model.trim="profile.properties.email"
-						@change="verifyUniqueEmail"
-					/>
-				</div>
-      </div>
-      <div class="form-section">
-				<SetPassword
-					v-if="isNewProfile"
-					@updatePassword="updatePassword"
+		<div class="form-section required">
+			<h3 v-if="!isNewProfile">Account Info</h3>
+			<p class="required-field">Required field</p>
+			<div class="form-row">
+				<label for="first-name" class="required">First Name </label>
+				<input
+					required
+					class="first-name"
+					type="text"
+					id="first-name"
+					v-model.trim="profile.properties.firstName"
 				/>
-      </div>
+			</div>
+			<div class="form-row">
+				<label for="last-name" class="required"> Last Name </label>
+				<input
+					required
+					class="last-name"
+					type="text"
+					id="last-name"
+					v-model.trim="profile.properties.lastName"
+				/>
+			</div>
+			<div class="form-row">
+				<label for="email" class="required"> Email Address </label>
+				<input
+					required
+					class="email"
+					type="email"
+					id="email"
+					placeholder="name@domain.com"
+					ref="email"
+					v-model.trim="profile.properties.email"
+					@change="verifyUniqueEmail"
+				/>
+			</div>
 		</div>
-		<!--<div class="form-section">
-			<h3>Optional Info</h3>
-			<fieldset class="optional">
-				<div class="form-row">
-					<label for="image-upload"> Image upload </label>
-					<image-upload
+
+		<div class="form-section" v-if="!isNewProfile">
+			<h3>Profile Info</h3>
+			<div class="form-row">
+				<image-upload
+					class="profile-photo"
+					title="Profile Photo"
+					:uploadUrl="imageUploadUrl"
+					@imageUrl="setImageUrl"
+				>
+					<figure
+						v-if="profile.properties.profilePhotoUrl"
 						class="profile-photo"
-						title="Profile Photo"
-						:uploadUrl="imageUploadUrl"
-						@imageUrl="setImageUrl"
 					>
-						<figure
-							v-if="profile.properties.profilePhotoUrl"
-							class="profile-photo"
-						>
-							<img
-								:src="profile.properties.profilePhotoUrl"
-								alt="Profile Photo"
-							/>
-						</figure>
-					</image-upload>
-				</div>
+						<img
+							:src="profile.properties.profilePhotoUrl"
+							alt="Profile Photo"
+						/>
+					</figure>
+				</image-upload>
+			</div>
+			<div class="form-row">
+				<label for="bio"> Bio </label>
 				<textarea
 					class="bio"
 					id="bio"
-					placeholder="Bio"
+					placeholder="Here's where you brag about yourself. Graciously, of course."
 					v-model.trim="profile.properties.bio"
 				></textarea>
+			</div>
+		</div>
+		<div class="form-section" v-if="!isNewProfile">
+			<h3>Employment Info</h3>
+			<div class="form-row">
+				<label for="position"> Position </label>
 				<input
 					type="text"
 					class="position"
 					id="position"
-					placeholder="Position"
 					v-model.trim="profile.properties.position"
 				/>
-				<div class="self-employed">
-					<label for="isSelfEmployed">Self-employed?</label>
-					<input
-						class="self-employed"
-						type="checkbox"
-						id="isSelfEmployed"
-						v-model="profile.properties.isSelfEmployed"
-					/>
-				</div>
+			</div>
+			<div class="self-employed form-row select-input">
+				<input
+					class="self-employed"
+					type="checkbox"
+					id="isSelfEmployed"
+					v-model="profile.properties.isSelfEmployed"
+				/>
+				<label for="isSelfEmployed"><h4>Self-employed?</h4></label>
+			</div>
+			<div class="form-row">
+				<label for="employer"> Employer </label>
 				<input
 					class="employer"
 					type="text"
 					id="employer"
-					placeholder="Employer"
 					v-model.trim="profile.properties.employer"
 				/>
+			</div>
+		</div>
+		<div class="form-section" v-if="!isNewProfile">
+			<h3>Social Info</h3>
+			<div class="form-row">
+				<label for="employer"> Website </label>
 				<input
-					type="text"
+					type="url"
 					id="website"
-					placeholder="Website"
+					placeholder="https://example.com"
+					pattern="https://.*"
+					size="30"
 					v-model.trim="profile.properties.website"
 				/>
+			</div>
+			<div class="form-row">
+				<label for="github-username"> Github Username </label>
 				<input
 					type="text"
 					id="github-username"
-					placeholder="Github Username"
 					v-model.trim="profile.properties.githubUsername"
 				/>
+			</div>
+			<div class="form-row">
+				<label for="twitter-username"> Twitter Username </label>
 				<input
 					type="text"
 					id="twitter-username"
-					placeholder="Twitter Username"
 					v-model.trim="profile.properties.twitterUsername"
 				/>
+			</div>
+			<div class="form-row">
+				<label for="linkedin-username">
+					LinkedIn Username
+				</label>
 				<input
 					type="text"
 					id="linkedin-username"
-					placeholder="LinkedIn Username"
 					v-model.trim="profile.properties.linkedinUsername"
 				/>
+			</div>
+		</div>
 
-			</fieldset>
-		</div>-->
 		<button class="button" :disabled="isLoading">{{ buttonLabel }}</button>
+		<div v-if="isNewProfile" class="form-section">
+			<SetPassword @updatePassword="updatePassword" />
+		</div>
 	</form>
 </template>
 
@@ -210,8 +225,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/styles/_general.scss';
 @import '@/styles/_colors.scss';
+@import '@/styles/_flex.scss';
+@import '@/styles/_general.scss';
 @import '@/styles/_typography.scss';
 
 .edit-profile {
@@ -220,31 +236,46 @@ export default {
 	fieldset {
 		@include grid-form;
 	}
-	h2 {
-		@include grid-heading;
-		span {
-			display: block;
-			@include body-font;
+	.form-row {
+		label {
+			cursor: pointer;
+			padding: 12px $baseline * 2;
+			transition: color 200ms ease-in;
+			@media (max-width: $small-breakpoint) {
+				padding-left: 0;
+			}
+		}
+		&.self-employed {
+			margin: $baseline * 2 0 $baseline 0;
+		}
+	}
+	input,
+	textarea,
+	button,
+	.image-upload {
+		margin-left: $baseline * 2;
+		width: calc(100% - 40px);
+		@media (max-width: $small-breakpoint) {
+			margin-left: 0;
+			width: 100%;
 		}
 	}
 	textarea {
 		height: $baseline * 8;
 	}
+
 	.profile-photo {
 		filter: grayscale(100%);
 		img {
 			max-width: 100%;
 		}
 	}
-	.self-employed {
-		display: flex;
-		flex-flow: row nowrap;
-		justify-content: space-between;
-		align-items: center;
-		margin: $baseline / 2 0;
-		input {
-			width: auto;
-		}
+}
+.reset-password-link {
+	margin-left: $baseline * 2;
+	width: calc(100% - 40px);
+	@media (max-width: $small-breakpoint) {
+		margin-left: 0;
 	}
 }
 </style>

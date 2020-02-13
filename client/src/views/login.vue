@@ -8,19 +8,13 @@
 					<h3>Log In</h3>
 					<div class="form-row">
 						<label for="ticket-quantity">Email</label>
-						<input
-							type="text"
-							id="email"
-							name="email"
-							v-model="email"
-						/>
+						<input type="text" id="email" v-model="email" />
 					</div>
 					<div class="form-row">
 						<label for="ticket-quantity">password</label>
 						<input
 							type="password"
 							id="password"
-							name="password"
 							v-model="password"
 						/>
 					</div>

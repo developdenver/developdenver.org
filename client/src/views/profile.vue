@@ -5,7 +5,7 @@
 			<h1>All About Me</h1>
 			<div class="plus-grid red"></div>
 		</section>
-		<section v-if="talks.length">
+		<section v-if="submittedTalks.length">
 			<HeaderBar
 				title="My Submitted Talks"
 				v-bind:imageUrl="
@@ -15,15 +15,23 @@
 					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
 				"
 			/>
-			<div v-for="talk in talks" :key="talk.id">
-				<p>
-					<router-link
-						class="button"
-						:to="{ name: 'edit-talk', params: { id: talk.id } }"
-					>
-						{{ talk.properties.title }},
-						{{ talk.properties.type }}
-					</router-link>
+			<div
+				class="submitted-talks talk-row"
+				v-for="talk in submittedTalks"
+				:key="talk.id"
+			>
+				<span class="title-and-type">
+					<h4>{{ talk.properties.title }}</h4>
+					<h3>{{ talk.properties.type }}</h3>
+				</span>
+				<router-link
+					class="button edit-talk"
+					:to="{ name: 'edit-talk', params: { id: talk.id } }"
+				>
+					<button>Edit Talk</button>
+				</router-link>
+				<p class="talk-description">
+					{{ talk.properties.description }}
 				</p>
 			</div>
 		</section>
@@ -88,7 +96,12 @@ export default {
 		profile() {
 			return this.$store.getters['services/user/currentProfile'];
 		},
-		talks() {
+		submittedTalks() {
+			return this.$store.getters['talks/getTalksByUserId'](
+				this.profile.id,
+			);
+		},
+		acceptedTalks() {
 			return this.$store.getters['talks/getTalksByUserId'](
 				this.profile.id,
 			).filter(talk => talk.properties.isAccepted);
@@ -108,13 +121,64 @@ export default {
 
 <style lang="scss">
 @import '@/styles/_general.scss';
+@import '@/styles/_flex.scss';
 @import '@/styles/_sizes.scss';
 @import '@/styles/_typography.scss';
 
+#profile-landing {
+	@include grid-full-width;
+	position: relative;
+	h1 {
+		z-index: 2;
+	}
+	.plus-grid.red {
+		@include plus-grid;
+		grid-column: 3 / span 4;
+		height: 40vh;
+		margin-top: 20vh;
+		position: absolute !important;
+		width: 50vw;
+		right: 0;
+		z-index: 1;
+	}
+}
+.talk-row {
+	@include grid-full-width;
+	@include grid;
+	@include align-items(center);
+	.title-and-type {
+		grid-column: 1 / span 3;
+		grid-row: 1;
+		padding-bottom: $baseline * 2;
+		h4 {
+			font-size: 22px;
+			padding-bottom: $baseline / 5;
+		}
+	}
+	.edit-talk {
+		grid-column: 5 / span 2;
+		grid-row: 1;
+		padding-bottom: $baseline * 2;
+		button {
+			margin-top: 0;
+		}
+	}
+	.talk-description {
+		border-bottom: $thin-border-width solid $black;
+		grid-column: 1 / span 6;
+		margin-bottom: $baseline * 2;
+		padding-bottom: $baseline * 2;
+	}
+	&:last-of-type {
+		.talk-description {
+			border-bottom: none;
+		}
+	}
+}
 .profile-editing {
 	a {
 		@include grid-full-width;
-		margin-top: $baseline;
+		margin-top: $baseline / 2;
 	}
 }
 </style>
