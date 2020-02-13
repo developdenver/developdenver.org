@@ -79,7 +79,6 @@ export default {
 	border-top: $thin-border-width solid $black;
 	left: 100px;
 	margin-top: $baseline * 8;
-	max-width: $max-width;
 	position: fixed;
 	right: 0;
 	z-index: 100;
