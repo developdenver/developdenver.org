@@ -5,6 +5,9 @@
 			<h1>All About Me</h1>
 			<div class="plus-grid red"></div>
 		</section>
+		<section v-if="acceptedTalks.length">
+			<TalkListItem :talks="acceptedTalks" />
+		</section>
 		<section v-if="submittedTalks.length">
 			<HeaderBar
 				title="My Submitted Talks"
@@ -15,29 +18,7 @@
 					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
 				"
 			/>
-			<div
-				class="submitted-talks talk-row"
-				v-for="talk in submittedTalks"
-				:key="talk.id"
-			>
-				<span class="title-and-type">
-					<h4>{{ talk.properties.title }}</h4>
-					<h3>{{ talk.properties.type }}</h3>
-				</span>
-
-				<p class="talk-description">
-					{{ talk.properties.description }}
-				</p>
-				<router-link
-					class="button edit-talk"
-					:to="{ name: 'edit-talk', params: { id: talk.id } }"
-				>
-					<button>Edit Talk</button>
-				</router-link>
-				<p class="talk-description">
-					{{ abbreviatedDescription(talk.properties.description) }}
-				</p>
-			</div>
+			<TalkListItem :talks="submittedTalks" />
 		</section>
 		<section class="ticket-management" v-if="tickets.length">
 			<HeaderBar
@@ -85,6 +66,7 @@ import Fragment from 'vue-fragment';
 import EditProfile from '@/components/edit-profile.vue';
 import Countdown from '@/components/count-down';
 import HeaderBar from '@/components/header-bar.vue';
+import TalkListItem from '@/components/talk-list-item.vue';
 import { mapState } from 'vuex';
 
 export default {
@@ -92,6 +74,7 @@ export default {
 		Countdown,
 		EditProfile,
 		HeaderBar,
+		TalkListItem,
 	},
 	computed: {
 		...mapState({
@@ -116,10 +99,10 @@ export default {
 			await this.$store.dispatch('services/user/setProfile', profile);
 			this.$router.push({ name: 'news' });
 		},
-		abbreviatedDescription: function(description) {
-			if (description.length > 170) {
+		abbreviatedText: function(text, maxLength) {
+			if (text.length > maxLength) {
 				//trim the string to the maximum length
-				let trimmedString = description.substr(0, 170);
+				let trimmedString = text.substr(0, maxLength);
 
 				//re-trim if we are in the middle of a word and
 				trimmedString = trimmedString.substr(
@@ -131,7 +114,7 @@ export default {
 				);
 				return trimmedString + '...';
 			}
-			return description;
+			return text;
 		},
 	},
 	mounted() {
@@ -167,13 +150,16 @@ export default {
 	@include grid-full-width;
 	@include grid;
 	@include align-items(center);
+	padding-bottom: $baseline * 4;
 	.title-and-type {
 		grid-column: 1 / span 6;
 		grid-row: 1;
 		padding-bottom: $baseline * 2;
+
 		h4 {
 			font-size: 22px;
 			padding-bottom: $baseline / 5;
+			width: 100%;
 		}
 	}
 	.edit-talk {
