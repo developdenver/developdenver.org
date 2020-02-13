@@ -88,8 +88,14 @@
 		<router-link
 			v-else
 			class="cta button"
-			:to="{ name: 'register', query: { redirect: 'conference-badges' } }"
+			:to="{
+				name: 'register',
+				query: { redirect: 'conference-badges' },
+			}"
 			><button>Register To Buy</button></router-link
+		>
+		<router-link class="login-link" :to="{ name: 'login' }"
+			>Or login</router-link
 		>
 		<div class="errors">{{ error }}</div>
 		<div class="message">{{ message }}</div>
@@ -382,7 +388,8 @@ export default {
 		}
 	}
 	input[type='submit'],
-	.cta {
+	.cta,
+	.login-link {
 		margin-left: $baseline * 2;
 		width: calc(100% - 40px);
 		@media (max-width: $small-breakpoint) {
