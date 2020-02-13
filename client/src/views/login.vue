@@ -7,11 +7,11 @@
 				<div class="form-section">
 					<h3>Log In</h3>
 					<div class="form-row">
-						<label for="ticket-quantity">Email</label>
+						<label for="email">Email</label>
 						<input type="text" id="email" v-model="email" />
 					</div>
 					<div class="form-row">
-						<label for="ticket-quantity">password</label>
+						<label for="password">password</label>
 						<input
 							type="password"
 							id="password"
