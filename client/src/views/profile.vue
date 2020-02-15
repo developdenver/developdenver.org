@@ -36,13 +36,13 @@
 				v-bind:imageUrl="
 					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
 				"
-				v-bind:hoverUrl="
-					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
-				"
+				v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_TICKET.svg')"
 			/>
-			<router-link class="button" :to="{ name: 'my-tickets' }"
-				>Manage Tickets</router-link
-			>
+			<div class="intro">
+				<router-link class="button" :to="{ name: 'my-tickets' }"
+					><button>Manage Tickets</button></router-link
+				>
+			</div>
 		</section>
 		<section class="profile-editing">
 			<HeaderBar

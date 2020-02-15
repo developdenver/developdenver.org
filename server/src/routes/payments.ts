@@ -8,7 +8,11 @@ const { zip } = require('lodash/zip');
 const studentDiscountCodes = process.env.STUDENT_DISCOUNT_CODES.split(',');
 const { send } = require('../utilities/email');
 const passport = require('passport');
-const { createTickets, sendInvitationEmail, sendConfirmationEmail } = require('../controllers/ticket');
+const {
+    createTickets,
+    sendInvitationEmail,
+    sendConfirmationEmail,
+} = require('../controllers/ticket');
 
 const stripeCreateOrder = promisify(stripe.orders.create.bind(stripe.orders));
 const stripePayOrder = promisify(stripe.orders.pay.bind(stripe.orders));
@@ -28,16 +32,18 @@ async function purchaseTicket({
     if (sku === 'skuEarly' && new Date() > closeOfEarlyPricing) {
         throw new ClientError('Too late for early pricing');
     }
-    if (sku === 'skuDiscount' &&  discount_code !== 'dvlpdnvr') {
+    if (sku === 'skuDiscount' && discount_code !== 'dvlpdnvr') {
         throw new ClientError('Invalid discount code');
     }
     const orderParams = {
         currency: 'usd',
-        items: [{
-            type: 'sku',
-            parent: sku,
-            quantity,
-        }],
+        items: [
+            {
+                type: 'sku',
+                parent: sku,
+                quantity,
+            },
+        ],
         email: receipt_email,
     };
     const order = await stripeCreateOrder(orderParams);
@@ -54,9 +60,7 @@ async function purchaseTicket({
 function validateQuantityAgainstInvitees({ quantity, invitees }) {
     if (quantity < invitees.length) {
         throw new ClientError(
-            `Cannot purchase ${quantity} tickets for ${
-                invitees.length
-            } invitees`,
+            `Cannot purchase ${quantity} tickets for ${invitees.length} invitees`,
         );
     }
 }
@@ -105,4 +109,3 @@ export default app => {
 
     return router;
 };
-

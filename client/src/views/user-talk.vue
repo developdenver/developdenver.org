@@ -83,6 +83,12 @@ export default {
 		width: 100vw;
 		right: 0;
 		z-index: 1;
+		@media (max-width: $small-breakpoint) {
+			height: 20vh;
+		}
+	}
+	.countdown {
+		z-index: 2;
 	}
 }
 .user-talk {

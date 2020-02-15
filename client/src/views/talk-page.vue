@@ -2,7 +2,6 @@
 	<fragment>
 		<section id="talk-landing" class="full landing-screen">
 			<countdown />
-
 			<div class="plus-grid"></div>
 		</section>
 		<section class="talk-page">
@@ -98,6 +97,12 @@ export default {
 		width: 100vw;
 		right: 0;
 		z-index: 1;
+		@media (max-width: $small-breakpoint) {
+			height: 20vh;
+		}
+	}
+	.countdown {
+		z-index: 2;
 	}
 }
 .talk-page {
