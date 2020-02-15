@@ -1,6 +1,6 @@
 <template>
 	<div class="credit-card-payment form-section">
-		<h3>Payment</h3>
+		<h3 class="required">Payment</h3>
 		<div class="form-row">
 			<label for="name">Full Name (as it appears on your card)</label>
 			<input id="name" type="text" required />

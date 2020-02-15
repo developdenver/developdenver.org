@@ -1,7 +1,8 @@
 <template>
 	<form class="ticket-purchase" @submit.prevent="submit">
 		<div class="levels form-section">
-			<h3>Ticket Type</h3>
+			<p class="required-field">Required field</p>
+			<h3 class="required">Ticket Type</h3>
 			<div
 				class="level form-row radio-input"
 				v-bind:class="{ 'is-disabled': !currentProfile.id }"
@@ -12,13 +13,19 @@
 					v-if="currentProfile.id"
 					type="radio"
 					required
+					class="open"
+					name="level"
 					:id="level.sku"
 					:value="level.sku"
 					v-model="ticketSKU"
-				/>
-				<label :for="level.sku"
-					><h4>{{ level.label }}</h4></label
 				>
+				<label :for="level.sku"
+					class="overlay">
+					    <div class="circle"></div>
+					<h4>{{ level.label }}</h4></label
+				>
+
+			</input>
 				<div class="level-info">
 					<h4>{{ level.price }}</h4>
 					<p class="level-description">{{ level.description }}</p>
@@ -26,7 +33,7 @@
 			</div>
 		</div>
 		<div class="form-section" v-if="currentProfile.id">
-			<h3>Number of Tickets</h3>
+			<h3 class="required">Number of Tickets</h3>
 			<div class="ticket-quantity form-row">
 				<label for="ticket-quantity"><h4>Quantity</h4></label>
 				<input
@@ -42,7 +49,7 @@
 			:class="{ 'not-enough-tickets': notEnoughTickets }"
 			v-if="currentProfile.id"
 		>
-			<h3>Email address(es)</h3>
+			<h3 class="required">Email address(es)</h3>
 			<div class="form-row">
 				<label for="invitees">
 					Email addresses (enter an email for for each badge)
@@ -115,7 +122,7 @@ export default {
 	},
 	data() {
 		return {
-			ticketSKU: '',
+			ticketSKU: 'skuEmployer',
 			error: '',
 			message: '',
 			stripe: null,

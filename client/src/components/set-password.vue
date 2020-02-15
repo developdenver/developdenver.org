@@ -1,7 +1,7 @@
 <template>
 	<fragment>
 		<div class="form-row">
-			<label for="password">Password </label>
+			<label for="password" class="required">Password </label>
 			<input
 				required
 				class="password"
@@ -15,7 +15,9 @@
 			/>
 		</div>
 		<div class="form-row">
-			<label for="confirm-password"> Password Confirmation</label>
+			<label for="confirm-password" class="required">
+				Password Confirmation</label
+			>
 			<input
 				ref="confirmPassword"
 				required

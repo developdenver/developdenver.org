@@ -41,6 +41,9 @@
 				/>
 			</div>
 		</div>
+		<div v-if="isNewProfile" class="form-section">
+			<SetPassword @updatePassword="updatePassword" />
+		</div>
 
 		<div class="form-section" v-if="!isNewProfile">
 			<h3>Profile Info</h3>
@@ -90,7 +93,10 @@
 					id="isSelfEmployed"
 					v-model="profile.properties.isSelfEmployed"
 				/>
-				<label for="isSelfEmployed"><h4>Self-employed?</h4></label>
+				<label for="isSelfEmployed" class="overlay">
+					<div class="circle"></div>
+					<h4>Self-employed?</h4>
+				</label>
 			</div>
 			<div class="form-row">
 				<label for="employer"> Employer </label>
@@ -144,9 +150,6 @@
 		</div>
 
 		<button class="button" :disabled="isLoading">{{ buttonLabel }}</button>
-		<div v-if="isNewProfile" class="form-section">
-			<SetPassword @updatePassword="updatePassword" />
-		</div>
 	</form>
 </template>
 

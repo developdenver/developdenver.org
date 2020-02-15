@@ -1,19 +1,19 @@
 <template>
 	<div class="talk talk-row" :id="`submission-${talk.id}`">
-		<div class="image-icon">
+		<!-- <div class="image-icon">
 			<img :src="photoUrl" alt="Speaker headshot" />
 		</div>
 		<span
 			class="title-and-type featured"
 			v-bind:class="{ featurd: talk.properties.isFeatured }"
-		>
-			<!-- <div class="image-icon" v-if="talk.properties.isFeatured">
+		> -->
+		<div class="image-icon" v-if="talk.properties.isFeatured">
 			<img :src="photoUrl" alt="Speaker headshot" />
 		</div>
 		<span
 			class="title-and-type"
 			v-bind:class="{ featurd: talk.properties.isFeatured }"
-		> -->
+		>
 			<h4 v-if="view !== 'profile'" class="abbreviated">
 				{{ abbreviatedText(talk.properties.title, 70) }}
 			</h4>
