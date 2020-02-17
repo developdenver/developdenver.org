@@ -97,15 +97,6 @@ export default {
 			return this.$store.getters['talks/getTalksByUserId'](
 				this.profile.id,
 			);
-			// let talks = this.$store.getters['talks/getTalksByUserId'](
-			// 	this.profile.id,
-			// );
-			// return talks.map(talk => {
-			// 	// const randomIndex = Math.floor(Math.random() * 3);
-			// 	// const icon = icons[randomIndex];
-			// 	// talk.properties = Object.assign({}, talk.properties, { icon });
-			// 	return talk;
-			// });
 		},
 		acceptedTalks() {
 			return this.$store.getters['talks/getTalksByUserId'](
