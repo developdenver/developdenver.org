@@ -9,15 +9,6 @@
 				>See all talks</router-link
 			>
 			<TalkInfo view="talkPage" :talk="currentTalk" />
-			<!--
-		<button
-			:class="{voted: voteType === 'Unvote'}"
-			:disabled="isLoading"
-			v-if="!isCurrentUserTalk && isAttendee"
-			@click="updateVote"
-			>{{voteType}}
-		</button>
-    -->
 		</section>
 	</fragment>
 </template>
@@ -30,8 +21,8 @@ import Countdown from '@/components/count-down';
 
 export default {
 	components: {
-		TalkInfo,
 		Countdown,
+		TalkInfo,
 	},
 	created() {
 		this.$store.dispatch('talks/fetchTalks');
