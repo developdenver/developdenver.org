@@ -116,6 +116,13 @@ export default {
 		width: 50vw;
 		right: 0;
 		z-index: 1;
+		@media (max-width: $small-breakpoint) {
+			height: 40vh;
+			margin-top: 0;
+		}
+	}
+	.countdown {
+		z-index: 2;
 	}
 }
 .exposure a {

@@ -94,17 +94,30 @@ export default {
 		right: 0;
 		z-index: 1;
 	}
+	.countdown {
+		z-index: 2;
+	}
+	.cta {
+		z-index: 2;
+		.login-link {
+			background: $yellow;
+		}
+	}
 	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 		h1 {
 			grid-column: 1;
-			grid-row: 1;
+			grid-row: 2;
 		}
 		.plus-grid.red {
 			grid-column: 1;
 			grid-row: 2;
-			height: 55vh;
+			height: 25vh;
 			margin-top: 30vh;
+			width: 100vw;
+		}
+		.countdown {
+			grid-row: 2;
 		}
 	}
 }

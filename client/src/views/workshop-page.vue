@@ -1,10 +1,10 @@
 <template>
   <fragment>
-    <section id="talk-landing" class="full landing-screen">
+    <section id="workshop-landing" class="full landing-screen">
       <countdown />
       <div class="plus-grid"></div>
     </section>
-    <section class="talk-page">
+    <section class="workshop-page">
       <router-link class="back-link" :to="{ name: 'talks' }"
         >See all talks</router-link
       >
@@ -17,13 +17,14 @@
 <script>
 import Vue from 'vue';
 import Fragment from 'vue-fragment';
+
 import Countdown from '@/components/count-down';
 import TalkInfo from '@/components/talk-info.vue';
 import workshops from '@/data/workshops';
 
 export default {
 	components: {
-    		Countdown,
+    Countdown,
 		TalkInfo,
 	},
 	mounted() {},
@@ -41,7 +42,7 @@ export default {
 @import '@/styles/_general.scss';
 @import '@/styles/_sizes.scss';
 @import '@/styles/_colors.scss';
-#talk-landing {
+#workshop-landing {
 	@include grid-full-width;
 	position: relative;
 	.plus-grid {
@@ -61,7 +62,7 @@ export default {
 		z-index: 2;
 	}
 }
-.talk-page {
+.workshop-page {
 	@include grid;
 	.back-link {
 		padding-bottom: $baseline;

@@ -167,10 +167,9 @@ export default {
 		}
 	}
 	.sponsor-call-to-action {
-		grid-column: 1 / span 6;
+		@include grid-full-width;
 		padding-bottom: $baseline * 4;
 		@media (max-width: $medium-breakpoint) {
-			@include grid-full-width;
 			padding-bottom: $baseline * 3;
 		}
 		@media (max-width: $medium-breakpoint) {

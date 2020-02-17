@@ -206,11 +206,14 @@ export default {
 		padding-bottom: 0;
 	}
 	.title-and-type {
-		grid-column: 1 / span 6;
+		@include grid-full-width;
 		grid-row: 1;
 		padding-bottom: $baseline;
 		&.featured {
 			grid-column: 3 / span 3;
+			@media (max-width: $small-breakpoint) {
+				grid-column: 1;
+			}
 		}
 		h4 {
 			font-size: 30px;
@@ -220,13 +223,13 @@ export default {
 		}
 	}
 	.edit-talk-link {
-		grid-column: 1 / span 6;
+		@include grid-full-width;
 		// button {
 		// 	margin-top: 0;
 		// }
 	}
 	.talk-description {
-		grid-column: 1 / span 6;
+		@include grid-full-width;
 	}
 	&:last-of-type {
 		.talk-description {
