@@ -116,13 +116,26 @@ export default {
 		width: 50vw;
 		right: 0;
 		z-index: 1;
-		@media (max-width: $small-breakpoint) {
-			height: 40vh;
-			margin-top: 0;
-		}
 	}
 	.countdown {
 		z-index: 2;
+	}
+	@media (max-width: $small-breakpoint) {
+		grid-column: 1;
+		h1 {
+			grid-column: 1;
+			grid-row: 2;
+		}
+		.plus-grid.red {
+			grid-column: 1;
+			grid-row: 2;
+			height: 15vh;
+			margin-top: 30vh;
+			width: 100vw;
+		}
+		.countdown {
+			grid-row: 2;
+		}
 	}
 }
 .exposure a {

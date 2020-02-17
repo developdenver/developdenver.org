@@ -250,6 +250,12 @@ export default {
 		}
 		&.self-employed {
 			margin: $baseline * 2 0 $baseline 0;
+			@media (max-width: $small-breakpoint) {
+				padding-left: 0;
+				label {
+					padding-left: $baseline * 2;
+				}
+			}
 		}
 	}
 	input,

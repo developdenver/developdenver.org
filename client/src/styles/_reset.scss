@@ -148,11 +148,17 @@ h3 {
 	@include tertiary-font;
 	font-size: 20px;
 	margin-bottom: $baseline / 2;
+	@media (max-width: $small-breakpoint) {
+		font-size: 17px;
+	}
 }
 h4 {
 	@include secondary-font;
 	font-size: 18px;
 	line-height: 1.5rem;
+	@media (max-width: $small-breakpoint) {
+		font-size: 20px;
+	}
 }
 p,
 ul li {
@@ -213,7 +219,7 @@ button,
 	color: $black;
 	display: block;
 	margin-top: $baseline * 2;
-	padding: $baseline 0;
+	padding: $baseline $baseline/2;
 	text-decoration: none;
 	text-align: center;
 	width: 100%;

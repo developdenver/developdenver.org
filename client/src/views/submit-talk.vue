@@ -100,5 +100,22 @@ export default {
 		right: 0;
 		z-index: 1;
 	}
+	@media (max-width: $small-breakpoint) {
+		grid-column: 1;
+		h1 {
+			grid-column: 1;
+			grid-row: 2;
+		}
+		.plus-grid.red {
+			grid-column: 1;
+			grid-row: 2;
+			height: 15vh;
+			margin-top: 15vh;
+			width: 100vw;
+		}
+		.countdown {
+			grid-row: 2;
+		}
+	}
 }
 </style>
