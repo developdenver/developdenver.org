@@ -30,7 +30,7 @@
 		<section class="about-image full no-padding">
 			<div class="plus-grid red"></div>
 			<div class="about-image">
-				<img src="/img/ballmer-peak.jpeg" />
+				<img src="/img/home1_yell.jpg" />
 			</div>
 			<div class="plus-grid red"></div>
 		</section>
