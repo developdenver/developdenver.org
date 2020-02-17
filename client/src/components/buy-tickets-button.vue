@@ -11,7 +11,10 @@
 			>
 				<button>Register To Buy</button>
 			</router-link>
-			<router-link class="login-link" :to="{ name: 'login' }"
+			<router-link
+				v-if="!isLoggedIn"
+				class="login-link"
+				:to="{ name: 'login' }"
 				>Or login</router-link
 			>
 		</span>

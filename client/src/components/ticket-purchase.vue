@@ -99,7 +99,7 @@
 			}"
 			><button>Register To Buy</button></router-link
 		>
-		<router-link class="login-link" :to="{ name: 'login' }"
+		<router-link 	v-if="!currentProfile.id" class="login-link" :to="{ name: 'login' }"
 			>Or login</router-link
 		>
 		<div class="errors">{{ error }}</div>
