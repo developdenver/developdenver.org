@@ -4,7 +4,7 @@
 			<nav>
 				<ul>
 					<li class="mobile-only">
-						<router-link class-active="active" to="/"
+						<router-link class-active="active" to="/" exact
 							>Home</router-link
 						>
 					</li>
