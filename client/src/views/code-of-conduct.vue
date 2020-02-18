@@ -23,8 +23,8 @@
 					event. We are expecting cooperation from all participants to
 					help ensuring a safe environment for everybody.
 				</p>
-
-				<p><strong>tl;dr:</strong> Be excellent with each other</p>
+				<br/>
+				<p><strong>tl;dr:</strong> Be excellent with each other.</p>
 			</div>
 		</section>
 		<section>

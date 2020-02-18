@@ -250,8 +250,7 @@ button,
 p {
 	margin-bottom: $baseline;
 	strong {
-		font-weight: 700;
-		color: $red;
+		@include dvlpfont;
 	}
 }
 
