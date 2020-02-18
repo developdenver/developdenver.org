@@ -3,10 +3,19 @@
 		<section id="talks-landing" class="full landing-screen">
 			<countdown />
 			<h1>What we're talkin' about</h1>
+			<div class="plus-grid red"></div>
 		</section>
 		<section class="talks-view">
-			<h2>Submitted Talks</h2>
-			<p class="description-text">
+			<HeaderBar
+				title="Submitted Talks"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_SMILEY.png')
+				"
+				v-bind:hoverUrl="
+					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
+				"
+			/>
+			<p class="description-text intro">
 				These are the talks that have been submitted so far for Develop
 				Denver 2019.
 				<router-link :to="{ name: 'tickets' }"
@@ -14,7 +23,14 @@
 				>
 				so you can vote for what you want to see starting on June 1st!
 			</p>
-			<talk-list :talks="shuffledTalks" />
+			<div class="talk-list">
+				<TalkInfo
+					view="allTalks"
+					:talk="talk"
+					v-for="(talk, ix) in shuffledTalks"
+					:key="ix"
+				/>
+			</div>
 		</section>
 	</fragment>
 </template>
@@ -22,15 +38,18 @@
 <script>
 import Vue from 'vue';
 import Fragment from 'vue-fragment';
+
 import Countdown from '@/components/count-down.vue';
-import TalkList from '@/components/talk-list.vue';
+import HeaderBar from '@/components/header-bar.vue';
+import TalkInfo from '@/components/talk-info.vue';
 
 const icons = ['bomb', 'happy', 'skull'];
 
 export default {
 	components: {
-		TalkList,
 		Countdown,
+		HeaderBar,
+		TalkInfo,
 	},
 	created() {
 		this.$store.dispatch('talks/fetchTalks');
@@ -53,25 +72,33 @@ export default {
 @import '@/styles/_sizes.scss';
 @import '@/styles/_general.scss';
 
+#talks-landing {
+	@include grid-full-width;
+	position: relative;
+	h1 {
+		z-index: 2;
+	}
+	.plus-grid.red {
+		@include plus-grid;
+		grid-column: 3 / span 4;
+		height: 40vh;
+		margin-top: 20vh;
+		position: absolute !important;
+		width: 50vw;
+		right: 0;
+		z-index: 1;
+	}
+}
 .talks-view {
+	.intro {
+		padding-bottom: $baseline * 4;
+	}
+}
+.talk-list {
 	@include grid;
-	@media (max-width: $small-breakpoint) {
-		padding: $baseline;
-	}
-	.description-text {
-		@include grid-text-0;
-	}
-	h2,
-	p,
-	.talk-list {
+	@include grid-full-width;
+	.talk {
 		@include grid-full-width;
-	}
-	a {
-		text-decoration: underline;
-		color: $accent-color;
-	}
-	h2 {
-		@include grid-heading;
 	}
 }
 </style>

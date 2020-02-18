@@ -9,16 +9,14 @@
 			</div>
 			<div class="plus-grid red"></div>
 		</section>
-		<ticket-details />
+		<ticket-details :showGroup="false" />
 		<section id="buy-tickets">
 			<HeaderBar
 				title="Buy Tickets"
 				v-bind:imageUrl="
 					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
 				"
-				v-bind:hoverUrl="
-					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
-				"
+				v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_TICKET.svg')"
 			/>
 			<ticket-purchase :levels="levels" :isDiscountCode="false" />
 		</section>
@@ -83,6 +81,9 @@ export default {
 @import '@/styles/_general.scss';
 @import '@/styles/_sizes.scss';
 #tickets-landing {
+	h1 {
+		z-index: 2;
+	}
 	.plus-grid.red {
 		@include plus-grid;
 		grid-column: 2 / span 4;
@@ -93,17 +94,30 @@ export default {
 		right: 0;
 		z-index: 1;
 	}
+	.countdown {
+		z-index: 2;
+	}
+	.cta {
+		z-index: 2;
+		.login-link {
+			background: $yellow;
+		}
+	}
 	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 		h1 {
 			grid-column: 1;
-			grid-row: 1;
+			grid-row: 2;
 		}
 		.plus-grid.red {
 			grid-column: 1;
 			grid-row: 2;
-			height: 55vh;
+			height: 25vh;
 			margin-top: 30vh;
+			width: 100vw;
+		}
+		.countdown {
+			grid-row: 2;
 		}
 	}
 }

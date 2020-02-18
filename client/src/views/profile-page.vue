@@ -1,11 +1,17 @@
 <template>
-	<section class="profile-page">
-		<countdown />
+	<fragment>
+		<section id="talk-landing" class="full landing-screen">
+			<countdown />
+			<div class="plus-grid"></div>
+		</section>
 		<user-profile v-if="currentProfile" :profile="currentProfile" />
-	</section>
+	</fragment>
 </template>
 
 <script>
+import Vue from 'vue';
+import Fragment from 'vue-fragment';
+
 import ProfileCardList from '@/components/profile-card-list.vue';
 import UserProfile from '@/components/user-profile.vue';
 import Countdown from '@/components/count-down';
@@ -52,12 +58,4 @@ export default {
 
 <style lang="scss">
 @import '@/styles/_general.scss';
-
-.profile-page {
-	@include grid;
-
-	.user-profile {
-		@include grid-full-width;
-	}
-}
 </style>

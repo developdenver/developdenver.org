@@ -5,6 +5,22 @@
 $thin-border-width: 2px;
 $medium-border-width: 3px;
 
+@mixin transition($val1, $time, $animate) {
+	transition: $val1 $time $animate;
+	-webkit-transition: $val1 $time $animate;
+	-moz-transition: $val1 $time $animate;
+	-o-transition: $val1 $time $animate;
+	-ms--transition: $val1 $time $animate;
+}
+
+@mixin transform($transforms) {
+	-moz-transform: $transforms;
+	-o-transform: $transforms;
+	-ms-transform: $transforms;
+	-webkit-transform: $transforms;
+	transform: $transforms;
+}
+
 @mixin call-to-action {
 	@include primary-header-font;
 	background: none;

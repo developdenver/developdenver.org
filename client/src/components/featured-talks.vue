@@ -1,10 +1,15 @@
 <template>
-  <section class="featured-talks">
-    <h2>Featured Talks</h2>
-    <div class="talks">
-      <TalkInfo :talk="talk" v-for="(talk, ix) in talks" :key="ix"/>
-    </div>
-  </section>
+	<section class="featured-talks">
+		<h2>Featured Talks</h2>
+		<div class="talks">
+			<TalkInfo
+				view="featuredTalk"
+				:talk="talk"
+				v-for="(talk, ix) in talks"
+				:key="ix"
+			/>
+		</div>
+	</section>
 </template>
 
 <script>
@@ -12,16 +17,18 @@ import talkData from '../data/featured-talks';
 import TalkInfo from '@/components/talk-info';
 
 export default {
-    name: 'FeaturedTalks',
-    data() {
-        return {
+	name: 'FeaturedTalks',
+	data() {
+		return {
 			talks: talkData.map(talk => {
-				const featuredTalk = Object.assign({}, talk, { isFeatured: true })
+				const featuredTalk = Object.assign({}, talk, {
+					isFeatured: true,
+				});
 				return { properties: featuredTalk };
-			})
-		}
-    },
-    components: { TalkInfo },
+			}),
+		};
+	},
+	components: { TalkInfo },
 };
 </script>
 
@@ -31,7 +38,8 @@ export default {
 
 .featured-talks {
 	@include grid;
-	h2, .talks {
+	h2,
+	.talks {
 		@include grid-full-width;
 	}
 	.talk {

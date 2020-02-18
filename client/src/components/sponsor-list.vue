@@ -7,14 +7,7 @@
 			"
 			v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_SPONSORS.svg')"
 		/>
-		<div class="sponsor-call-to-action" v-if="showButton">
-			<p>
-				Support the Denver development, product, and design community!
-			</p>
-			<a class="button" href="mailto:sponsorship@developdenver.org"
-				><button>Become a Sponsor</button></a
-			>
-		</div>
+
 		<!-- <ul v-if="premiumSponsor" class="platinum-sponsors">
 			<li>Sponsor Here</li>
 		</ul> -->
@@ -30,6 +23,14 @@
 				</a>
 			</li>
 		</ul>
+		<div class="sponsor-call-to-action" v-if="showButton">
+			<p>
+				Support the Denver development, product, and design community!
+			</p>
+			<a class="button" href="mailto:sponsorship@developdenver.org"
+				><button>Become a Sponsor</button></a
+			>
+		</div>
 	</section>
 </template>
 
@@ -100,6 +101,9 @@ export default {
 	components: {
 		HeaderBar,
 	},
+	props: {
+		showButton: Boolean,
+	},
 };
 </script>
 
@@ -163,10 +167,9 @@ export default {
 		}
 	}
 	.sponsor-call-to-action {
-		grid-column: 1 / span 2;
-		grid-row: 2;
+		@include grid-full-width;
+		padding-bottom: $baseline * 4;
 		@media (max-width: $medium-breakpoint) {
-			@include grid-full-width;
 			padding-bottom: $baseline * 3;
 		}
 		@media (max-width: $medium-breakpoint) {

@@ -1,29 +1,31 @@
 <template>
-	<section class="talk-page">
-		<countdown />
-		<talk-info :talk="currentTalk" />
-		<!--
-		<button
-			:class="{voted: voteType === 'Unvote'}"
-			:disabled="isLoading"
-			v-if="!isCurrentUserTalk && isAttendee"
-			@click="updateVote"
-			>{{voteType}}
-		</button>
-    --></section>
+	<fragment>
+		<section id="talk-landing" class="full landing-screen">
+			<countdown />
+			<div class="plus-grid"></div>
+		</section>
+		<section class="talk-page">
+			<router-link class="back-link" :to="{ name: 'talks' }"
+				>See all talks</router-link
+			>
+			<TalkInfo view="talkPage" :talk="currentTalk" />
+		</section>
+	</fragment>
 </template>
 
 <script>
+import Vue from 'vue';
+import Fragment from 'vue-fragment';
 import TalkInfo from '@/components/talk-info.vue';
 import Countdown from '@/components/count-down';
 
 export default {
 	components: {
-		TalkInfo,
 		Countdown,
+		TalkInfo,
 	},
-	mounted() {
-		this.$store.dispatch('events/fetchEvents');
+	created() {
+		this.$store.dispatch('talks/fetchTalks');
 	},
 	computed: {
 		isLoading() {
@@ -50,7 +52,7 @@ export default {
 				: false;
 		},
 		currentTalk() {
-			return this.$store.getters['events/getEventById'](
+			return this.$store.getters['talks/getTalkById'](
 				this.$route.params.id,
 			);
 		},
@@ -74,10 +76,31 @@ export default {
 @import '@/styles/_general.scss';
 @import '@/styles/_sizes.scss';
 @import '@/styles/_colors.scss';
-
+#talk-landing {
+	@include grid-full-width;
+	position: relative;
+	.plus-grid {
+		@include plus-grid;
+		grid-column: 1 / span 4;
+		height: 25vh;
+		margin-top: 0vh;
+		position: absolute !important;
+		width: 100vw;
+		right: 0;
+		z-index: 1;
+		@media (max-width: $small-breakpoint) {
+			height: 20vh;
+		}
+	}
+	.countdown {
+		z-index: 2;
+	}
+}
 .talk-page {
 	@include grid;
-
+	.back-link {
+		padding-bottom: $baseline;
+	}
 	.talk {
 		@include grid-full-width;
 	}

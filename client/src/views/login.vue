@@ -7,20 +7,14 @@
 				<div class="form-section">
 					<h3>Log In</h3>
 					<div class="form-row">
-						<label for="ticket-quantity">Email</label>
-						<input
-							type="text"
-							id="email"
-							name="email"
-							v-model="email"
-						/>
+						<label for="email">Email</label>
+						<input type="text" id="email" v-model="email" />
 					</div>
 					<div class="form-row">
-						<label for="ticket-quantity">password</label>
+						<label for="password">password</label>
 						<input
 							type="password"
 							id="password"
-							name="password"
 							v-model="password"
 						/>
 					</div>
@@ -46,11 +40,9 @@
 
 <script>
 import Countdown from '@/components/count-down';
-import HeaderBar from '@/components/header-bar.vue';
 export default {
 	components: {
 		Countdown,
-		HeaderBar,
 	},
 	data() {
 		return {

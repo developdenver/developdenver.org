@@ -5,7 +5,15 @@
 			<h1>All About Me</h1>
 			<div class="plus-grid red"></div>
 		</section>
-		<section v-if="talks.length">
+		<section v-if="acceptedTalks.length">
+			<TalkInfo
+				view="profile"
+				:talk="talk"
+				v-for="(talk, ix) in acceptedTalks"
+				:key="'accepted' + ix"
+			/>
+		</section>
+		<section v-if="submittedTalks.length">
 			<HeaderBar
 				title="My Submitted Talks"
 				v-bind:imageUrl="
@@ -15,17 +23,12 @@
 					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
 				"
 			/>
-			<div v-for="talk in talks" :key="talk.id">
-				<p>
-					<router-link
-						class="button"
-						:to="{ name: 'edit-talk', params: { id: talk.id } }"
-					>
-						{{ talk.properties.title }},
-						{{ talk.properties.type }}
-					</router-link>
-				</p>
-			</div>
+			<TalkInfo
+				view="profile"
+				:talk="talk"
+				v-for="(talk, ix) in submittedTalks"
+				:key="'submitted' + ix"
+			/>
 		</section>
 		<section class="ticket-management" v-if="tickets.length">
 			<HeaderBar
@@ -33,13 +36,13 @@
 				v-bind:imageUrl="
 					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
 				"
-				v-bind:hoverUrl="
-					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
-				"
+				v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_TICKET.svg')"
 			/>
-			<router-link class="button" :to="{ name: 'my-tickets' }"
-				>Manage Tickets</router-link
-			>
+			<div class="intro">
+				<router-link class="button" :to="{ name: 'my-tickets' }"
+					><button>Manage Tickets</button></router-link
+				>
+			</div>
 		</section>
 		<section class="profile-editing">
 			<HeaderBar
@@ -73,6 +76,7 @@ import Fragment from 'vue-fragment';
 import EditProfile from '@/components/edit-profile.vue';
 import Countdown from '@/components/count-down';
 import HeaderBar from '@/components/header-bar.vue';
+import TalkInfo from '@/components/talk-info.vue';
 import { mapState } from 'vuex';
 
 export default {
@@ -80,6 +84,7 @@ export default {
 		Countdown,
 		EditProfile,
 		HeaderBar,
+		TalkInfo,
 	},
 	computed: {
 		...mapState({
@@ -88,7 +93,12 @@ export default {
 		profile() {
 			return this.$store.getters['services/user/currentProfile'];
 		},
-		talks() {
+		submittedTalks() {
+			return this.$store.getters['talks/getTalksByUserId'](
+				this.profile.id,
+			);
+		},
+		acceptedTalks() {
 			return this.$store.getters['talks/getTalksByUserId'](
 				this.profile.id,
 			).filter(talk => talk.properties.isAccepted);
@@ -99,6 +109,23 @@ export default {
 			await this.$store.dispatch('services/user/setProfile', profile);
 			this.$router.push({ name: 'news' });
 		},
+		abbreviatedText: function(text, maxLength) {
+			if (text.length > maxLength) {
+				//trim the string to the maximum length
+				let trimmedString = text.substr(0, maxLength);
+
+				//re-trim if we are in the middle of a word and
+				trimmedString = trimmedString.substr(
+					0,
+					Math.min(
+						trimmedString.length,
+						trimmedString.lastIndexOf(' '),
+					),
+				);
+				return trimmedString + '...';
+			}
+			return text;
+		},
 	},
 	mounted() {
 		this.$store.dispatch('talks/fetchTalks');
@@ -108,13 +135,48 @@ export default {
 
 <style lang="scss">
 @import '@/styles/_general.scss';
+@import '@/styles/_flex.scss';
 @import '@/styles/_sizes.scss';
 @import '@/styles/_typography.scss';
 
+#profile-landing {
+	@include grid-full-width;
+	position: relative;
+	h1 {
+		z-index: 2;
+	}
+	.plus-grid.red {
+		@include plus-grid;
+		grid-column: 3 / span 4;
+		height: 40vh;
+		margin-top: 20vh;
+		position: absolute !important;
+		width: 50vw;
+		right: 0;
+		z-index: 1;
+	}
+	@media (max-width: $small-breakpoint) {
+		grid-column: 1;
+		h1 {
+			grid-column: 1;
+			grid-row: 2;
+		}
+		.plus-grid.red {
+			grid-column: 1;
+			grid-row: 2;
+			height: 15vh;
+			margin-top: 15vh;
+			width: 100vw;
+		}
+		.countdown {
+			grid-row: 2;
+		}
+	}
+}
 .profile-editing {
 	a {
 		@include grid-full-width;
-		margin-top: $baseline;
+		margin-top: $baseline / 2;
 	}
 }
 </style>

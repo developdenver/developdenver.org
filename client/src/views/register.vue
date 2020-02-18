@@ -11,9 +11,7 @@
 				v-bind:imageUrl="
 					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
 				"
-				v-bind:hoverUrl="
-					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
-				"
+				v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_TICKET.svg')"
 			/>
 			<div class="registration-instructions">
 				<p>
@@ -71,6 +69,9 @@ export default {
 @import '@/styles/_colors.scss';
 
 #register-landing {
+	h1 {
+		z-index: 2;
+	}
 	.plus-grid.red {
 		@include plus-grid;
 		grid-column: 2 / span 4;

@@ -37,6 +37,7 @@ export default {
 	border-bottom: 1px solid $black;
 	border-top: 1px solid $black;
 	margin-bottom: $baseline * 2;
+	z-index: 2;
 	.icon-container {
 		border-left: $thin-border-width solid $black;
 		border-right: $thin-border-width solid $black;

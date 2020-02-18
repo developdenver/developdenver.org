@@ -6,9 +6,7 @@
 				v-bind:imageUrl="
 					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
 				"
-				v-bind:hoverUrl="
-					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
-				"
+				v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_TICKET.svg')"
 			/>
 			<div class="ticket-details">
 				<p>When: August 15 and 16, 2019</p>
@@ -20,17 +18,16 @@
 					both days, opening and closing parties, 8th annual Ballmer
 					Peak Hackathon
 				</p>
+				<BuyTicketsButton />
 			</div>
 		</section>
-		<section>
+		<section v-if="showGroup">
 			<HeaderBar
 				title="For Groups"
 				v-bind:imageUrl="
 					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
 				"
-				v-bind:hoverUrl="
-					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
-				"
+				v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_TICKET.svg')"
 			/>
 			<div class="ticket-details">
 				<p>
@@ -52,10 +49,17 @@
 import Vue from 'vue';
 import Fragment from 'vue-fragment';
 
+import BuyTicketsButton from '@/components/buy-tickets-button';
 import HeaderBar from '@/components/header-bar.vue';
+
 export default {
 	components: {
+		BuyTicketsButton,
 		HeaderBar,
+	},
+	props: {
+		showGroup: Boolean,
+		buyTixCta: Boolean,
 	},
 };
 </script>

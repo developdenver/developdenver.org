@@ -5,16 +5,14 @@
 			<h1>The hottest ticket in town</h1>
 			<div class="plus-grid red"></div>
 		</section>
-		<ticket-details />
+		<ticket-details :showGroup="true" />
 		<section id="buy-tickets">
 			<HeaderBar
 				title="Buy Tickets"
 				v-bind:imageUrl="
 					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
 				"
-				v-bind:hoverUrl="
-					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
-				"
+				v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_TICKET.svg')"
 			/>
 			<ticket-purchase :levels="levels" :isDiscountCode="true" />
 		</section>
@@ -59,6 +57,9 @@ export default {
 @import '@/styles/_general.scss';
 @import '@/styles/_sizes.scss';
 #tickets-landing {
+	h1 {
+		z-index: 2;
+	}
 	.plus-grid.red {
 		@include plus-grid;
 		grid-column: 2 / span 4;

@@ -9,7 +9,8 @@
 			</div>
 			<div class="plus-grid red"></div>
 		</section>
-		<ticket-details />
+		<ticket-details :showGroup="false" :buyTixCTA="true" />
+
 		<!-- <schedule-download /> -->
 		<sponsor-list :showButton="true" />
 	</div>
@@ -18,6 +19,7 @@
 /* SCRIPTS */
 <script>
 import About from '@/components/about.vue';
+import BuyTicketsButton from '@/components/buy-tickets-button';
 import CallForTalks from '@/components/call-for-talks';
 import FeaturedTalks from '@/components/featured-talks.vue';
 import LandingScreen from '@/components/landing-screen.vue';
@@ -30,6 +32,7 @@ import VenueList from '@/components/venue-list';
 export default {
 	components: {
 		About,
+		BuyTicketsButton,
 		CallForTalks,
 		FeaturedTalks,
 		LandingScreen,

@@ -3,6 +3,7 @@
 		<section id="sponsorship-landing" class="full landing-screen">
 			<countdown />
 			<h1>Support the conference. Support the community.</h1>
+			<div class="plus-grid red"></div>
 		</section>
 
 		<section class="exposure">
@@ -45,6 +46,9 @@
 						>sponsorship@developdenver.org</a
 					>
 				</p>
+				<a class="button" href="/dvlp_schedule_digital.pdf"
+					><button>Download Sponsor Deck</button></a
+				>
 			</div>
 		</section>
 		<section class="benefits">
@@ -97,6 +101,43 @@ export default {
 @import '@/styles/_sizes.scss';
 @import '@/styles/_general.scss';
 
+#sponsorship-landing {
+	@include grid-full-width;
+	position: relative;
+	h1 {
+		z-index: 2;
+	}
+	.plus-grid.red {
+		@include plus-grid;
+		grid-column: 3 / span 4;
+		height: 80vh;
+		margin-top: 60vh;
+		position: absolute !important;
+		width: 50vw;
+		right: 0;
+		z-index: 1;
+	}
+	.countdown {
+		z-index: 2;
+	}
+	@media (max-width: $small-breakpoint) {
+		grid-column: 1;
+		h1 {
+			grid-column: 1;
+			grid-row: 2;
+		}
+		.plus-grid.red {
+			grid-column: 1;
+			grid-row: 2;
+			height: 15vh;
+			margin-top: 30vh;
+			width: 100vw;
+		}
+		.countdown {
+			grid-row: 2;
+		}
+	}
+}
 .exposure a {
 	display: inline;
 }

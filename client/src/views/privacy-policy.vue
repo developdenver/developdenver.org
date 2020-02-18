@@ -165,6 +165,9 @@ export default {
 #privacy-landing {
 	@include grid-full-width;
 	position: relative;
+	h1 {
+		z-index: 2;
+	}
 	.plus-grid.red {
 		@include plus-grid;
 		grid-column: 3 / span 4;

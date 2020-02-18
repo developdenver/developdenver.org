@@ -78,7 +78,7 @@ export default {
 			border-top: $thin-border-width solid $black;
 			bottom: 0;
 			height: auto;
-			padding: $baseline;
+			padding: $baseline $baseline/4 $baseline $baseline;
 			left: auto;
 			max-width: 100%;
 			top: auto;

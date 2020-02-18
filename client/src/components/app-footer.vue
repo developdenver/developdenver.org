@@ -2,20 +2,20 @@
 	<footer class="app-footer">
 		<nav>
 			<ul>
-				<li class="coc">
-					<router-link :to="{ name: 'code-of-conduct' }"
-						>Code Of Conduct</router-link
-					>
+				<li class="contact-email">
+					<router-link :to="{ name: 'contact' }">
+						Contact Us
+					</router-link>
 				</li>
 				<li class="pp">
 					<router-link :to="{ name: 'privacy-policy' }"
 						>Privacy Policy</router-link
 					>
 				</li>
-				<li class="contact-email">
-					<router-link :to="{ name: 'contact' }">
-						Contact
-					</router-link>
+				<li class="coc">
+					<router-link :to="{ name: 'code-of-conduct' }"
+						>Code Of Conduct</router-link
+					>
 				</li>
 			</ul>
 		</nav>
@@ -79,8 +79,6 @@ export default {
 	border-top: $thin-border-width solid $black;
 	left: 100px;
 	margin-top: $baseline * 8;
-	max-width: $max-width;
-	padding: 0 $baseline * 2;
 	position: fixed;
 	right: 0;
 	z-index: 100;
@@ -88,18 +86,25 @@ export default {
 		display: none;
 	}
 	> nav {
-		padding: $baseline;
 		& > ul {
 			@include footer-font;
 			@include flexbox;
-			@include justify-content(space-between);
+			@include justify-content(flex-end);
 			> li {
+				border-left: $thin-border-width solid $black;
 				font-size: 12px;
+				padding: $baseline/2 $baseline;
+				min-width: 150px;
 				a {
+					text-align: center;
 					text-decoration: none;
+					width: 100%;
 				}
-				a:hover {
-					color: $red;
+				&:hover {
+					background: $black;
+					a {
+						color: $yellow;
+					}
 				}
 			}
 		}

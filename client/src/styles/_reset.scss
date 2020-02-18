@@ -148,11 +148,17 @@ h3 {
 	@include tertiary-font;
 	font-size: 20px;
 	margin-bottom: $baseline / 2;
+	@media (max-width: $small-breakpoint) {
+		font-size: 17px;
+	}
 }
 h4 {
 	@include secondary-font;
 	font-size: 18px;
 	line-height: 1.5rem;
+	@media (max-width: $small-breakpoint) {
+		font-size: 20px;
+	}
 }
 p,
 ul li {
@@ -213,7 +219,7 @@ button,
 	color: $black;
 	display: block;
 	margin-top: $baseline * 2;
-	padding: $baseline 0;
+	padding: $baseline $baseline/2;
 	text-decoration: none;
 	text-align: center;
 	width: 100%;
@@ -356,83 +362,155 @@ select option {
 }
 
 /* Radio buttons */
-.radio-input {
-	label {
-		padding: 12px $baseline * 2;
-		display: block;
-		text-align: left;
-		color: $black;
-		cursor: pointer;
-		position: relative;
-		z-index: 2;
-		transition: color 200ms ease-in;
-		overflow: hidden;
-		width: 100%;
-
-		&:before {
-			width: 11px;
-			height: 10px;
-			border-radius: 50%;
-			content: '';
-			background-color: $yellow;
-			position: absolute;
-			left: 45%;
-			top: 50%;
-			transform: translate(-50%, -50%) scale3d(1, 1, 1);
-			transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-			opacity: 0;
-			z-index: -1;
-		}
-		&:after {
-			width: 32px;
-			height: 32px;
-			content: '';
-			border: $thin-border-width solid $black;
-			background-color: $white;
-			background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
-			background-repeat: no-repeat;
-			background-position: 2px 3px;
-			border-radius: 50%;
-			z-index: 2;
-			position: absolute;
-			right: 30px;
-			top: 50%;
-			transform: translateY(-50%);
-			cursor: pointer;
-			transition: all 200ms ease-in;
-		}
-	}
-	&.is-disabled {
-		label:before,
-		label:after {
-			display: none;
-		}
-	}
-	input:checked ~ label {
-		color: $black;
-
-		&:before {
-			transform: translate(-50%, -50%) scale3d(56, 56, 1);
-			opacity: 1;
-		}
-
-		&:after {
-			background-color: $black;
-			border-color: $black;
-		}
-	}
-
+// .radio-input,
+// .select-input {
+// 	label {
+// 		padding: 12px $baseline * 2;
+// 		display: block;
+// 		text-align: left;
+// 		color: $black;
+// 		cursor: pointer;
+// 		position: relative;
+// 		z-index: 2;
+// 		transition: color 200ms ease-in;
+// 		overflow: hidden;
+// 		width: 100%;
+//
+// 		&:before {
+// 			width: 12px;
+// 			height: 10px;
+// 			border-radius: 50%;
+// 			content: '';
+// 			background-color: $yellow;
+// 			position: absolute;
+// 			left: 53%;
+// 			top: 50%;
+// 			transform: translate(-50%, -50%) scale3d(1, 1, 1);
+// 			transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+// 			opacity: 0;
+// 			z-index: -1;
+// 		}
+// 		&:after {
+// 			width: 32px;
+// 			height: 32px;
+// 			content: '';
+// 			border: $thin-border-width solid $black;
+// 			background-color: $white;
+// 			background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
+// 			background-repeat: no-repeat;
+// 			background-position: 2px 3px;
+// 			border-radius: 50%;
+// 			z-index: 2;
+// 			position: absolute;
+// 			right: 0px;
+// 			top: 50%;
+// 			transform: translateY(-50%);
+// 			cursor: pointer;
+// 			transition: all 200ms ease-in;
+// 		}
+// 	}
+// 	&.is-disabled {
+// 		label:before,
+// 		label:after {
+// 			display: none;
+// 		}
+// 	}
+// 	input:checked ~ label {
+// 		color: $black;
+//
+// 		&:before {
+// 			transform: translate(-50%, -50%) scale3d(56, 56, 1);
+// 			opacity: 1;
+// 		}
+//
+// 		&:after {
+// 			background-color: $black;
+// 			border-color: $black;
+// 		}
+// 	}
+//
+// 	input {
+// 		width: 32px;
+// 		height: 32px;
+// 		order: 1;
+// 		z-index: 2;
+// 		position: absolute;
+// 		right: 30px;
+// 		top: 50%;
+// 		transform: translateY(-50%);
+// 		cursor: pointer;
+// 		visibility: hidden;
+// 	}
+// }
+.radio-input,
+.select-input {
+	padding-left: $baseline * 2;
 	input {
-		width: 32px;
-		height: 32px;
-		order: 1;
-		z-index: 2;
-		position: absolute;
-		right: 30px;
-		top: 50%;
-		transform: translateY(-50%);
+		opacity: 0;
 		cursor: pointer;
-		visibility: hidden;
+		display: block;
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		outline: none;
+		left: 0;
+		z-index: 7;
+		&:checked + label .circle:before {
+			background: $black;
+		}
+		&:checked:hover + label .circle:before {
+			background: $yellow;
+		}
+		&:hover + label .circle {
+			border-color: $black;
+			cursor: pointer;
+			&:before {
+				background: $yellow;
+			}
+		}
+		& + label {
+			clear: both;
+			display: block;
+			float: left;
+			left: 0;
+			overflow: visible;
+			position: relative;
+			width: 100%;
+			& h4 {
+				color: $black;
+				display: block;
+			}
+		}
+	}
+	.circle {
+		@include transition(border-color, 0.25s, linear);
+		background-color: white;
+		border-radius: 50%;
+		border: $medium-border-width solid $black;
+		content: '';
+		display: block;
+		height: 30px;
+		left: 0;
+		position: absolute;
+		top: 8px;
+		width: 30px;
+		&:before {
+			transition: background 0.25s linear;
+			-webkit-transition: background 0.25s linear;
+			-moz-transition: background 0.25s linear;
+			-o-transition: background 0.25s linear;
+			-ms--transition: background 0.25s linear;
+			display: block;
+			position: relative;
+			left: 50%;
+			top: 50%;
+			@include transform(translate(-50%, -50%));
+			height: 16px;
+			width: 16px;
+			content: '';
+			background: transparent;
+			border-radius: 50%;
+		}
 	}
 }
 
@@ -450,8 +528,53 @@ select option {
 	&:last-of-type {
 		border-bottom: none;
 	}
+	&.required {
+		h3 {
+			padding-bottom: 0;
+		}
+	}
+	.required-field {
+		font-size: 15px;
+		display: block;
+		padding: 0;
+		position: relative;
+		margin: 0 0 $baseline $baseline;
+		&:before {
+			background-color: $red;
+			border-radius: 50%;
+			content: '';
+			cursor: pointer;
+			height: 10px;
+			position: absolute;
+			left: -$baseline;
+			top: 50%;
+			transform: translate(-50%, -50%) scale3d(1, 1, 1);
+			width: 10px;
+			z-index: 2;
+		}
+		@media (max-width: $small-breakpoint) {
+			margin-left: $baseline;
+		}
+	}
 	h3 {
 		padding-bottom: $baseline;
+		&.required {
+			display: inline-block;
+			position: relative;
+			&:after {
+				background-color: $red;
+				border-radius: 50%;
+				content: '';
+				cursor: pointer;
+				height: 10px;
+				position: absolute;
+				right: -$baseline;
+				top: calc(50% - 9px);
+				transform: translate(-50%, -50%) scale3d(1, 1, 1);
+				width: 10px;
+				z-index: 2;
+			}
+		}
 	}
 }
 
@@ -461,7 +584,7 @@ select option {
 	position: relative;
 	label {
 		color: $black;
-		display: block;
+		display: inline-block;
 		font-size: 15px;
 		line-height: 1.5rem;
 		overflow: hidden;
@@ -469,6 +592,21 @@ select option {
 		position: relative;
 		text-align: left;
 		z-index: 2;
+		&.required {
+			&:after {
+				background-color: $red;
+				border-radius: 50%;
+				content: '';
+				cursor: pointer;
+				height: 10px;
+				position: absolute;
+				right: $baseline;
+				top: 50%;
+				transform: translate(-50%, -50%) scale3d(1, 1, 1);
+				width: 10px;
+				z-index: 2;
+			}
+		}
 	}
 	input {
 		display: block;
@@ -492,8 +630,10 @@ select option {
 }
 
 .error {
-	color: hsl(0, 70%, 50%);
-	font-weight: 700;
+	background: $red;
+	color: $white;
+	font-size: 14px;
+	padding: 0 $baseline;
 }
 
 // Background STYLES

@@ -83,9 +83,10 @@ export default {
 @import '@/styles/_sizes.scss';
 
 .countdown {
+	@include grid-countdown;
 	background: $yellow;
 	grid-row: 1;
-	@include grid-countdown;
+
 	.numbers {
 		@include primary-header-font;
 		@include justify-content(space-between);
