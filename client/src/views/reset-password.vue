@@ -118,8 +118,5 @@ export default {
 	input:-webkit-autofill:active {
 		-webkit-box-shadow: 0 0 0 50px $yellow inset !important;
 	}
-	input[type='submit'] {
-		margin-top: 0;
-	}
 }
 </style>
