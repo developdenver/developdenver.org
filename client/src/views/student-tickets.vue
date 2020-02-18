@@ -1,37 +1,43 @@
 <template>
-	<section class="student-tickets">
-		<countdown />
-		<h2>Tickets</h2>
-		<div class="ticket-details">
-			<div class="date-and-location">
-				<p>When: August 15 and 16, 2019</p>
-				<p>Where: RiNo Brighton Boulevard</p>
-			</div>
-			<div class="benefits">
-				<p>
-					All badges include a custom printed 2-day conference badge,
-					access to keynote, talks, workshops, and live podcasts,
-					coffee, breakfast, and lunch at Zeppelin Station vendors
-					both days, opening and closing parties, 8th annual Ballmer
-					Peak Hackathon
-				</p>
-			</div>
-		</div>
-		<ticket-purchase :levels="levels" :isDiscountCode="true" />
-	</section>
+	<fragment>
+		<section id="tickets-landing" class="full landing-screen">
+			<countdown />
+			<h1>The hottest ticket in town</h1>
+			<div class="plus-grid red"></div>
+		</section>
+		<ticket-details :showGroup="false" />
+		<section id="buy-tickets">
+			<HeaderBar
+				title="Buy Tickets"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
+				"
+				v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_TICKET.svg')"
+			/>
+			<ticket-purchase :levels="levels" :isDiscountCode="true" />
+		</section>
+	</fragment>
 </template>
 
 <script>
+import Vue from 'vue';
+import Fragment from 'vue-fragment';
+
 /* global Stripe */
 import CreditCardPayment from '../components/credit-card-payment';
 import TicketPurchase from '../components/ticket-purchase';
+import TicketDetails from '../components/ticket-details';
 import Countdown from '@/components/count-down';
+
+import HeaderBar from '@/components/header-bar.vue';
 
 export default {
 	components: {
 		CreditCardPayment,
 		TicketPurchase,
 		Countdown,
+		HeaderBar,
+		TicketDetails,
 	},
 	data() {
 		return {
