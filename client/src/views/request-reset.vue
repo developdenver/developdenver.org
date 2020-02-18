@@ -1,18 +1,27 @@
 <template>
-	<section class="reset-request">
+	<section id="reset-password" class="full landing-screen">
+		<div class="plus-grid-container"></div>
 		<countdown />
-		<h2 v-if="!message">Reset your password?</h2>
-		<form v-if="!message" @submit.prevent="requestReset">
-			<input
-				v-model="email"
-				id="email"
-				type="email"
-				required
-				placeholder="Email"
-			/>
-			<input type="submit" value="Request Reset" />
-		</form>
-		<p v-if="message" class="error">{{ message }}</p>
+		<div class="form-wrapper">
+			<form v-if="!message" @submit.prevent="requestReset">
+				<div class="form-section">
+					<h3 v-if="!message">Reset your password?</h3>
+					<p class="required-field">Required field</p>
+					<div class="form-row">
+						<label for="email" class="required"> Email </label>
+						<input
+							v-model="email"
+							id="email"
+							type="email"
+							required
+							placeholder="name@email.com"
+						/>
+					</div>
+					<input type="submit" value="Request Reset" />
+				</div>
+			</form>
+			<p v-if="message" class="error">{{ message }}</p>
+		</div>
 	</section>
 </template>
 
