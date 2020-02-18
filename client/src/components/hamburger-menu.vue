@@ -61,9 +61,7 @@
 						>
 					</li>
 					<li v-if="isLoggedIn">
-						<a href="#" @click.prevent="logout"
-							>Logout {{ userFirstName }}</a
-						>
+						<a href="#" @click.prevent="logout">Logout</a>
 					</li>
 					<!-- <li v-if="!isLoggedIn">
 						<router-link
@@ -236,8 +234,10 @@ export default {
 					}
 
 					a {
+						height: 100%;
 						padding: $baseline;
 						padding-top: $baseline * 2;
+						text-decoration: none;
 						&.router-link-active {
 							background: $black;
 							color: $yellow;

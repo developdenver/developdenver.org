@@ -37,10 +37,10 @@
 					not to be missed.
 				</p>
 			</div>
-			<router-link :to="{ name: 'submit-talk' }"
+			<router-link class="button" :to="{ name: 'submit-talk' }"
 				><button>Submit a Talk</button></router-link
 			>
-			<router-link :to="{ name: 'tickets' }">
+			<router-link class="button" :to="{ name: 'tickets' }">
 				<button>Buy Tickets</button>
 			</router-link>
 		</section>
@@ -161,18 +161,21 @@ export default {
 .intro {
 	@include grid-full-width;
 }
-a {
-	grid-column: 1 / span 3;
-	&:last-child {
-		grid-column: 4 / span 3;
-	}
-	@media (max-width: $small-breakpoint) {
-		grid-column: 1;
+#schedule-intro {
+	a {
+		grid-column: 1 / span 3;
 		&:last-child {
+			grid-column: 4 / span 3;
+		}
+		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
+			&:last-child {
+				grid-column: 1;
+			}
 		}
 	}
 }
+
 .event-categories {
 	@include grid-full-width;
 	@include grid;

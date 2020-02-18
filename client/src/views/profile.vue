@@ -1,26 +1,56 @@
 <template>
-	<section class="profile">
-		<countdown />
+	<fragment>
+		<section id="profile-landing" class="full landing-screen">
+			<countdown />
+			<h1>All About Me</h1>
+			<div class="plus-grid red"></div>
+		</section>
 		<section v-if="talks.length">
-			<h2>My Submitted Talks</h2>
+			<HeaderBar
+				title="My Submitted Talks"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_SMILEY.png')
+				"
+				v-bind:hoverUrl="
+					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
+				"
+			/>
 			<div v-for="talk in talks" :key="talk.id">
 				<p>
 					<router-link
 						class="button"
 						:to="{ name: 'edit-talk', params: { id: talk.id } }"
 					>
-						{{ talk.properties.title }}, {{ talk.properties.type }}
+						{{ talk.properties.title }},
+						{{ talk.properties.type }}
 					</router-link>
 				</p>
 			</div>
 		</section>
 		<section class="ticket-management" v-if="tickets.length">
-			<router-link :to="{ name: 'my-tickets' }"
+			<HeaderBar
+				title="My Tickets"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
+				"
+				v-bind:hoverUrl="
+					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
+				"
+			/>
+			<router-link class="button" :to="{ name: 'my-tickets' }"
 				>Manage Tickets</router-link
 			>
 		</section>
 		<section class="profile-editing">
-			<h2>Edit Profile</h2>
+			<HeaderBar
+				title="Edit Profile"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_SMILEY.png')
+				"
+				v-bind:hoverUrl="
+					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
+				"
+			/>
 			<edit-profile
 				buttonLabel="Update Profile"
 				:isNewProfile="false"
@@ -33,18 +63,23 @@
 				>Reset password</router-link
 			>
 		</section>
-	</section>
+	</fragment>
 </template>
 
 <script>
+import Vue from 'vue';
+import Fragment from 'vue-fragment';
+
 import EditProfile from '@/components/edit-profile.vue';
 import Countdown from '@/components/count-down';
+import HeaderBar from '@/components/header-bar.vue';
 import { mapState } from 'vuex';
 
 export default {
 	components: {
-		EditProfile,
 		Countdown,
+		EditProfile,
+		HeaderBar,
 	},
 	computed: {
 		...mapState({
@@ -72,38 +107,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/styles/_general.scss';
 @import '@/styles/_sizes.scss';
 @import '@/styles/_typography.scss';
-@import '@/styles/_general.scss';
 
-.profile {
-	@include grid;
-	@media (max-width: $small-breakpoint) {
-		padding: $baseline;
-	}
-	.ticket-management {
-		@include grid-heading;
-		margin-bottom: $baseline * 2;
-		a {
-			color: $accent-color;
-			text-decoration: underline;
-		}
-	}
-	.profile-editing {
+.profile-editing {
+	a {
 		@include grid-full-width;
-		@include grid;
-		.edit-profile {
-			@include grid-full-width;
-		}
-		h2 {
-			@include grid-heading;
-		}
-		.reset-password-link {
-			@include grid-form;
-			margin-top: $baseline;
-			color: $accent-color;
-			text-decoration: underline;
-		}
+		margin-top: $baseline;
 	}
 }
 </style>
