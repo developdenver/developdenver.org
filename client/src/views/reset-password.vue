@@ -99,6 +99,7 @@ export default {
 		.form-row label {
 			background: $yellow;
 			display: inline-block;
+			padding: 12px 40px 12px 0;
 		}
 	}
 	.alternative {

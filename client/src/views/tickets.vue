@@ -88,7 +88,7 @@ export default {
 		@include plus-grid;
 		grid-column: 2 / span 4;
 		height: 30vh;
-		margin-top: 60vh;
+		margin-top: 45vh;
 		position: absolute !important;
 		width: 50vw;
 		right: 0;
