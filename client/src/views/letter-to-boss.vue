@@ -60,7 +60,7 @@
         <p>The reason why I am especially excited about Develop Denver is the conference is completely community driven.
         You can become a featured speaker without needing to be an evangelist, or a grizzly talk veteran. This allows for a wider range of voices to be heard and a more genuine medium through which to express them. The talks themselves are all picked by the community.</p>
 
-        <p>AH I am getting excited just talking about it. Honestly, don't just take my word for it <a href="https://developdenver.org/">https://developdenver.org/</a>. If you want to sponsor some tickets for the office check out this link <a href="https://developdenver.org/conference-badges">https://developdenver.org/conference-badges</a>.</p>
+        <p>AH I am getting excited just talking about it. Honestly, don't just take my word for it <a href="https://developdenver.org/">https://developdenver.org/</a>. If you want to sponsor some tickets for the office check out this link <a href="https://developdenver.org/tickets">https://developdenver.org/tickets</a>.</p>
         <p>
         Thank you,
         </p>

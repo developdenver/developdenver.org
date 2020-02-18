@@ -95,7 +95,7 @@
 			class="cta button"
 			:to="{
 				name: 'register',
-				query: { redirect: 'conference-badges' },
+				query: { redirect: 'tickets' },
 			}"
 			><button>Register To Buy</button></router-link
 		>
