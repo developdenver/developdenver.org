@@ -182,8 +182,8 @@ export default {
 	.plus-grid.red {
 		@include plus-grid;
 		grid-column: 3 / span 4;
-		height: 80vh;
-		margin-top: 20vh;
+		height: 40vh;
+		margin-top: 15vh;
 		position: absolute !important;
 		width: 50vw;
 		right: 0;
