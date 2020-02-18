@@ -137,8 +137,76 @@
 					We may collect non-personal identification information about
 					Users whenever they interact with our Site. Non-personal
 					identification information may include the browser name, the
-					type of computer and technical in.
+					type of computer and technical information about Users means
+					of connection to our Site, such as the operating system and
+					the Internet service providers utilized and other similar
+					information.
 				</p>
+
+				<h4>Web browser cookies</h4>
+				<p>
+					Our Site may use "cookies" to enhance User experience.
+					User's web browser places cookies on their hard drive for
+					record-keeping purposes and sometimes to track information
+					about them. User may choose to set their web browser to
+					refuse cookies, or to alert you when cookies are being sent.
+					If they do so, note that some parts of the Site may not
+					function properly.
+				</p>
+
+				<h4>Electronic newsletters</h4>
+				<p>
+					If User decides to opt-in to our mailing list, they will
+					receive emails that may include company news, updates,
+					related product or service information, etc. If at any time
+					the User would like to unsubscribe from receiving future
+					emails, we include detailed unsubscribe instructions at the
+					bottom of each email or User may contact us via our Site.
+				</p>
+
+				<h4>Third party websites</h4>
+				<p>
+					Users may find advertising or other content on our Site that
+					link to the sites and services of our partners, suppliers,
+					advertisers, sponsors, licencors and other third parties. We
+					do not control the content or links that appear on these
+					sites and are not responsible for the practices employed by
+					websites linked to or from our Site. In addition, these
+					sites or services, including their content and links, may be
+					constantly changing. These sites and services may have their
+					own privacy policies and customer service policies. Browsing
+					and interaction on any other website, including websites
+					which have a link to our Site, is subject to that website's
+					own terms and policies.
+				</p>
+
+				<h4>Changes to this privacy policy</h4>
+				<p>
+					Develop Denver has the discretion to update this privacy
+					policy at any time. When we do, we will post a notification
+					on the main page of our Site. We encourage Users to
+					frequently check this page for any changes to stay informed
+					about how we are helping to protect the personal information
+					we collect. You acknowledge and agree that it is your
+					responsibility to review this privacy policy periodically
+					and become aware of modifications.
+				</p>
+				<h4>Your acceptance of these terms</h4>
+				<p>
+					By using this Site, you signify your acceptance of this
+					policy. If you do not agree to this policy, please do not
+					use our Site. Your continued use of the Site following the
+					posting of changes to this policy will be deemed your
+					acceptance of those changes
+				</p>
+
+				<h4>Contacting us</h4>
+				<p>
+					If you have any questions about this Privacy Policy, the
+					practices of this site, or your dealings with this site,
+					please contact us.
+				</p>
+				<p>This document was last updated on May 1, 2017</p>
 			</div>
 		</section>
 	</fragment>
@@ -171,12 +239,32 @@ export default {
 	.plus-grid.red {
 		@include plus-grid;
 		grid-column: 3 / span 4;
-		height: 80vh;
+		height: 50vh;
 		margin-top: 20vh;
 		position: absolute !important;
 		width: 50vw;
 		right: 0;
 		z-index: 1;
+	}
+	.countdown {
+		z-index: 2;
+	}
+	@media (max-width: $small-breakpoint) {
+		grid-column: 1;
+		h1 {
+			grid-column: 1;
+			grid-row: 2;
+		}
+		.plus-grid.red {
+			grid-column: 1;
+			grid-row: 2;
+			height: 15vh;
+			margin-top: 35vh;
+			width: 100vw;
+		}
+		.countdown {
+			grid-row: 2;
+		}
 	}
 }
 .privacy-policy {

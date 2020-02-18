@@ -11,8 +11,21 @@
 						alt="profile photo"
 					/>
 				</div>
-				<div class="profile-details">
-					<h2>{{ fullName }}</h2>
+				<div
+					class="profile-details"
+					v-bind:class="{
+						fullWidth: !profile.properties.profilePhotoUrl,
+					}"
+				>
+					<HeaderBar
+						:title="fullName"
+						v-bind:imageUrl="
+							require('@/assets/icons/DD_SITE_ICONS_SMILEY.png')
+						"
+						v-bind:hoverUrl="
+							require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
+						"
+					/>
 					<h3>
 						{{ profile.properties.position }}
 					</h3>
@@ -40,7 +53,7 @@
 						class="linkedin"
 					>
 						<a :href="linkedinUrl" target="_BLANK">
-							<img :src="linkedinIcon" alt="LinkedIn" />
+							<component v-bind:is="linkedinIcon"></component>
 						</a>
 					</li>
 					<li
@@ -79,7 +92,7 @@ import Vue from 'vue';
 import Fragment from 'vue-fragment';
 
 import HeaderBar from '@/components/header-bar.vue';
-import linkedinIcon from '@/assets/icons/linkedin.png';
+import linkedinIcon from '@/components/icon-linkedin.vue';
 import githubIcon from '@/components/icon-github.vue';
 import twitterIcon from '@/components/icon-twitter.vue';
 import TalkInfo from '@/components/talk-info.vue';
@@ -189,6 +202,9 @@ export default {
 	}
 	.profile-details {
 		grid-column: 3 / span 3;
+		&.fullWidth {
+			@include grid-full-width;
+		}
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
 		}

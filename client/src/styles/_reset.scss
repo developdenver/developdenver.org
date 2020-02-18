@@ -518,8 +518,8 @@ select option {
 	@include grid-form;
 	@include flexbox;
 	@include justify-content(center);
-	// @include align-items(center);
 	@include flex-flow(column);
+	max-width: 700px;
 }
 
 .form-section {
