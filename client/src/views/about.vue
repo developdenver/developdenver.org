@@ -48,7 +48,9 @@
 			<router-link class="button" :to="{ name: 'submit-talk' }"
 				><button>Submit a Talk</button></router-link
 			>
-			<BuyTicketsButton />
+			<span class="register-wrapper">
+				<BuyTicketsButton />
+			</span>
 		</section>
 		<section id="what-to-expect">
 			<HeaderBar
@@ -171,6 +173,15 @@ export default {
 		&:last-child {
 			grid-column: 4 / span 3;
 		}
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+			&:last-child {
+				grid-column: 1;
+			}
+		}
+	}
+	.register-wrapper {
+		grid-column: 4 / span 3;
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
 			&:last-child {
