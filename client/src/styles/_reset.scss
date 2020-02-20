@@ -659,6 +659,19 @@ section {
 			margin: 0 $baseline * 3;
 		}
 	}
+	&.intro-image {
+		padding-bottom: 0;
+		.image-wrapper {
+			grid-column: 1 / span 3;
+			img {
+				width: 100%;
+				height: auto;
+			}
+			@media (max-width: $small-breakpoint) {
+				grid-column: 1;
+			}
+		}
+	}
 	&.no-padding {
 		padding: 0;
 	}
@@ -677,25 +690,53 @@ section {
 .landing-screen {
 	background: $yellow;
 	padding-top: $baseline * 1.5;
+	position: relative;
 	h1 {
 		grid-column: 1 / span 4;
+		z-index: 2;
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
 			margin-top: $baseline * 3;
 		}
 	}
-
+	.plus-grid.red {
+		@include plus-grid;
+		position: absolute !important;
+		right: 0;
+		z-index: 1;
+	}
+	.countdown {
+		z-index: 2;
+	}
 	.cta {
 		grid-column: 5 / span 2;
 		grid-row: 1;
 		margin-top: 40vh;
 		text-align: center;
+		z-index: 2;
+		a {
+			background: $yellow;
+		}
 	}
 	@media (max-width: $small-breakpoint) {
+		grid-column: 1;
+		h1 {
+			grid-column: 1;
+			grid-row: 2;
+		}
 		.cta {
 			grid-column: 1;
 			grid-row: 3;
 			margin-top: 0;
+		}
+		.plus-grid.red {
+			grid-column: 1 !important;
+			grid-row: 3;
+			left: -40px;
+			width: calc(100% + 40px) !important;
+		}
+		.countdown {
+			grid-row: 1;
 		}
 	}
 }

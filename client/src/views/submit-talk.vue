@@ -5,6 +5,14 @@
 			<h1>Talk the Talk</h1>
 			<div class="plus-grid red"></div>
 		</section>
+		<section class="intro-image full">
+			<div class="image-wrapper">
+				<img
+					src="/img/2020/dd_20_submit_a_talk_b.jpg"
+					alt="submit a talk photo"
+				/>
+			</div>
+		</section>
 		<section class="submit-talk">
 			<HeaderBar
 				title="Submit a Talk"
@@ -87,35 +95,22 @@ export default {
 @import '@/styles/_general.scss';
 
 #submit-talk-landing {
-	h1 {
-		z-index: 2;
-	}
 	.plus-grid.red {
-		@include plus-grid;
 		grid-column: 2 / span 4;
-		height: 30vh;
+		height: 50vh;
 		margin-top: 15vh;
-		position: absolute !important;
 		width: 50vw;
-		right: 0;
-		z-index: 1;
 	}
 	@media (max-width: $small-breakpoint) {
-		grid-column: 1;
-		h1 {
-			grid-column: 1;
-			grid-row: 2;
-		}
 		.plus-grid.red {
-			grid-column: 1;
-			grid-row: 2;
 			height: 15vh;
-			margin-top: 15vh;
-			width: 100vw;
-		}
-		.countdown {
-			grid-row: 2;
+			margin-top: 0vh;
 		}
 	}
+}
+.intro-image {
+	background: $yellow;
+	padding-top: 0;
+	padding-bottom: $baseline * 3 !important;
 }
 </style>

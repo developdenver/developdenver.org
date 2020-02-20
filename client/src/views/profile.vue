@@ -147,36 +147,16 @@ export default {
 @import '@/styles/_typography.scss';
 
 #profile-landing {
-	@include grid-full-width;
-	position: relative;
-	h1 {
-		z-index: 2;
-	}
 	.plus-grid.red {
-		@include plus-grid;
 		grid-column: 3 / span 4;
 		height: 40vh;
 		margin-top: 20vh;
-		position: absolute !important;
 		width: 50vw;
-		right: 0;
-		z-index: 1;
 	}
 	@media (max-width: $small-breakpoint) {
-		grid-column: 1;
-		h1 {
-			grid-column: 1;
-			grid-row: 2;
-		}
 		.plus-grid.red {
-			grid-column: 1;
-			grid-row: 2;
 			height: 15vh;
-			margin-top: 15vh;
-			width: 100vw;
-		}
-		.countdown {
-			grid-row: 2;
+			margin-top: 0vh;
 		}
 	}
 }

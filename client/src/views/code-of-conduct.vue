@@ -174,37 +174,19 @@ export default {
 @import '@/styles/_sizes.scss';
 @import '@/styles/_general.scss';
 #coc-landing {
-  @include grid-full-width;
-	position: relative;
-	h1 {
-		z-index: 2;
-	}
 	.plus-grid.red {
-		@include plus-grid;
 		grid-column: 3 / span 4;
 		height: 40vh;
 		margin-top: 15vh;
-		position: absolute !important;
-		width: 50vw;
-		right: 0;
-		z-index: 1;
+		width: 50vw
   }
 	@media (max-width: $small-breakpoint) {
-		grid-column: 1;
-		h1 {
-			grid-column: 1;
-			grid-row: 2;
-		}
 		.plus-grid.red {
-			grid-column: 1;
-			grid-row: 2;
 			height: 15vh;
-			margin-top: 25vh;
-			width: 100vw;
+			margin-top: 0vh;
+
 		}
-		.countdown {
-			grid-row: 2;
-		}
+
 	}
 }
 </style>

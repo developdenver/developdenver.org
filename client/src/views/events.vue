@@ -3,6 +3,7 @@
 		<section id="schedule-landing" class="full landing-screen">
 			<countdown />
 			<h1>The devil-opment is in the details</h1>
+			<div class="plus-grid red"></div>
 			<div class="cta">
 				<!-- NOTE: After Schedule Available Comment in and remove BUY TICKETS -->
 				<!--
@@ -11,6 +12,11 @@
 				</a>
 			-->
 				<BuyTicketsButton />
+			</div>
+		</section>
+		<section class="intro-image full">
+			<div class="image-wrapper">
+				<img src="/img/2020/dd_20_schedule.jpg" alt="schedule photo" />
 			</div>
 		</section>
 		<section id="schedule-intro">
@@ -161,6 +167,21 @@ export default {
 .intro {
 	@include grid-full-width;
 }
+#schedule-landing {
+	.plus-grid.red {
+		grid-column: 2 / span 4;
+		height: 80vh;
+		margin-top: 60vh;
+		width: 50vw;
+	}
+	@media (max-width: $small-breakpoint) {
+		.plus-grid.red {
+			height: 25vh;
+			margin-top: 30vh;
+		}
+	}
+}
+
 #schedule-intro {
 	a {
 		grid-column: 1 / span 3;

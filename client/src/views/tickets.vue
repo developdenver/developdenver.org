@@ -81,43 +81,16 @@ export default {
 @import '@/styles/_general.scss';
 @import '@/styles/_sizes.scss';
 #tickets-landing {
-	h1 {
-		z-index: 2;
-	}
 	.plus-grid.red {
-		@include plus-grid;
 		grid-column: 2 / span 4;
 		height: 30vh;
 		margin-top: 45vh;
-		position: absolute !important;
 		width: 50vw;
-		right: 0;
-		z-index: 1;
-	}
-	.countdown {
-		z-index: 2;
-	}
-	.cta {
-		z-index: 2;
-		.login-link {
-			background: $yellow;
-		}
 	}
 	@media (max-width: $small-breakpoint) {
-		grid-column: 1;
-		h1 {
-			grid-column: 1;
-			grid-row: 2;
-		}
 		.plus-grid.red {
-			grid-column: 1;
-			grid-row: 2;
 			height: 25vh;
-			margin-top: 30vh;
-			width: 100vw;
-		}
-		.countdown {
-			grid-row: 2;
+			margin-top: 5vh;
 		}
 	}
 }

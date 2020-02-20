@@ -84,12 +84,13 @@ export default {
 
 .countdown {
 	@include grid-countdown;
-	background: $yellow;
+
 	grid-row: 1;
 
 	.numbers {
 		@include primary-header-font;
 		@include justify-content(space-between);
+		background: $yellow;
 		border-bottom: $thin-border-width solid $black;
 		display: grid;
 		font-size: 30px;
@@ -112,6 +113,7 @@ export default {
 	.labels {
 		@include secondary-font;
 		@include justify-content(space-between);
+		background: $yellow;
 		display: grid;
 		font-size: 12px;
 		grid-template: 1 / 5;

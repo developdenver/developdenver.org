@@ -5,7 +5,11 @@
 			<h1>Support the conference. Support the community.</h1>
 			<div class="plus-grid red"></div>
 		</section>
-
+		<section class="intro-image full">
+			<div class="image-wrapper">
+				<img src="/img/2020/dd_20_sponsor_1b.jpg" />
+			</div>
+		</section>
 		<section class="exposure">
 			<HeaderBar
 				title="Sponsor"

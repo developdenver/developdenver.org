@@ -69,18 +69,15 @@ export default {
 @import '@/styles/_colors.scss';
 
 #register-landing {
-	h1 {
-		z-index: 2;
-	}
 	.plus-grid.red {
-		@include plus-grid;
 		grid-column: 2 / span 4;
 		height: 30vh;
 		margin-top: 25vh;
-		position: absolute !important;
 		width: 50vw;
-		right: 0;
-		z-index: 1;
+		@media (max-width: $small-breakpoint) {
+			height: 15vh;
+			margin-top: 0;
+		}
 	}
 }
 #register {

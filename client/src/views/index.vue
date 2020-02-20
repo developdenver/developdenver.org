@@ -5,7 +5,7 @@
 		<venue-list />
 		<section class="image-break">
 			<div class="image-container">
-				<img src="/img/ballmer-peak.jpeg" />
+				<img src="/img/2020/dd_20_home_2.jpg" />
 			</div>
 			<div class="plus-grid red"></div>
 		</section>
