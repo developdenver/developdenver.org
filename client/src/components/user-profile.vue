@@ -66,8 +66,14 @@
 					</li>
 				</ul>
 			</div>
+			<router-link
+				v-if="isCurrentUserProfile"
+				class="edit-profile-button button"
+				:to="{ name: 'my-profile' }"
+				><button>Edit Profile</button></router-link
+			>
 		</section>
-		<section v-if="submittedTalks.length">
+		<!-- <section v-if="submittedTalks.length">
 			<HeaderBar
 				title="Submitted Talks"
 				v-bind:imageUrl="
@@ -83,7 +89,7 @@
 				v-for="(talk, ix) in submittedTalks"
 				:key="'submitted' + ix"
 			/>
-		</section>
+		</section> -->
 	</fragment>
 </template>
 
@@ -133,6 +139,7 @@ export default {
 				this.profile.id,
 			).filter(talk => talk.properties.isAccepted);
 		},
+
 		twitterUrl() {
 			return `https://www.twitter.com/${
 				this.profile.properties.twitterUsername
@@ -155,7 +162,18 @@ export default {
 				? this.profile.properties.website
 				: `https://${this.profile.properties.website}`;
 		},
+		currentUser() {
+			return this.$store.getters['services/user/currentProfile'];
+		},
+		isCurrentUserProfile() {
+			const currentUserId = this.$store.getters[
+				'services/user/currentProfile'
+			].id;
+
+			return currentUserId ? +this.profile.id === +currentUserId : false;
+		},
 	},
+
 	mounted() {
 		this.$store.dispatch('talks/fetchTalks');
 	},
@@ -201,7 +219,7 @@ export default {
 		}
 	}
 	.profile-details {
-		grid-column: 3 / span 3;
+		grid-column: 3 / span 4;
 		&.fullWidth {
 			@include grid-full-width;
 		}
@@ -234,6 +252,9 @@ export default {
 				height: auto;
 			}
 		}
+	}
+	.edit-profile-button {
+		@include grid-full-width;
 	}
 }
 </style>

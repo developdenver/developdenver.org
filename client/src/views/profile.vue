@@ -54,6 +54,13 @@
 					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
 				"
 			/>
+			<router-link
+				:to="{ name: 'profile', params: { id: profile.id || 0 } }"
+				class="profile-link"
+				:class="{ disabled: !profile.id }"
+			>
+				View My Profile Page
+			</router-link>
 			<edit-profile
 				buttonLabel="Update Profile"
 				:isNewProfile="false"
@@ -174,6 +181,9 @@ export default {
 	}
 }
 .profile-editing {
+	.profile-link {
+		padding-bottom: $baseline;
+	}
 	a {
 		@include grid-full-width;
 		margin-top: $baseline / 2;

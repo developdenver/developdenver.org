@@ -151,13 +151,13 @@ export default {
 				  ).label
 				: '';
 		},
-		currentUser() {
-			return this.$store.getters['services/user/currentProfile'];
-		},
 		isCurrentUserTalk() {
 			return this.currentUser
 				? +this.talk.properties.userId === +this.currentUser.id
 				: false;
+		},
+		currentUser() {
+			return this.$store.getters['services/user/currentProfile'];
 		},
 		voteText() {
 			return this.talk.properties.voted ? 'unvote' : 'vote';
