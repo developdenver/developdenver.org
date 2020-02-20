@@ -287,6 +287,9 @@ export default {
 		input {
 			display: block;
 		}
+		&.radio-input label {
+			padding-left: $baseline *2;
+		}
 		&.level {
 			.level-info {
 				padding-left: $baseline * 2;

@@ -177,7 +177,7 @@ export default {
 	@media (max-width: $small-breakpoint) {
 		.plus-grid.red {
 			height: 25vh;
-			margin-top: 30vh;
+			margin-top: 0vh;
 		}
 	}
 }
