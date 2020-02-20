@@ -511,6 +511,12 @@ select option {
 			border-radius: 50%;
 		}
 	}
+	@media (max-width: $small-breakpoint) {
+		padding-left: 0;
+		label {
+			padding-left: 40px;
+		}
+	}
 }
 
 .form-wrapper {
@@ -604,6 +610,9 @@ select option {
 				transform: translate(-50%, -50%) scale3d(1, 1, 1);
 				width: 10px;
 				z-index: 2;
+			}
+			@media (max-width: $small-breakpoint) {
+				padding-left: 0;
 			}
 		}
 	}

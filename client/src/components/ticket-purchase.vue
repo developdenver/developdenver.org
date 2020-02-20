@@ -333,32 +333,14 @@ export default {
 			background: none;
 			border: $thin-border-width solid $black;
 			border-radius: 0;
-			margin-left: $baseline * 2;
-			padding: 0;
-			input {
-				width: 100%;
-				margin-bottom: 0;
-			}
-			@media (max-width: $small-breakpoint) {
-				margin-left: 0;
-			}
-			.tags-input-badge {
-				@include tertiary-font;
-				font-size: 100%;
-			}
 			.tags-input-badge-pill {
 				background: $yellow;
-				color: $black;
-				margin-left: $baseline/2;
 				border-radius: 0;
-				padding: $baseline/4;
-				@media (max-width: $small-breakpoint) {
-					margin-left: 0;
-				}
+				color: $black;
+				padding: 0.5em 0.4em;
 			}
 			.tags-input-remove {
-				height: 15px;
-				width: 15px;
+
 				&::before,
 				&::after {
 					background: $black;

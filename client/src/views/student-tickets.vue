@@ -1,6 +1,6 @@
 <template>
 	<fragment>
-		<section id="tickets-landing" class="full landing-screen">
+		<section id="student-tickets-landing" class="full landing-screen">
 			<countdown />
 			<h1>The hottest ticket in town</h1>
 			<div class="plus-grid red"></div>
@@ -58,7 +58,17 @@ export default {
 @import '@/styles/_typography.scss';
 @import '@/styles/_general.scss';
 @import '@/styles/_sizes.scss';
-
+#student-tickets-landing {
+	.plus-grid.red {
+		height: 50vh;
+		margin-top: 30vh;
+		width: 50vw;
+		@media (max-width: $small-breakpoint) {
+			height: 15vh;
+			margin-top: 0;
+		}
+	}
+}
 .student-tickets {
 	@include grid;
 	@media (max-width: $small-breakpoint) {
