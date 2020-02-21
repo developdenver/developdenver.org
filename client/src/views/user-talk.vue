@@ -77,7 +77,7 @@ export default {
 	.plus-grid {
 		@include plus-grid;
 		grid-column: 1 / span 4;
-		height: 35vh;
+		height: 25vh;
 		margin-top: 0vh;
 		position: absolute !important;
 		width: 100vw;
