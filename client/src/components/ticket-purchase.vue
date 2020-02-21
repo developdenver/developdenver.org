@@ -269,6 +269,8 @@ export default {
 .ticket-purchase {
 	@include grid-full-width;
 	max-width: 700px;
+	width: 100%;
+	overflow: hidden;
 	.form-section {
 		&.credit-card-payment {
 			border-bottom: none;
@@ -367,10 +369,18 @@ export default {
 	}
 
 	.invitees {
+		.tags-input-root {
+			padding-left: $baseline * 2;
+			@media (max-width: $small-breakpoint) {
+				padding-left: 0;
+			}
+		}
 		.tags-input-wrapper-default {
 			background: none;
 			border: $thin-border-width solid $black;
 			border-radius: 0;
+			overflow: scroll;
+			padding: 0 7px;
 			.tags-input-badge-pill {
 				background: $yellow;
 				border-radius: 0;
