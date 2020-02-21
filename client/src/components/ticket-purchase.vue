@@ -282,7 +282,19 @@ export default {
 				.radio-input {
 					padding-left: 0;
 				}
+				.form-row.level .level-description {
+					font-size: 26px;
+					line-height: 2.7rem;
+				}
+				h4 {
+					font-size: 25px;
+				}
 			}
+		input[type='submit'],
+		.cta,
+		.login-link {
+			margin-left: 0;
+		}
 	}
 	.form-row {
 		label {

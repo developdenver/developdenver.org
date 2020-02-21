@@ -60,7 +60,7 @@ export default {
 	.plus-grid.red {
 		grid-column: 2 / span 4;
 		height: 30vh;
-		margin-top: 60vh;
+		margin-top: 30vh;
 		width: 50vw;
 	}
 	@media (max-width: $small-breakpoint) {
