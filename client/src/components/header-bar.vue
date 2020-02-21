@@ -64,11 +64,6 @@ export default {
 				height: auto;
 			}
 		}
-		&:hover {
-			.hover-icon {
-				display: block;
-			}
-		}
 	}
 	@media (max-width: $small-breakpoint) {
 		.icon-container {
@@ -76,6 +71,14 @@ export default {
 			img {
 				width: 30px;
 			}
+			.hover-icon {
+				display: none;
+			}
+		}
+	}
+	&:hover {
+		.hover-icon {
+			display: block;
 		}
 	}
 }

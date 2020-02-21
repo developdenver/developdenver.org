@@ -46,7 +46,7 @@
       <HeaderBar
         title="Business Casual Letter"
         v-bind:imageUrl="
-          require('@/assets/icons/DD_SITE_ICONS_BOMB.png')
+          require('@/assets/icons/DD_SITE_ICONS_SPONSORS.png')
         "
         v-bind:hoverUrl="
           require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')

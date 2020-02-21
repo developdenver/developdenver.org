@@ -46,9 +46,9 @@
 			<router-link class="button" :to="{ name: 'submit-talk' }"
 				><button>Submit a Talk</button></router-link
 			>
-			<router-link class="button" :to="{ name: 'tickets' }">
-				<button>Buy Tickets</button>
-			</router-link>
+			<span class="register-wrapper">
+				<BuyTicketsButton />
+			</span>
 		</section>
 		<!-- NOTE: This section needs to be reworked with filtering when the schedule is available -->
 		<!-- <section
@@ -170,7 +170,7 @@ export default {
 #schedule-landing {
 	.plus-grid.red {
 		grid-column: 2 / span 4;
-		height: 80vh;
+		height: 50vh;
 		margin-top: 60vh;
 		width: 50vw;
 	}
@@ -188,6 +188,15 @@ export default {
 		&:last-child {
 			grid-column: 4 / span 3;
 		}
+		@media (max-width: $small-breakpoint) {
+			grid-column: 1;
+			&:last-child {
+				grid-column: 1;
+			}
+		}
+	}
+	.register-wrapper {
+		grid-column: 4 / span 3;
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
 			&:last-child {

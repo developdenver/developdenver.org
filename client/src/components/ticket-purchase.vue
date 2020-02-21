@@ -1,8 +1,8 @@
 <template>
-	<form class="ticket-purchase" @submit.prevent="submit">
+	<form class="ticket-purchase" @submit.prevent="submit" 	v-bind:class="{ 'is-disabled': !currentProfile.id }">
 		<div class="levels form-section">
-			<p class="required-field">Required field</p>
-			<h3 class="required">Ticket Type</h3>
+			<p class="required-field"	v-if="currentProfile.id">Required field</p>
+			<h3 class="required"	v-if="currentProfile.id">Ticket Type</h3>
 			<div
 				class="level form-row radio-input"
 				v-bind:class="{ 'is-disabled': !currentProfile.id }"
@@ -273,8 +273,17 @@ export default {
 		&.credit-card-payment {
 			border-bottom: none;
 		}
-	}
 
+	}
+	&.is-disabled {
+		max-width: 100%;
+		.form-section {
+				border-bottom: none;
+				.radio-input {
+					padding-left: 0;
+				}
+			}
+	}
 	.form-row {
 		label {
 			cursor: pointer;
@@ -287,8 +296,22 @@ export default {
 		input {
 			display: block;
 		}
-		&.radio-input label {
+		&.radio-input {
+			label {
 			padding-left: $baseline *2;
+			}
+			&.is-disabled {
+			 label {
+				 padding-left: 0;
+				 .circle {
+					 display: none;
+
+				 }
+			 }
+			 .level-info {
+				 padding-left: 0;
+			 }
+			}
 		}
 		&.level {
 			.level-info {

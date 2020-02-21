@@ -76,6 +76,7 @@ export default {
 			.image-container,
 			.plus-grid {
 				grid-column: 1;
+				height: 200px;
 			}
 			.image-container {
 				margin-top: $baseline * 4;

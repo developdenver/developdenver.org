@@ -233,7 +233,7 @@ export default {
 #privacy-landing {
 	.plus-grid.red {
 		grid-column: 3 / span 4;
-		height: 50vh;
+		height: 70vh;
 		margin-top: 20vh;
 		width: 50vw;
 	}
@@ -247,6 +247,8 @@ export default {
 }
 .privacy-policy {
 	h4 {
+		font-size: 30px;
+		line-height: 1.2em;
 		padding: $baseline * 2 0 $baseline/2 0;
 		&:first-child {
 			padding-top: 0;

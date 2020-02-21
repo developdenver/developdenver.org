@@ -1,12 +1,5 @@
 <template>
 	<div class="talk talk-row" :id="`submission-${talk.id}`">
-		<!-- <div class="image-icon">
-			<img :src="photoUrl" alt="Speaker headshot" />
-		</div>
-		<span
-			class="title-and-type featured"
-			v-bind:class="{ featurd: talk.properties.isFeatured }"
-		> -->
 		<div class="image-icon" v-if="talk.properties.isFeatured">
 			<img :src="photoUrl" alt="Speaker headshot" />
 		</div>
@@ -114,15 +107,6 @@ export default {
 		},
 		view: String,
 	},
-	methods: {
-		voteOrUnvote() {
-			if (this.talk.properties.voted) {
-				this.$store.dispatch('talks/unvote', this.talk);
-			} else {
-				this.$store.dispatch('talks/vote', this.talk);
-			}
-		},
-	},
 	computed: {
 		isAttendee() {
 			return this.$store.getters['tickets/isAttendee'];
@@ -186,6 +170,13 @@ export default {
 			}
 			return text;
 		},
+		voteOrUnvote() {
+			if (this.talk.properties.voted) {
+				this.$store.dispatch('talks/unvote', this.talk);
+			} else {
+				this.$store.dispatch('talks/vote', this.talk);
+			}
+		},
 	},
 };
 </script>
@@ -220,6 +211,9 @@ export default {
 			line-height: 1.5em;
 			padding-bottom: $baseline / 5;
 			width: 100%;
+			@media (max-width: $small-breakpoint) {
+				font-size: 20px;
+			}
 		}
 	}
 	.edit-talk-link {

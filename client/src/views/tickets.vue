@@ -9,7 +9,7 @@
 			</div>
 			<div class="plus-grid red"></div>
 		</section>
-		<ticket-details :showGroup="false" />
+		<ticket-details :showGroup="true" />
 		<section id="buy-tickets">
 			<HeaderBar
 				title="Buy Tickets"

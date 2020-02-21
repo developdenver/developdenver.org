@@ -274,8 +274,8 @@ export default {
 	}
 
 	.profile-photo {
-		filter: grayscale(100%);
 		img {
+			filter: grayscale(100%);
 			max-width: 100%;
 		}
 	}

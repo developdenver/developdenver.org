@@ -7,7 +7,7 @@
 		</section>
 		<section class="contact-image full">
 			<div class="image-wrapper">
-				<img src="/img/default_profile.jpg" />
+				<img src="/img/default_profile_yellow.jpg" />
 			</div>
 		</section>
 		<section class="contact">
@@ -66,7 +66,6 @@ export default {
 	background: $yellow;
 	.image-wrapper {
 		grid-column: 1 / span 3;
-		filter: grayscale(100%);
 		img {
 			max-width: 100%;
 		}

@@ -3,7 +3,7 @@
 		<div class="ticket-status ticket-row" v-if="attendee">
 			<div class="ticket-icon">
 				<img
-					src="@/assets/icons/DD_SITE_ICONS_TIX.png"
+					src="@/assets/icons/DD_SITE_ICONS_SMILEY.png"
 					alt="ticket icon"
 					description="develop denver ticket icon"
 				/>
@@ -20,7 +20,7 @@
 		>
 			<div class="ticket-icon">
 				<img
-					src="@/assets/icons/DD_SITE_ICONS_TIX.png"
+					src="@/assets/icons/DD_SITE_ICONS_SMILEY.png"
 					alt="ticket icon"
 					description="develop denver ticket icon"
 				/>

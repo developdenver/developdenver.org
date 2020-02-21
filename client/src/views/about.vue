@@ -52,6 +52,13 @@
 				<BuyTicketsButton />
 			</span>
 		</section>
+		<section class="about-image full no-padding">
+			<div class="plus-grid red"></div>
+			<div class="about-image">
+				<img src="/img/2020/dd_20_community.jpg" />
+			</div>
+			<div class="plus-grid red"></div>
+		</section>
 		<section id="what-to-expect">
 			<HeaderBar
 				title="What to Expect"
@@ -125,7 +132,7 @@ export default {
 		grid-column: 1;
 		.plus-grid.red {
 			height: 15vh;
-			margin-top: 30vh;
+			margin-top: 25vh;
 		}
 	}
 }
@@ -138,6 +145,7 @@ export default {
 	}
 	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
+		padding-top: 0;
 		.video {
 			grid-column: 1;
 		}
@@ -179,5 +187,8 @@ export default {
 			}
 		}
 	}
+}
+.about-image {
+	padding-top: $baseline * 2;
 }
 </style>

@@ -6,6 +6,9 @@
 				v-bind:imageUrl="
 					require('@/assets/icons/DD_SITE_ICONS_LOCATION.png')
 				"
+				v-bind:hoverUrl="
+					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
+				"
 			/>
 			<LocationMap />
 		</section>

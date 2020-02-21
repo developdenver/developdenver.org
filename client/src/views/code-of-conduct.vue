@@ -31,7 +31,7 @@
 			<HeaderBar
 				title="Get help or report a violation"
 				v-bind:imageUrl="
-					require('@/assets/icons/DD_SITE_ICONS_SMILEY.png')
+					require('@/assets/icons/DD_SITE_ICONS_SKULL.png')
 				"
 				v-bind:hoverUrl="
 					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')
@@ -98,7 +98,7 @@
       <HeaderBar
 				title="The Less Quick Version"
 				v-bind:imageUrl="
-					require('@/assets/icons/DD_SITE_ICONS_SMILEY.png')
+					require('@/assets/icons/DD_SITE_ICONS_BOMB.png')
 				"
 				v-bind:hoverUrl="
 					require('@/assets/icons/DD_HOVER_DVLP_DNVR.svg')

@@ -5,6 +5,11 @@
 			<h1>All About Me</h1>
 			<div class="plus-grid red"></div>
 		</section>
+		<section class="profile-image full">
+			<div class="image-wrapper">
+				<img src="/img/default_profile_yellow.jpg" />
+			</div>
+		</section>
 		<section v-if="acceptedTalks.length">
 			<TalkInfo
 				view="profile"
@@ -168,5 +173,9 @@ export default {
 		@include grid-full-width;
 		margin-top: $baseline / 2;
 	}
+}
+.profile-image {
+	background: $yellow;
+	padding-top: 0;
 }
 </style>

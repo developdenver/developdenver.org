@@ -27,9 +27,9 @@
 			<p>
 				Support the Denver development, product, and design community!
 			</p>
-			<a class="button" href="mailto:sponsorship@developdenver.org"
-				><button>Become a Sponsor</button></a
-			>
+			<router-link class="button" :to="{ name: 'sponsorship' }">
+				<button>Become a Sponsor</button>
+			</router-link>
 		</div>
 	</section>
 </template>
