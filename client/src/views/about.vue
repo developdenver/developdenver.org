@@ -58,7 +58,10 @@
 		<section class="about-image full no-padding">
 			<div class="plus-grid red"></div>
 			<div class="about-image">
-				<img src="/img/2020/dd_20_community.jpg" />
+				<img
+					src="/img/2020/dd_20_community.jpg"
+					alt="Develop Denver Community"
+				/>
 			</div>
 			<div class="plus-grid red"></div>
 		</section>

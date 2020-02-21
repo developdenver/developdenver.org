@@ -5,7 +5,10 @@
 		<venue-list />
 		<section class="image-break">
 			<div class="image-container">
-				<img src="/img/2020/dd_20_home_2.jpg" />
+				<img
+					src="/img/2020/dd_20_home_2.jpg"
+					alt="Develop Denver Community Photo"
+				/>
 			</div>
 			<div class="plus-grid red"></div>
 		</section>

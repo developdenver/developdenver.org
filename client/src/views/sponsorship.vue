@@ -7,7 +7,10 @@
 		</section>
 		<section class="intro-image full">
 			<div class="image-wrapper">
-				<img src="/img/2020/dd_20_sponsor_1b.jpg" />
+				<img
+					src="/img/2020/dd_20_sponsor_1b.jpg"
+					alt="Develop Denver Speaker"
+				/>
 			</div>
 		</section>
 		<section class="exposure">

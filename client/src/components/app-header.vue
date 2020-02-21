@@ -16,10 +16,16 @@
 				<span></span>
 			</div>
 			<div class="title-wrap">
-				<img src="/img/DVLP_DNVR_text.png" />
+				<img
+					src="/img/DVLP_DNVR_text.png"
+					alt="DVLP DNVR"
+					description="text treatment for Develop Denver logo"
+				/>
 				<img
 					src="/img/DVLP_DNVR_text_horizontal.png"
 					class="mobile-title"
+					alt="DVLP DNVR"
+					description="text treatment for Develop Denver logo"
 				/>
 			</div>
 		</div>

@@ -30,7 +30,11 @@
 		<section class="about-image full no-padding">
 			<div class="plus-grid red"></div>
 			<div class="about-image">
-				<img src="/img/2020/dd_20_home1_yell.jpg" />
+				<img
+					src="/img/2020/dd_20_home1_yell.jpg"
+					alt="Develop Denver Talk Image"
+					description="A room full of developers listening to a talk at Develop Denver 2019."
+				/>
 			</div>
 			<div class="plus-grid red"></div>
 		</section>

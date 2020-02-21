@@ -7,7 +7,10 @@
 		</section>
 		<section class="contact-image full">
 			<div class="image-wrapper">
-				<img src="/img/default_profile_yellow.jpg" />
+				<img
+					src="/img/default_profile_yellow.jpg"
+					alt="Nerdy Developer Photo"
+				/>
 			</div>
 		</section>
 		<section class="contact">
