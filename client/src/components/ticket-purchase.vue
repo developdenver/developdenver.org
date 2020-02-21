@@ -122,7 +122,7 @@ export default {
 	},
 	data() {
 		return {
-			ticketSKU: 'skuEmployer',
+			ticketSKU: this.levels[this.levels.length -1].sku,
 			error: '',
 			message: '',
 			stripe: null,
