@@ -114,7 +114,11 @@ export default {
 	}
 	input:not([type='submit']) {
 		background: $yellow;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		-webkit-border-radius: 0;
 	}
+
 	input:-webkit-autofill,
 	input:-webkit-autofill:hover,
 	input:-webkit-autofill:focus,

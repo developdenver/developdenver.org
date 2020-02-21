@@ -286,6 +286,9 @@ select {
 	padding: $baseline;
 	text-decoration: none;
 	width: 100%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-webkit-border-radius: 0;
 	&::placeholder {
 		color: $black;
 	}
@@ -304,6 +307,12 @@ input[type='number'] {
 		opacity: 0;
 	}
 }
+input[type='submit'] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-webkit-border-radius: 0;
+}
+
 /* For input changes on Google Autofill */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
