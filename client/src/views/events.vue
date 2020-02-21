@@ -43,10 +43,13 @@
 					not to be missed.
 				</p>
 			</div>
-			<router-link class="button" :to="{ name: 'submit-talk' }"
+			<router-link
+				v-if="isLoggedIn"
+				class="button"
+				:to="{ name: 'submit-talk' }"
 				><button>Submit a Talk</button></router-link
 			>
-			<span class="register-wrapper">
+			<span class="register-wrapper" :class="{ full: !isLoggedIn }">
 				<BuyTicketsButton />
 			</span>
 		</section>
@@ -197,6 +200,9 @@ export default {
 	}
 	.register-wrapper {
 		grid-column: 4 / span 3;
+		&.full {
+			@include grid-full-width;
+		}
 		@media (max-width: $small-breakpoint) {
 			grid-column: 1;
 			&:last-child {

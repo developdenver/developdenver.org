@@ -49,7 +49,7 @@
 		>
 			<button>Edit Talk</button>
 		</router-link>
-		<button
+		<!--<button
 			v-if="
 				isAttendee && !talk.properties.isFeatured && view !== 'profile'
 			"
@@ -57,7 +57,7 @@
 			@click="voteOrUnvote"
 		>
 			{{ voteText }}
-		</button>
+		</button> -->
 	</div>
 </template>
 
