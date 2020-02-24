@@ -3,7 +3,7 @@
 		<section id="schedule-landing" class="full landing-screen">
 			<countdown />
 			<h1>The devil-opment is in the details</h1>
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red move"></div>
 			<div class="cta">
 				<!-- NOTE: After Schedule Available Comment in and remove BUY TICKETS -->
 				<!--
@@ -16,7 +16,11 @@
 		</section>
 		<section class="intro-image full">
 			<div class="image-wrapper">
-				<img src="/img/2020/dd_20_schedule.jpg" alt="schedule photo" />
+				<img
+					class="moving-image"
+					src="/img/2020/dd_20_schedule.jpg"
+					alt="schedule photo"
+				/>
 			</div>
 		</section>
 		<section id="schedule-intro">
@@ -87,6 +91,7 @@ import HeaderBar from '@/components/header-bar.vue';
 import EventCardList from '@/components/event-card-list';
 import SponsorList from '@/components/sponsor-list';
 import { shuffle } from '@/utilities/shuffle';
+import { parallaxElement, throttle } from '@/utilities/parallax';
 
 export default {
 	components: {
@@ -96,8 +101,23 @@ export default {
 		Countdown,
 		HeaderBar,
 	},
+	data() {
+		return {
+			rotatingElements: document.getElementsByClassName('move'),
+			movingImages: document.getElementsByClassName('moving-image'),
+		};
+	},
+	mounted() {
+		this.rotatingElements = document.getElementsByClassName('move');
+		this.movingImages = document.getElementsByClassName('moving-image');
+		this.throttle('scroll', 'handleScroll');
+	},
 	created() {
 		this.$store.dispatch('events/fetchEvents');
+		window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed() {
+		window.removeEventListener('scroll', this.handleScroll);
 	},
 	computed: {
 		categories() {
@@ -137,6 +157,9 @@ export default {
 				this.events.filter(event => event.properties.type === 'panel'),
 			);
 		},
+		isLoggedIn() {
+			return this.$store.getters['services/user/isLoggedIn'] || false;
+		},
 		lightningTalks() {
 			return shuffle(
 				this.events.filter(
@@ -162,6 +185,23 @@ export default {
 			return this.$store.getters['services/user/isLoggedIn'] || false;
 		},
 	},
+	methods: {
+		handleScroll(event) {
+			let scrollpos = window.scrollY;
+			let denominator = 2;
+			for (let i = 0; i < this.rotatingElements.length; i++) {
+				parallaxElement(
+					this.rotatingElements[i],
+					scrollpos,
+					denominator,
+					5,
+				);
+			}
+			for (let i = 0; i < this.movingImages.length; i++) {
+				parallaxElement(this.movingImages[i], scrollpos, 2, 3);
+			}
+		},
+	},
 };
 </script>
 
@@ -177,7 +217,7 @@ export default {
 	.plus-grid.red {
 		grid-column: 2 / span 4;
 		height: 50vh;
-		margin-top: 60vh;
+		margin-top: 70vh;
 		width: 50vw;
 	}
 	@media (max-width: $small-breakpoint) {

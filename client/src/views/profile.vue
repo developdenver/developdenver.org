@@ -3,11 +3,12 @@
 		<section id="profile-landing" class="full landing-screen">
 			<countdown />
 			<h1>All About Me</h1>
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red move"></div>
 		</section>
 		<section class="profile-image full">
 			<div class="image-wrapper">
 				<img
+					class="moving-image"
 					src="/img/default_profile_yellow.jpg"
 					alt="Nerdy Developer Photo"
 				/>
@@ -93,6 +94,7 @@ import Countdown from '@/components/count-down';
 import HeaderBar from '@/components/header-bar.vue';
 import TalkInfo from '@/components/talk-info.vue';
 import { mapState } from 'vuex';
+import { parallaxElement, throttle } from '@/utilities/parallax';
 
 export default {
 	components: {
@@ -100,6 +102,25 @@ export default {
 		EditProfile,
 		HeaderBar,
 		TalkInfo,
+	},
+	data() {
+		return {
+			rotatingElements: document.getElementsByClassName('move'),
+			movingImages: document.getElementsByClassName('moving-image'),
+		};
+	},
+	mounted() {
+		this.$store.dispatch('talks/fetchTalks');
+		this.rotatingElements = document.getElementsByClassName('move');
+		this.movingImages = document.getElementsByClassName('moving-image');
+		this.throttle('scroll', 'handleScroll');
+	},
+	created() {
+		this.$store.dispatch('events/fetchEvents');
+		window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed() {
+		window.removeEventListener('scroll', this.handleScroll);
 	},
 	computed: {
 		...mapState({
@@ -141,9 +162,21 @@ export default {
 			}
 			return text;
 		},
-	},
-	mounted() {
-		this.$store.dispatch('talks/fetchTalks');
+		handleScroll(event) {
+			let scrollpos = window.scrollY;
+			let denominator = 2;
+			for (let i = 0; i < this.rotatingElements.length; i++) {
+				parallaxElement(
+					this.rotatingElements[i],
+					scrollpos,
+					denominator,
+					5,
+				);
+			}
+			for (let i = 0; i < this.movingImages.length; i++) {
+				parallaxElement(this.movingImages[i], scrollpos, 2, 3);
+			}
+		},
 	},
 };
 </script>

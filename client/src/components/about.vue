@@ -28,15 +28,16 @@
 			</div>
 		</section>
 		<section class="about-image full no-padding">
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red move"></div>
 			<div class="about-image">
 				<img
 					src="/img/2020/dd_20_home1_yell.jpg"
+					class="moving-image"
 					alt="Develop Denver Talk Image"
 					description="A room full of developers listening to a talk at Develop Denver 2019."
 				/>
 			</div>
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red move"></div>
 		</section>
 	</div>
 </template>
@@ -71,13 +72,14 @@ section.about-image {
 		@include plus-grid;
 		height: 300px;
 		grid-row: 3;
+		z-index: 100;
 		&:first-child {
 			grid-column: 1 / span 3;
 		}
 		&:last-child {
 			grid-column: 5 / span 2;
 			grid-row: 4;
-			margin-top: -$baseline * 2;
+			margin-top: -$baseline * 3;
 			@media (max-width: $medium-breakpoint) {
 				grid-column: 4 / span 3;
 			}

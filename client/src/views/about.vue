@@ -3,7 +3,7 @@
 		<section id="about-landing" class="full landing-screen">
 			<countdown />
 			<h1>Vote. Learn. Share. Develop. Repeat.</h1>
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red rotate"></div>
 		</section>
 		<section class="demo-reel full">
 			<div class="video responsive-iframe-container">
@@ -56,14 +56,15 @@
 			</span>
 		</section>
 		<section class="about-image full no-padding">
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red rotate"></div>
 			<div class="about-image">
 				<img
+					class="moving-image"
 					src="/img/2020/dd_20_community.jpg"
 					alt="Develop Denver Community"
 				/>
 			</div>
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red rotate"></div>
 		</section>
 		<section id="what-to-expect">
 			<HeaderBar
@@ -104,12 +105,19 @@ import boardProfiles from '../data/board-profiles';
 import BuyTicketsButton from '@/components/buy-tickets-button.vue';
 import Countdown from '@/components/count-down.vue';
 import HeaderBar from '@/components/header-bar.vue';
+import { parallaxElement, throttle, handleScroll } from '@/utilities/parallax';
 
 export default {
 	components: {
 		BuyTicketsButton,
 		Countdown,
 		HeaderBar,
+	},
+	data() {
+		return {
+			rotatingElements: document.getElementsByClassName('rotate'),
+			movingImages: document.getElementsByClassName('moving-image'),
+		};
 	},
 	computed: {
 		boardProfiles() {
@@ -118,6 +126,36 @@ export default {
 		isLoggedIn() {
 			return this.$store.getters['services/user/isLoggedIn'] || false;
 		},
+	},
+
+	methods: {
+		handleScroll(event) {
+			let scrollpos = window.scrollY;
+			for (let i = 0; i < this.rotatingElements.length; i++) {
+				let denominator = i == 0 ? 5 : 3;
+				let speed = i == 0 ? 4 : 2;
+				parallaxElement(
+					this.rotatingElements[i],
+					scrollpos,
+					denominator,
+					speed,
+				);
+			}
+			for (let i = 0; i < this.movingImages.length; i++) {
+				parallaxElement(this.movingImages[i], scrollpos, 2, 3);
+			}
+		},
+	},
+	mounted() {
+		this.rotatingElements = document.getElementsByClassName('rotate');
+		this.movingImages = document.getElementsByClassName('moving-image');
+		throttle('scroll', 'handleScroll');
+	},
+	created() {
+		window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed() {
+		window.removeEventListener('scroll', this.handleScroll);
 	},
 };
 </script>
@@ -131,7 +169,7 @@ export default {
 	.plus-grid.red {
 		grid-column: 3 / span 4;
 		height: 80vh;
-		margin-top: 20vh;
+		margin-top: 60vh;
 		width: 50vw;
 	}
 	@media (max-width: $small-breakpoint) {

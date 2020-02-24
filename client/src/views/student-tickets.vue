@@ -3,7 +3,7 @@
 		<section id="student-tickets-landing" class="full landing-screen">
 			<countdown />
 			<h1>The hottest ticket in town</h1>
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red move"></div>
 		</section>
 		<ticket-details :showGroup="false" />
 		<section id="buy-tickets">
@@ -28,8 +28,8 @@ import CreditCardPayment from '../components/credit-card-payment';
 import TicketPurchase from '../components/ticket-purchase';
 import TicketDetails from '../components/ticket-details';
 import Countdown from '@/components/count-down';
-
 import HeaderBar from '@/components/header-bar.vue';
+import { parallaxElement, throttle } from '@/utilities/parallax';
 
 export default {
 	components: {
@@ -41,6 +41,7 @@ export default {
 	},
 	data() {
 		return {
+			rotatingElements: document.getElementsByClassName('move'),
 			levels: [
 				{
 					sku: 'skuStudent',
@@ -50,6 +51,31 @@ export default {
 				},
 			],
 		};
+	},
+	methods: {
+		handleScroll(event) {
+			let scrollpos = window.scrollY;
+			let denominator = 2;
+			for (let i = 0; i < this.rotatingElements.length; i++) {
+				parallaxElement(
+					this.rotatingElements[i],
+					scrollpos,
+					denominator,
+					2,
+				);
+			}
+		},
+	},
+	mounted() {
+		this.rotatingElements = document.getElementsByClassName('move');
+		this.throttle('scroll', 'handleScroll');
+	},
+	created() {
+		this.$store.dispatch('events/fetchEvents');
+		window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed() {
+		window.removeEventListener('scroll', this.handleScroll);
 	},
 };
 </script>

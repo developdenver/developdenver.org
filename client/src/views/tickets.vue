@@ -7,7 +7,7 @@
 			<div class="cta">
 				<BuyTicketsButton />
 			</div>
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red move"></div>
 		</section>
 		<ticket-details :showGroup="true" />
 		<section id="buy-tickets">
@@ -33,6 +33,7 @@ import HeaderBar from '@/components/header-bar.vue';
 import TicketPurchase from '../components/ticket-purchase';
 import TicketDetails from '../components/ticket-details';
 import VenueList from '@/components/venue-list';
+import { parallaxElement, throttle } from '@/utilities/parallax';
 
 export default {
 	components: {
@@ -45,6 +46,7 @@ export default {
 	},
 	data() {
 		return {
+			rotatingElements: document.getElementsByClassName('move'),
 			levels: [
 				/*
                 {
@@ -73,6 +75,31 @@ export default {
 			],
 		};
 	},
+	methods: {
+		handleScroll(event) {
+			let scrollpos = window.scrollY;
+			let denominator = 2;
+			for (let i = 0; i < this.rotatingElements.length; i++) {
+				parallaxElement(
+					this.rotatingElements[i],
+					scrollpos,
+					denominator,
+					2,
+				);
+			}
+		},
+	},
+	mounted() {
+		this.rotatingElements = document.getElementsByClassName('move');
+		this.throttle('scroll', 'handleScroll');
+	},
+	created() {
+		this.$store.dispatch('events/fetchEvents');
+		window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed() {
+		window.removeEventListener('scroll', this.handleScroll);
+	},
 };
 </script>
 
@@ -83,7 +110,7 @@ export default {
 #tickets-landing {
 	.plus-grid.red {
 		grid-column: 2 / span 4;
-		height: 30vh;
+		height: 60vh;
 		margin-top: 45vh;
 		width: 50vw;
 	}

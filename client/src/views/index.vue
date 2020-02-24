@@ -6,11 +6,12 @@
 		<section class="image-break">
 			<div class="image-container">
 				<img
+					class="moving-image"
 					src="/img/2020/dd_20_home_2.jpg"
 					alt="Develop Denver Community Photo"
 				/>
 			</div>
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red move"></div>
 		</section>
 		<ticket-details :showGroup="false" :buyTixCTA="true" />
 
@@ -31,6 +32,7 @@ import ScheduleDownload from '@/components/schedule-download.vue';
 import SponsorList from '@/components/sponsor-list';
 import TicketDetails from '@/components/ticket-details.vue';
 import VenueList from '@/components/venue-list';
+import { parallaxElement, throttle } from '@/utilities/parallax';
 
 export default {
 	components: {
@@ -44,6 +46,65 @@ export default {
 		SponsorList,
 		TicketDetails,
 		VenueList,
+	},
+	data() {
+		return {
+			landingHeadline: document.getElementsByClassName(
+				'landing-headline',
+			)[0],
+			landingBackground: document.getElementsByClassName(
+				'plus-grid-container',
+			)[0],
+			rotatingElements: document.getElementsByClassName('move'),
+			movingImages: document.getElementsByClassName('moving-image'),
+			wh: window.innerHeight,
+		};
+	},
+	methods: {
+		handleScroll(event) {
+			let scrollpos = window.scrollY;
+			let skewBg = 0;
+			let xBg = 0;
+			let offsetToScroll = this.landingHeadline.offsetTop - scrollpos;
+
+			for (let i = 0; i < this.rotatingElements.length; i++) {
+				parallaxElement(this.rotatingElements[i], scrollpos, 4, 2);
+			}
+			for (let i = 0; i < this.movingImages.length; i++) {
+				parallaxElement(this.movingImages[i], scrollpos, 2, 3);
+			}
+
+			// When the element is in the top 1/4 of the screen add the effect
+			if (offsetToScroll < this.wh / 3) {
+				skewBg = (offsetToScroll - this.wh / 3) / 2;
+
+				if (skewBg > -500) {
+					this.landingBackground.style.webkitTransform = `translateY(${skewBg}px)`;
+				}
+			} else {
+				xBg = 0;
+				skewBg = 0;
+				this.landingBackground.style.webkitTransform = `translateY(${skewBg}px)`;
+			}
+		},
+	},
+	mounted() {
+		this.landingHeadline = document.getElementsByClassName(
+			'landing-headline',
+		)[0];
+		this.landingBackground = document.getElementsByClassName(
+			'plus-grid-container',
+		)[0];
+		this.rotatingElements = document.getElementsByClassName('move');
+		this.movingImages = document.getElementsByClassName('moving-image');
+		this.wh = window.innerHeight;
+		throttle('scroll', 'handleScroll');
+	},
+	created() {
+		window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed() {
+		window.removeEventListener('scroll', this.handleScroll);
 	},
 };
 </script>

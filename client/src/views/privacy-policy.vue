@@ -3,7 +3,7 @@
 		<section id="privacy-landing" class="full landing-screen">
 			<countdown />
 			<h1>Keeping Your Private Stuff Private</h1>
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red move"></div>
 		</section>
 		<section class="privacy-policy">
 			<HeaderBar
@@ -217,10 +217,41 @@ import Vue from 'vue';
 import Fragment from 'vue-fragment';
 import Countdown from '@/components/count-down.vue';
 import HeaderBar from '@/components/header-bar.vue';
+import { parallaxElement, throttle } from '@/utilities/parallax';
 export default {
 	components: {
 		Countdown,
 		HeaderBar,
+	},
+	data() {
+		return {
+			rotatingElements: document.getElementsByClassName('move'),
+		};
+	},
+	mounted() {
+		this.rotatingElements = document.getElementsByClassName('move');
+		this.throttle('scroll', 'handleScroll');
+	},
+	created() {
+		this.$store.dispatch('events/fetchEvents');
+		window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed() {
+		window.removeEventListener('scroll', this.handleScroll);
+	},
+	methods: {
+		handleScroll(event) {
+			let scrollpos = window.scrollY;
+			let denominator = 2;
+			for (let i = 0; i < this.rotatingElements.length; i++) {
+				parallaxElement(
+					this.rotatingElements[i],
+					scrollpos,
+					denominator,
+					5,
+				);
+			}
+		},
 	},
 };
 </script>

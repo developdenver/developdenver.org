@@ -3,7 +3,7 @@
 		<section id="coc-landing" class="full landing-screen">
 			<countdown />
 			<h1>The Code Behind the Code</h1>
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red move"></div>
 		</section>
 		<section class="code-of-conduct">
 			<HeaderBar
@@ -160,11 +160,41 @@ import Vue from 'vue';
 import Fragment from 'vue-fragment';
 import Countdown from '@/components/count-down.vue';
 import HeaderBar from '@/components/header-bar.vue';
-
+import { parallaxElement, throttle } from '@/utilities/parallax';
 export default {
 	components: {
 		Countdown,
 		HeaderBar,
+	},
+	data() {
+		return {
+			rotatingElements: document.getElementsByClassName('move'),
+		};
+	},
+	mounted() {
+		this.rotatingElements = document.getElementsByClassName('move');
+		this.throttle('scroll', 'handleScroll');
+	},
+	created() {
+		this.$store.dispatch('events/fetchEvents');
+		window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed() {
+		window.removeEventListener('scroll', this.handleScroll);
+	},
+	methods: {
+		handleScroll(event) {
+			let scrollpos = window.scrollY;
+			let denominator = 2;
+			for (let i = 0; i < this.rotatingElements.length; i++) {
+				parallaxElement(
+					this.rotatingElements[i],
+					scrollpos,
+					denominator,
+					5,
+				);
+			}
+		},
 	},
 };
 </script>
@@ -177,7 +207,7 @@ export default {
 	.plus-grid.red {
 		grid-column: 3 / span 4;
 		height: 40vh;
-		margin-top: 15vh;
+		margin-top: 20vh;
 		width: 50vw
   }
 	@media (max-width: $small-breakpoint) {

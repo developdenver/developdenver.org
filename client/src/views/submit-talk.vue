@@ -3,11 +3,12 @@
 		<section id="submit-talk-landing" class="full landing-screen">
 			<countdown />
 			<h1>Talk the Talk</h1>
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red move"></div>
 		</section>
 		<section class="intro-image full">
 			<div class="image-wrapper">
 				<img
+					class="moving-image"
 					src="/img/2020/dd_20_submit_a_talk_b.jpg"
 					alt="submit a talk photo"
 				/>
@@ -41,6 +42,7 @@ import Countdown from '@/components/count-down';
 import EditTalk from '@/components/edit-talk';
 import HeaderBar from '@/components/header-bar.vue';
 import Talk from '@/models/talk';
+import { parallaxElement, throttle } from '@/utilities/parallax';
 
 export default {
 	data() {
@@ -52,12 +54,26 @@ export default {
 				talkPhotoUrl: '',
 				description: '',
 			}),
+			rotatingElements: document.getElementsByClassName('move'),
+			movingImages: document.getElementsByClassName('moving-image'),
 		};
 	},
 	components: {
 		Countdown,
 		EditTalk,
 		HeaderBar,
+	},
+	mounted() {
+		this.rotatingElements = document.getElementsByClassName('move');
+		this.movingImages = document.getElementsByClassName('moving-image');
+		this.throttle('scroll', 'handleScroll');
+	},
+	created() {
+		this.$store.dispatch('events/fetchEvents');
+		window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed() {
+		window.removeEventListener('scroll', this.handleScroll);
 	},
 	methods: {
 		async createTalk(talk) {
@@ -73,6 +89,21 @@ export default {
 			} else {
 				this.error =
 					'There was an error submitting the talk. Please try again.';
+			}
+		},
+		handleScroll(event) {
+			let scrollpos = window.scrollY;
+			let denominator = 2;
+			for (let i = 0; i < this.rotatingElements.length; i++) {
+				parallaxElement(
+					this.rotatingElements[i],
+					scrollpos,
+					denominator,
+					5,
+				);
+			}
+			for (let i = 0; i < this.movingImages.length; i++) {
+				parallaxElement(this.movingImages[i], scrollpos, 2, 3);
 			}
 		},
 	},
