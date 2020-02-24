@@ -158,6 +158,9 @@ export default {
 				),
 			);
 		},
+		isLoggedIn() {
+			return this.$store.getters['services/user/isLoggedIn'] || false;
+		},
 	},
 };
 </script>
