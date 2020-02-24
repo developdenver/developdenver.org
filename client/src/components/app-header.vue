@@ -174,7 +174,7 @@ export default {
 				top: 26px;
 			}
 			&:nth-child(4) {
-				top: 37px;
+				top: 36px;
 			}
 		}
 		&:hover {
