@@ -108,11 +108,6 @@ const router = new Router({
 			component: PrivacyPolicy,
 		},
 		{
-			path: '/profiles/:id',
-			name: 'profile',
-			component: ProfilePage,
-		},
-		{
 			path: '/profiles/me',
 			name: 'my-profile',
 			component: EditProfile,
@@ -130,6 +125,11 @@ const router = new Router({
 				requiresAuth: true,
 				takeItBackNowYall: true,
 			},
+		},
+		{
+			path: '/profiles/:id',
+			name: 'profile',
+			component: ProfilePage,
 		},
 		{
 			path: '/register',
@@ -154,13 +154,7 @@ const router = new Router({
 			name: 'schedule',
 			component: Events,
 		},
-		/*
-		{
-			path: '/schedule',
-			name: 'schedule',
-			component: Schedule,
-		},
-		*/
+
 		{
 			path: '/schedule/:id',
 			name: 'schedule-listing',
