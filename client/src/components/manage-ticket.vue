@@ -39,17 +39,22 @@
 					description="develop denver ticket icon"
 				/>
 			</div>
-			<h3>Not yet shared</h3>
+			<h3 v-if="!status">Not yet shared</h3>
+			<h3 v-if="status">{{ status }}</h3>
 			<div class="ticket-actions">
 				<input
 					type="email"
 					v-model="shareWith"
+					@change="updateShareWith"
 					placeholder="friend@email.com"
 				/>
-				<button v-if="!status" class="invite-link" @click="share">
+				<button
+					class="invite-link"
+					:class="{ disabled: status }"
+					@click="share"
+				>
 					Invite
 				</button>
-				<p v-if="status">{{ status }}</p>
 			</div>
 		</div>
 	</fragment>
@@ -98,6 +103,9 @@ export default {
 				ticketId: this.id,
 				email: this.shareWith,
 			});
+		},
+		updateShareWith(event) {
+			this.shareWith = event.target.value;
 		},
 	},
 };
