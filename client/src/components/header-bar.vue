@@ -34,8 +34,8 @@ export default {
 	@include flexbox;
 	@include align-items(center);
 	@include justify-content(space-between);
-	border-bottom: 1px solid $black;
-	border-top: 1px solid $black;
+	border-bottom: $thin-border-width solid $black;
+	border-top: $thin-border-width solid $black;
 	margin-bottom: $baseline * 2;
 	z-index: 2;
 	.icon-container {
