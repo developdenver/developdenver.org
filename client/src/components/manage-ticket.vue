@@ -126,6 +126,7 @@ export default {
 	width: 100%;
 	h3 {
 		margin-bottom: 0;
+		text-transform: capitalize;
 		@media (max-width: $small-breakpoint) {
 			font-size: 17px;
 			line-height: 1.2rem;

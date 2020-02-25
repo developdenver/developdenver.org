@@ -3,7 +3,7 @@
 		<section id="register-landing" class="full landing-screen">
 			<countdown />
 			<h1>Sign Up to Get In</h1>
-			<div class="plus-grid red"></div>
+			<div class="plus-grid red" move></div>
 		</section>
 		<section id="register">
 			<HeaderBar
@@ -40,10 +40,12 @@ import Countdown from '@/components/count-down';
 import EditProfile from '../components/edit-profile';
 import HeaderBar from '@/components/header-bar.vue';
 import Profile from '../models/profile';
+import { parallaxElement, throttle } from '@/utilities/parallax';
 
 export default {
 	data() {
 		return {
+			rotatingElements: document.getElementsByClassName('move'),
 			profile: new Profile({}),
 		};
 	},
@@ -58,6 +60,29 @@ export default {
 			const next = this.$route.query.redirect || { name: 'tickets' };
 			this.$router.push(next);
 		},
+		handleScroll(event) {
+			let scrollpos = window.scrollY;
+			let denominator = 2;
+			for (let i = 0; i < this.rotatingElements.length; i++) {
+				parallaxElement(
+					this.rotatingElements[i],
+					scrollpos,
+					denominator,
+					2,
+				);
+			}
+		},
+	},
+	mounted() {
+		this.rotatingElements = document.getElementsByClassName('move');
+		this.throttle('scroll', 'handleScroll');
+	},
+	created() {
+		this.$store.dispatch('events/fetchEvents');
+		window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed() {
+		window.removeEventListener('scroll', this.handleScroll);
 	},
 };
 </script>
