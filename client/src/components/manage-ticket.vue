@@ -46,10 +46,12 @@
 					v-model="shareWith"
 					placeholder="friend@email.com"
 				/>
-				<button class="invite-link" @click="share">Invite</button>
+				<button v-if="!status" class="invite-link" @click="share">
+					Invite
+				</button>
+				<p v-if="status">{{ status }}</p>
 			</div>
 		</div>
-		<p v-if="status">{{ status }}</p>
 	</fragment>
 </template>
 

@@ -10,13 +10,13 @@
 			/>
 			<div class="ticket-details">
 				<p>When: August 15 and 16, 2019</p>
-				<p>Where: RiNo Brighton Boulevard</p>
+				<p>Where: RiNo, Brighton Boulevard</p>
 				<p>
 					All badges include a custom printed 2-day conference badge,
 					access to keynote, talks, workshops, and live podcasts,
 					coffee, breakfast, and lunch at Zeppelin Station vendors
-					both days, opening and closing parties, 8th annual Ballmer
-					Peak Hackathon
+					both days, opening and closing parties, and 8th annual
+					Ballmer Peak Hackathon.
 				</p>
 				<BuyTicketsButton />
 			</div>
