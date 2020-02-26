@@ -1,6 +1,6 @@
 <template>
 	<fragment>
-		<section id="talk-landing" class="full landing-screen">
+		<section id="talk-landing" class="full landing-screen short-landing">
 			<countdown />
 			<div class="plus-grid"></div>
 		</section>

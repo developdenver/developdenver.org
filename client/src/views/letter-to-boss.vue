@@ -1,6 +1,6 @@
 <template>
   <fragment>
-		<section id="talk-landing" class="full landing-screen">
+		<section id="talk-landing" class="full landing-screen short-landing">
 			<countdown />
 			<div class="plus-grid"></div>
 		</section>
@@ -89,7 +89,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/_sizes.scss";
-@import "@/styles/_colors.scss";
-
 </style>

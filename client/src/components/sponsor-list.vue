@@ -11,7 +11,7 @@
 		<!-- <ul v-if="premiumSponsor" class="platinum-sponsors">
 			<li>Sponsor Here</li>
 		</ul> -->
-		<div class="plus-grid"></div>
+
 		<ul v-if="siteSponsors.length" class="gold-sponsors">
 			<li v-for="(sponsor, index) in siteSponsors" :key="index">
 				<a :href="sponsor.link">

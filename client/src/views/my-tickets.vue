@@ -1,6 +1,9 @@
 <template>
 	<fragment>
-		<section id="manage-tickets-landing" class="full landing-screen">
+		<section
+			id="manage-tickets-landing"
+			class="full landing-screen short-landing"
+		>
 			<countdown />
 			<div class="plus-grid"></div>
 		</section>
@@ -44,29 +47,6 @@ export default {
 <style lang="scss">
 @import '@/styles/_sizes.scss';
 @import '@/styles/_general.scss';
-
-#manage-tickets-landing {
-	@include grid-full-width;
-	position: relative;
-	.plus-grid {
-		@include plus-grid;
-		grid-column: 1 / span 4;
-		height: 25vh;
-		margin-top: 0vh;
-		position: absolute !important;
-		width: 100vw;
-		right: 0;
-		z-index: 0;
-	}
-	.countdown {
-		z-index: 2;
-	}
-	@media (max-width: $small-breakpoint) {
-		.plus-grid {
-			height: 15vh;
-		}
-	}
-}
 
 .my-tickets {
 	@include grid;

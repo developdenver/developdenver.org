@@ -736,6 +736,27 @@ section {
 			background: $yellow;
 		}
 	}
+	&.short-landing {
+		@include grid-full-width;
+		position: relative;
+		min-height: 25vh;
+		.plus-grid {
+			@include plus-grid;
+			grid-column: 1 / span 4;
+			height: 25vh;
+			margin-top: 0vh;
+			position: absolute !important;
+			width: 100vw;
+			right: 0;
+			z-index: 1;
+			@media (max-width: $small-breakpoint) {
+				height: 20vh;
+			}
+		}
+		.countdown {
+			z-index: 2;
+		}
+	}
 	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 		h1 {
