@@ -14,6 +14,7 @@
 				<span></span>
 				<span></span>
 				<span></span>
+				<img class="hover" src="@/assets/icons/DD_pixel_burger.svg" />
 			</div>
 			<div class="title-wrap">
 				<img
@@ -177,18 +178,34 @@ export default {
 				top: 36px;
 			}
 		}
+		.hover {
+			display: none;
+			height: 70%;
+			left: 0;
+			position: absolute;
+			top: 15%;
+			width: 100%;
+		}
 		&:hover {
 			span {
+				display: none;
 				&:nth-child(2),
 				&:nth-child(3) {
 					left: 15px;
 					right: 0px;
 				}
 			}
+			.hover {
+				display: block;
+			}
 		}
 		&.open {
+			.hover {
+				display: none;
+			}
 			span {
 				background: $black;
+				display: block;
 				&:nth-child(1) {
 					top: 18px;
 					width: 0%;

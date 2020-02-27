@@ -18,7 +18,7 @@
 						<HeaderBar
 							title="Uh Oh. We've Got a Problem"
 							v-bind:imageUrl="
-								require('@/assets/icons/DD_SITE_ICONS_SKULL.png')
+								require('@/assets/icons/DD_SITE_ICONS_SAD.svg')
 							"
 						/>
 						<p>Something went wrong claiming the ticket.</p>
