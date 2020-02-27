@@ -15,7 +15,13 @@
 						:ticket="ticket"
 					/>
 					<div slot="catch" slot-scope="[error]">
-						<p>Uh oh, something went wrong claiming the ticket.</p>
+						<HeaderBar
+							title="Uh Oh. We've Got a Problem"
+							v-bind:imageUrl="
+								require('@/assets/icons/DD_SITE_ICONS_SKULL.png')
+							"
+						/>
+						<p>Something went wrong claiming the ticket.</p>
 						<p>{{ error }}</p>
 					</div>
 				</Await>
@@ -29,6 +35,7 @@ import Vue from 'vue';
 import Fragment from 'vue-fragment';
 
 import Countdown from '@/components/count-down';
+import HeaderBar from '@/components/header-bar.vue';
 import { mapGetters } from 'vuex';
 import Await from 'vue-await';
 import { ticketInfoFromClaim } from '../modules/api';
@@ -36,7 +43,7 @@ import ValidClaimToken from '../components/valid-claim-token';
 
 export default {
 	name: 'ClaimTicket',
-	components: { Await, ValidClaimToken, Countdown },
+	components: { Await, ValidClaimToken, Countdown, HeaderBar },
 	data() {
 		return {
 			claimToken: this.$route.params.claimToken,
