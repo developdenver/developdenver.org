@@ -510,19 +510,18 @@ export default {
 		@include justify-content(center);
 		@include flex(1);
 		margin: $baseline $baseline * 2;
+		border-bottom: $medium-border-width * 2 solid $yellow;
 		&.active {
-			border-bottom: $medium-border-width solid $red;
+			border-color: $red;
 		}
 		&:hover {
+			border-color: $black;
 			cursor: pointer;
 		}
 		img {
 			min-width: 100px;
 			padding-bottom: $baseline;
 			width: 80%;
-			// &.active {
-			// 	border-bottom: $medium-border-width solid $red;
-			// }
 		}
 	}
 	@media (max-width: $medium-breakpoint) {
