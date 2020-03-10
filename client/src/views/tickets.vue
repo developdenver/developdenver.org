@@ -1,37 +1,53 @@
 <template>
-  <section class="tickets">
-	<countdown />
-	<h2>Tickets</h2>
-	<div class="ticket-details">
-		<div class="date-and-location">
-			<p>When: August 15 and 16, 2019</p>
-			<p>Where: RiNo Brighton Boulevard</p>
-		</div>
-		<div class="benefits">
-			<p>All badges include a custom printed 2-day conference badge, access to keynote, talks, workshops, and live podcasts, coffee, breakfast, and lunch at Zeppelin Station vendors both days, opening and closing parties, 8th annual Ballmer Peak Hackathon</p>
-		</div>
-		<div class="groups">
-			<p>Don’t worry, we’re all setup so you can purchase a group of conference badges. You’ll be asked to provide an email address for each attendee and you’re good to go. Have questions? Please contact us at <a href="mailto:hello@developdenver.org">hello@developdenver.org</a> if you need help.</p>
-		</div>
-	</div>
-    <ticket-purchase :levels="levels" :isDiscountCode="false"/>
-  </section>
+	<fragment>
+		<section id="tickets-landing" class="full landing-screen">
+			<countdown />
+			<h1>The hottest ticket in town</h1>
+
+			<div class="cta">
+				<BuyTicketsButton />
+			</div>
+			<div class="plus-grid red move"></div>
+		</section>
+		<ticket-details :showGroup="true" />
+		<section id="buy-tickets">
+			<HeaderBar
+				title="Buy Tickets"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
+				"
+				v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_TICKET.svg')"
+			/>
+			<ticket-purchase :levels="levels" :isDiscountCode="false" />
+		</section>
+	</fragment>
 </template>
 
 <script>
-import TicketPurchase from '../components/ticket-purchase';
-import VenueList from '@/components/venue-list';
+import Vue from 'vue';
+import Fragment from 'vue-fragment';
+
+import BuyTicketsButton from '@/components/buy-tickets-button';
 import Countdown from '@/components/count-down';
+import HeaderBar from '@/components/header-bar.vue';
+import TicketPurchase from '../components/ticket-purchase';
+import TicketDetails from '../components/ticket-details';
+import VenueList from '@/components/venue-list';
+import { parallaxElement, throttle } from '@/utilities/parallax';
 
 export default {
-    components: {
-        TicketPurchase,
-		VenueList,
+	components: {
+		BuyTicketsButton,
 		Countdown,
-    },
-    data() {
-        return {
-            levels: [
+		HeaderBar,
+		TicketPurchase,
+		TicketDetails,
+		VenueList,
+	},
+	data() {
+		return {
+			rotatingElements: document.getElementsByClassName('move'),
+			levels: [
 				/*
                 {
                     sku: 'skuEarly',
@@ -40,21 +56,50 @@ export default {
                         'Full access 2-day conference badge - Available until May 1st',
                 },
 				*/
-                {
-                    sku: 'skuRegular',
-                    label: '$249 - Regular',
-                    description:
-                        'Full access 2-day conference badge',
-                },
-                {
-                    sku: 'skuEmployer',
-                    label: '$399 - Employer',
-                    description:
-                        'Coming on your employer’s dime? Help make Develop Denver affordable to all attendees, including sponsoring student tickets and sponsoring meals during the conference.',
-                },
-            ],
-        };
-    },
+				{
+					sku: 'skuRegular',
+					price: '$249',
+					label: 'Individual Ticket',
+					description:
+						'This ticket is for those attendees who are paying for thier own conference registration. We also encourage non-profit and university employees to purchase this ticket.',
+				},
+				{
+					sku: 'skuEmployer',
+					price: '$399',
+					label: 'Corporate Ticket',
+					description:
+						'This ticket is for those attendees whose (for profit) companies are paying for their conference registration.',
+					additional_info:
+						' Help make Develop Denver affordable to all attendees, including sponsoring student tickets and sponsoring meals during the conference.',
+				},
+			],
+		};
+	},
+	methods: {
+		handleScroll(event) {
+			let scrollpos = window.scrollY;
+			let denominator = 2;
+			for (let i = 0; i < this.rotatingElements.length; i++) {
+				parallaxElement(
+					this.rotatingElements[i],
+					scrollpos,
+					denominator,
+					2,
+				);
+			}
+		},
+	},
+	mounted() {
+		this.rotatingElements = document.getElementsByClassName('move');
+		this.throttle('scroll', 'handleScroll');
+	},
+	created() {
+		this.$store.dispatch('events/fetchEvents');
+		window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed() {
+		window.removeEventListener('scroll', this.handleScroll);
+	},
 };
 </script>
 
@@ -62,39 +107,22 @@ export default {
 @import '@/styles/_typography.scss';
 @import '@/styles/_general.scss';
 @import '@/styles/_sizes.scss';
-
-.tickets {
-	@include grid;
+#tickets-landing {
+	.plus-grid.red {
+		grid-column: 2 / span 4;
+		height: 60vh;
+		margin-top: 45vh;
+		width: 50vw;
+	}
 	@media (max-width: $small-breakpoint) {
-		padding: $baseline;
-	}
-	.ticket-details {
-		@include grid-full-width;
-		@include grid;
-		.date-and-location {
-			@include grid-text-0;
-		}
-		.benefits {
-			@include grid-text-1;
-		}
-		.groups {
-			@include grid-text-2;
+		.plus-grid.red {
+			height: 25vh;
+			margin-top: 5vh;
 		}
 	}
-	.venues, .ticket-purchase {
-		@include grid-full-width;;
-	}
-	.ticket-details, .venues {
-		margin-bottom: $baseline * 8;
-		@media (max-width: $small-breakpoint) {
-			margin-bottom: $baseline * 2;
-		}
-	}
-	.countdown {
-		@include grid-countdown;
-		@media (max-width: $small-breakpoint) {
-			display: none;
-		}
-	}
+}
+
+.ticket-details {
+	@include grid-full-width;
 }
 </style>

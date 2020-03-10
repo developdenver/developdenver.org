@@ -1,37 +1,37 @@
 <template>
-  <section class="news">
-	<countdown />
-    <h2>Conference News</h2>
-    <ul>
-      <li v-for="(newsItem, index) in newsItems" :key="index">
-        <news-item
-          :title="newsItem.title"
-          :date="newsItem.date"
-          :author="newsItem.author"
-          :content="newsItem.content"
-        />
-      </li>
-    </ul>
-  </section>
+	<section class="news">
+		<countdown />
+		<h2>Conference News</h2>
+		<ul>
+			<li v-for="(newsItem, index) in newsItems" :key="index">
+				<news-item
+					:title="newsItem.title"
+					:date="newsItem.date"
+					:author="newsItem.author"
+					:content="newsItem.content"
+				/>
+			</li>
+		</ul>
+	</section>
 </template>
 
 <script>
 import NewsItem from '../components/news-item.vue';
 import Countdown from '../components/count-down.vue';
 import newsItems from '../data/news-items';
-import CircleLogo from "@/components/circle-logo";
+import CircleLogo from '@/components/circle-logo';
 
 export default {
-    components: {
-        NewsItem,
+	components: {
+		NewsItem,
 		Countdown,
 		CircleLogo,
-    },
-    data() {
-        return {
-            newsItems,
-        };
-    },
+	},
+	data() {
+		return {
+			newsItems,
+		};
+	},
 };
 </script>
 
@@ -43,16 +43,10 @@ export default {
 .news {
 	@include grid;
 	@media (max-width: $small-breakpoint) {
-		padding: $baseline;;
+		padding: $baseline;
 	}
 	ul {
 		@include grid-form;
-	}
-	.countdown {
-		@include grid-countdown;
-		@media (max-width: $small-breakpoint) {
-			display: none;
-		}
 	}
 }
 </style>

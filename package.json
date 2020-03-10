@@ -8,5 +8,6 @@
         "deploy:server": "git subtree push --prefix=server/ server master"
     },
     "author": "Develop Denver PBC",
-    "license": "Private"
+    "license": "Private",
+    "dependencies": {}
 }

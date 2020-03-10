@@ -1,87 +1,120 @@
-@import "@/styles/_colors.scss";
-@import "@/styles/_sizes.scss";
-@import "@/styles/_typography.scss";
+@import '@/styles/_colors.scss';
+@import '@/styles/_sizes.scss';
+@import '@/styles/_typography.scss';
+
+$thin-border-width: 2px;
+$medium-border-width: 3px;
+
+@mixin transition($val1, $time, $animate) {
+	transition: $val1 $time $animate;
+	-webkit-transition: $val1 $time $animate;
+	-moz-transition: $val1 $time $animate;
+	-o-transition: $val1 $time $animate;
+	-ms--transition: $val1 $time $animate;
+}
+
+@mixin transform($transforms) {
+	-moz-transform: $transforms;
+	-o-transform: $transforms;
+	-ms-transform: $transforms;
+	-webkit-transform: $transforms;
+	transform: $transforms;
+}
 
 @mixin call-to-action {
-	display: block;
-	border: 2px solid $white;
 	@include primary-header-font;
+	background: none;
+	border: 2px solid $white;
+	display: block;
+	padding: $baseline / 2;
 	text-decoration: none;
 	text-align: center;
 	width: 100%;
-	background: none;
-	padding: $baseline / 2;
 	&:hover {
-		color: $accent-color;
 		border: 2px solid $accent-color;
+		color: $accent-color;
 	}
 }
 
 @mixin grid {
-	display: grid;
 	column-gap: $gutter;
+	display: grid;
 	grid-auto-rows: auto;
-	grid-template-columns: repeat(9, 1fr);
-	@media (max-width: $small-breakpoint){
+	grid-template-columns: repeat(6, 1fr);
+	@media (max-width: $small-breakpoint) {
 		grid-template-columns: 1fr;
 	}
 }
 
 @mixin grid-heading {
-	grid-column: 3 / span 8;
-	@media (max-width: $small-breakpoint){
+	grid-column: 1 / span 6;
+	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 	}
 }
 
 @mixin grid-full-width {
-	grid-column: 1 / span 9;
-	@media (max-width: $small-breakpoint){
+	grid-column: 1 / span 6;
+	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 	}
 }
 
 @mixin grid-cta {
 	grid-column: 3 / span 3;
-	@media (max-width: $small-breakpoint){
+	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 	}
 }
 
 @mixin grid-text-0 {
-	grid-column: 3 / span 2;
-	@media (max-width: $small-breakpoint){
+	grid-column: 1 / span 2;
+	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 	}
 }
 @mixin grid-text-1 {
-	grid-column: 5 / span 2;
-	@media (max-width: $small-breakpoint){
+	grid-column: 1 / span 2;
+	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 	}
 }
 @mixin grid-text-2 {
-	grid-column: 7 / span 3;
-	@media (max-width: $small-breakpoint){
+	grid-column: 1 / span 3;
+	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 	}
 }
 
 @mixin grid-form {
-	grid-column: 4 / span 3;
-	@media (max-width: $medium-breakpoint){
+	grid-column: 2 / span 3;
+	@media (max-width: $medium-breakpoint) {
 		grid-column: 3 / span 5;
 	}
-	@media (max-width: $small-breakpoint){
+	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
 	}
 }
+
 @mixin grid-countdown {
-	grid-column: 8 / span 3;
-	@media (max-width: $medium-breakpoint){
-		grid-column: 6 / span 5;
+	grid-column: 6 / span 1;
+	@media (max-width: $medium-breakpoint) {
+		grid-column: 6 / span 1;
 	}
-	@media (max-width: $small-breakpoint){
+	@media (max-width: $small-breakpoint) {
 		grid-column: 1;
+	}
+}
+
+@mixin plus-grid {
+	background: url('/img/plus_black.png');
+	background-repeat: repeat;
+	background-size: 20px 20px;
+	position: relative;
+	&.red {
+		background: url('/img/plus_red.png');
+		background-repeat: repeat;
+		background-size: 20px 20px;
+		position: relative;
 	}
 }

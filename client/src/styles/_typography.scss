@@ -1,33 +1,78 @@
-@import "_sizes";
+@import url('https://use.typekit.net/bzc0edx.css');
 
 @font-face {
 	font-family: DVLP;
-	src: url("~@/assets/fonts/DVLPOCR.otf") format("opentype");
+	src: url('~@/assets/fonts/DVLPOCR.otf') format('opentype');
 }
 @font-face {
 	font-family: TStar;
-	src: url("~@/assets/fonts/TSTAR-PRO-Regular.otf") format("opentype");
+	src: url('~@/assets/fonts/TSTAR-PRO-Regular.otf') format('opentype');
 }
 
+@mixin dvlpfont {
+	font-family: DVLP;
+	letter-spacing: 0.09em;
+}
+@mixin label-font {
+	display: block;
+	font-family: poppins, sans-serif;
+	font-size: 12px;
+	padding: 10px 0 5px 0;
+}
 @mixin body-font {
-    font-family: TStar, sans-serif;
-    font-size: 20px;
+	font-family: poppins, sans-serif;
+	font-weight: 300;
+	font-style: normal;
+	font-size: 20px;
+}
+
+@mixin headline-font {
+	font-family: DVLP;
+	font-size: 10vw;
+	letter-spacing: 0.09em;
+	@media (max-width: $small-breakpoint) {
+		font-size: 45px;
+	}
 }
 
 @mixin primary-header-font {
 	font-family: DVLP;
-    font-size: 36px;
-	line-height: 1.5;
+	font-size: 36px;
+	letter-spacing: 0.09em;
+	@media (max-width: $small-breakpoint) {
+		font-size: 25px;
+	}
+}
+
+@mixin primary-button-font {
+	font-family: DVLP;
+	font-size: 30px;
+	letter-spacing: 0.09em;
+}
+
+@mixin secondary-font {
+	font-family: stolzl, sans-serif;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 1.2em;
+}
+
+@mixin tertiary-font {
+	font-family: poppins, sans-serif;
+	font-weight: 300;
+	font-style: normal;
 }
 
 @mixin talk-title-font {
 	font-family: DVLP;
-    font-size: 20px;
+	font-size: 20px;
+	letter-spacing: 0.09em;
 	line-height: 1.5;
 }
 
 @mixin footer-font {
 	font-family: DVLP;
-    font-size: 24px;
+	font-size: 14px;
+	letter-spacing: 0.09em;
 	line-height: 1.5;
 }

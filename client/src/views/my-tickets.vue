@@ -1,28 +1,46 @@
 <template>
-  <div class="my-tickets">
-	<countdown />
-    <h2>My Tickets</h2>
-    <ul class="manage-tickets">
-      <li v-for="ticket in tickets" :key="ticket.id">
-        <ManageTicket v-bind="ticket"/>
-      </li>
-    </ul>
-  </div>
+	<fragment>
+		<section
+			id="manage-tickets-landing"
+			class="full landing-screen short-landing"
+		>
+			<countdown />
+			<div class="plus-grid"></div>
+		</section>
+		<section class="my-tickets">
+			<HeaderBar
+				title="My Tickets"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
+				"
+				v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_TICKET.svg')"
+			/>
+			<ManageTicket
+				v-for="(ticket, ix) in tickets"
+				:key="'ticket' + ix"
+				v-bind="ticket"
+			/>
+		</section>
+	</fragment>
 </template>
 
 <script>
+import Vue from 'vue';
+import Fragment from 'vue-fragment';
 import { mapState } from 'vuex';
-import ManageTicket from '../components/manage-ticket';
+
 import Countdown from '../components/count-down';
+import HeaderBar from '@/components/header-bar.vue';
+import ManageTicket from '../components/manage-ticket';
 
 export default {
-    name: 'MyTickets',
-    components: { ManageTicket, Countdown },
-    computed: {
-        ...mapState({
-            tickets: state => state.tickets.list,
-        }),
-    },
+	name: 'MyTickets',
+	components: { HeaderBar, ManageTicket, Countdown },
+	computed: {
+		...mapState({
+			tickets: state => state.tickets.list,
+		}),
+	},
 };
 </script>
 
@@ -35,18 +53,6 @@ export default {
 	@include grid-full-width;
 	@media (max-width: $small-breakpoint) {
 		padding: $baseline;
-	}
-	.manage-tickets {
-		@include grid-full-width;
-		.manage-ticket {
-			margin-bottom: $baseline * 2;
-		}
-	}
-	.countdown {
-		@include grid-countdown;
-		@media (max-width: $small-breakpoint) {
-			display: none;
-		}
 	}
 }
 </style>

@@ -1,22 +1,67 @@
 <template>
-	<section class="ticket-details">
-		<h2>Tickets</h2>
-		<div class="date-and-location">
-			<p>Conference badges are now on sale!</p>
-			<p>When: August 15 and 16, 2019</p>
-			<p>Where: RiNo Brighton Boulevard</p>
-		</div>
-		<div class="benefits">
-			<p>All badges include a custom printed 2-day conference badge, access to keynote, talks, workshops, and live podcasts, coffee, breakfast, and lunch at Zeppelin Station vendors both days, opening and closing parties, 8th annual Ballmer Peak Hackathon</p>
-		</div>
-		<div class="groups">
-			<p>Don’t worry, we’re all setup so you can purchase a group of conference badges. You’ll be asked to provide an email address for each attendee and you’re good to go. Have questions? Please contact us at <a href="mailto:hello@developdenver.org">hello@developdenver.org</a> if you need help.</p>
-		</div>
-		<router-link class="button" :to="{ name: 'tickets' }">Buy Tickets</router-link>
-	</section>
+	<fragment>
+		<section>
+			<HeaderBar
+				title="The Details"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
+				"
+				v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_TICKET.svg')"
+			/>
+			<div class="ticket-details">
+				<p>When: August 15 and 16, 2019</p>
+				<p>Where: RiNo, Brighton Boulevard</p>
+				<p>
+					All badges include a custom printed 2-day conference badge,
+					access to keynote, talks, workshops, and live podcasts,
+					coffee, breakfast, and lunch at Zeppelin Station vendors
+					both days, opening and closing parties, and 8th annual
+					Ballmer Peak Hackathon.
+				</p>
+				<BuyTicketsButton />
+			</div>
+		</section>
+		<section v-if="showGroup">
+			<HeaderBar
+				title="For Groups"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_TIX.png')
+				"
+				v-bind:hoverUrl="require('@/assets/icons/DD_HOVER_TICKET.svg')"
+			/>
+			<div class="ticket-details">
+				<p>
+					Don’t worry, we’re all setup so you can purchase a group of
+					conference badges. You’ll be asked to provide an email
+					address for each attendee and you’re good to go. Have
+					questions? Please contact us at
+					<a href="mailto:hello@developdenver.org"
+						>hello@developdenver.org</a
+					>
+					if you need help.
+				</p>
+			</div>
+		</section>
+	</fragment>
 </template>
 
 <script>
+import Vue from 'vue';
+import Fragment from 'vue-fragment';
+
+import BuyTicketsButton from '@/components/buy-tickets-button';
+import HeaderBar from '@/components/header-bar.vue';
+
+export default {
+	components: {
+		BuyTicketsButton,
+		HeaderBar,
+	},
+	props: {
+		showGroup: Boolean,
+		buyTixCta: Boolean,
+	},
+};
 </script>
 
 <style lang="scss">
@@ -24,47 +69,6 @@
 @import '@/styles/_general.scss';
 
 .ticket-details {
-	@include grid;
-	@media (max-width: $small-breakpoint) {
-		grid-auto-rows: auto;
-	}
-
-	a:not(.button) {
-		text-decoration: underline;
-		color: $accent-color;
-	}
-	h2 {
-		@include grid-heading;
-		grid-row: 1;
-	}
-	.date-and-location {
-		grid-row: 2;
-		@include grid-text-0;
-		@media (max-width: $small-breakpoint) {
-		}
-	}
-	.benefits {
-		grid-row: 2;
-		@include grid-text-1;
-		@media (max-width: $small-breakpoint) {
-			grid-row: 3;
-		}
-	}
-	.groups {
-		grid-row: 2;
-		@include grid-text-2;
-		@media (max-width: $small-breakpoint) {
-			grid-row: 4;
-		}
-	}
-	.button {
-		grid-row: 3;
-		margin-top: $baseline * 2;
-		@include grid-cta;
-		@include call-to-action;
-		@media (max-width: $small-breakpoint) {
-			grid-row: 5;
-		}
-	}
+	@include grid-full-width;
 }
 </style>

@@ -1,11 +1,17 @@
 <template>
-<div id="container" class="circle-logo">
-	<img src="../assets/icons/spinning_happy.gif" alt="Spinning logo" />
-</div>
+	<div id="container" class="circle-logo">
+		<img
+			src="../assets/icons/DD_slash-yellow-red.gif"
+			alt="Spinning logo"
+		/>
+	</div>
 </template>
 
 <style lang="scss">
+@import '@/styles/_colors.scss';
+@import '@/styles/_general.scss';
 .circle-logo {
+	border-bottom: $thin-border-width solid $black;
 	img {
 		width: 100%;
 	}

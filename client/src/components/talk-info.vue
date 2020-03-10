@@ -1,38 +1,64 @@
 <template>
-	<section class="talk" :id="`submission-${talk.id}`">
-	<div class="image-icon">
-	  <img :src="photoUrl" alt="Speaker headshot" />
-	</div>
-	<div class="talk-details">
-	  <h3>
-		  {{talk.properties.title}}
-		  <router-link
+	<div class="talk talk-row" :id="`submission-${talk.id}`">
+		<div class="image-icon" v-if="talk.properties.isFeatured">
+			<img :src="photoUrl" alt="Speaker headshot" />
+		</div>
+		<span
+			class="title-and-type"
+			v-bind:class="{ featurd: talk.properties.isFeatured }"
+		>
+			<h4 v-if="view !== 'profile'" class="abbreviated">
+				{{ abbreviatedText(talk.properties.title, 70) }}
+			</h4>
+			<h4 v-else>
+				{{ talk.properties.title }}
+			</h4>
+			<h3>{{ talk.properties.type }}</h3>
+			<h3 class="author" v-if="talk.properties.isFeatured">
+				<router-link
+					:to="{
+						name: 'profile',
+						params: {
+							id: talk.properties.authorId,
+						},
+					}"
+					>{{ talk.properties.firstName }}
+					{{ talk.properties.lastName }}</router-link
+				>
+			</h3>
+		</span>
+		<div class="talk-description">
+			<div
+				v-if="view !== 'talkPage'"
+				v-html="truncatedDescriptionHtml"
+			></div>
+			<router-link
+				class="read-more-link"
+				v-if="view !== 'talkPage'"
+				:to="{ name: 'talk', params: { id: talk.id } }"
+				>{{
+					view === 'profile' ? 'See talk page' : 'Read more'
+				}}</router-link
+			>
+			<div v-else v-html="descriptionHtml"></div>
+		</div>
+		<router-link
 			v-if="isCurrentUserTalk"
-			class="edit-talk-link"
-		    :to="{name: 'edit-talk', params: {id: talk.id}}"
-	  	  >Edit Talk</router-link>
-	  </h3>
-	  <div class="description">
-		<p v-if="talk.properties.isFeatured" class="author">
-		  <router-link
-			:to="{
-							name: 'profile',
-							params: {
-								id: talk.properties.authorId,
-							},
-						}"
-		  >{{talk.properties.firstName}} {{talk.properties.lastName}}</router-link>
-		</p>
-		<div v-html="descriptionHtml"></div>
-		<p class="events-link"><router-link :to="{name: 'events'}">See our other great events!</router-link></p>
-	  </div>
+			class="button edit-talk-link"
+			:to="{ name: 'edit-talk', params: { id: talk.id } }"
+		>
+			<button>Edit Talk</button>
+		</router-link>
+		<!--<button
+			v-if="
+				isAttendee && !talk.properties.isFeatured && view !== 'profile'
+			"
+			class="button vote-button"
+			@click="voteOrUnvote"
+		>
+			{{ voteText }}
+		</button> -->
 	</div>
-	<!--
-	<button v-if="isAttendee && !talk.properties.isFeatured" class="vote-button" @click="voteOrUnvote">
-		{{ voteText }}
-	</button>
-	-->
-  </section>
 </template>
 
 <script>
@@ -44,43 +70,106 @@ const showdown = new Showdown.Converter();
 const icons = { bomb, happy, skull };
 
 export default {
-    data() {
-        return {
-            talkTypes: [
-                {
-                    label: 'Talk (30 - 45 minutes)',
-                    value: 'talk',
-                },
-                {
-                    label: 'Lightning Talk (5 - 10 minutes)',
-                    value: 'lightning',
-                },
-                {
-                    label: 'Panel (30 - 45 minutes, multiple people)',
-                    value: 'panel',
-                },
-                {
-                    label: 'Workshop',
-                    value: 'workshop',
-                },
-                {
-                    label: 'Event',
-                    value: 'event',
-                },
-                {
-                    label: 'Performance',
-                    value: 'performance',
-                },
-            ],
-        };
-    },
-    props: {
-        talk: {
-            type: Object,
-            required: true,
-        },
+	data() {
+		return {
+			talkTypes: [
+				{
+					label: 'Talk (30 - 45 minutes)',
+					value: 'talk',
+				},
+				{
+					label: 'Lightning Talk (5 - 10 minutes)',
+					value: 'lightning',
+				},
+				{
+					label: 'Panel (30 - 45 minutes, multiple people)',
+					value: 'panel',
+				},
+				{
+					label: 'Workshop',
+					value: 'workshop',
+				},
+				{
+					label: 'Event',
+					value: 'event',
+				},
+				{
+					label: 'Performance',
+					value: 'performance',
+				},
+			],
+		};
+	},
+	props: {
+		talk: {
+			type: Object,
+			required: true,
+		},
+		view: String,
+	},
+	computed: {
+		isAttendee() {
+			return this.$store.getters['tickets/isAttendee'];
+		},
+		iconSrc() {
+			return icons[this.talk.properties.icon];
+		},
+		truncatedDescriptionHtml() {
+			const summaryLength = 170;
+			let truncatedDescription = this.talk.properties.description || '';
+			truncatedDescription =
+				truncatedDescription.length > summaryLength
+					? `${truncatedDescription.substring(0, summaryLength)}...`
+					: truncatedDescription;
+			return showdown.makeHtml(truncatedDescription);
+		},
+		descriptionHtml() {
+			return this.talk.properties.description
+				? showdown.makeHtml(this.talk.properties.description)
+				: '';
+		},
+		talkLabel() {
+			return this.talk.properties.type
+				? this.talkTypes.find(
+						type => type.value === this.talk.properties.type,
+				  ).label
+				: '';
+		},
+		isCurrentUserTalk() {
+			return this.currentUser
+				? +this.talk.properties.userId === +this.currentUser.id
+				: false;
+		},
+		currentUser() {
+			return this.$store.getters['services/user/currentProfile'];
+		},
+		voteText() {
+			return this.talk.properties.voted ? 'unvote' : 'vote';
+		},
+		photoUrl() {
+			const fallback =
+				'https://pbs.twimg.com/profile_images/1033908994870374400/2nUcOGak_400x400.jpg';
+			return this.talk.properties.profilePhotoUrl || fallback;
+		},
 	},
 	methods: {
+		abbreviatedText: function(text, maxLength) {
+			if (text.length > maxLength) {
+				//trim the string to the maximum length
+				let trimmedString = text.substr(0, maxLength);
+
+				//re-trim if we are in the middle of a word and
+				trimmedString = trimmedString.substr(
+					0,
+					Math.min(
+						trimmedString.length,
+						trimmedString.lastIndexOf(' '),
+					),
+				);
+				return trimmedString + '...';
+			}
+			return text;
+		},
 		voteOrUnvote() {
 			if (this.talk.properties.voted) {
 				this.$store.dispatch('talks/unvote', this.talk);
@@ -89,153 +178,60 @@ export default {
 			}
 		},
 	},
-    computed: {
-		isAttendee() {
-			return this.$store.getters['tickets/isAttendee'];
-		},
-		iconSrc() {
-			return icons[this.talk.properties.icon];
-		},
-		truncatedDescriptionHtml() {
-			const summaryLength = 250;
-			let truncatedDescription = this.talk.properties.description || ''
-			truncatedDescription = truncatedDescription.length > summaryLength
-				? `${truncatedDescription.substring(0, summaryLength)}...`
-				: truncatedDescription;
-            return showdown.makeHtml(truncatedDescription);
-		},
-        descriptionHtml() {
-            return this.talk.properties.description
-                ? showdown.makeHtml(this.talk.properties.description)
-                : '';
-        },
-        talkLabel() {
-            return this.talk.properties.type
-                ? this.talkTypes.find(
-                      type => type.value === this.talk.properties.type,
-                  ).label
-                : '';
-		},
-		currentUser() {
-            return this.$store.getters['services/user/currentProfile'];
-        },
-        isCurrentUserTalk() {
-            return this.currentUser
-                ? +this.talk.properties.authorId === +this.currentUser.id
-                : false;
-		},
-		voteText() {
-			return this.talk.properties.voted ? 'unvote' : 'vote';
-		},
-		photoUrl() {
-			const fallback = "https://pbs.twimg.com/profile_images/1033908994870374400/2nUcOGak_400x400.jpg";
-			return this.talk.properties.profilePhotoUrl || fallback;
-		},
-    },
 };
 </script>
 
 <style lang="scss">
-@import '@/styles/_typography.scss';
-@import '@/styles/_sizes.scss';
 @import '@/styles/_colors.scss';
+@import '@/styles/_flex.scss';
 @import '@/styles/_general.scss';
+@import '@/styles/_sizes.scss';
+@import '@/styles/_typography.scss';
 
-.talk {
+.talk-row {
+	@include grid-full-width;
 	@include grid;
-	margin-bottom: $baseline * 2;
-	margin-top: $baseline * 4;
-	a {
-		text-decoration: underline;
-		color: $accent-color;
+	@include align-items(center);
+	padding-bottom: $baseline * 4;
+	&:last-of-type {
+		padding-bottom: 0;
 	}
-	.image-icon {
+	.title-and-type {
+		@include grid-full-width;
 		grid-row: 1;
-		grid-column: 3 / span 2;
-		@media (max-width: $small-breakpoint) {
-			display: none;
+		padding-bottom: $baseline;
+		&.featured {
+			grid-column: 3 / span 3;
+			@media (max-width: $small-breakpoint) {
+				grid-column: 1;
+			}
 		}
-		img {
+		h4 {
+			font-size: 30px;
+			line-height: 1.5em;
+			padding-bottom: $baseline / 5;
 			width: 100%;
-			filter: grayscale(100%);
+			@media (max-width: $small-breakpoint) {
+				font-size: 20px;
+			}
 		}
 	}
-	.speaker-image {
-		grid-row: 1;
-		grid-column: 3 / span 2;
-		@media (max-width: $small-breakpoint) {
-			display: none;
-		}
-		img {
-			width: 100%;
-			filter: grayscale(100%);
-		}
+	.edit-talk-link {
+		@include grid-full-width;
+		// button {
+		// 	margin-top: 0;
+		// }
 	}
-	h3 {
-		@include talk-title-font;
+	.talk-description {
+		@include grid-full-width;
 	}
-	.talk-details {
-		grid-row: 1;
-		grid-column: 5 / span 5;
-		padding-left: $baseline;
-		@media (max-width: $small-breakpoint) {
-			grid-column: 1;
-			column-width: initial;
-		}
-		a {
-			text-decoration: underline;
-		}
-		.events-link {
-			margin-top: $baseline * 2;
-		}
-		.description-html {
-			margin-top: $baseline;
-			@include grid;
-			grid-template-columns: repeat(2, 1fr);
-			&[open] {
-				summary p, summary ul, summary ol, summary h2, summary h3 {
-					display: none;
-				}
-			}
-			ul, ol {
-				list-style: disc;
-				margin-bottom: $baseline;
-				li {
-					margin-left: $baseline;
-				}
-			}
-			strong {
-				font-weight: 700;
-			}
-			em {
-				font-style: italic;
-			}
-			h1, h2, h3, h4, h5, h6 {
-				font-size: 1rem;
-			}
-		}
-		summary::-webkit-details-marker {
-			color: $accent-color;
-		}
-		summary::marker {
-			color: $accent-color;
-		}
-		.edit-talk-link {
-			margin-left: 8px;
+	&:last-of-type {
+		.talk-description {
+			border-bottom: none;
 		}
 	}
 	.vote-button {
-		@include call-to-action;
-		text-transform: uppercase;
-		grid-row: 2;
-		grid-column: 5 / span 2;
-		color: white;
-		outline: none;
-		user-select: none;
-		font-size: 20px;
-		@media (max-width: $small-breakpoint) {
-			grid-column: 1;
-		}
+		@include grid-full-width;
 	}
 }
 </style>

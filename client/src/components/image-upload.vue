@@ -1,30 +1,37 @@
 <template>
-    <form
-        method="POST"
-        class="image-upload"
-        enctype="multipart/form-data"
-        @submit.prevent="uploadFile"
-    >
-        <label for="profile-photo-upload">{{title}}</label>
-        <slot />
-        <input
-            ref="imageUpload"
-            @change="$refs.submit.click()"
-            :disabled="isSaving"
-            accept="image/*"
-            type="file"
-            id="profile-photo-upload"
-            name="file"
-        />
-        <p v-if="isSaving" class="progress">
-            File is uploading
-            <span class="one">.</span>
-            <span class="two">.</span>
-            <span class="three">.</span>
-        </p>
-        <p v-if="isError" class="error">There was an error uploading your image.</p>
-        <input type="submit" ref="submit" />
-    </form>
+	<form
+		method="POST"
+		class="image-upload"
+		enctype="multipart/form-data"
+		@submit.prevent="uploadFile"
+	>
+		<div class="form-row">
+			<h4>{{ title }}</h4>
+			<label for="profile-photo-upload" class="custom-file-upload"
+				>Upload Photo</label
+			>
+			<slot />
+			<input
+				ref="imageUpload"
+				@change="$refs.submit.click()"
+				:disabled="isSaving"
+				accept="image/*"
+				type="file"
+				id="profile-photo-upload"
+				name="file"
+			/>
+			<p v-if="isSaving" class="progress">
+				File is uploading
+				<span class="one">.</span>
+				<span class="two">.</span>
+				<span class="three">.</span>
+			</p>
+		</div>
+		<p v-if="isError" class="error">
+			There was an error uploading your image.
+		</p>
+		<input type="submit" ref="submit" />
+	</form>
 </template>
 
 <script>
@@ -41,55 +48,94 @@ export default {
 	},
 	methods: {
 		async uploadFile(event) {
-			this.$store.dispatch("services/loading/pushLoading");
+			this.$store.dispatch('services/loading/pushLoading');
 			this.isSaving = true;
 			const image = await fetch(this.uploadUrl, {
-				method: "POST",
+				method: 'POST',
 				body: new FormData(event.target),
-			}).then(response => response.json())
+			})
+				.then(response => response.json())
 				.then(response => {
 					this.isError = false;
 					return response.imageUrl;
-				}).catch(error => {
+				})
+				.catch(error => {
 					console.error(error.message);
 					this.isError = true;
 				});
 			this.$el.reset();
 			this.isSaving = false;
-			this.$store.dispatch("services/loading/popLoading");
+			this.$store.dispatch('services/loading/popLoading');
 
-			this.$emit("imageUrl", image);
+			this.$emit('imageUrl', image);
 		},
 	},
 };
 </script>
 
 <style lang="scss">
-@import "@/styles/_colors.scss";
+@import '@/styles/_colors.scss';
+@import '@/styles/_flex.scss';
+@import '@/styles/_general.scss';
+@import '@/styles/_typography.scss';
+
+input[type='file'] {
+	display: none;
+}
 
 .image-upload {
-    .progress {
-        .one, .two, .three {
-            opacity: 0;
-            animation: ellipses 1.3s infinite;
-        }
-        .one {
-            animation-delay: 0.0s;
-        }
-        .two {
-            animation-delay: 0.2s;
-        }
-        .three {
-            animation-delay: 0.3s;
-        }
-    }
-    [type=submit] {
-        display: none;
-    }
+	.form-row {
+		@include flexbox;
+		@include justify-content(space-between);
+		@include align-items(center);
+		.custom-file-upload {
+			@include dvlpfont;
+			background: $yellow;
+			border: $medium-border-width solid $black;
+			color: $black;
+			display: block;
+			text-align: center;
+			@media (max-width: $small-breakpoint) {
+				padding: 12px $baseline * 2;
+			}
+			&:hover {
+				background: $black;
+				color: $yellow;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.progress {
+		.one,
+		.two,
+		.three {
+			opacity: 0;
+			animation: ellipses 1.3s infinite;
+		}
+		.one {
+			animation-delay: 0s;
+		}
+		.two {
+			animation-delay: 0.2s;
+		}
+		.three {
+			animation-delay: 0.3s;
+		}
+	}
+	[type='submit'] {
+		display: none;
+	}
 }
 @keyframes ellipses {
-    0% {opacity: 0;}
-    50% {opacity: 0;}
-    100% {opacity: 1;}
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 </style>

@@ -1,258 +1,193 @@
 <template>
-    <section class="sponsorship">
-		<div class="hero">
+	<fragment>
+		<section id="sponsorship-landing" class="full landing-screen">
 			<countdown />
-			<div class="call-to-sponsorship">
-				<span class="slogan">Support the <br /><strong>conference</strong></span>
-				<img class="happy-icon" :src="happyIcon" alt="happy" />
-				<span class="slogan" >Support the <br /><strong>community</strong></span>
-				<a class="button" href="mailto:sponsorship@developdenver.org">Reach Out</a>
+			<h1>Support the conference. Support the community.</h1>
+			<div class="plus-grid red move"></div>
+		</section>
+		<section class="intro-image full">
+			<div class="image-wrapper">
+				<img
+					class="moving-image"
+					src="/img/2020/dd_20_sponsor_1b.jpg"
+					alt="Develop Denver Speaker"
+				/>
 			</div>
-		</div>
-		<div class="sponsorship-details">
-			<section class="exposure">
-				<h2>Exposure</h2>
-				<h3><strong>500 +</strong></h3>
-				<div>
-					<p>Attendees include:</p>
-					<ul>
-						<li>Developers</li>
-						<li>Designers</li>
-						<li>Infrastructure Engineers</li>
-						<li>Product Designers</li>
-						<li>Engineering Managers</li>
-					</ul>
-				</div>
-				<div>
-					<p>Develop Denver attendees are disproportionately influential in the community.</p>
-					<p>Experience level of attendees covers the full range, with 10% of tickets last year going to students and attendees coming to the conference for 5 years or more.</p>
-				</div>
-			</section>
-			<section class="benefits">
-				<h2>Benefits</h2>
-				<p>Every single sponsor this year will have the opportunity to purchase tickets at a discounted rate of $199. If you buy ten or more we will drop the price to $149 per ticket.</p>
-				<p>This year we are trying to do more than give an amazing conference experience once a year. We are also trying to help Denver stay educated and connected by funding local meetups where we can. A small portion of every single sponsor's donation this year will go to helping local meetups in need. If you want to be more involved in this aspect of giving please let us know and we will facilitate accordingly.</p>
-				<a class="button" href="mailto:sponsorship@developdenver.org">Become a sponsor</a>
-			</section>
-			<section class="partners">
-				<h2>Current Partners</h2>
-				<div class="logos">
-					<a v-for="partner in partners" :key="partner.name" :href="partner.linkUrl">
-					  <img :src="partner.imageUrl" :alt="partner.name">
-					</a>
-				</div>
-			</section>
-		</div>
-    </section>
+		</section>
+		<section class="exposure">
+			<HeaderBar
+				title="Sponsor"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_SPONSORS.png')
+				"
+				v-bind:hoverUrl="
+					require('@/assets/icons/DD_HOVER_SPONSORS.svg')
+				"
+			/>
+			<div class="intro">
+				<p>
+					Promote your product to over 500 attendees, while showing
+					support for the Denver developer community.
+				</p>
+				<p>
+					Atendees include:
+				</p>
+				<ul class="bullet-list">
+					<li>Developers</li>
+					<li>Designers</li>
+					<li>Infrastructure Engineers</li>
+					<li>Product Designers</li>
+					<li>Engineering Managers</li>
+				</ul>
+				<p>
+					This year we're doing more than giving an amazing conference
+					experience, we're also committing to helping Denver stay
+					educated and connected by funding local meetups. That's why
+					a small portion of every single sponsor's donation this year
+					will go towards helping local meetups in need. If you want
+					to be more involved in this aspect of giving, please let us
+					know and we will facilitate accordingly.
+				</p>
+				<p>
+					Have questions? Email:
+					<a href="mailto:sponsorship@developdenver.org"
+						>sponsorship@developdenver.org</a
+					>
+				</p>
+				<a class="button" href="/dvlp_schedule_digital.pdf"
+					><button>Download Sponsor Deck</button></a
+				>
+			</div>
+		</section>
+		<section class="benefits">
+			<HeaderBar
+				title="Sponsor Discounts"
+				v-bind:imageUrl="
+					require('@/assets/icons/DD_SITE_ICONS_SPONSORS.png')
+				"
+				v-bind:hoverUrl="
+					require('@/assets/icons/DD_HOVER_SPONSORS.svg')
+				"
+			/>
+			<div class="intro">
+				<p>
+					Sponsors get a discounted ticket rate of <b>$199 </b> for
+					one-to-ten tickets and <b>$149 </b> for more than ten
+					tickets purchased.
+				</p>
+
+				<p>
+					Want to become a sponsor? Have questions? Email us at:
+					<a href="mailto:sponsorship@developdenver.org"
+						>sponsorship@developdenver.org</a
+					>
+				</p>
+			</div>
+		</section>
+		<sponsor-list :showButton="false" />
+	</fragment>
 </template>
 
 <script>
-import Countdown from "@/components/count-down";
-import happy from '@/assets/icons/happy_white.svg';
+import Vue from 'vue';
+import Fragment from 'vue-fragment';
 
-import zeppelinLogo from "@/assets/logos/zeppelin_station_logo.png"
-import bigTroubleLogo from "@/assets/logos/big_trouble_logo.png"
-import catalystLogo from "@/assets/logos/catalyst_logo_rgb_l.png"
-import bigsbyLogo from "../assets/logos/bigsbys_folly_logo_small.png"
-import sourceLogo from "../assets/logos/source_hotel_logo.png"
-import helikonLogo from "../assets/logos/helikon_logo_final-01.png"
+import Countdown from '@/components/count-down';
+import HeaderBar from '@/components/header-bar.vue';
+import SponsorList from '@/components/sponsor-list.vue';
+import { parallaxElement, throttle } from '@/utilities/parallax';
 
 export default {
 	components: {
 		Countdown,
+		HeaderBar,
+		SponsorList,
 	},
-	data(){
+	data() {
 		return {
-			partners: [{
-				name: "By The Pixel",
-				imageUrl: "https://s3-media1.fl.yelpcdn.com/bphoto/efFNBfcJaL2uXmtlWcVeVA/ls.jpg",
-				link: "https://bythepixel.com/",
-			}, {
-				name: 'Devetry',
-				imageUrl: 'https://devetry.com/wp-content/uploads/2017/10/logo-opt.png',
-				link: 'https://devetry.com/',
-			}, {
-				name: "Zeppelin Station",
-				linkUrl: "https://zeppelinstation.com/",
-				imageUrl: zeppelinLogo,
-			}, {
-				name: "Big Trouble",
-				linkUrl: "https://zeppelinstation.com/big-trouble",
-				imageUrl: bigTroubleLogo,
-			}, {
-				name: "Catalyst HTI",
-				linkUrl: "http://www.catalysthealthtech.com/",
-				imageUrl: catalystLogo,
-			}, {
-				name: "Bigsby's Folly",
-				linkUrl: "https://www.bigsbysfolly.com/",
-				imageUrl: bigsbyLogo,
-			}, {
-				name: "The Source Hotel",
-				linkUrl: "https://thesourcehotel.com/",
-				imageUrl: sourceLogo,
-			}, {
-				name: "Helikon Gallery",
-				linkUrl: "https://helikongallery.com/",
-				imageUrl: helikonLogo,
-			}]
-		}
+			rotatingElements: document.getElementsByClassName('move'),
+			movingImages: document.getElementsByClassName('moving-image'),
+		};
 	},
-    computed: {
-		happyIcon() {
-			return happy;
+	mounted() {
+		this.rotatingElements = document.getElementsByClassName('move');
+		this.movingImages = document.getElementsByClassName('moving-image');
+		this.throttle('scroll', 'handleScroll');
+	},
+	created() {
+		this.$store.dispatch('events/fetchEvents');
+		window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed() {
+		window.removeEventListener('scroll', this.handleScroll);
+	},
+	methods: {
+		handleScroll(event) {
+			let scrollpos = window.scrollY;
+			let denominator = 2;
+			for (let i = 0; i < this.rotatingElements.length; i++) {
+				parallaxElement(
+					this.rotatingElements[i],
+					scrollpos,
+					denominator,
+					3,
+				);
+			}
+			for (let i = 0; i < this.movingImages.length; i++) {
+				parallaxElement(this.movingImages[i], scrollpos, 4, 2);
+			}
 		},
-	}
-}
+	},
+};
 </script>
 
 <style lang="scss">
-@import "@/styles/_typography.scss";
-@import "@/styles/_sizes.scss";
-@import "@/styles/_general.scss";
+@import '@/styles/_typography.scss';
+@import '@/styles/_sizes.scss';
+@import '@/styles/_general.scss';
 
-.sponsorship {
-	.hero {
-		height: 100vh;
-		@include grid;
-		grid-auto-rows: min-content;
-		@include grid-full-width;
-		@media (max-width: $small-breakpoint) {
-			height: calc(100vh - #{$mobile-header-size}); // header size
-		}
-		&::after {
-			content: "";
-			opacity: 0.3;
-			position: absolute;
-			z-index: -1;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background: url("/img/panel.jpg");
-			background-size: cover;
-		}
+#sponsorship-landing {
+	@include grid-full-width;
+	position: relative;
+	h1 {
+		z-index: 2;
 	}
-	.call-to-sponsorship {
-		@include grid-full-width;
-		@include grid;
-		@media (max-width: $small-breakpoint) {
-			grid-column: 1;
-			padding: ($baseline * 4) $baseline ($baseline * 2) $baseline;
-		}
-		.slogan {
-			grid-column: 3 / span 3;
-			@include primary-header-font;
-			@media (max-width: $small-breakpoint) {
-				grid-column: 1;
-			}
-			strong {
-				color: $accent-color;
-			}
-			&:nth-child(1) {
-				grid-row: 1;
-			}
-			&:nth-child(3) {
-				grid-row: 3;
-			}
-		}
-		.button {
-			grid-row: 4;
-		}
-		.happy-icon {
-			grid-column: 8 / span 1;
-			grid-row: 2;
-			max-width: 50%;
-			@media (max-width: $small-breakpoint) {
-				display: none;
-			}
-		}
-	}
-	.button {
-		@include call-to-action;
-		grid-column: 3 / span 3;
-		margin-top: $baseline * 2;
-		@media (max-width: $small-breakpoint) {
-			grid-column: 1;
-		}
-	}
-	.sponsorship-details {
-		@include grid-full-width;
-		@include grid;
-		margin-top: $baseline * 4;
-		@media (max-width: $small-breakpoint) {
-			padding: $baseline;
-		}
-		h2 {
-			@include grid-heading;
-		}
-		> section {
-			margin-bottom: $baseline * 4;
-		}
-		.exposure {
-			@include grid-full-width;
-			@include grid;
-			h3 {
-				@include grid-text-0;
-				@include primary-header-font;
-				color: $accent-color;
-			}
-			div:nth-of-type(1) {
-				@include grid-text-1;
-				@include talk-title-font;
-				margin-bottom: $baseline;
-				ul {
-					list-style: none;
-					li {
-						&:before {
-							content: "+";
-							margin-right: $baseline;
-						}
-					}
-				}
-			}
-			div:nth-of-type(2) {
-				@include grid-text-2;
-			}
-		}
-		.benefits {
-			@include grid-full-width;
-			@include grid;
-			p:nth-of-type(1) {
-				@include grid-text-1;
-			}
-			p:nth-of-type(2) {
-				@include grid-text-2;
-			}
-		}
-		.partners {
-			@include grid-full-width;
-			@include grid;
-			.logos {
-				grid-column: 3 / span 7;
-				display: flex;
-				flex-flow: row wrap;
-				justify-content: center;
-				align-items: center;
-				a {
-					margin: $baseline $baseline * 2;
-				}
-				@media (max-width: $small-breakpoint) {
-					grid-column: 1;
-					justify-content: center;
-				}
-				img {
-					width: 200px;
-				}
-			}
-		}
+	.plus-grid.red {
+		@include plus-grid;
+		grid-column: 3 / span 4;
+		height: 80vh;
+		margin-top: 60vh;
+		position: absolute !important;
+		width: 50vw;
+		right: 0;
+		z-index: 1;
 	}
 	.countdown {
-		@include grid-countdown;
-		@media (max-width: $small-breakpoint) {
-			display: none;
+		z-index: 2;
+	}
+	@media (max-width: $small-breakpoint) {
+		grid-column: 1;
+		h1 {
+			grid-column: 1;
+			grid-row: 2;
+		}
+		.plus-grid.red {
+			grid-column: 1;
+			grid-row: 2;
+			height: 15vh;
+			margin-top: 30vh;
+			width: 100vw;
+		}
+		.countdown {
+			grid-row: 2;
 		}
 	}
 }
+.exposure a {
+	display: inline;
+}
+.benefits b {
+	font-weight: 700;
+	color: $red;
+}
 </style>
-
