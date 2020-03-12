@@ -15,13 +15,20 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-
+      - name: maybe build staging static files
+        if: endsWith(github.ref, '/staging')
+        run: |
+          echo "::set-env name=NPM_BUILD_SCRIPT::build:production"
+      - name: otherwise build prod static files
+        if: ! endsWith(github.ref, '/staging')
+        run: |
+          echo "::set-env name=NPM_BUILD_SCRIPT::build:staging"
       - name: Client, npm install, build, and test
         run: |
           cd client
           npm ci
+          npm run $NPM_BUILD_SCRIPT
           npm test
-
         env:
           CI: true
           VUE_APP_API_URL: http://localhost:3000
