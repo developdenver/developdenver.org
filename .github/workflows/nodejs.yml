@@ -15,19 +15,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: maybe build staging static files
-        if: endsWith(github.ref, '/staging')
-        run: |
-          echo "::set-env name=NPM_BUILD_SCRIPT::build:production"
-      - name: otherwise build prod static files
-        if: endsWith(github.ref, '/staging') != true
-        run: |
-          echo "::set-env name=NPM_BUILD_SCRIPT::build:staging"
       - name: Client, npm install, build, and test
         run: |
           cd client
           npm ci
-          npm run $NPM_BUILD_SCRIPT
+          npm run build:production
           npm test
         env:
           CI: true
@@ -83,6 +75,7 @@ jobs:
         SENTRY_ENV: ci
 
   deploy_server:
+    if: endsWith(github.ref, '/production') || endsWith(github.ref, '/staging')
     runs-on: ubuntu-latest
     needs: [test_server, test_client]
     steps:
@@ -100,3 +93,22 @@ jobs:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       if: env.HEROKU_APP_NAME
       run: git push https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
+
+  deploy_client:
+    if: endsWith(github.ref, '/production') || endsWith(github.ref, '/staging')
+    runs-on: ubuntu-latest
+    needs: [deploy_server]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: build static files
+        run: |
+          cd client
+          npm ci
+          npm run build:$(basename $GITHUB_REF)
+      - name: deploy to firebase
+        run: |
+          npm run deploy:client:$(basename $GITHUB_REF)
