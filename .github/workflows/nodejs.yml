@@ -109,6 +109,18 @@ jobs:
           cd client
           npm ci
           npm run build:$(basename $GITHUB_REF)
+        env:
+          CI: true
+          VUE_APP_API_URL: http://localhost:3000
+          VUE_APP_IMAGE_UPLOAD_URL: http://localhost:3001/images
+          VUE_APP_UNIQUE_EMAIL_ENDPOINT: profiles/email
+          VUE_APP_LOGIN_PATH: auth/login
+          VUE_APP_STRIPE_KEY: pk_test_xxxx
+          VUE_APP_PAYMENTS_URL: http://localhost:3000/payments
+          VUE_APP_RESET_PASSWORD_PATH: auth/reset-password
+          VUE_APP_RESET_REQUEST_PATH: auth/reset-request
+          VUE_APP_SENTRY_ENVIRONMENT: dev
+
       - name: deploy to firebase
         run: |
           npm run deploy:client:$(basename $GITHUB_REF)
