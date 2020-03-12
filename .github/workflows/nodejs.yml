@@ -20,7 +20,7 @@ jobs:
         run: |
           echo "::set-env name=NPM_BUILD_SCRIPT::build:production"
       - name: otherwise build prod static files
-        if: !(endsWith(github.ref, '/staging'))
+        if: endsWith(github.ref, '/staging') != true
         run: |
           echo "::set-env name=NPM_BUILD_SCRIPT::build:staging"
       - name: Client, npm install, build, and test
