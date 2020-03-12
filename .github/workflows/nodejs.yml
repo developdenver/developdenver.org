@@ -20,7 +20,6 @@ jobs:
         run: |
           cd client
           npm ci
-          npm run build
           npm test
 
         env:
@@ -81,9 +80,16 @@ jobs:
     needs: [test_server, test_client]
     steps:
     - uses: actions/checkout@v1
+    - name: maybe set staging env
+      if: endsWith(github.ref, '/staging')
+      run: |
+        echo "::set-env name=HEROKU_APP_NAME::develop-denver-staging"
+    - name: maybe set prod env
+      if: endsWith(github.ref, '/production')
+      run: |
+        echo "::set-env name=HEROKU_APP_NAME::develop-denver"
     - name: "deploy to heroku"
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        HEROKU_APP_NAME: develop-denver-staging
-      if: github.ref == 'refs/heads/master' && job.status == 'success'
+      if: env.HEROKU_APP_NAME
       run: git push https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$HEROKU_APP_NAME.git
