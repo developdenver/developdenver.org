@@ -123,7 +123,7 @@ jobs:
           VUE_APP_SENTRY_ENVIRONMENT: dev
       - name: deploy to firebase
         run: |
-          npm run deploy:client:$(basename $GITHUB_REF)
+          firebase deploy -P $(basename $GITHUB_REF)
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
