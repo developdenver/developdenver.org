@@ -20,7 +20,7 @@ jobs:
         run: |
           cd client
           npm ci
-          npm run build --if-present
+          npm run build
           npm test
 
         env:
@@ -86,4 +86,4 @@ jobs:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         HEROKU_APP_NAME: develop-denver-staging
       if: github.ref == 'refs/heads/master' && job.status == 'success'
-      run: git push https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$HEROKU_APP_NAME.git master
+      run: git push https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$HEROKU_APP_NAME.git
