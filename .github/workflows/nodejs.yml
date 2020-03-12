@@ -15,14 +15,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: maybe build staging static files
-        if: endsWith(github.ref, '/staging')
-        run: |
-          echo "::set-env name=NPM_BUILD_SCRIPT::build:production"
-      - name: otherwise build prod static files
-        if: endsWith(github.ref, '/staging') != true
-        run: |
-          echo "::set-env name=NPM_BUILD_SCRIPT::build:staging"
       - name: Client, npm install, build, and test
         run: |
           cd client
@@ -40,6 +32,7 @@ jobs:
           VUE_APP_RESET_PASSWORD_PATH: auth/reset-password
           VUE_APP_RESET_REQUEST_PATH: auth/reset-request
           VUE_APP_SENTRY_ENVIRONMENT: dev
+          NPM_BUILD_SCRIPT: ${{ if(startsWith(github.ref, '/staging', 'build:staging', 'build:production') }}
   test_server:
 
     runs-on: ubuntu-latest
