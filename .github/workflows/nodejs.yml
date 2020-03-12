@@ -107,6 +107,7 @@ jobs:
       - name: build static files
         run: |
           cd client
+          npm install -g firebase-tools
           npm ci
           npm run build:$(basename $GITHUB_REF)
         env:
@@ -120,7 +121,6 @@ jobs:
           VUE_APP_RESET_PASSWORD_PATH: auth/reset-password
           VUE_APP_RESET_REQUEST_PATH: auth/reset-request
           VUE_APP_SENTRY_ENVIRONMENT: dev
-
       - name: deploy to firebase
         run: |
           npm run deploy:client:$(basename $GITHUB_REF)
