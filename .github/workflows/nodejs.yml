@@ -124,3 +124,6 @@ jobs:
       - name: deploy to firebase
         run: |
           npm run deploy:client:$(basename $GITHUB_REF)
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
