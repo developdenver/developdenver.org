@@ -22,7 +22,6 @@
     "dayjs": "^1.8.12",
     "empty-promise": "^1.2.0",
     "epic-spinners": "^1.0.3",
-    "firebase-tools": "^7.15.0",
     "jwt-decode": "^2.2.0",
     "pluralize": "^7.0.0",
     "register-service-worker": "^1.6.2",

@@ -108,6 +108,7 @@ jobs:
         run: |
           cd client
           npm ci
+          curl -sL https://firebase.tools | bash
           npm run build:$(basename $GITHUB_REF)
         env:
           CI: true
