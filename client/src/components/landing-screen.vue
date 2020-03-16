@@ -4,7 +4,7 @@
 		<div class="landing-headline">
 			<h1>August</h1>
 			<div class="spacer" />
-			<h1>15th + 16th</h1>
+			<h1>13th + 14th</h1>
 		</div>
 		<countdown />
 	</section>
